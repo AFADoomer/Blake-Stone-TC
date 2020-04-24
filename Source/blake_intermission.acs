@@ -1,0 +1,782 @@
+int	bonus=0,
+	deathcam = 0,
+	percent100amt = 10000,
+	tmins = 0, tsecs = 0, pmins, psecs,
+	width, height;
+
+int	initial=1, pagecount = 0, maxpage = 2, kills = 0, secrets = 0, treasures = 0;
+
+int	episode;
+
+bool	secretmap = false,
+	nohud = false,
+	new = true;
+
+Script 4 (int type)
+{
+	SetHudSize(320, 200, 1);
+
+	If (!GetCvar("deathmatch"))
+	{
+		if (type == 1)
+		{
+			Freeze(1);
+			SetFont("B_LOAD");
+			HudMessage (s:"A"; 0, 850, -1, 160.0, 200.2, 0);
+			SetFont("MEDFONT");
+			HudMessage (l:"GreatWork"; 0, 800, -1, 160.4, 188.2, 0);
+			AmbientSound("pickups/moneybag", 127);
+			Delay(5);
+			int WaitTime = 5 * 35;
+			While(!KeyPressed() && WaitTime) {WaitTime--; Delay(1);}
+
+			Thing_Activate (1);
+			Thing_SetGoal (1, 9, 0, 1);
+			SetActorProperty(1, APROP_RenderStyle, 1);
+			Delay(35 * 5);
+			FadeToBlack(1.0, 0.5, 0.5);
+			Delay(35);
+
+			SetHudSize(320, 200, 1);
+			SetFont("WSMASK");
+			HudMessage (s:"A"; 0, 101, -1, 160.0, 100.0, 0);
+
+			SetMusic("");
+			For (int m = 1; m <= 142; m++)
+			{
+				SetFont(strParam(s:"END-",d:m));
+				HudMessageBold (s:"A"; 0, 100, -1, 160.0, 100.0, 0);
+				Switch (m)
+				{
+					case 20:
+					case 23:
+					case 26:
+					case 31:
+						AmbientSound("elev/button", 127);
+						break;
+					case 34:
+						AmbientSound("doors/heavy_open", 127);
+						break;
+					case 71:
+					case 91:
+					case 94:
+						AmbientSound("enginethrust", 127);
+						break;
+				}
+				Delay(2);
+			}
+
+			FadeToBlack(1.0, 0.5, 0.0);
+			Delay(35);
+
+//Temp end of game brief...
+			SetFont("BRIEF");
+			HudMessageBold (s:"A"; 0, 100, -1, 160.0, 100.0, 0);;
+
+			str Title = "TC DEMO DEBRIEF";
+			str Subtitle = "(R.E.B.A. VOICE INTERFACE)";
+			str LevelTitle = "DEMO LEVELSET";
+			str LevelInfo = "Blake Stone TC";
+			str Message1 = "Accessing......current location:";
+			str Message2 = "This is only a demo of the Blake Stone TC...\nIt is still a work in progress!  Some enemies and map items are incomplete.  \n\nStay tuned for more updates!\n\nIdle...R.E.B.A.///end";
+
+			SETFONT("MEDFONT");
+			HudMessageBold (s:Title; HUDMSG_COLORSTRING, 9, "BSBriefYellow", 160.0, 12.1, 0);
+			HudMessageBold (s:Title; HUDMSG_COLORSTRING, 10, "Black", 161.0, 13.1, 0);
+
+			SETFONT("TINYFONT");
+			HudMessageBold (s:Subtitle; HUDMSG_COLORSTRING, 11, "BSBriefDarkYellow", 160.0, 25.1, 0);
+			HudMessageBold (s:Subtitle; HUDMSG_COLORSTRING, 12, "Black", 161.0, 26.1, 0);
+
+			SetHudClipRect(10, 10, 200, 180, 200);
+
+			SETFONT("SMALLFONT");
+			HudMessageBold (s:Message1; HUDMSG_COLORSTRING, 7, "BSStatGrey", 10.1, 40.1, 0); 
+			HudMessageBold (s:Message1; HUDMSG_COLORSTRING, 8, "Black", 11.1, 41.1, 0); 
+
+			SetHudClipRect(10, 10, 300, 180, 300);
+
+			SETFONT("WVGA0087");
+			HudMessageBold (s:"a"; 0, 13, -1, 304.2, 40.1, 0);
+
+			SETFONT("SMALLFONT");
+			HudMessageBold (s:LevelTitle; HUDMSG_COLORSTRING, 15, "BSBriefBlue", 218.2, 60.1, 0); 
+			HudMessageBold (s:LevelTitle; HUDMSG_COLORSTRING, 16, "Black", 219.2, 61.1, 0); 
+			HudMessageBold (s:LevelInfo; HUDMSG_COLORSTRING, 17, "BSBriefBlue", 218.2, 72.1, 0); 
+			HudMessageBold (s:LevelInfo; HUDMSG_COLORSTRING, 18, "Black", 219.2, 73.1, 0); 
+
+			HudMessageBold (s:Message2; HUDMSG_COLORSTRING, 5, "BSStatGrey", 10.1, 100.1, 0); 
+			HudMessageBold (s:Message2; HUDMSG_COLORSTRING, 6, "Black", 11.1, 101.1, 0); 
+
+			Delay(5);
+			While(!KeyPressed()) Delay(1);
+
+			If (CheckHighScore())
+			{
+				SortHighScores();
+				WriteHighScores();
+			}
+
+			ACS_NamedExecute("W_DoHighScores", 0);
+		}
+		else if (type == 2)
+		{
+	//		SetActorProperty(1001, APROP_Invulnerable, 1);
+			ACS_Execute(33, 0);
+			FreezeAll(1);
+			ScriptWait(33);
+		}
+		else
+		{
+			ACS_Execute(31, 0);
+		}
+		intermission = 2;
+
+		TeleportOther (1001, 8, 0);
+		if (type !=2)
+		{
+			ScriptWait(31);
+			delay(35);
+			SetLineBlocking(1, BLOCK_NOTHING);
+		}
+	}
+}
+
+int BriefMsgCountStart = 11000;
+int BriefMsgCount;
+
+Script "W_DoBrief" (int Type, int MaxPages)
+{
+	int Page = 1;
+	int OldPage = 0;
+	int KeyPress = 0;
+	int b;
+	int ClearOffset = 8;
+
+	BriefMsgCount = BriefMsgCountStart;
+
+	If (MaxPages == 0) MaxPages = 2;
+
+	FadeToBlack(1.0, 0.0, 0.5);
+
+	SetHudSize(320, 200, 1);
+
+	SetFont("WSMASK");
+	HudMessage (s:"A"; 0, BriefMsgCount--, -1, 160.0, 100.0, 0);
+
+	Delay(35);
+
+	SetFont("BRIEF");
+	HudMessageBold (s:"A"; 0, BriefMsgCount--, -1, 160.0, 100.0, 0);;
+
+	str Title = ExpandString(strParam(l:"MissionBriefTitle"), 0, "");
+	str Subtitle = strParam(l:"MissionBriefSubTitle");
+
+	str PressKeys, strPressKeysEx = "";
+
+	If (Type > 1)
+		PressKeys = ExpandString(strParam(l:"MissionBriefKeys2"), 1, "");
+	Else
+	{
+		PressKeys = ExpandString(strParam(l:"MissionBriefKeys1A"), 1, "");
+		str PressKeysEx = ExpandString(strParam(l:"MissionBriefKeys1B"), 1, "");
+	}
+
+	Type = Type % 1;
+
+	While (Page)
+	{
+		If (Page != OldPage)
+		{
+			For (b = BriefMsgCount; b <= BriefMsgCountStart - ClearOffset; b++)
+			{
+				HudMessage (s:""; 0, b, -1, 0, 0, 0);
+				BriefMsgCount = b;
+			}
+
+			Switch (Type)
+			{
+				Case 1:
+				break;
+				Default:
+					str LevelTitle = strParam(l:strParam(s:"Mission",d:Episode + 1,s:"LocationA"));
+					str LevelInfo = strParam(l:strParam(s:"Mission",d:Episode + 1,s:"LocationB"));
+
+					str MessageBody;
+
+					Switch (Page)
+					{
+						Case 1:
+							SetHudClipRect(0, 0, 0, 0, 0);
+							str MessageHead = strParam(l:"MissionBriefAccessing");
+							MessageBody = strParam(l:strParam(s:"Mission",d:Episode + 1,s:"Content",d:Page));
+	
+							SETFONT("MEDFONT");
+							HudMessage (s:Title; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 161.0, 13.1, 0);
+							HudMessage (s:Title; HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefYellow", 160.0, 12.1, 0);
+	
+							SETFONT("TINYFONT");
+							HudMessage (s:Subtitle; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 161.0, 26.1, 0);
+							HudMessage (s:Subtitle; HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefDarkYellow", 160.0, 25.1, 0);
+	
+							SETFONT("TINYFONT");
+							If (strLen("PressKeysEx") > 0)
+							{
+								HudMessage (s:PressKeysEx; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 161.0, 177.1, 0);
+								HudMessage (s:PressKeysEx; HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefYellow", 160.0, 176.1, 0);
+								ClearOffset = 10;
+							}
+							HudMessage (s:PressKeys; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 11.1, 177.1, 0);
+							HudMessage (s:PressKeys; HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefYellow", 10.1, 176.1, 0);
+
+							SETFONT("TINYFONT");
+							HudMessage (s:strParam(s:"PAGE ",s:Pad(Page, 2)); HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 247.1, 191.1, 0);
+							HudMessage (s:strParam(s:" OF ",s:Pad(MaxPages, 2)); HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 312.2, 191.1, 0);
+							HudMessage (s:strParam(s:"PAGE ",s:Pad(Page, 2)); HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefYellow", 246.1, 190.1, 0);
+							HudMessage (s:strParam(s:" OF ",s:Pad(MaxPages, 2)); HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefYellow", 311.2, 190.1, 0);
+
+							SetHudClipRect(10, 10, 200, 180, 200);
+	
+							SETFONT("SMALLFONT");
+							HudMessage (s:MessageHead; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 11.1, 41.1, 0); 
+							HudMessage (s:MessageHead; HUDMSG_COLORSTRING, BriefMsgCount--, "BSStatGrey", 10.1, 40.1, 0); 
+	
+							SetHudClipRect(10, 10, 303, 180, 303);
+	
+							SETFONT("MSN_SHAD");
+							HudMessage (s:"a"; 0, BriefMsgCount--, -1, 305.2, 41.1, 0);
+
+							SETFONT(ExpandString("MSN^e", 0, ""));
+
+							HudMessage (s:"a"; 0, BriefMsgCount--, -1, 304.2, 40.1, 0);
+	
+							SETFONT("SMALLFONT");
+							HudMessage (s:LevelTitle; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 219.2, 61.1, 0); 
+							HudMessage (s:LevelTitle; HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefBlue", 218.2, 60.1, 0); 
+							HudMessage (s:LevelInfo; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 219.2, 73.1, 0); 
+							HudMessage (s:LevelInfo; HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefBlue", 218.2, 72.1, 0); 
+	
+							HudMessage (s:MessageBody; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 11.1, 101.1, 0); 
+							HudMessage (s:MessageBody; HUDMSG_COLORSTRING, BriefMsgCount--, "BSStatGrey", 10.1, 100.1, 0); 
+						break;
+						Default:
+							MessageBody = strParam(l:strParam(s:"Mission",d:Episode + 1,s:"Content",d:Page,s:"A"), l:strParam(s:"Mission",d:Episode + 1,s:"Content",d:Page,s:"B"));
+
+							SetHudClipRect(0, 0, 0, 0, 0);
+
+							SETFONT("TINYFONT");
+							HudMessage (s:strParam(s:"PAGE ",s:Pad(Page, 2)); HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 247.1, 191.1, 0);
+							HudMessage (s:strParam(s:" OF ",s:Pad(MaxPages, 2)); HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 312.2, 191.1, 0);
+							HudMessage (s:strParam(s:"PAGE ",s:Pad(Page, 2)); HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefYellow", 246.1, 190.1, 0);
+							HudMessage (s:strParam(s:" OF ",s:Pad(MaxPages, 2)); HUDMSG_COLORSTRING, BriefMsgCount--, "BSBriefYellow", 311.2, 190.1, 0);
+
+							SetHudClipRect(10, 10, 303, 180, 303);
+	
+							SETFONT("SMALLFONT");
+							HudMessage (s:MessageBody; HUDMSG_COLORSTRING, BriefMsgCount--, "Black", 11.1, 41.1, 0); 
+							HudMessage (s:strParam(s:"\c[BSBriefYellow]",l:strParam(s:"Mission",d:Episode + 1,s:"Content",d:Page,s:"A"), s:"\c[BSStatGrey]", l:strParam(s:"Mission",d:Episode + 1,s:"Content",d:Page,s:"B")); HUDMSG_COLORSTRING, BriefMsgCount--, "BSStatGrey", 10.1, 40.1, 0); 
+						break;
+						}
+				break;
+			}
+		}
+
+		OldPage = Page;
+
+		While(!KeyPress)
+		{
+			Delay(1);
+			KeyPress = KeyPressed();
+		}
+
+		Delay(5);
+
+		If (KeyPress == BT_BACK | KeyPress == BT_RIGHT | KeyPress == BT_MOVERIGHT)
+		{
+			Page++;
+			If (Page > MaxPages) Page = MaxPages;
+		}
+		Else If (KeyPress == BT_FORWARD | KeyPress == BT_LEFT | KeyPress == BT_MOVELEFT)
+		{
+			Page--;
+			If (Page < 1) Page = 1;
+		}
+		Else If (KeyPress == BT_USE)
+			Page = 0;
+
+		KeyPress = 0;
+	}
+
+	SetHudClipRect(0, 0, 0, 0, 0);
+
+	FadeToBlack(0.1, 0.5, 0.0);
+	Delay(18);
+
+	For (b = BriefMsgCount; b <= BriefMsgCountStart; b++)
+	{
+		HudMessage (s:""; 0, b, -1, 0, 0, 0);
+		BriefMsgCount = b;
+	}
+}
+
+//Get Psyched
+script 509 (int Player)
+{
+	If (GetCvar("g_nointro")) Terminate;
+
+	GiveInventory("Loading", 1);
+
+	SetHudSize(320, 200, 1);
+
+	FadeToBlack(1.0, 0.0, 0.25);
+
+	SetFont("WSMASK");
+	HudMessage (s:"A"; 0, 870, -1, 160.0, 100.0, 0);
+
+	//Dirty workaround for roundoff errors in texture positions
+	SetHudSize(310, 200, 1);
+
+	SetFont("BLACK");
+	If (GetCvar("screenblocks") >= 11)
+		HudMessage (s:"A"; 0, 860, -1, 155.0, 0.1, 0);
+	Else
+		HudMessage (s:"A"; 0, 860, -1, 155.0, 16.1, 0);
+
+	SetHudSize(320, 200, 1);
+
+	SetFont("B_LOAD");
+	HudMessage (s:"A"; 0, 850, -1, 160.0, 200.2, 0);
+	SetFont("MEDFONT");
+	HudMessage (l:"GetReady"; 0, 800, -1, 160.0, 175.2, 0);
+
+	Delay(40);
+
+	SetFont("B_BAR");
+	HudMessage (s:"A"; 0, 700, -1, 160.0, 180.2, 0);
+	HudMessage (s:"A"; 0, 600, -1, 160.0, 190.2, 0);
+
+	delay(10);
+
+	SetFont("B_BARFIL");
+
+	for (int k=0; k<=248; k=k+1)
+	{
+		HudMessage (s:"A"; 0, 500 - k, -1, (35+k)*1.0, 179.2, 0);
+		if (!(k % 24))
+			delay (1);
+	}
+
+	for (int l=0; l<=248; l=l+1)
+	{
+		HudMessage (s:"A"; 0, 250 - l, -1, (35+l)*1.0, 189.2, 0);
+		if (!(l % 24))
+			delay (1);
+	}
+
+	Delay(10);
+
+	FadeToBlack(1.0, 0.5, 0.5);
+
+	intermission = false;
+/*
+	SetHudSize(320, 200, 1);
+	SetFont("BLACK");
+	HudMessage (s:"a"; 3, 0, -1, 160.0, 100.0, 0.1, 0.5, 0.5);
+*/
+	Delay(25);
+
+	TakeInventory("Loading", 1);
+
+	for (l = 0; l <= 248; l = l + 1)
+		HudMessage (s:""; 0, 250 - l, 0, 0, 0, 0);
+	for (k = 0; k <= 248; k = k + 1)
+		HudMessage (s:""; 0, 500 - k, 0, 0, 0, 0);
+	HudMessage (s:""; 0, 600, 0, 0, 0, 0);
+	HudMessage (s:""; 0, 700, 0, 0, 0, 0);
+	HudMessage (s:""; 0, 800, 0, 0, 0, 0);
+	HudMessage (s:""; 0, 850, 0, 0, 0, 0);
+	HudMessage (s:""; 0, 860, 0, 0, 0, 0);
+	HudMessage (s:""; 0, 870, 0, 0, 0, 0);
+
+	Delay(35);
+
+	stats[Level * 100 + 7] = Timer(); //Time at start of level
+}
+
+//Exit Script
+script 10 (int Type)
+{
+	SetStat(0, Level);
+	SetStat(KILLED_MONSTERS, GetLevelInfo(LEVELINFO_KILLED_MONSTERS));
+	SetStat(TOTAL_MONSTERS, GetLevelInfo(LEVELINFO_TOTAL_MONSTERS));
+	SetStat(FOUND_ITEMS, GetLevelInfo(LEVELINFO_FOUND_ITEMS));
+	SetStat(TOTAL_ITEMS, GetLevelInfo(LEVELINFO_TOTAL_ITEMS));
+	SetStat(FOUND_SECRETS, GetLevelInfo(LEVELINFO_FOUND_SECRETS));
+	SetStat(TOTAL_SECRETS, GetLevelInfo(LEVELINFO_TOTAL_SECRETS));
+	SetStat(ALIVE_INFORMANTS, ThingCountName("Informant", 0) + ThingCountName("MInformant", 0));
+	SetStat(TOTAL_INFORMANTS, InformantCount);
+	SetStat(EXIT_TIME, Timer() - Stat(ENTER_TIME));
+	SetStat(PAR_TIME, GetLevelInfo(LEVELINFO_PAR_TIME));
+
+	ACS_NamedExecute("W_ElevatorPanel", 0, 1);
+/*
+	Switch (Type)
+	{
+		Case 10: //Secret Map
+			secretmap = 1;
+		Default:
+			FadeToBlack(1.5, 0.5, 0.0);
+
+			delay(15);
+
+			intermission = 3;
+
+			ACS_Execute(402, 0);
+
+			TeleportOther (1001, 8, 0);
+
+			ScriptWait(402);
+
+			delay(35);
+		break;
+	}
+*/
+}
+
+Script "W_DoHighScores" (void) //508
+{
+	If (PlayerCount() == 1)
+	{
+		SetMusic("LEVELA");
+
+		PopulateHighScores();
+		DrawHighScores();
+	}
+}
+
+Function int CheckHighScore (void)
+{
+	PopulateHighScores();
+
+	int CurrentScore = GetActorProperty(0, APROP_Score);
+	int intReturn = 0;
+
+	For (int s = 0; s <= 9; s++)
+	{
+//		If (CurrentScore > highscores[s][2])
+//		If (strCmp(strParam(d:CurrentScore), highscores[s][2]) > 0)
+		If (
+			(strLen(strParam(d:CurrentScore)) > strLen(highscores[s][2])) ||
+			(
+				(strLen(strParam(d:CurrentScore)) == strLen(highscores[s][2])) &&
+				(strCmp(strParam(d:CurrentScore), highscores[s][2]) > 0))
+			)
+			intReturn += 1;
+	}
+
+	return intReturn;
+}
+
+Function void SwapScores (int index1, int index2)
+{
+	str TempName;
+	str TempLevel;
+	str TempScore;
+	str TempRatio;
+
+	TempName = highscores[index1][0];
+	TempLevel = highscores[index1][1];
+	TempScore = highscores[index1][2];
+	TempRatio = highscores[index1][3];
+
+	highscores[index1][0] = highscores[index2][0];
+	highscores[index1][1] = highscores[index2][1];
+	highscores[index1][2] = highscores[index2][2];
+	highscores[index1][3] = highscores[index2][3];
+
+	highscores[index2][0] = TempName;
+	highscores[index2][1] = TempLevel;
+	highscores[index2][2] = TempScore;
+	highscores[index2][3] = TempRatio;
+}
+
+Function void PopulateHighScores (void)
+{
+	SplitScoreString(GetCVarString("blake_highscore_data"), '|');
+
+	highscores[10][0] = GetCVarString("name");
+	highscores[10][1] = StrParam(d:Level);
+	highscores[10][2] = StrParam(d:GetActorProperty(0, APROP_Score));
+	highscores[10][3] = StrParam(d:GetRatio());
+}
+
+Function void SortHighScores (void)
+{
+	PopulateHighScores();
+
+	int Swapped = true;
+
+	While (Swapped == true)
+	{
+		Swapped = false;
+		For (int s = 1; s <= 10; s++)
+		{
+//			If (highscores[s][2] > highscores[s-1][2])
+			If (
+				(strLen(highscores[s][2]) > strLen(highscores[s-1][2])) ||
+				(
+					(strLen(highscores[s][2]) == strLen(highscores[s-1][2])) &&
+					(strCmp(highscores[s][2], highscores[s-1][2]) > 0))
+				)
+			{
+				SwapScores(s, s-1);
+				Swapped = true;
+			}
+		}
+	}
+}
+
+Function void WriteHighScores (void)
+{
+	SetCVarString("blake_highscore_data", JoinScoreString('|'));
+}
+
+Function void DrawHighScores (void)
+{
+	SetHudSize (320, 200, 1);
+
+	int NameX = 45.1;
+	int LevelX = 167.4;
+	int ScoreX = 234.2;
+	int RatioX = 271.2;
+	int LineY = 68.1;
+	int LineHeight = 8.0;
+
+	SetFont("MENUBACK");
+	HudMessage(s:"A";0,46,0,160.0,100.0,0);
+
+	SetFont("BIGFONT");
+	HudMessage (s:"HIGH SCORES"; HUDMSG_COLORSTRING, 45, "BSMenuMediumGreen", 160.0, 33.1, 0);
+
+	SetFont("TINYFONT");
+	HudMessage (s:"NAME"; HUDMSG_COLORSTRING, 44, "BSMenuMediumGreen", 96.0, 65.2, 0);
+	HudMessage (s:"MISSION"; HUDMSG_COLORSTRING, 43, "BSMenuMediumGreen", 168.0, 65.2, 0);
+	HudMessage (s:"SCORE"; HUDMSG_COLORSTRING, 42, "BSMenuMediumGreen", 218.0, 65.2, 0);
+	HudMessage (s:"MISSION\n  RATIO"; HUDMSG_COLORSTRING, 41, "BSMenuMediumGreen", 265.0, 65.2, 0);
+
+	For (int s = 0; s <= 9; s++)
+	{
+		int ThisLineY = LineY + (LineHeight * s);
+		HudMessage (s:highscores[s][0]; HUDMSG_COLORSTRING, 1 + (s * 4), "BSMenuBrightGreen", NameX, ThisLineY, 0);
+		HudMessage (s:highscores[s][1]; HUDMSG_COLORSTRING, 2 + (s * 4), "BSMenuBrightGreen", LevelX, ThisLineY, 0);
+		HudMessage (s:highscores[s][2]; HUDMSG_COLORSTRING, 3 + (s * 4), "BSMenuBrightGreen", ScoreX, ThisLineY, 0);
+		HudMessage (s:highscores[s][3]; HUDMSG_COLORSTRING, 4 + (s * 4), "BSMenuBrightGreen", RatioX, ThisLineY, 0);
+	}
+}
+
+global str 50:SplitData[];
+
+Function void SplitScoreString (str InputData, str separator)
+{
+	StrCpy(a:SplitData, InputData);
+
+	int CurrentLetter = 0;
+	int CurrentLength = 0;
+	int Index = 0;
+
+	For (int t = 0; t <= StrLen(InputData); t++)
+	{
+		If (SplitData[t] == separator || t == StrLen(InputData))
+		{
+			highscores[Index / 4][Index % 4] = strMid(InputData, CurrentLetter, CurrentLength);
+			Index++;
+			CurrentLength = 0;
+			CurrentLetter = t + 1;
+		}
+		Else
+			CurrentLength++;
+	}
+}
+
+Function str JoinScoreString (str separator)
+{
+	str Data = "";
+
+	For (int s = 0; s <= 9; s++)
+		Data = StrParam(s:Data, s:highscores[s][0], c:separator, s:highscores[s][1], c:separator, s:highscores[s][2], c:separator, s:highscores[s][3], c:separator);
+
+	Return Data;
+}
+
+//TITLEMAP Scripts
+int titlepagecount = 0, maxtitlepage = 19;
+int titlepages[19] = {"APOGEE", "JAM_1", "JAM_2", "JAM_3", "JAM_4", "JAM_5", "JAM_6", "JAM_7", "JAM_8", "JAM_9", "JAM_10", "JAM_11", "JAM_12", "JAM_13", "JAM_14", "PC-13", "Title", "Credits", "MenuBack"};
+
+int delaytime=0, starttime=0, loopcount=0;
+
+//Initial setup and first graphic
+script "W_TitleMapEnter" (void) //500
+{
+	//Load High Scores from CVars
+	PopulateHighScores();
+
+	SetPlayerProperty (0, 1, 4);
+
+	SetHudSize(320, 200, 1);
+	Setfont("WSMASK");
+	HudMessage (s:"A"; 0, 349, -1, 160.0, 100.0, 0);
+
+	SetFont("BLACK");
+	HudMessage (s:"a"; 3, 996, -1, 160.0, 100.0, 0.33, 0.0, 0.5);
+	delay(20);
+
+	//Apogee Logo
+	SetFont(titlepages[titlepagecount]);
+	HudMessage (s:"A"; 0, 999, 0, 0.1, 0.1, 0);
+	SetMusic("APOGFNFM", 0, 0);
+
+	delay(35 * 7);
+
+	titlepagecount++;
+
+	SetFont("BLACK");
+	HudMessage (s:"a"; 3, 996, -1, 160.0, 100.0, 0.33, 0.5, 0.5);
+	delay(20);
+
+	HudMessage (s:""; 0, 998, 0, 0, 0, 0);
+
+	//JAM
+	SetFont(titlepages[titlepagecount]);
+	HudMessage (s:"A"; 0, 999, 0, 0.1, 0.1, 0);
+	SetMusic("*", 0, 0);
+	delay(120);
+
+	titlepagecount++;
+
+	for (int i=titlepagecount; i < 6; i++)
+	{
+		SetFont(titlepages[i]);
+		HudMessage (s:"A"; 0, 999, 0, 0.1, 0.1, 0);
+		delay(1);
+	}
+
+	titlepagecount = 6;
+	delay(20);
+
+	for (int j=titlepagecount; j < 15; j++)
+	{
+		SetFont(titlepages[j]);
+		HudMessage (s:"A"; 0, 999, 0, 0.1, 0.1, 0);
+		delay(5);
+	}
+
+	titlepagecount = 14;
+
+	starttime = timer();
+}
+
+//Times slide changes
+script "W_TitleMapOpen" (void) //501
+{
+	SetMusic("", 0, 0);
+	While (True)
+	{
+		delaytime = (timer() - starttime) / 35;
+		If 	(
+			(titlepagecount == 14 && delaytime >= 3) || 
+			(titlepagecount == 15 && delaytime >= 5) || 
+			(titlepagecount == 16 && delaytime >= 5) || 
+			(titlepagecount == 17 && delaytime >= 5) || 
+			(titlepagecount == 18 && delaytime >= 5)
+			)
+		{
+			ACS_NamedExecute("W_TitleMapNext", 0);
+			starttime = timer();
+		}
+		delay(35);
+	}
+}
+
+//Draws slides
+script "W_TitleMapNext" (void) //Next //255
+{
+	SetHudSize(320, 200, 1);
+
+	HudMessage (s:""; 0, 350, 0, 0, 0, 0);
+
+	SetFont("BLACK");
+	HudMessage (s:"a"; 3, 0, -1, 160.0, 100.0, 0.33, 0.5, 0.5);
+
+	delay(20);
+
+	titlepagecount++;
+	if (titlepagecount == maxtitlepage)
+	{
+		loopcount++;
+		titlepagecount = 16;
+	}
+
+	If (titlepagecount == 15)
+	{
+		//PC-13
+		SetFont("DARK_RED");
+		HudMessage (s:"A"; 0, 999, 0, 0.1, 100.0, 0);
+	}
+	Else If (titlepagecount == 16)
+	{
+		//Add TC version number to the main title page
+		SetFont("TINYFONT");
+		HudMessage (s:"TC v", s:GetCVarString("g_version"); HUDMSG_COLORSTRING, 996, "BSBriefYellow", 319.2, 192.2, 0);
+		HudMessage (s:"TC v", s:GetCVarString("g_version"); HUDMSG_COLORSTRING, 997, "Black", 320.2, 193.2, 0);
+	}
+	Else
+	{
+		HudMessage (s:""; 0, 999, 0, 0.1, 100.0, 0);
+		HudMessage (s:""; 0, 997, 0, 0.1, 100.0, 0);
+		HudMessage (s:""; 0, 996, 0, 0.1, 100.0, 0);
+	}
+
+	If (titlepagecount == 18)
+		DrawHighScores();
+	Else
+	{
+		For (int c = 0; c <= 46; c++)
+			HudMessage (s:""; 0, c, 0, 0, 0, 0);
+	}
+
+	SetFont(titlepages[titlepagecount]);
+
+	If (titlepagecount == 15)
+		HudMessage (s:"A"; 0, 998, 0, 0.1, 100.0, 0);
+	Else
+		HudMessage (s:"A"; 0, 998, 0, 0.1, 0.1, 0);
+}
+
+Script "W_VictorySetup" (int StartX, int StartY, int BitAngle)
+{
+	If (StartX == 0 && StartY == 0)
+	{
+		StartX = GetActorX(0);
+		StartY = GetActorY(0);
+		BitAngle = GetActorAngle(0) >> 8;
+	}
+	Else
+	{
+		StartX = StartX * 1.0;
+		StartY = StartY * 1.0;
+	}
+
+	int Angle = BitAngle << 8;
+
+	int OffsetX = cos(Angle) * 224;
+	int OffsetY = sin(Angle) * 224;
+
+	SpawnForced ("PatrolPoint", StartX + OffsetX, StartY + OffsetY, 32.0, 9, BitAngle);
+
+	OffsetX = cos(Angle) * -64;
+	OffsetY = sin(Angle) * -64;
+
+	SpawnForced ("Blake", StartX + OffsetX, StartY + OffsetY, 32, 1, BitAngle);
+	Thing_Deactivate(1);
+	SetThingSpecial (1, 229, 0, 9, 1);
+}

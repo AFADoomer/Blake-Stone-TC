@@ -1,0 +1,771 @@
+////////////////////////////////////////////////////////////////////////////////
+// Blake Stone TC - Elevator Panel Scripts
+////////////////////////////////////////////////////////////////////////////////
+// 
+// This file contains the following scripts and functions:
+//
+//   W_ElevatorPanel		Draw background and initiates input loop
+//	OnOff		1 - Draws, 0 - Clears Panel
+//   W_StatusBar		Draws a bar that fills to a percentage value
+//	y		y position on screen to draw at
+//	Value		Percentage value to fill bar to
+//	Speed		How quickly to draw
+//   W_ElevatorInputLoop	Player input loop for number selections
+//   SetPanelNumber		Sets the active panel number texture
+//	Row		0-4
+//	Col		0-1
+//   W_ElevatorMessage		Sets elevator panel message for 2 seconds, then
+//				reverts to current floor message
+//	ElevMessage	Message index
+//   SetPanelMessage		Sets elevator panel message to indexed entry
+//	ElevMessage	Message index
+//
+////////////////////////////////////////////////////////////////////////////////
+
+#define ELEV_NORMAL 0
+#define ELEV_LOCKED 1
+#define ELEV_UNLOCKED 2
+#define ELEV_NEEDKEY 3
+
+int ElevMsgCountStart = 20000;
+int ElevMsgCount;
+int ActiveMapMsgCountStart = 10000;
+int ActiveMapMsgCount;
+int Selected;
+int GetInput;
+int YOffset = 0;
+
+int mapRadius = 16;
+int mapX = 192 - 16;
+int mapY = 156 - 16;
+int mapZoom = 0;
+
+//Draw or Clear Elevator Panel Background Images
+Script "W_ElevatorPanel" (int OnOff)
+{
+	If (OnOff)
+	{
+		If (MapActive || CheckInventory("Loading")) Terminate;
+
+		SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+
+		MapActive = 1;
+
+		HudMessage (s:""; 0, 100, -1, 0, 0, 0); //Kill the attacker or pickup message, if it's there.
+
+		GetInput = True;
+
+		ElevMsgCount = ElevMsgCountStart;
+		Selected = GetLevelInfo(LEVELINFO_LEVELNUM) % 100;
+
+		//Flag the automap SBARINFO to show the top bar
+		GiveInventory("ElevatorPanel", 1);
+
+		//Handle the lack of the top bar on fullscreen views
+		If (GetCvar("screenblocks") >= 11)
+		{
+			SetHudSize(320, 184, 1);
+			YOffset = 16.0;
+		}
+		Else
+		{
+			SetHudSize(320, 200, 1);
+			YOffset = 0;
+		}
+
+		SetFont("WSMASK");
+		HudMessage (s:"A"; 0, ElevMsgCount--, -1, 160.0, 100.0, 0);
+
+		SetFont("Elev_Bkg");
+		HudMessage (s:"A"; 0, ElevMsgCount--, -1, 160.0, 152.2 - YOffset, 0);
+
+		SetFont("Elev_Con");
+		HudMessage (s:"A"; 0, ElevMsgCount--, -1, 160.0, 150.2 - YOffset, 0);
+
+		ACS_NamedExecuteAlways("W_DrawMapView", 0, 1, 14.0, 134.0);
+
+		SetFont("SBar_Msg");
+		HudMessage (s:"A"; 0, ElevMsgCount--, -1, 160.0, 200.2 - YOffset, 0);
+
+		SetFont("MedFont");
+		HudMessage (l:"Elevator1"; 0, ElevMsgCount--, -1, 160.0, 175.2 - YOffset, 0);
+		HudMessage (s:ExpandString(strParam(l:"Elevator2"), 1, ""); 0, ElevMsgCount--, -1, 160.0, 190.2 - YOffset, 0);
+
+		SetPanelMessage(ELEV_NORMAL);
+
+		int Points, Informants, EnemyKills;
+
+		If ((Stat(TOTAL_MONSTERS) + Stat(TOTAL_ITEMS)) > 0)
+			Points = (Stat(KILLED_MONSTERS) + Stat(FOUND_ITEMS)) * 100 / (Stat(TOTAL_MONSTERS) + Stat(TOTAL_ITEMS)); //Sloppy Approximation for now...
+		Else
+			Points = 100;
+
+		If (Stat(TOTAL_INFORMANTS) > 0)
+			Informants = Stat(ALIVE_INFORMANTS) * 100 / Stat(TOTAL_INFORMANTS);
+		Else
+			Informants = 100;
+
+		If (Stat(TOTAL_MONSTERS) > 0)
+			EnemyKills = Stat(KILLED_MONSTERS) * 100 / Stat(TOTAL_MONSTERS);
+		Else
+			EnemyKills = 100;
+
+		ACS_NamedExecuteWait("W_StatusBar", 0, 167.0, 92.0 - YOffset, Points);		//Total Points
+		ACS_NamedExecuteWait("W_StatusBar", 0, 167.0, 99.0 - YOffset, Informants);		//Informants Alive
+		ACS_NamedExecuteWait("W_StatusBar", 0, 167.0, 106.0 - YOffset, EnemyKills);	//Killed Enemies
+
+		ACS_NamedExecuteWait("W_StatusBar", 0, 167.0, 118.0 - YOffset, (Points + Informants + EnemyKills) / 3);	// Floor Rating
+		ACS_NamedExecuteWait("W_StatusBar", 0, 167.0, 125.0 - YOffset, GetRatio());	// Mission Rating
+
+		ACS_NamedExecute("W_ElevatorInputLoop", 0);
+	}
+	Else If (ElevMsgCount > 0)
+	{
+		TakeInventory("ElevatorPanel", 1);
+
+		For (int e = ElevMsgCount; e <= ElevMsgCountStart; e++)
+		{
+			HudMessage (s:""; 0, e, 0, 0, 0, 0);
+		}
+		HudMessage (s:""; 0, 500, 0, 0, 0, 0);
+		HudMessage (s:""; 0, 501, 0, 0, 0, 0);
+		HudMessage (s:""; 0, 502, 0, 0, 0, 0);
+		HudMessage (s:""; 0, 503, 0, 0, 0, 0);
+
+		ElevMsgCount = ElevMsgCountStart;
+
+		GetInput= False;
+
+		MapActive = 0;
+
+		SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+	}
+}
+
+Script "W_StatusBar"(int x, int y, int Value)
+{
+	SetHudSize(320, 200 - YOffset / 1.0, 1);
+
+	y = y / 1.0;
+	x = x / 1.0;
+
+	int BarMax = Value * 47 / 100;
+
+	int ValueID = ElevMsgCount--;
+
+	If (Value > 0)
+	{
+		For (int s=0; s <= BarMax; s++)
+		{
+			SetFont("S_BARFIL");
+			HudMessage (s:"A"; 0, ElevMsgCount--, -1, (x + s) * 1.0, y * 1.0 + 0.1, 0);
+
+			SetFont("TinyFont");
+			HudMessage (d:(s * 100 / 47); 0, ValueID, -1, (x + 66) * 1.0 + 0.2, y * 1.0 + 0.1, 0);
+			If (x == 167)
+			{
+				If (!(s % 2)) Delay (1);
+				AmbientSound("stats/bar",127);
+			}
+		}
+	}
+
+	SetFont("TinyFont");
+	HudMessage (d:Value; 0, ValueID, -1, (x + 66) * 1.0 + 0.2, y * 1.0 + 0.1, 0);
+
+	If (x == 167)
+		AmbientSound("stats/done",127);
+}
+
+//Active loop for input and drawing selection
+Script "W_ElevatorInputLoop" (void)
+{
+	int Row = (Selected - 1) / 2;
+	int Col = (Selected - 1) % 2;
+
+	SetPanelNumber(Row, Col);
+
+	While (GetInput == True)
+	{
+		SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+
+		int Buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+		int OldButtons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+
+		If (OldButtons != Buttons)
+		{
+			If (Buttons == BT_FORWARD)
+			{
+				Row = Row + 1;
+				If (Row > 4) Row = 0;
+			}
+			Else If (Buttons == BT_BACK)
+			{
+				Row = Row - 1;
+				If (Row < 0) Row = 4;
+			}
+			Else If (Buttons == BT_LEFT | Buttons == BT_MOVELEFT)
+			{
+				Col = Col - 1;
+				If (Col < 0) Col = 1;
+			}
+			Else If (Buttons == BT_RIGHT | Buttons == BT_MOVERIGHT)
+			{
+				Col = Col + 1;
+				If (Col > 1) Col = 0;
+			}
+			Else If (Buttons == BT_USE)
+			{
+				If (Selected != Level)
+				{
+					If (ElevatorAccess[Selected + (100 * Episode)])
+					{
+						ACS_NamedExecuteAlways("W_StorePosition", 0, GetActorX(0), GetActorY(0), PlayerNumber());
+						Delay(35);
+						Teleport_NewMap (Selected + (100 * Episode), 0, 1);
+						ClearPanel();
+					}
+					Else If (CheckInventory("BSRedKey"))
+					{
+						If (Selected == GetNextLevel())
+						{
+							ElevatorAccess[Selected] = True;
+							SetPanelMessage(ELEV_UNLOCKED);
+							TakeInventory("BSRedKey", 1);
+							Delay(35);
+							SetCVar("g_blakedead", 0);
+							Teleport_NewMap (Selected + (100 * Episode), 0, 0);
+							ClearPanel();
+						}
+						Else
+						{
+							ACS_NamedExecuteAlways("W_ElevatorMessage", 0, ELEV_LOCKED);
+						}
+					}
+					Else
+					{
+						ACS_NamedExecuteAlways("W_ElevatorMessage", 0, ELEV_NEEDKEY);
+					}
+				}
+				Else
+				{
+					ClearPanel();
+				}
+			}
+			Else If (Buttons == BT_ATTACK)
+			{
+				ClearPanel();
+			}
+	
+			SetPanelNumber(Row, Col);
+		}
+		Delay(1);
+	}
+	SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+}
+
+Function void ClearPanel(void)
+{
+	GetInput = False;
+	ACS_NamedTerminate("W_StatusBar", 0);
+	ACS_NamedTerminate("W_ElevatorPanel", 0);
+	ACS_NamedExecuteAlways("W_ElevatorPanel", 0, 0);
+}
+
+Function void SetPanelNumber(int Row, int Col)
+{
+	int x = 264 + (Col * 24);
+	int y = 114 - (Row * 20) - YOffset / 1.0;
+
+	int Value = (Row * 2) + Col + 1;
+	Selected = Value;
+	If (Value == 10) Value = 0;
+
+	SetHudSize(320, 200 - YOffset / 1.0, 1);
+
+	SetFont(StrParam(s:"ELEV_",d:Value,s:"_1"));
+	HudMessage (s:"A"; 0, 500, -1, x * 1.0 + 0.1, y * 1.0 + 0.1, 0);
+}
+
+Script "W_ElevatorMessage" (int Index)
+{
+	If (Index > 0)
+	{
+		SetPanelMessage(Index);	
+		delay(70);
+	}
+	SetPanelMessage(ELEV_NORMAL);
+}
+
+//Change Elevator Panel Message
+Function void SetPanelMessage(int ElevMessage)
+{
+	If (!GetInput) return;
+
+	SetHudSize(320, 200 - YOffset / 1.0, 1);
+
+	SetFont("BigFont");
+
+	Switch (ElevMessage)
+	{
+		Case ELEV_LOCKED:
+			HudMessage (l:"ElevatorLocked1"; HUDMSG_COLORSTRING, 503, "BSElevatorBlue", 30.1, 25.1 - YOffset, 0);
+			HudMessage (l:"ElevatorLocked2"; HUDMSG_COLORSTRING, 502, "BSElevatorBlue", 30.1, 42.1 - YOffset, 0);
+			HudMessage (d:Selected; HUDMSG_COLORSTRING, 501, "BSElevatorDarkYellow", 95.0, 25.1 - YOffset, 0);
+			break;
+		Case ELEV_UNLOCKED:
+			HudMessage (l:"ElevatorUnlocked1"; HUDMSG_COLORSTRING, 503, "BSElevatorBlue", 30.1, 25.1 - YOffset, 0);
+			HudMessage (l:"ElevatorUnlocked2"; HUDMSG_COLORSTRING, 502, "BSElevatorBlue", 30.1, 42.1 - YOffset, 0);
+			HudMessage (s:""; 0, 501, 0, 0, 0, 0);
+			break;
+		Case ELEV_NEEDKEY:
+			HudMessage (l:"ElevatorKeyRequired1"; HUDMSG_COLORSTRING, 503, "BSElevatorBlue", 30.1, 25.1 - YOffset, 0);
+			HudMessage (l:"ElevatorKeyRequired2"; HUDMSG_COLORSTRING, 502, "BSElevatorBlue", 30.1, 42.1 - YOffset, 0);
+			HudMessage (s:""; 0, 501, 0, 0, 0, 0);
+			break;
+		Default:
+			HudMessage (l:"ElevatorSelect1"; HUDMSG_COLORSTRING, 503, "BSElevatorBlue", 30.1, 25.1 - YOffset, 0);
+			HudMessage (l:"ElevatorSelect2"; HUDMSG_COLORSTRING, 502, "BSElevatorBlue", 30.1, 42.1 - YOffset, 0);
+			HudMessage (d:Level; HUDMSG_COLORSTRING, 501, "BSElevatorDarkYellow", 170.1, 25.1 - YOffset, 0);
+			break;
+	}
+}
+
+Function int GetNextLevel(void)
+{
+	int NextLevel = -1;
+
+	For (int n = (Episode * 100) + 1; n <= (Episode * 100) + 10; n++)
+	{
+		If (ElevatorAccess[n] == False)
+		{
+			NextLevel = n;
+			n = (Episode * 100) + 10;
+		}
+	}
+
+	Return NextLevel;
+}
+
+Script "W_TabMap" (void)
+{
+	If (MapActive == 1)
+	{
+		If (!GetInput) MapActive = 0;
+		Terminate;
+	}
+
+	ElevMsgCount = ElevMsgCountStart;
+
+	ACS_NamedExecuteAlways("W_DrawMapView", 0, 2, 44.0, 112.0);
+
+	SetStat(0, Level);
+	SetStat(KILLED_MONSTERS, GetLevelInfo(LEVELINFO_KILLED_MONSTERS));
+	SetStat(TOTAL_MONSTERS, GetLevelInfo(LEVELINFO_TOTAL_MONSTERS));
+	SetStat(FOUND_ITEMS, GetLevelInfo(LEVELINFO_FOUND_ITEMS));
+	SetStat(TOTAL_ITEMS, GetLevelInfo(LEVELINFO_TOTAL_ITEMS));
+	SetStat(FOUND_SECRETS, GetLevelInfo(LEVELINFO_FOUND_SECRETS));
+	SetStat(TOTAL_SECRETS, GetLevelInfo(LEVELINFO_TOTAL_SECRETS));
+	SetStat(ALIVE_INFORMANTS, ThingCountName("Informant", 0) + ThingCountName("MInformant", 0));
+	SetStat(TOTAL_INFORMANTS, InformantCount);
+	SetStat(EXIT_TIME, Timer() - Stat(ENTER_TIME));
+	SetStat(PAR_TIME, GetLevelInfo(LEVELINFO_PAR_TIME));
+
+	int Points, Informants, EnemyKills;
+
+	If ((Stat(TOTAL_MONSTERS) + Stat(TOTAL_ITEMS)) > 0)
+		Points = (Stat(KILLED_MONSTERS) + Stat(FOUND_ITEMS)) * 100 / (Stat(TOTAL_MONSTERS) + Stat(TOTAL_ITEMS)); //Sloppy Approximation for now...
+	Else
+		Points = 100;
+
+	If (Stat(TOTAL_INFORMANTS) > 0)
+		Informants = Stat(ALIVE_INFORMANTS) * 100 / Stat(TOTAL_INFORMANTS);
+	Else
+		Informants = 100;
+
+	If (Stat(TOTAL_MONSTERS) > 0)
+		EnemyKills = Stat(KILLED_MONSTERS) * 100 / Stat(TOTAL_MONSTERS);
+	Else
+		EnemyKills = 100;
+
+	Delay(1);
+
+	ACS_NamedExecuteWait("W_StatusBar", 0, 197.0, 70.0, Points);		//Total Points
+	ACS_NamedExecuteWait("W_StatusBar", 0, 197.0, 77.0, Informants);	//Informants Alive
+	ACS_NamedExecuteWait("W_StatusBar", 0, 197.0, 84.0, EnemyKills);	//Killed Enemies
+
+	ACS_NamedExecuteWait("W_StatusBar", 0, 197.0, 96.0, (Points + Informants + EnemyKills) / 3);	// Floor Rating
+	ACS_NamedExecuteWait("W_StatusBar", 0, 197.0, 103.0, GetRatio());				// Mission Rating
+
+	If (PlayerCount() == 1)
+		ACS_NamedExecute("Freeze", 0, True);
+
+	MapActive = 1;
+
+	While(!KeyPressed() && MapActive) Delay(1);
+
+	MapActive = 0;
+
+	ACS_NamedExecute("Freeze", 0, False);
+
+	For (int e = ElevMsgCount; e <= ElevMsgCountStart; e++)
+	{
+		HudMessage (s:""; 0, e, 0, 0, 0, 0);
+	}
+
+	ElevMsgCount = ElevMsgCountStart;
+}
+
+Script "W_MapZoom" (int zoom)
+{
+	MapActive = 0;
+	Delay(15);
+	ACS_NamedExecuteAlways("W_DrawMapRefresh", 0, mapX, mapY, zoom);
+}
+
+Function int Exp (int x, int n)
+{
+	int y = 1;
+	While (n-- > 0) y *= x;
+	Return y;
+}
+
+Script "W_DrawMapRefresh" (int xPos, int yPos, int zoom)
+{
+	If (zoom < 0)
+		zoom = 0;
+	Else If (zoom > 2)
+		zoom = 2;
+
+	mapZoom = zoom;
+
+	If (xPos) mapX = xPos;
+	If (yPos) mapY = yPos;
+
+	If (MapActive == 1)
+	{
+		MapActive = 0;
+	}
+	Else
+	{
+		MapActive = 1;
+		ActiveMapMsgCount = ActiveMapMsgCountStart;
+
+		str strDot = "A";
+
+		int wDest = 0, hDest = 0;
+		int wMin = -mapRadius, wMax = -wMin;
+		int hMin = wMin, hMax = -hMin;
+		int wMap = 64, hMap = 64;
+
+		zoom = Exp(2, zoom);
+
+		SetHudSize (320 / zoom, 200 / zoom, 1);
+
+		wMin = wMin / zoom, wMax = wMax / zoom;
+		hMin = hMin / zoom, hMax = hMax / zoom;
+
+		mapY = (mapY + hMap/2) / zoom;
+		mapX = (mapX + wMap/2 - 1) / zoom;
+
+		int Color = 0;
+	}
+
+	While(MapActive)
+	{
+		zoom = CheckInventory("MapState");
+
+		For (wDest = wMax; wDest > wMin; wDest--)
+		{
+			For (hDest = hMax; hDest > hMin; hDest--)
+			{
+				int Angle = GetActorAngle(0) - 0.25;
+				int x = WolfCoord(GetActorX(0)) * 1.0;
+				int y = WolfCoord(GetActorY(0)) * 1.0;
+
+				int w = x + (wDest * cos(Angle)) - (hDest * sin(Angle));
+				int h = y + (hDest * cos(Angle)) + (wDest * sin(Angle));
+
+				w = w / 1.0;
+				h = h / 1.0;
+
+				If (
+					(w <= wMap && h <= hMap && w >= 0 && h >= 0) &&
+/*
+					(
+						MapDiffArray[w][h] || 
+						(0 < MapMoversArray[w][h][1] < Timer())
+					) &&
+*/
+					(
+//						MapArray[w][h][0] || 
+						(
+//							MapArray[w][h][1] > 0 &&
+							(
+								MapArray[w][h + 1][0] ||
+								MapArray[w][h - 1][0] ||
+								MapArray[w + 1][h][0] ||
+								MapArray[w - 1][h][0]
+							)
+						)
+					)
+				)
+				{
+					MapDiffArray[w][h] = 0;
+					If (MapArray[w][h][1])
+						Color = MapArray[w][h][1];
+					Else
+						Color = MapArray[w][h][0];
+	
+					If (MapMoversArray[w][h][1] > Timer())
+						Color = MapMoversArray[w][h][0];
+	
+					If (GetCvar("am_cheat") == 0 && !CheckInventory("MapState"))
+					{
+						Switch (Color)
+						{
+							Case 6:
+							Case 9:
+							Case 10:
+								Color = MapArray[w][h][0];
+								break;
+							Case 7:
+								Color = 0;
+								break;
+						}
+					}
+					Else If (GetCvar("am_cheat") == 1 && !CheckInventory("PowerScanner"))
+					{
+						Switch (Color)
+						{
+							Case 9:
+								Color = MapArray[w][h][0];
+								break;
+						}
+					}
+
+
+					Switch (Color)
+					{
+						Case 1:
+							If (MapArray[w + 1][h][0] || MapArray[w - 1][h][0] || MapArray[w][h + 1][0] || MapArray[w][h - 1][0])
+								SetFont("DOT_GRN");
+							Else
+								strDot = "";
+							break;
+						Case 2:
+						Case 10:
+							SetFont("DOT_LGRN");
+							break;
+						Case 3:
+							SetFont("DOT_DGRN");
+							break;
+						Case 4:
+							SetFont("DOT_BLUE");
+							break;
+						Case 5:
+						Case 9:
+							SetFont("DOT_RED");
+							break;
+						Case 6:
+							SetFont("DOT_YELL");
+							break;
+						Case 7:
+							SetFont("DOT_WHT1");
+							break;
+						Case 8:
+							SetFont("DOT_WHT2");
+							break;
+						Default:
+							strDot = "";
+							break;
+					}
+
+					HudMessage (s:strDot; 0, ActiveMapMsgCount--, -1, (mapX + wDest) * 1.0, (mapY - hDest) * 1.0, 0.15);
+					strDot = "A";
+					Color = 0;
+				}
+				Else
+					ActiveMapMsgCount--;
+			}
+		}
+
+		ActiveMapMsgCount = ActiveMapMsgCountStart;
+		Delay(5);
+	}
+
+	For (int m = ActiveMapMsgCountStart - 4096; m <= ActiveMapMsgCountStart; m++)
+	{
+		HudMessage (s:""; 0, m, 0, 0, 0, 0);
+	}
+
+	HudMessage (s:""; 0, ActiveMapMsgCountStart + 1, 0, 0, 0, 0);
+
+	ActiveMapMsgCount = ActiveMapMsgCountStart;
+}
+
+Script "W_DrawMapView" (int Style, int xPos, int yPos)
+{
+	str strDot;
+
+	If (Style > 0)
+		strDot = "A";
+	Else
+		strDot = "";
+
+	SetHudSize (320, 200, 1);
+
+	If (Style != 1)
+	{
+		SetFont("MAP_BACK");
+		HudMessage (s:strDot; 0, ElevMsgCount--, -1, 160.0, 81.0, 0);
+/*
+		mapRadius = 32;
+		ACS_NamedExecuteAlways("W_DrawMapRefresh", 0, 44, 49, 3);
+		Terminate;
+*/
+	}
+
+	For (int w = 0; w < 64; w++)
+	{
+		For (int h = 0; h < 64; h++)
+		{
+			SetFont("DOT_DGRY");
+
+			If (
+				(MapArray[w][h][0]) || 
+				(
+					MapArray[w][h][1] > 0 &&
+					(
+						MapArray[w][h + 1][0] ||
+						MapArray[w][h - 1][0] ||
+						MapArray[w + 1][h][0] ||
+						MapArray[w - 1][h][0]
+					)
+				)
+			)
+			{
+				int Color;
+
+				If (MapArray[w][h][1])
+					Color = MapArray[w][h][1];
+				Else
+					Color = MapArray[w][h][0];
+
+				If (MapMoversArray[w][h][1] > Timer())
+					Color = MapMoversArray[w][h][0];
+
+				If (GetCvar("am_cheat") == 0)
+				{
+					Switch (Color)
+					{
+						Case 6:
+						Case 9:
+						Case 10:
+							Color = MapArray[w][h][0];
+							break;
+						Case 7:
+							Color = 0;
+							break;
+					}
+				}
+
+				Switch (Color)
+				{
+					Case 1:
+						If (MapArray[w + 1][h][0] || MapArray[w - 1][h][0] || MapArray[w][h + 1][0] || MapArray[w][h - 1][0])
+						SetFont("DOT_GRN");
+						break;
+					Case 2:
+					Case 10:
+						SetFont("DOT_LGRN");
+						break;
+					Case 3:
+						SetFont("DOT_DGRN");
+						break;
+					Case 4:
+						SetFont("DOT_BLUE");
+						break;
+					Case 5:
+					Case 9:
+						SetFont("DOT_RED");
+						break;
+					Case 6:
+						SetFont("DOT_YELL");
+						break;
+					Case 7:
+						SetFont("DOT_WHT1");
+						break;
+					Case 8:
+						SetFont("DOT_WHT2");
+						break;
+					Default:
+						strDot = "";
+						break;
+				}
+				strDot = "A";
+			}
+
+			HudMessage (s:strDot; 0, ElevMsgCount--, -1, xPos + w * 1.0, yPos - h * 1.0, 0);
+		}
+	}
+}
+
+Script "A_MarkMap" (int Value)
+{
+	int ActorX = WolfCoord(GetActorX(0));
+	int ActorY = WolfCoord(GetActorY(0));
+
+	Switch (Value)
+	{
+		Case -1:
+			MapArray[ActorX][ActorY][0] = 0;
+			MapArray[ActorX][ActorY][1] = 0;
+			break;
+		Case 0:
+			MapArray[ActorX][ActorY][1] = 0;
+			break;
+		Case 1:
+			If (GetActorLightLevel(0) > 208)
+				MapArray[ActorX][ActorY][0] = 3;
+			Else
+				MapArray[ActorX][ActorY][0] = 1;
+			break;
+		default:
+			If (!MapArray[ActorX][ActorY][1])
+				MapArray[ActorX][ActorY][1] = Value;
+			break;
+	}
+	MapDiffArray[ActorX][ActorY] = 1;
+}
+
+Script "A_MarkMapMover" (int Value, int Duration)
+{
+	int ActorX = WolfCoord(GetActorX(0));
+	int ActorY = WolfCoord(GetActorY(0));
+
+	MapMoversArray[ActorX][ActorY][0] = Value;
+	MapMoversArray[ActorX][ActorY][1] = Timer() + Duration;
+	MapDiffArray[ActorX][ActorY] = 1;
+}
+
+Script "A_MarkMapSpot" (int Value, int x, int y)
+{
+	If (Value > 0)
+		MapArray[WolfCoord(x)][WolfCoord(y)][0] = 1;
+	Else
+		MapArray[WolfCoord(x)][WolfCoord(y)][0] = 0;
+	MapArray[WolfCoord(x)][WolfCoord(y)][1] = Value;
+	MapDiffArray[WolfCoord(x)][WolfCoord(y)] = 1;
+}
+
+Script "A_CheckMapped" (void)
+{
+	int ActorX = WolfCoord(GetActorX(0));
+	int ActorY = WolfCoord(GetActorY(0));
+
+	If (ThingCountName("MapView", 0) > 100)
+		SetResultValue (10);
+	Else
+		SetResultValue (MapArray[ActorX][ActorY][0]);
+}

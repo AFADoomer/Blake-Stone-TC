@@ -1,0 +1,1829 @@
+int	polyinfo[255];
+int	PushWalls[255];
+int	intPushWallMoveDist = 128.0;
+
+int	InformantMessageCount = 0;
+int	LoyalistMessageCount = 0;
+int	AlarmMessageCount = 0;
+
+int	InformantMessages[32];
+int	LoyalistMessages[17];
+int	AlarmMessages[16];
+
+int	intLifeAmount = 400000;
+
+int	reloadcount = 35;
+
+str	strFloorTex = "",
+	strCeilingTex = "",
+	strFloor = "",
+	strCeiling = "";
+
+#define	DOOR_UNLOCKED	0
+
+#define	DOOR_RED	1
+#define	DOOR_YELLOW	2
+#define	DOOR_GREEN	3
+#define	DOOR_BLUE	4
+#define	DOOR_GOLD	5
+
+#define	DOOR_ELEVATOR	10
+
+#define	DOOR_ONEWAYW	1
+#define	DOOR_ONEWAYN	2
+#define	DOOR_ONEWAYE	3
+#define	DOOR_ONEWAYS	4
+
+#define	DOOR_WALKOVER	250
+
+#define LockCount 5
+
+str LockInfo[LockCount + 1] = {
+	"Unlocked",
+	"Red", 
+	"Yellow",
+	"Green", 
+	"Blue", 
+	"Gold" 
+};
+
+Function int CheckDoorLock(int intLock)
+{
+	str strColor = "";
+	strColor = LockInfo[intLock];
+
+	int intResult = 0;
+
+	If (intLock == DOOR_UNLOCKED || intLock == -1)
+		intResult = 1;
+	Else If (intLock == DOOR_WALKOVER)
+	{
+		If (ActivatorTID() > 1000 && ActivatorTID() < 1009)
+			If(PlayerIsBot(ActivatorTID() - 1001)) intResult = 1;
+		Else
+			intResult = 1;
+	}
+	Else
+	{
+		str strKey = strParam(s:"BS", s:strColor, s:"Key");
+		str strLockMessage = strParam(l:strParam(s:"LOCK", s:ChangeCase(strColor, 1)));
+
+		If (Checkinventory(strKey))
+		{
+			TakeInventory(strKey, 1);
+			intResult = 1;
+		}
+		Else
+			SetMessage(0, strLockMessage, 0, 0);
+	}
+
+	Return intResult;
+}
+
+//Polyobject Doors
+script 1 (int po, int dir, int lock)
+{
+	int index = po - 1;
+	int dirStart, dirEnd, bAccess = 0;
+	int speed = 16;
+
+	int intLock = 0;
+	int intSpecial = 0;
+
+	If (lock >= DOOR_WALKOVER)
+	{
+		intLock = DOOR_WALKOVER;
+		intSpecial = lock % 10;
+	}
+	Else
+	{
+		intLock = lock % 10;
+		intSpecial = lock / 10;
+	}
+
+	If (dir == 0)
+	{
+		dirStart = 192;
+		dirEnd = 64;
+	}
+	Else If(dir == 1)
+	{
+		dirStart = 128;
+		dirEnd = 0;
+	}
+
+	If (ActivatorTID() > 1000 && ActivatorTID() < 1009 && intLock == DOOR_WALKOVER) Terminate;
+
+	If ((polyinfo[index] == 2  || intLock == DOOR_ELEVATOR) && intLock != DOOR_WALKOVER)
+		intLock = DOOR_UNLOCKED;
+
+	Switch (intSpecial)
+	{
+		Case DOOR_ONEWAYW:
+			If (GetActorAngle(0) < 0.25 || GetActorAngle(0) > 0.75) bAccess = -1;
+		break;
+		Case DOOR_ONEWAYN:
+			If (GetActorAngle(0) / 0.5) bAccess = -1;
+		break;
+		Case DOOR_ONEWAYE:
+			If (GetActorAngle(0) > 0.25 && GetActorAngle(0) < 0.75) bAccess = -1;
+		break;
+		Case DOOR_ONEWAYS:
+			If (!(GetActorAngle(0) / 0.5)) bAccess = -1;
+		break;
+		Default:
+		break;
+	}
+
+	If (intSpecial && (bAccess == -1))
+		SetMessage(0, strParam(l:"LOCKTHISSIDE"), 0, 0);
+	Else
+		bAccess = CheckDoorLock(intLock);
+
+	If (bAccess == 1)
+	{
+		If(polyinfo[index] == 0 && intLock != -1)
+		{
+			polyinfo[index] = 2;
+		}
+
+		If (polyinfo[index] % 2 == 0)
+		{
+			If (intLock > -1)
+			{
+				If (intLock >= DOOR_RED && intLock <= DOOR_GOLD)
+				{
+					SetMessage(0, strParam(l:"GRANTED"), 0, 0);
+					Line_SetTextureOffset (po + (16 * 256), NO_CHANGE, 64.0, SIDE_FRONT, 2);
+					Line_SetTextureOffset (po + (16 * 256) + 1, NO_CHANGE, 64.0, SIDE_FRONT, 2);
+					ACS_NamedExecuteAlways("A_MarkMapSpot", 0, 2, GetPolyObjX(po), GetPolyObjY(po));
+				}
+				Else
+				{
+					SetMessage(0, strParam(l:"OPERATING"), 0, 0);
+				}
+			}
+
+			polyinfo[index] += 1;
+			If (DoorCoordinates[(Level * 64) + po * 4 + 3])
+				ActivatorSound("doors/tech_open",127);
+			Else
+				ActivatorSound("doors/heavy_open",127);
+			Polyobj_OR_Move(po,speed,dirStart,32);
+			Delay(150);
+			If (polyinfo[index] % 2 == 1)
+			{
+				If (DoorCoordinates[(Level * 64) + po * 4 + 3])
+					ActivatorSound("doors/tech_close",127);
+				Else
+					ActivatorSound("doors/heavy_close",127);
+				Polyobj_OR_Move(po,speed,dirEnd,32);
+				polyinfo[index] -= 1;
+			}
+		}
+	}
+}
+
+//Secret Doors
+Script "W_DoSecretDoor" (int po, int Angle)
+{
+	int intSpawnDist = 64.0;
+	int intMaxMove = GetCvar("g_maxpushwallmove");
+	int speed = 16; //8 in Wolf
+
+	If (intMaxMove == 0)
+	{
+		intMaxMove = 2;
+	}
+
+	If (!PushWalls[po] || (GetCvar("g_infinitepushwalls") == 1))
+	{
+		int PolyX = GetPolyObjX(po) + 24.0;
+		int PolyY = GetPolyObjY(po);
+
+		int originX, originY, destX, destY, moveX, moveY, intMoveDist;
+
+		moveX = 0;
+		moveY = 0;
+
+		Switch (Angle)
+		{
+			Case 0:
+				moveX = 1;
+			break;
+			Case 64:
+				moveY = 1;
+			break;
+			Case 128:
+				moveX = -1;
+			break;
+			Case 192:
+				moveY = -1;
+			break;
+		}
+
+		originX = PolyX + (32.0 * moveX);
+		originY = PolyY + (32.0 * moveY); 
+
+		Spawn("Secret_Check", originX, originY, 0, 1900 + po, 0);
+
+		For (int i=1; i<=intMaxMove; i=i+1)
+		{
+			destX = originX + (moveX * 64.0 * i) - (32.0 * moveX);
+			destY = originY + (moveY * 64.0 * i) - (32.0 * moveY);
+
+			int destWolfCoord = WolfCoord(destX) * 64 + WolfCoord(destY);
+
+			If (MonsterBlocks[destWolfCoord] == 1)
+			{
+				Thing_Remove(destWolfCoord + 10000);
+				MonsterBlocks[destWolfCoord] = 0;
+			}
+
+			If (Spawn("Secret_Block", destX, destY, 0, 2000 + po, 0)) //Check if no object is in the way
+			{
+				If(CheckSight (2000 + po, 1900 + po, CSF_NOBLOCKALL)) //Check if destination is inside map
+					intMoveDist += 64.0;
+				Thing_Remove(2000 + po);
+			}
+		}
+		Thing_Remove(1900 + po);
+
+		If (intMoveDist > 0)
+		{
+			PushWalls[po] = 1;
+
+			PolyObj_Move(po, speed, Angle, intMoveDist/1.0);
+
+			ACS_NamedExecuteAlways("A_MarkMapSpot", 0, 1, PolyX, PolyY);
+
+			Delay(1);
+
+			If (PolyX == GetPolyObjX(po) + 24.0 && PolyY == GetPolyObjY(po))
+			{
+				PolyObj_Stop(po);
+				PushWalls[po] = 0;
+			}
+			Else
+			{
+				AmbientSound("door/secret",127);
+
+				If (SecretMarkers[WolfCoord(PolyX + (intMoveDist * moveX)) * 64 + WolfCoord(PolyY + (intMoveDist * moveY))] == 1)
+					PushWalls[po] = 0;
+
+				ACS_NamedExecuteAlways("A_MarkMapSpot", 0, -1, PolyX + (intMoveDist * moveX), PolyY + (intMoveDist * moveY));
+			}
+		}
+
+		Thing_Remove(2000+po);
+	}
+}
+
+Function void ResetWeapons (void)
+{
+	GiveInventory("BSACP", 1);
+	SetWeapon("BSACP");
+	If (Powerball) GiveInventory("Cheat", 1);
+}
+
+Script "W_Return" RETURN
+{
+	stats[Level * 100 + ENTER_TIME] = Timer();
+	SetActorPosition(1001 + PlayerNumber(), PositionX[PlayerNumber()], PositionY[PlayerNumber()], 2.0, 0);
+	If (!GetCvar("deathmatch"))
+		ACS_NamedExecuteAlways("W_Enter", 0);
+}
+
+Script "W_Open" OPEN
+{
+	PopulateMessages();
+
+	ElevatorAccess[GetLevelInfo(LEVELINFO_LEVELNUM)] = True;
+}
+
+Script "W_Enter" ENTER
+{
+	Level = GetLevelInfo(LEVELINFO_LEVELNUM) % 100;
+	Episode = GetLevelInfo(LEVELINFO_LEVELNUM) / 100;
+
+	int FirstRun = 0;
+
+	Thing_ChangeTID(0, 1001 + PlayerNumber());
+
+	If (Timer() < 35) SetCVar("g_blakedead", 0);
+
+	If (GetCVar("g_blakedead") > 0) //(Died[PlayerNumber()] == 1)
+	{
+		//Died...
+		ClearInventory();
+		LifeCount[PlayerNumber()] = GetCVar("g_blakedead");
+		GiveInventory("Life", LifeCount[PlayerNumber()] - 1);
+		ResetWeapons();
+		SetActorProperty(0, APROP_Score, Old_Score[PlayerNumber()]);
+		SetCVar("g_blakedead", 0);
+	}
+	Else If ((GetCVar("g_blakedead") < 0) && (!GetCvar("deathmatch")) && (GameType() != GAME_TITLE_MAP))
+	{
+		//Out of lives
+		Freeze(1);
+		ACS_NamedExecute("W_DoHighScores", 0);
+		SetActorState(ActivatorTID(), "Dead");
+		SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+		SetActorProperty(ActivatorTID(), APROP_Invulnerable, 1);
+		SetActorProperty(ActivatorTID(), APROP_NoTarget, 1);
+		SetCVar("g_blakedead", 0);
+		NamedScriptWait("W_DoHighScores");
+		Terminate;
+	}
+	Else If (LifeCount[PlayerNumber()] == 0)
+	{
+		//New Game...
+		FirstRun = 1;
+		ClearInventory();
+		GiveInventory("Life", 3);
+		ResetWeapons();
+		LifeCount[PlayerNumber()] = 4;
+		SetActorProperty(0, APROP_Score, 0);
+		Old_Score[PlayerNumber()] = 0;
+		LifeThreshold[PlayerNumber()]=0;
+		If (GetCvar("deathmatch"))
+		{
+			GiveInventory("BSYellowKey", 1);
+			GiveInventory("BSBlueKey", 1);
+			GiveInventory("BSGreenKey", 1);
+			GiveInventory("BSRedKey", 1);
+			GiveInventory("BSGoldKey", 1);
+		}
+		If (PlayerIsBot(PlayerNumber()))
+			GiveInventory("BotPlayer", 1);
+		SetCVar("g_blakedead", 0);
+	}
+	Else
+	{
+		//Just entering new level...
+		Old_Score[PlayerNumber()] = GetActorProperty(0, APROP_Score);
+	}
+
+	If (!GetCvar("deathmatch") && GetLevelInfo(LEVELINFO_LEVELNUM)!=99)
+	{
+		ACS_NamedExecute("Freeze", 0, True);
+
+		If (FirstRun && !GetCvar("g_nointro") && Level == 1)
+			ACS_NamedExecuteWait("W_DoBrief", 0, 0, 4);
+
+		ACS_Execute(509, 0, PlayerNumber());
+		ScriptWait(509);
+
+		SetMessage(0, strParam(l:"StartupMessage_Status"), 0, 0);
+
+		If (FirstRun && !GetCvar("g_nointro") && Level == 1)
+		{
+			PrintMessage (	StrParam(l:"StartupMessage"), 
+					"MedFont", "White",
+					BORDER_BLAKESOLID,
+					285, 75);
+
+			Delay(70);
+
+			PrintMessage (	StrParam(l:"StartupMessage2"), 
+					"MedFont", "White",
+					BORDER_BLAKESOLID,
+					285, 75);
+			
+			Delay(1);
+			While(!KeyPressed()) Delay(1);
+			ClearMessage(True);
+		}
+
+		ACS_NamedExecute("Freeze", 0, False);
+	}
+}
+
+Script "W_PlayerDeath" DEATH
+{
+	If (PlayerCount() == 1)
+		SetMusic("");
+
+	ActivatorSound("blake/death", 127);
+
+	If (!GetCvar("deathmatch") && !GetCvar("g_debugdeath"))
+		FadeTo(255, 0, 0, 1.0, 1.0);
+
+	TakeInventory("Life", 1);
+	LifeCount[PlayerNumber()]--;
+
+	If ((LifeCount[PlayerNumber()] == 0) && (PlayerCount() == 1))
+	{
+		LifeCount[PlayerNumber()] = -1;
+
+		If (CheckHighScore())
+		{
+			SortHighScores();
+			WriteHighScores();
+		}
+	}
+
+	SetCVar("g_blakedead", LifeCount[PlayerNumber()]);
+	Delay(5); //To make sure CVar value takes
+}
+
+int MapViewDelay;
+int PlayerX, PlayerY, PlayerAngle;
+
+Script "W_PlayerLoop" ENTER
+{
+	If (GetLevelInfo(LEVELINFO_LEVELNUM) != 99)
+	{
+		If (GetCvar("powerball"))
+		{
+			If (!Powerball)
+			{
+				Powerball = 1;
+				SetMessage(0, strParam(l:"PowerBall"), 0, 2);
+				GiveInventory("Cheat", 1);
+			}
+		}
+		Else
+		{
+			Powerball = 0;
+			TakeInventory("Cheat", 1);
+		}
+	}
+
+	If (GetCvar ("cl_noinstantswitch"))
+		SetPlayerProperty(0, 0, PROP_INSTANTWEAPONSWITCH);
+	Else
+		SetPlayerProperty(0, 1, PROP_INSTANTWEAPONSWITCH);
+
+	If (GetCvar ("g_timer"))
+	{
+		SetHudSize(0,0,1);
+		SetFont("WOLFFNTS");
+		HudMessage(d:Timer();0,900,0,0,0,0);
+	}
+	Else
+		HudMessage(s:"";0,900,0,0,0,0);
+
+	Shotgun[PlayerNumber()] = CheckInventory("BSRAW");
+	Pistol[PlayerNumber()] = CheckInventory("BSSFP");
+
+	If (GetActorProperty(0, APROP_HEALTH) > 65)
+		SetMugshotState("Normal");
+	Else If (GetActorProperty(0, APROP_HEALTH) > 35)
+		SetMugshotState("Medium");
+	Else If (GetActorProperty(0, APROP_HEALTH) > 0)
+		SetMugshotState("Low");
+	Else
+		SetMugshotState("Dead");
+
+	int CurrentAmmo = CheckInventory("BSCharge");
+
+	If (CurrentAmmo <= 38)
+	{
+		GiveInventory("LowAmmo", 1);
+		TakeInventory("MediumAmmo", 1);
+	}
+	Else If (CurrentAmmo <= 72)
+	{
+		GiveInventory("MediumAmmo", 1);
+		TakeInventory("LowAmmo", 1);
+	}
+	Else
+	{
+		TakeInventory("LowAmmo", 1);
+		TakeInventory("MediumAmmo", 1);
+	}
+
+	If (GetCvar("g_debug"))
+	{
+		sethudsize(800,600,1);
+		setfont("wolffnts");
+		HudMessage(s:"Player Number: ",d:PlayerNumber();0,909,0,10.1,10.0,0);
+		HudMessage(s:"Player TID: ",d:1001 + PlayerNumber();0,910,0,10.1,20.0,0);
+		HudMessage(s:"Game Timer: ",d:Timer();0,900,0,10.1,30.0,0);
+	}
+
+	If (CheckInventory("PistolCharge") == 0)
+	{
+		If (reloadcount == 35)
+		{
+			GiveInventory("PistolCharge", 1);
+			reloadcount = 0;
+		}
+		Else
+			reloadcount++;
+	}
+
+	If (deathcam)
+	{
+		ACS_NamedExecute("Freeze", 0, True);
+		ACS_Execute(26, 0, GetActorX(0), GetActorY(0), GetActorAngle(0));
+		ScriptWait(26);
+		ACS_NamedExecute("Freeze", 0, False);
+		deathcam = 0;
+	}
+
+	DoScoreCount();
+
+	If (	((strLen(strCeiling) > 0) && (strLen(strFloor) > 0)) || 
+		((strLen(strCeilingTex) > 0) && (strLen(strFloorTex) > 0))
+	)
+	{
+		If (GetCvar("g_texturedflats") == 0)
+		{
+			ChangeCeiling(0, strCeiling);
+			ChangeFloor(0, strFloor);
+			ChangeCeiling(800, strCeiling);
+			ChangeFloor(800, strFloor);
+		}
+		Else
+		{
+			ChangeCeiling(0, strCeilingTex);
+			ChangeFloor(0, strFloorTex);
+			ChangeCeiling(800, strCeilingTex);
+			ChangeFloor(800, strFloorTex);
+		}
+	}
+
+	If (GetCvar("screenblocks") > 10)
+		HudMessage (s:""; 0, 100, 0, 0, 0, 0);
+
+	MapViewDelay++;
+
+	If (ThingCountName("MapView", 0) < 100 && GameType() != GAME_TITLE_MAP && MapViewDelay >= 12)
+	{
+		If (GetActorX(0) != PlayerX || GetActorY(0) != PlayerY || GetActorAngle(0) != PlayerAngle)
+		{
+			SpawnProjectile(0, "MapView", GetActorAngle(0) >> 8, 200, 0, 0, 0);
+			SpawnProjectile(0, "MapView", (GetActorAngle(0) >> 8) - 16, 200, 0, 0, 0);
+			SpawnProjectile(0, "MapView", (GetActorAngle(0) >> 8) + 16, 200, 0, 0, 0);
+			SpawnProjectile(0, "MapView", (GetActorAngle(0) >> 8) - 32, 200, 0, 0, 0);
+			SpawnProjectile(0, "MapView", (GetActorAngle(0) >> 8) + 32, 200, 0, 0, 0);
+			SpawnProjectile(0, "MapView", (GetActorAngle(0) >> 8) - 48, 200, 0, 0, 0);
+			SpawnProjectile(0, "MapView", (GetActorAngle(0) >> 8) + 48, 200, 0, 0, 0);
+		}
+		MapViewDelay = 0;
+		PlayerX = GetActorX(0);
+		PlayerY = GetActorY(0);
+		PlayerAngle = GetActorAngle(0);
+	}
+
+	DoWolfMovement();
+
+	ACS_NamedExecuteAlways("A_MarkMapMover", 0, 8, 1);
+
+	Delay(1);
+	Restart;
+}
+
+Script "W_AddPoints" (int s) //700
+{
+	SetActorProperty(0, APROP_Score, GetActorProperty(0, APROP_Score) + s);
+}
+
+Function void DoScoreCount (void)
+{
+	int CurrentPoints = CheckInventory("Points");
+
+	If (CurrentPoints)
+	{
+		ACS_NamedExecuteAlways("W_AddPoints", 0, CurrentPoints);
+		TakeInventory("Points", CurrentPoints);
+	}
+
+	If (GetActorProperty(0, APROP_Score) >= (LifeThreshold[PlayerNumber()]+intLifeAmount))
+	{
+		For(int q=1; q<=((LifeThreshold[PlayerNumber()]+intLifeAmount)/intLifeAmount) - (LifeThreshold[PlayerNumber()]/intLifeAmount); q++)
+		{
+			If ((CheckInventory("Life") < 10) && !(GameType() == GAME_NET_DEATHMATCH))
+			{
+				GiveInventory("Life", 1);
+				LifeCount[PlayerNumber()]++;
+			}
+			Else If (GameType() == GAME_NET_DEATHMATCH)
+				ACS_ExecuteAlways(902, 0);
+		}
+		LifeThreshold[PlayerNumber()] = LifeThreshold[PlayerNumber()]+intLifeAmount;
+		AmbientSound ("life", 127);
+	}
+
+	Score[PlayerNumber()] = GetActorProperty(0, APROP_Score);
+	ScoreMod[PlayerNumber()] = GetActorProperty(0, APROP_Score) % 10000000;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// Pickups / Gameplay
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//script 25 (int droptype, int amt)
+#define DropClassCount 20
+
+str DropClasses[DropClassCount] = {
+	"",
+	"RawMeat1",
+	"RawMeat2",
+	"BSChargeDrop", 
+	"BSSFP", 
+	"BSRAW",
+	"BSDND",
+	"BSPDU",
+	"MoneyBag",
+	"Loot",
+	"5GoldBars",
+	"XylanOrb",
+	"DeadBody",
+	"DeadBody",
+	"BSRedKey",
+	"BSYellowKey",
+	"BSGreenKey",
+	"BSBlueKey",
+	"BSGoldKey",
+	"1Credit"
+};
+
+Script "A_Drop" (int DropIndex, int amt)
+{
+	int intTID = UniqueTID();
+	str strDropItem = "BSCharge";
+
+	If (amt == 0) amt = 8;
+
+	Switch (DropIndex)
+	{
+		Case 3:
+			//If dropping a charge pack, and the player has no SFP,
+			// spawn an SFP instead
+			If (PlayerCount() == 1)
+			{
+				If (Pistol[0])
+					DropIndex = -1;
+				Else
+					DropIndex = 4;
+			}
+			Else
+				DropIndex = 4;
+		break;
+		Case 5:
+			//Same as above but for spawning RAW or charge pack
+			If (PlayerCount() == 1)
+			{
+				If (Shotgun[0])
+					DropIndex = -1;
+				Else
+					DropIndex = 5;
+			}
+			Else
+				DropIndex = 4;
+		break;
+	}
+
+	If (DropIndex == -1)
+	{
+		If (Random(0,255) < 65 || CheckInventory("BSCharge") <= 0)
+			DropIndex = 19;
+		Else
+			DropIndex = 3;
+	}
+
+	strDropItem = strParam(s:DropClasses[DropIndex]);
+
+	Spawn (strDropItem, GetActorX(0)+1, GetActorY(0)+1, GetActorZ(0) + 1, intTID);
+	SetUserVariable (intTID, "user_Amount", amt);
+}
+
+Script "A_SetupSwitches" (int destLevel, int x, int y)
+{
+	int ID = x * 256 + y;
+	SetLineSpecial (ID, ACS_ExecuteAlways, 40, 0, destLevel, x, y);
+}
+
+script 40 (int destLevel, int x, int y)
+{
+	int ID = x * 256 + y;
+
+	If (destLevel == 0) destLevel = Level;
+
+	If (Switches[destLevel * 16448 + ID] == 0)
+	{
+		Line_SetTextureOffset (ID, 0.0, 64.0, SIDE_FRONT, 2);
+		ActivatorSound("switch/use",127);
+		Switches[destLevel * 16448 + ID] = 1;
+		SetMessage(0, ExpandString(strParam(l:"SwitchOff"), destLevel, 0), 0, 0);
+	}
+	Else
+	{
+		Line_SetTextureOffset (ID, 0.0, 0.0, SIDE_FRONT, 2);
+		ActivatorSound("switch/use",127);
+		Switches[destLevel * 16448 + ID] = 0;
+		SetMessage(0, ExpandString(strParam(l:"SwitchOn"), destLevel, 0), 0, 0);
+	}
+
+	ACS_NamedExecuteAlways("W_ToggleActor", destLevel, x, y);
+}
+
+Script "W_ToggleActor" (int x, int y)
+{
+	int ID = x * 256 + y;
+
+	If (Switches[Level * 16448 + ID] == 1)
+		SetActorState(ID, "Inactive");
+	Else
+		SetActorState(ID, "Active");
+}
+
+function void Toggle (int ID, int OnOff)
+{
+	If (switches[ID] == 0 && !OnOff)
+	{
+		SetActorState(ID, "Inactive");
+		switches[ID] = 1;
+	}
+	Else If (switches[ID] == 1 && OnOff)
+	{
+		SetActorState(ID, "Active");
+		switches[ID] = 0;
+	}
+}
+
+script 43 (int ID, int OnOff)
+{
+	If (OnOff)
+	{
+		Toggle(ID + 1, 1);
+		Toggle(ID - 1, 1);
+		Toggle(ID + 256, 1);
+		Toggle(ID - 256, 1);
+	}
+	Else
+	{
+		Toggle(ID + 1, 0);
+		Toggle(ID - 1, 0);
+		Toggle(ID + 256, 0);
+		Toggle(ID - 256, 0);
+	}
+}
+
+script 41 (int Map)
+{
+	int CurrentAngle = GetActorAngle(0);
+	int EndAngle = (CurrentAngle + 0.5) - ((CurrentAngle + 0.5) % 0.25);
+
+	For (int a = CurrentAngle; a <= EndAngle; a+=0.01)
+	{
+		SetActorAngle(0, a);
+		Delay(1);
+	}
+
+	FadeTo(0, 0, 0, 1.0, 1.5);
+	SetMessage(0, strParam(l:"TeleportOut"), 0, 0);
+	Delay(50);
+//TODO: 
+// Teleport In:	
+//	FadeTo(0, 0, 0, 1.0, 0);
+//	FadeTo(0, 0, 0, 0.0, 1.5);
+//	SetMessage(0, strParam(l:"TeleportIn"), 0, 0);
+//	Delay(50);
+
+	If (Map == 0) Map = 11;
+
+	ACS_NamedExecuteAlways("W_StorePosition", 0, GetActorX(0), GetActorY(0), PlayerNumber());
+	Delay(35);
+	Teleport_NewMap (Map + (100 * Episode), 0, 1);
+}
+
+script 42 (int uses, int ID, int type)
+{
+	If (uses == 255 || FoodUnits[ID] == -1)
+	{
+		SetMessage(0, strParam(l:"Food_Broken"), 0, 1);
+		ActivatorSound("player/noway",127);
+	}
+	Else
+	{
+		If (FoodUnits[ID] == 0) FoodUnits[ID] = uses;
+
+		int CurrentHealth = CheckInventory("Health");
+
+		If(CurrentHealth < 100) 
+		{
+			If (CheckInventory("Credit") > 0)
+			{
+				ActivatorSound("concession/use",127);
+				TakeInventory("Credit", 1);
+
+				If (type == 1)
+				{
+					GiveInventory("FoodUnitHealth", 10);
+					SetMessage(0, strParam(l:"Food_Dispense1"), 0, 1);
+				}
+				Else If (type == 2)
+				{
+					GiveInventory("FoodUnitHealth", 7);
+					SetMessage(0, strParam(l:"Food_Dispense2"), 0, 1);
+				}
+
+				FoodUnits[ID]--;
+
+				If (FoodUnits[ID] == 0) FoodUnits[ID] = -1;
+			}
+			Else
+			{
+				SetMessage(0, strParam(l:"Food_NoTokens"), 0, 1);
+				ActivatorSound("player/noway",127);
+			}
+		}
+		Else
+		{
+			SetMessage(0, strParam(l:"Food_NoEat"), 0, 1);
+			ActivatorSound("player/noway",127);
+		}
+	}
+}
+
+Script "A_SetupAutomaticDoors" (int po, int dir, int soundtype)
+{
+	Level = GetLevelInfo(LEVELINFO_LEVELNUM) % 100;
+
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+
+	DoorCoordinates[(Level * 64) + po * 4] = WolfCoord(x);
+	DoorCoordinates[(Level * 64) + po * 4 + 1] = WolfCoord(y);
+	DoorCoordinates[(Level * 64) + po * 4 + 2] = dir;
+	DoorCoordinates[(Level * 64) + po * 4 + 3] = soundtype;
+}
+
+Script "A_OpenRemoteDoor" (int x, int y)
+{
+	For (int d = 1; d < 64; d++)
+	{
+		If (DoorCoordinates[(Level * 64) + d * 4] == x && DoorCoordinates[(Level * 64) + d * 4 + 1] == y)
+		{
+			ACS_ExecuteAlways(1, 0, d % 64, DoorCoordinates[(Level * 64) + d * 4 + 2], -1);
+			Terminate;
+		}
+	}
+}
+
+//script 50 (int friendly, int oldTID)
+Script "A_InitializeBioTech" (int friendly, int oldTID)
+{
+	int tid = 0;
+	if(friendly == 1)
+	{
+		If (oldTID < 5000)
+			informantcount++;
+		tid = 5000 + informantcount;
+	}
+	else
+	{
+		If (oldTID < 4000)
+			scientistcount++;
+		tid = 4000 + scientistcount;
+	}
+
+	If (oldTID < 5000)
+		BioTechSectors[tid] = oldTID;
+
+	Thing_ChangeTID (0, tid);
+
+	SetThingSpecial (0, ACS_ExecuteAlways, 51, 0, tid);
+}
+
+script 51 (int tid)
+{
+	If (GetActorProperty(tid, APROP_HEALTH) > 0)
+	{
+		SetActorState(tid, "Talking");
+
+		int InterrogationCount = GetUserVariable(tid, "user_Interrogated");
+
+		str strMessageHeader = StrParam(l:"Interrogate");
+		int MessageNum;
+		str strRandomMessage;
+
+		If (tid > 5000)
+		{
+			strMessageHeader = StrParam(s:strMessageHeader, s:"\c[BSStatYellow]Informant\n\n");
+
+			Delay(12);
+
+			Switch (InterrogationCount)
+			{
+				Case 2:
+					If (GetUserVariable(tid, "user_Ammo") > 0 && CheckInventory("BSCharge") < 100)
+					{
+						SetMessage(0, strParam(s:strMessageHeader, l:"InformantCharge"), 0, 1);
+						GiveInventory("BSCharge", GetUserVariable(tid, "user_Ammo"));
+						ActivatorSound("pickups/ammo",127);
+						SetUserVariable(tid, "user_Ammo", 0);
+						Break;
+					}
+				Case 3:
+					If (GetUserVariable(tid, "user_Tokens") > 0  && CheckInventory("Credit") < 25)
+					{
+						SetMessage(0, strParam(s:strMessageHeader, l:"InformantTokens"), 0, 1);
+						GiveInventory("Credit", 5);
+						ActivatorSound("pickups/token",127);
+						SetUserVariable(tid, "user_Tokens", 0);
+						Break;
+					}
+				Case 0:
+				Case 1:
+					If (!GetUserVariable(tid, "user_Message"))
+					{
+
+						MessageNum = Random(0, InformantMessageCount - 1);
+						SetUserVariable(tid, "user_Message", InformantMessages[MessageNum]);
+					}
+				Default:
+					MessageNum = GetUserVariable(tid, "user_Message");
+
+					If (MessageNum < 10)
+						strRandomMessage = StrParam(d:0, d:MessageNum);
+					Else
+						strRandomMessage = StrParam(d:MessageNum);
+
+					strRandomMessage = strParam(s:"Informant", s:strRandomMessage);
+
+					SetMessage(0, strParam(s:strMessageHeader, l:strRandomMessage), 0, 1);
+				Break;
+			}
+		}
+		Else
+		{
+			strMessageHeader = StrParam(s:strMessageHeader, s:"\n\n");
+
+			Delay(12);
+
+			//Enemies only talk twice...
+			Switch (InterrogationCount)
+			{
+				Case 0:
+				Case 1:
+					If (Random(0, 1))
+					{
+						MessageNum = LoyalistMessages[Random(0, LoyalistMessageCount - 1)];
+
+						If (MessageNum < 10)
+							strRandomMessage = StrParam(d:0, d:MessageNum);
+						Else
+							strRandomMessage = StrParam(d:MessageNum);
+
+						strRandomMessage = strParam(s:"Loyalist", s:strRandomMessage);
+
+						SetMessage(0, strParam(s:strMessageHeader, l:strRandomMessage), 0, 1);
+						Break;
+					}
+				Case 2:
+					MessageNum = AlarmMessages[Random(0, AlarmMessageCount - 1)];
+
+					If (MessageNum < 10)
+						strRandomMessage = StrParam(d:0, d:MessageNum);
+					Else
+						strRandomMessage = StrParam(d:MessageNum);
+
+					strRandomMessage = strParam(s:"Alarm", s:strRandomMessage);
+
+					SetMessage(0, strParam(s:strMessageHeader, l:strRandomMessage), 0, 1);
+
+					SetActorState(tid, "Chase.Alerted");
+				Break;
+				Default:
+					//Don't talk anymore after first 2 times
+				Break;
+			}
+		}
+	}
+}
+
+//Script "A_SetMessage" (int MessageNum)
+Script 55 (int MessageNum)
+{
+	int TID, x, y, a;
+
+	SetActivatorToTarget(0);
+
+	TID = ActivatorTID();
+
+	If (strCmp(Right(GetActorClass(TID), 7), "BioTech") == 0)
+	{
+		x = GetActorX(TID);
+		y = GetActorY(TID);
+		a = GetActorAngle(TID) >> 8;
+
+		str Class = GetActorClass(TID);
+
+		Thing_Remove(TID);
+
+		Delay(5);
+
+		TID = TID + 1500;
+
+		If (strCmp(Class, "BioTech") == 0)
+		{
+			Spawn("Informant", x, y, 3, TID, a);
+			InformantCount++;
+		}
+
+		If (strCmp(Class, "MBioTech") == 0)
+		{
+			Spawn("MInformant", x, y, 3, TID, a);
+			InformantCount++;
+		}
+	}
+
+	If (strCmp(Right(GetActorClass(TID), 9), "Informant") == 0)
+	{
+		SetUserVariable(TID, "user_Message", MessageNum);
+	}
+}
+
+//Ceiling Colors
+Script "A_SetTextures" (int CeilingIndex, int FloorIndex)
+{
+	strFloorTex = strParam(s:"WAL00",d:125 + FloorIndex);
+	strCeilingTex = strParam(s:"WAL00",d:125 + CeilingIndex);
+}
+
+Script "A_SetColors" (int CeilingIndex, int FloorIndex)
+{
+	strFloor = strParam(s:"FLAT", d:1000 + FloorIndex);
+	strCeiling = strParam(s:"FLAT", d:1000 + CeilingIndex);
+}
+
+Script "A_GetSkill" (void)
+{
+	SetResultValue(GameSkill());
+	If (GetCvar("g_debug"))
+		Print(d:GameSkill());
+}
+
+script 801 (void) {ACS_NamedExecuteAlways("A_GetSkill", 0);}
+
+#define EnemyClassCount 42
+
+// Name, Baby Health, Easy Health, Medium Health, Hard Health, Kill Points
+str EnemyClassInfo[EnemyClassCount + 1][6] = {
+	{"SectorPatrol", 4, 9, 25, 38, 1025}, 
+	{"Turret", 4, 9, 23, 28, 1050}, 
+	{"TurretRevolving", 4, 9, 23, 28, 1050}, 
+	{"BioTech", 4, 9, 23, 28, 500}, 
+	{"Informant", 4, 9, 23, 28, 0}, 
+	{"PodAlien", 22, 60, 160, 210, 5057}, 
+	{"PlasmaAlien", 13, 37, 112, 150, 5150}, 
+	{"ElectroSphere", 1, 1, 1, 1, 2055}, 
+	{"StarSentinel", 33, 63, 150, 175, 5000}, 
+	{"SecurityGuard", 20, 60, 180, 240, 10000}, 
+	{"MechSentinel", 24, 50, 155, 210, 5055}, 
+	{"HumanMutant", 24, 50, 155, 210, 6055}, 
+	{"GreenAlienContainer", 1, 1, 1, 1, 0}, 
+	{"GreenAlien", 34, 75, 225, 300, 6050}, 
+	{"BrownAlienContainer", 1, 1, 1, 1, 0}, 
+	{"BrownAlien", 25, 60, 180, 240, 3750}, 
+	{"MutantGuardTable", 1, 1, 1, 1, 0}, 
+	{"MutantGuard", 27, 37, 150, 200, 3750}, 
+	{"FluidAlien", 30, 66, 163, 210, 12000}, 
+	{"StarTrooper", 78, 112, 325, 425, 7025}, 
+	{"Goldfire", 90, 100, 150, 250, 5000}, 
+	{"GoldFireMorph", 4000, 4500, 4800, 5400, 5000}, 
+	{"VolatileTransport", 17, 25, 63, 75, 2025}, 
+	{"PerscanDrone", 15, 40, 60, 85, 2025}, 
+	{"DefenceObject", 175, 175, 175, 175, 0}, 
+	{"SpiderMutant", 60, 100, 150, 200, 5000}, 
+	{"BreatherBeast", 65, 115, 165, 225, 6000}, 
+	{"CyborgWarrior", 70, 100, 150, 200, 7000}, 
+	{"ReptilianWarrior", 65, 115, 165, 225, 8000}, 
+	{"AcidDragon", 60, 100, 150, 200, 9000}, 
+	{"MechGuardian", 65, 115, 165, 225, 9000}, 
+	{"Final1", 1600, 1700, 1800, 1900, 30000}, 
+	{"Final2", 1700, 1800, 1900, 2000, 40000}, 
+	{"Final3", 1800, 1900, 2000, 2100, 50000}, 
+	{"Final4", 1900, 2000, 2100, 2200, 60000}, 
+	{"Crate1", 1, 1, 1, 1, 0}, 
+	{"Crate2", 1, 1, 1, 1, 0}, 
+	{"Crate3", 1, 1, 1, 1, 0}, 
+	{"PodAlienPod", 1, 1, 1, 1, 0}, 
+	{"SpiderMutantMorph", 1, 1, 1, 1, 5000}, 
+	{"ReptilianWarriorMorph", 1, 1, 1, 1, 8000}, 
+	{"HumanMutant2Morph", 1, 1, 1, 1, 6055},
+	{"", -1, -1, -1, -1, -1}
+};
+
+Script "A_GetHitPoints" (void)
+{
+	int intClass = EnemyClassCount;
+	str strAttackerClass = StripAttackerClass(GetActorClass(0));
+
+	For (int e = 0; e < EnemyClassCount; e++)
+	{
+		If ((strCmp(strAttackerClass, EnemyClassInfo[e][0]) == 0))
+		{
+			intClass = e;
+			e = EnemyClassCount;
+		}
+	}
+
+	int Health = EnemyClassInfo[intClass][GameSkill() + 1];
+
+	//Hack for Goldfire on Level 9
+	If ((strCmp(strAttackerClass, "Goldfire") == 0) && (GetLevelInfo(LEVELINFO_LEVELNUM) == 9))
+		Health = Health * 15;
+
+	If (Health <= 0)
+	{
+		Error (StrParam(s:"Could not assign hitpoints.  Unknown class ", s:GetActorClass(0)));
+		Health = 1;
+	}
+
+	SetActorProperty(0, APROP_Health, Health);
+
+	SetResultValue(Health);
+}
+
+Script "A_GetPoints" (void)
+{
+	int intClass = EnemyClassCount;
+	str strAttackerClass = StripAttackerClass(GetActorClass(0));
+
+	For (int e = 0; e < EnemyClassCount; e++)
+	{
+		If ((strCmp(strAttackerClass, EnemyClassInfo[e][0]) == 0))
+		{
+			intClass = e;
+			e = EnemyClassCount;
+		}
+	}
+
+	int Points = EnemyClassInfo[intClass][5];
+
+	If (Points < 0)
+	{
+		Error (StrParam(s:"Could not assign points.  Unknown class ", s:GetActorClass(0)));
+		Points = 0;
+	}
+
+	SetResultValue(Points);
+}
+
+Script "A_CheckFrightened" (void)
+{
+	int Attack = (GetUserVariable(0, "user_Interrogated") > 1) && !CheckFlag(0, "FRIENDLY");
+	int Afraid = (GetUserVariable(0, "user_Ammo") <= 0) || (GetActorProperty(0, APROP_Health) <= GetUserVariable(0, "user_Health") >> 1);
+
+	If (Afraid)
+	{
+		If (CheckActorProperty(0, APROP_Frightened, 0))
+		{
+			SetActorProperty(0, APROP_Frightened, 1);
+			SetActorProperty(0, APROP_Speed, (GetActorProperty(0, APROP_Speed) * 2));
+			If (!Attack) SetActorProperty(0, APROP_ReactionTime, 0x7fffffff);
+		}
+	}
+	Else
+	{
+		If (CheckActorProperty(0, APROP_Frightened, 1))
+		{
+			SetActorProperty(0, APROP_Frightened, 0);
+			SetActorProperty(0, APROP_Speed, (GetActorProperty(0, APROP_Speed) / 2));
+			SetActorProperty(0, APROP_ReactionTime, 8);
+		}
+	}
+}
+
+//Life
+script 902 (void)
+{
+	GiveInventory("Health", 100);
+	GiveInventory("BSCharge", 25);
+	if ((CheckInventory("Life") < 10) || getcvar("deathmatch"))
+	{
+		GiveInventory("Life", 1);
+		LifeCount[PlayerNumber()]++;
+	}
+}
+
+Script "SetupPickup" (int itemIndex)
+{
+	Level = GetLevelInfo(LEVELINFO_LEVELNUM) % 100;
+
+	int intTID = UniqueTID(Level * 6000);
+
+	Thing_ChangeTID(0, intTID);
+
+	If (itemIndex != 0)
+		Pickups[intTID] = DropClasses[itemIndex % (DropClassCount +1)];
+	Else
+		Pickups[intTID] = GetActorClass(0);
+}
+
+Script "A_SetPickupDebris" (int intTID)
+{
+	str strActorClass = GetActorClass(0);
+
+	If (
+		strCmp(strActorClass, "SectorPatrol") == 0 ||
+		strCmp(strActorClass, "BioTech") == 0 ||
+		strCmp(strActorClass, "StarSentinel") == 0 ||
+		strCmp(strActorClass, "MSectorPatrol") == 0 ||
+		strCmp(strActorClass, "MBioTech") == 0 ||
+		strCmp(strActorClass, "MStarSentinel") == 0
+		)
+	{
+/*
+		If (GetActorProperty(0, APROP_Health) >= GetUserVariable(0, "user_Health"))
+		{
+			int amt = GetUserVariable (intTID, "user_Amount");
+			If (amt == 0) amt = 1;
+
+			GiveActorInventory(0, Pickups[intTID], amt);
+			Thing_Remove(intTID);
+			Terminate;
+		}
+*/
+	}
+	Else
+		SetActivatorToTarget(0);
+
+	str strDebrisClass = strParam(s:Pickups[intTID], s:"Debris");
+
+	If (ThingCount(0, intTID) == 0)
+		Spawn(strDebrisClass, GetActorX(0), GetActorY(0), 0);
+
+	ACS_NamedExecuteAlways ("A_SetPickup", 0, intTID);
+}
+
+Script "A_SetPickup" (int intTID)
+{
+	str strClass = Pickups[intTID];
+
+	If (strClass == 0) Terminate;
+
+	str strActorClass = GetActorClass(0);
+
+	If (
+		strCmp(strActorClass, "SectorPatrol") == 0 ||
+		strCmp(strActorClass, "BioTech") == 0 ||
+		strCmp(strActorClass, "StarSentinel") == 0 ||
+		strCmp(strActorClass, "MSectorPatrol") == 0 ||
+		strCmp(strActorClass, "MBioTech") == 0 ||
+		strCmp(strActorClass, "MStarSentinel") == 0
+		)
+	{
+		int amt = GetUserVariable (intTID, "user_Amount");
+		If (amt == 0) amt = 1;
+
+		GiveInventory(strClass, amt);
+		Thing_Remove(intTID);
+		Terminate;
+	}
+
+	If (ThingCount(0, intTID) == 0)
+	{
+		str strIcon = StrParam(s:"I_",s:strClass);
+		str strMessage = StrParam(l:strIcon);
+
+		SetMessage(ActivatorTID(), strMessage, intTID, 0);
+
+		//Should I draw the thumbnail image here?
+		SetHudSize(320, 200, 1);
+
+		If (StrCmp(Left(strMessage, 2), "I_") == 0)
+		{
+			SetFont("I_NONE");
+			Error(StrParam(s:"Item class ",s:strClass, s:" icon not found!"));
+		}
+		Else
+		{
+			If (StrLen(strIcon) > 8)
+				SetFont(StrParam(s:Left(strIcon, 7), s:Right(strIcon, 1)));
+			Else
+				SetFont(strIcon);
+		}
+
+		If (GetCvar("screenblocks") < 11)
+			HudMessage (s:"A"; 0, 100, -1, 3.1, 192.2, 2.0);
+
+		GiveActorInventory(ActivatorTID(), "Pickup", 1);
+		GiveActorInventory(ActivatorTID(), "Message", 1);
+
+		SetActorState(intTID, "Remove");
+	}
+}
+
+Script 3 (int intTID) {ACS_NamedExecuteAlways ("A_SetPickup", 0, intTID);}
+Script 200 (int intTID) {ACS_NamedExecuteAlways ("A_SetPickupDebris", 0, intTID);}
+
+Script 5 (int intTID, int amt)
+{
+	GiveInventory("BSCharge", amt - 1);
+	PickupAmounts[intTID] = amt;
+	ACS_NamedExecuteAlways ("A_SetPickup", 0, intTID);
+}
+
+//Script 6 (void)
+Script "CheckAmmo" (void)
+{
+	SetResultValue(CheckInventory("BSCharge"));
+}
+
+Script "A_DeadInformant" (void)
+{
+	SetActivatorToTarget(0);
+	If (GameType() == GAME_SINGLE_PLAYER)
+		SetMessage(0, strParam(l:"DeadInformant"), 0, 1);
+}
+
+Script "A_SetAttacker" (int Target)
+{
+	str strAttackerClass = GetActorClass(0);
+	str strAttackerName;
+
+	SetActivatorToTarget(0);
+	int Activator = ActivatorTID();
+
+	If (Activator < 1000 || Activator > 1009) Terminate;
+
+	If (strCmp(strAttackerClass, "BlakePuff") == 0)
+	{
+		If (GameType() != GAME_SINGLE_PLAYER)
+			Terminate;
+
+		strAttackerClass = GetActorClass(0);
+
+		Activator = 1001;
+	}
+
+	If((strCmp(strAttackerClass, "BSPlayer") == 0) || (strCmp(strAttackerClass, "None") == 0))
+		Terminate;
+
+	strAttackerClass = StripAttackerClass(strAttackerClass);
+
+	strAttackerName = StrParam(s:"CC_",s:strAttackerClass);
+	strAttackerName = StrParam(l:strAttackerName);
+
+	If (StrCmp(Left(strAttackerName, 3), "CC_") == 0)
+		strAttackerName = Right(strAttackerName, StrLen(strAttackerName) - 3);
+
+	MessageLine0[Activator - 1001] = "";
+	MessageLine1[Activator - 1001] = "";
+	MessageLine2[Activator - 1001] = "\c[BSStatRed]  ATTACKING:";
+	MessageLine3[Activator - 1001] = "";
+	MessageLine4[Activator - 1001] = "";
+	MessageLine5[Activator - 1001] = "";
+
+	int CurrentLine = 3;
+	int LineStart = 0;
+	str Line = "";
+
+	For (int t = 0; t <= StrLen(strAttackerName); t++)
+	{
+		If (GetChar(strAttackerName, t) == '\n' || t == StrLen(strAttackerName))
+		{
+			Line = Mid(strAttackerName, LineStart, t);
+
+			If (CurrentLine == 3)
+				MessageLine3[Activator - 1001] = Line;
+			Else If (CurrentLine == 4)
+				MessageLine4[Activator - 1001] = Line;
+			Else
+				MessageLine5[Activator - 1001] = Line;
+
+			CurrentLine++;
+			LineStart = t + 1;
+		}
+	}
+
+	SetHudSize(320, 200, 1);
+
+	str strIcon = StrParam(s:"I_",s:strAttackerClass);
+
+	If (StrCmp(Left(strAttackerName, 2), "I_") == 0)
+	{
+		SetFont("I_NONE");
+		Error(StrParam(s:"Attacker class ",s:strAttackerClass, s:" icon not found!"));
+	}
+	Else
+	{
+		If (StrLen(strIcon) > 8)
+			SetFont(StrParam(s:Left(strIcon, 7), s:Right(strIcon, 1)));
+		Else
+			SetFont(strIcon);
+	}
+
+	If (GetCvar("screenblocks") < 11)
+		HudMessage (s:"A"; 0, 100, -1, 3.1, 192.2, 2.0);
+
+	GiveActorInventory(Activator, "Attacked", 1);
+	GiveActorInventory(Activator, "Message", 1);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// SetMessage - Sets Blake Stone status bar messages
+////////////////////////////////////////////////////////////////////////////////
+// Also allows messages to be dumped to the console:
+// 
+//  If ConsoleLog is 0, the message appears only on the status bar (or in the 
+//    corner of the screen if a fullscreen hud is in use)
+//  If ConsoleLog is 1, the message is also logged in the console.
+//  If ConsoleLog is 2, the message only shows up in the console
+//
+////////////////////////////////////////////////////////////////////////////////
+Function void SetMessage (int Activator, str strString, int intPickupTID, int ConsoleLog)
+{
+	int CurrentLine = 0;
+	int LineStart = 0;
+	str Line = "";
+
+	If (Activator == 0) Activator = ActivatorTID();
+
+	If (Activator > 1000 && Activator < 1009)
+	{
+		MessageLine0[Activator - 1001] = "";
+		MessageLine1[Activator - 1001] = "";
+		MessageLine2[Activator - 1001] = "";
+		MessageLine3[Activator - 1001] = "";
+		MessageLine4[Activator - 1001] = "";
+		MessageLine5[Activator - 1001] = "";
+
+		strString = ExpandString(strString, intPickupTID, 0);
+
+		For (int t = 0; t <= StrLen(strString); t++)
+		{
+			If (GetChar(strString, t) == '\n' || t == StrLen(strString))
+			{
+				Line = Mid(strString, LineStart, t);
+
+				If (CurrentLine == 0)
+					MessageLine0[Activator - 1001] = strParam(s:"\c[BSStatGray]", s:Line);
+				Else If (CurrentLine == 1)
+					MessageLine1[Activator - 1001] = strParam(s:"\c[BSStatGray]", s:Line);
+				Else If (CurrentLine == 2)
+					MessageLine2[Activator - 1001] = strParam(s:"\c[BSStatGray]", s:Line);
+				Else If (CurrentLine == 3)
+					MessageLine3[Activator - 1001] = strParam(s:"\c[BSStatGray]", s:Line);
+				Else If (CurrentLine == 4)
+					MessageLine4[Activator - 1001] = strParam(s:"\c[BSStatGray]", s:Line);
+				Else
+					MessageLine5[Activator - 1001] = strParam(s:"\c[BSStatGray]", s:Line);
+
+				CurrentLine++;
+				LineStart = t + 1;
+			}
+		}
+
+		HudMessage (s:""; 0, 100, 0, 0, 0, 0);
+
+		If (ConsoleLog <  2)
+		{
+			TakeActorInventory(Activator, "Attacked", 1);
+			TakeActorInventory(Activator, "Pickup", 1);
+			GiveActorInventory(Activator, "Message", 1);
+		}
+
+		If (ConsoleLog)
+		{
+			int Trans;
+			//Add the message to the console log (100% Alpha translucency if it's already on the status bar, so it doesn't show on the screen twice)
+			If (GetCvar("screenblocks") > 10) Trans = 1;
+			HudMessage (s:MessageLine0[Activator - 1001], s:MessageLine1[Activator - 1001], s:MessageLine2[Activator - 1001], s:MessageLine3[Activator - 1001], s:MessageLine4[Activator - 1001], s:MessageLine5[Activator - 1001]; HUDMSG_LOG | HUDMSG_ALPHA, -1000, 0, 0.5, 0.01, 2.0, Trans * 1.0);
+		}
+	}
+}
+
+Function str ExpandString(str strString, int intInput, str strInput)
+{
+	int l = 2;
+
+	str strTemp = "";
+
+	For (int t = 0; t <= StrLen(strString); t++)
+	{
+		If (GetChar(strString, t) == '^')
+		{
+			str strType = GetChar(strString, t + 1);
+			int intContent = -1;
+			str strContent = "";
+
+			If (strType == 't')
+			{
+				intContent = CheckActorInventory(ActivatorTID(), "Credit");
+			}
+			Else If (strType == 'a')
+			{
+				intContent = PickupAmounts[intInput];
+			}
+			Else If (strType == 'e')
+			{
+				intContent = Episode + 1;
+			}
+			Else If (strType == 'f')
+			{
+				If (intContent == 0)
+				{
+					intContent = Level;
+					If (intContent == 11) intContent = 0;
+				}
+				Else
+					intContent = intInput;
+			}
+			Else If (strType == 'i')
+			{
+				intContent = intInput;
+			}
+			Else If (strType == 'k')
+			{
+				str strLetter = GetChar(strString, t + l);
+
+				While ((IsLetter(strLetter) || strLetter == '+') && t + l <= strLen(strString))
+				{
+					strLetter = GetChar(strString, t + l);
+
+					If (IsLetter(strLetter) || strLetter == '+')
+					{
+						strContent = strParam(s:strContent, c:strLetter);
+						l++;
+					}
+				}
+				strContent = strParam(k:strContent);
+
+				//Prefer UP/DN if possible with current bindings
+
+				If (StrICmp(Right(strContent, 5), "arrow") == 0)
+					strContent = Left(strContent, strLen(strContent) - 5);
+
+				If (StrICmp(Right(strContent, 4), "down") == 0)
+					strContent = "dn";
+				Else If (StrICmp(Right(strContent, 2), "up") == 0)
+					strContent = "up";
+
+				strContent = ChangeCase(strContent, 2);
+
+				If (InStr(strContent, " ") > 0)
+				{
+					If (intInput) strContent = Left(strContent, InStr(strContent, " "));
+
+					If (StrICmp(Right(strContent, 5), "arrow") == 0)
+						strContent = Left(strContent, strLen(strContent) - 5);
+
+					If (StrICmp(Right(strContent, 4), "down") == 0)
+						strContent = "dn";
+				}
+			}
+			Else If (strType == 's')
+			{
+				strContent = strInput;
+			}
+
+
+			If (intContent > -1) strContent = strParam(d:intContent);
+
+			strTemp = strParam(s:strTemp, s:strContent);
+
+			t = t + l - 1;
+			l = 2;
+		}
+		Else
+			strTemp = strParam(s:strTemp, c:GetChar(strString, t));
+
+	}
+	Return strTemp;
+}
+
+Function int IsLetter(str Character)
+{
+	int Temp = ((Character >= 65 && Character <= 90) || (Character >= 97 && Character <= 122));
+
+	return Temp;
+}
+
+Function str ChangeCase(str String, int Type)
+{
+	int l = 0;
+
+	str strLetter = GetChar(String, l);
+	str Temp = "";
+
+	While (l <= strLen(String))
+	{
+		strLetter = GetChar(String, l);
+
+		If (IsLetter(strLetter))
+		{
+			Switch (Type)
+			{
+				Case 0: //To lower
+					If (strLetter <= 90) strLetter = strLetter + 32;
+				break;
+				Case 1: //To upper
+					If (strLetter >= 97) strLetter = strLetter - 32;
+					break;
+				Case 2: //Capitalize first letter
+					If (l == 0)
+						If (strLetter >= 97) strLetter = strLetter - 32;
+				break;
+			}
+		}
+		Temp = strParam(s:Temp, c:strLetter);
+		l++;
+	}
+
+	return Temp;
+}
+
+Function int InStr (str String, str Find)
+{
+	int Temp = 0;
+
+	For (int c = 0; c <= StrLen(String); c++)
+	{
+		If (GetChar(String, c) == GetChar(Find, 0))
+		{
+			Temp = c;
+			break;
+		}
+	}
+
+	return Temp;
+}
+
+Function str Mid(str String, int Start, int End)
+{
+	str Temp = "";
+
+	For (int c = Start; c <= End; c++)
+		Temp = StrParam(s:Temp, c:GetChar(String, c));
+
+	return Temp;
+}
+
+Function str Right(str String, int Chars)
+{
+	return Mid(String, StrLen(String) - Chars, StrLen(String));
+}
+
+Function str Left(str String, int Chars)
+{
+	return Mid(String, 0, Chars - 1);
+}
+
+Function str Pad(int Input, int Digits)
+{
+	str strTemp = "";
+
+	For (int p = 1; p <= Digits - strLen(strParam(d:Input)); p++)
+	{
+		strTemp = strParam(c:'0',s:strTemp);
+	}
+
+	return strParam(s:strTemp,d:Input);
+}
+
+Function str StripAttackerClass(str strAttackerClass)
+{
+	If (StrICmp(Right(strAttackerClass, 4), "Easy") == 0)
+		strAttackerClass = Left(strAttackerClass, StrLen(strattackerClass) - 4);
+	Else If (StrICmp(Right(strAttackerClass, 12), "NormalMedium") == 0)
+		strAttackerClass = Left(strAttackerClass, StrLen(strattackerClass) - 12);
+	Else If (StrICmp(Right(strAttackerClass, 4), "Hard") == 0)
+		strAttackerClass = Left(strAttackerClass, StrLen(strattackerClass) - 4);
+
+	If (StrICmp(Left(strAttackerClass, 1), "M") == 0)
+	{
+		If (GetChar(strAttackerClass, 1) <= 90)
+			strAttackerClass = Right(strAttackerClass, StrLen(strattackerClass) - 1);
+	}
+
+	return strAttackerClass;
+}
+
+Function void Error (str strError)
+{
+	Log (s:"\c[BSStatRed]SCRIPT ERROR: \c[BSStatGray]", s:strError);
+}
+
+Function void PopulateMessages (void)
+{
+	int i, c;
+
+	For (i = 1; i <= 34; i = i + 1)
+	{
+		c = ThingCountName(strParam(s:"InformantMessageMarker",d:i), 0);
+
+		If (c > 0 && i != 6 && i != 24 && i != 27)
+		{
+			InformantMessages[InformantMessageCount] = i;
+			InformantMessageCount++;
+		}
+	}
+
+	For (i = 1; i <= 17; i = i + 1)
+	{
+		c = ThingCountName(strParam(s:"LoyalistMessageMarker",d:i), 0);
+
+		If (c > 0)
+		{
+			LoyalistMessages[LoyalistMessageCount] = i;
+			LoyalistMessageCount++;
+		}
+	}
+
+	For (i = 1; i <= 16; i = i + 1)
+	{
+		c = ThingCountName(strParam(s:"AlarmMessageMarker",d:i), 0);
+
+		If (c > 0)
+		{
+			AlarmMessages[AlarmMessageCount] = i;
+			AlarmMessageCount++;
+		}
+	}
+}
+
+Script "W_MovePlatform" (int TID, int Angle)
+{
+	int PlatTID;
+	int intLoop;
+
+	Angle = (Angle % 360) * 1.0 / 360;
+
+	If (TID < 3000)
+	{
+		PlatTID = UniqueTID(3000);
+		Thing_ChangeTID(0, PlatTID);
+	}
+	Else
+		PlatTID = TID;
+
+	int Speed = GetActorProperty(PlatTID, APROP_Speed) / 1.0;
+
+	int z = GetActorZ(0);
+
+	While (CheckActorInventory(PlatTID, "Health") > 0)
+	{
+		While (GetUserVariable(PlatTID, "user_Frozen") == 0)
+		{
+			int PlatX = GetActorX(PlatTID);
+			int PlatY = GetActorY(PlatTID);
+
+			int DestX = PlatX + (cos(Angle) * Speed);
+			int DestY = PlatY + (sin(Angle) * Speed);
+
+			While (!SetActorPosition(PlatTID, DestX, DestY, z + 1.0, 0))
+			{
+				Switch (intLoop++ % 4)
+				{
+					Case 0: //90 degrees
+						Angle = (Angle + 0.25) % 1.0;
+					break;
+					Case 1: //-90 degrees
+						Angle = (Angle + 0.5) % 1.0;
+					break;
+					Case 2: //180 degrees
+						Angle = (Angle - 0.25) % 1.0;
+					break;
+					Default: //Stuck for some reason
+						Delay(1);
+					break;
+				}
+	
+				DestX = PlatX + (cos(Angle) * Speed);
+				DestY = PlatY + (sin(Angle) * Speed);
+			}
+	
+			Delay((5 / Speed) + 1);
+			intloop = 0;
+		}
+		Delay (5);
+	}
+}
+
+Script "InitGoldfireSpawn" (void)
+{
+	Thing_ChangeTID(0, 20000 + WolfCoord(GetActorX(0)) * 64 + WolfCoord(GetActorY(0)));
+}
+
+Script "RemoveGoldfireSpawn" (void)
+{
+	Thing_Remove(20000 + WolfCoord(GetActorX(0)) * 64 + WolfCoord(GetActorY(0)));
+}
+
+Script "CheckGoldfireSpawned" (void)
+{
+	SetResultValue(ThingCountName("Goldfire", 0));
+}
+
+Script "CheckGoldfireDrop" (void)
+{
+	SetResultValue((ThingCountName("Goldfire", 0) == 0) && (ThingCountName("GoldfireSpawner", 0) == 0) && (GetLevelInfo(LEVELINFO_LEVELNUM) == 9));
+}
+
+Function void DoWolfMovement (void)
+{
+	If ((GetCvar("g_momentum") == 0) && (GetActorVelZ(0)==0))
+	{
+		SetActorVelocity(0, 0, 0, 0, 0, 1);
+		SetActorProperty(0, APROP_Speed, 8.0);
+	}
+	Else
+		SetActorProperty(0, APROP_Speed, 1.0);
+}

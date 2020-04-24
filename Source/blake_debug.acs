@@ -1,0 +1,124 @@
+////////////////////////////////////////////////////////////////////////////////
+// Blake Stone TC - Debug/Cheat Scripts
+////////////////////////////////////////////////////////////////////////////////
+// 
+// This file contains the following scripts:
+//
+//   W_DebugGod		Backspace-G Cheat (God Mode)
+//   W_Hurt		Backspace-H Cheat (Hurt)
+//   W_DebugItems	Backspace-I Cheat (Give Items)
+//   W_JAM		JAM Cheat
+//
+////////////////////////////////////////////////////////////////////////////////
+
+//Backspace-G Cheat
+Script "W_DebugGod" (void) //605
+{
+	If ((GetCvar ("sv_cheats") || (!GameType() && Powerball)) && !intermission)
+	{
+		if (godmode[PlayerNumber()])
+		{
+			SetActorProperty(1001+PlayerNumber(), APROP_Invulnerable, 0);
+			godmode[PlayerNumber()] = 0;
+
+			PrintMessage (	StrParam(l:"CHEAT_GOD_OFF"),
+					"SmallFont", "Black",
+					BORDER_BLAKE,
+					112, 32);
+			Delay(1);
+			While(!KeyPressed()) Delay(1);
+			ClearMessage(True);
+		}
+		else
+		{
+			SetActorProperty(1001+PlayerNumber(), APROP_Invulnerable, 1);
+			godmode[PlayerNumber()] = 1;
+
+			PrintMessage (	StrParam(l:"CHEAT_GOD_ON"),
+					"SmallFont", "Black",
+					BORDER_BLAKE,
+					112, 32);
+			Delay(1);
+			While(!KeyPressed()) Delay(1);
+			ClearMessage(True);
+		}
+	}
+}
+
+//Backspace-H Cheat
+Script "W_Hurt" (int damage) //606
+{
+	If (!intermission)
+	{
+		If (!damage)
+			damage = 10;
+		DamageThing(damage);
+	}
+}
+
+//Backspace-I Cheat
+Script "W_DebugItems" (void) //602
+{
+	if (getcvar ("sv_cheats") || (!(getcvar ("deathmatch")) && Powerball))
+	{
+		ACS_NamedExecuteAlways("W_AddPoints", 0, 100000);
+		GiveInventory("Health", 100);
+		if (!CheckInventory("BSSFP"))
+		{
+			GiveInventory("BSSFP", 1);
+			SetWeapon("BSSFP");
+		}
+		if (!CheckInventory("BSRAW"))
+		{
+			GiveInventory("BSRAW", 1);
+			SetWeapon("BSRAW");
+		}
+		else if (!CheckInventory("BSDND"))
+		{
+			GiveInventory("BSDND", 1);
+			SetWeapon("BSDND");
+		}
+		else if (!CheckInventory("BSPDU"))
+		{
+			GiveInventory("BSPDU", 1);
+			SetWeapon("BSPDU");
+		}
+
+		GiveInventory("BSCharge", 50);
+	
+		PrintMessage (	StrParam(l:"CHEAT_ITEMS"),
+				"SmallFont", "Black",
+				BORDER_BLAKE,
+				112, 40);
+		Delay(1);
+		While(!KeyPressed()) Delay(1);
+		ClearMessage(True);
+	}
+}
+
+//ILM Cheat
+Script "W_JAM" (void) //603
+{
+	If ((GetCvar ("sv_cheats") || !GameType()) && !intermission)
+	{
+		GiveInventory("Health", 100);
+		GiveInventory("BSCharge", 99);
+		GiveInventory("BSYellowKey", 1);
+		GiveInventory("BSBlueKey", 1);
+		GiveInventory("BSGreenKey", 1);
+		GiveInventory("BSRedKey", 1);
+		GiveInventory("BSGoldKey", 1);
+		SetActorProperty(0, APROP_Score, 0);
+
+		PrintMessage (	StrParam(l:"CHEAT_JAM"), 
+				"MedFont", "White",
+				BORDER_BLAKESOLID,
+				195, 49);
+
+		SetMessage(0, strParam(l:"Cheat_JAM_Status"), 0, 0);
+
+		Delay(1);
+		While(!KeyPressed()) Delay(1);
+		ClearMessage(True);
+	}
+}

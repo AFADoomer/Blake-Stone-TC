@@ -1,0 +1,349 @@
+#library "Blake"
+
+#include "zcommon.acs"
+
+//Dummy variable that helps make some script errors clearer
+str		strDefault = "ERROR: Script referencing string index 0.";
+
+//Global Variables
+global int	0:Score[], 1:Old_Score[], 2:Level, 3: Shotgun[], 4:Powerball, 5:Frags[], 
+		6:exitweapon[], 7:currweapon[], 8:ammoamount[], 9:ElevatorAccess[], 10:LifeThreshold[], 
+		11:stats[], 12:totalstats[], 13:LifeCount[], 14:GodMode[], 15:Died[], 16:Chaingun[],
+		17:ScoreMod[], 
+		18:SecretMarkers[],
+		19:PositionX[],
+		20:PositionY[],
+		21:Pistol[],
+		22:MonsterBlocks[],
+		23:FoodUnits[],
+		24:BioTechSectors[],
+		25:DoorCoordinates[],
+		26:Switches[];
+
+global str	30:MessageLine0[],
+		31:MessageLine1[],
+		32:MessageLine2[],
+		33:MessageLine3[],
+		34:MessageLine4[],
+		35:MessageLine5[],
+		40:Pickups[],
+		41:PickupAmounts[];
+
+bool		intermission = false;
+int		informantcount = 0, 
+		scientistcount = 0,
+ 		checkhighscores = 0;
+str		highscores[11][4];
+
+int		MapActive = 0;
+int		MapArray[64][64][2]; //Width, Height, Seen/Color
+int		MapDiffArray[64][64]; //Width, Height
+int		MapMoversArray[64][64][2]; //Width, Height, Color/Time
+
+int rnd_table[256] = {
+  0,   8, 109, 220, 222, 241, 149, 107,  75, 248, 254, 140,  16,  66,
+ 74,  21, 211,  47,  80, 242, 154,  27, 205, 128, 161,  89,  77,  36,
+ 95, 110,  85,  48, 212, 140, 211, 249,  22,  79, 200,  50,  28, 188,
+ 52, 140, 202, 120,  68, 145,  62,  70, 184, 190,  91, 197, 152, 224,
+149, 104,  25, 178, 252, 182, 202, 182, 141, 197,   4,  81, 181, 242,
+145,  42,  39, 227, 156, 198, 225, 193, 219,  93, 122, 175, 249,   0,
+175, 143,  70, 239,  46, 246, 163,  53, 163, 109, 168, 135,   2, 235,
+ 25,  92,  20, 145, 138,  77,  69, 166,  78, 176, 173, 212, 166, 113,
+ 94, 161,  41,  50, 239,  49, 111, 164,  70,  60,   2,  37, 171,  75,
+136, 156,  11,  56,  42, 146, 138, 229,  73, 146,  77,  61,  98, 196,
+135, 106,  63, 197, 195,  86,  96, 203, 113, 101, 170, 247, 181, 113,
+ 80, 250, 108,   7, 255, 237, 129, 226,  79, 107, 112, 166, 103, 241,
+ 24, 223, 239, 120, 198,  58,  60,  82, 128,   3, 184,  66, 143, 224,
+145, 224,  81, 206, 163,  45,  63,  90, 168, 114,  59,  33, 159,  95,
+ 28, 139, 123,  98, 125, 196,  15,  70, 194, 253,  54,  14, 109, 226,
+ 71,  17, 161,  93, 186,  87, 244, 138,  20,  52, 123, 251,  26,  36,
+ 17,  46,  52, 231, 232,  76,  31, 221,  84,  37, 216, 165, 212, 106,
+197, 242,  98,  43,  39, 175, 254, 145, 190,  84, 118, 222, 187, 136,
+120, 163, 236, 249};
+
+#define WEAP_ACP 1
+#define WEAP_SFP 2
+#define WEAP_RAW 4
+#define WEAP_DND 8
+#define WEAP_PDU 16
+#define WEAP_BFG 32
+
+#define KILLED_MONSTERS 1
+#define TOTAL_MONSTERS 2
+#define FOUND_ITEMS 3
+#define TOTAL_ITEMS 4
+#define FOUND_SECRETS 5
+#define TOTAL_SECRETS 6
+#define ALIVE_INFORMANTS 7
+#define TOTAL_INFORMANTS 8
+#define ENTER_TIME 9
+#define EXIT_TIME 10
+#define PAR_TIME 11
+
+#include "blake_messages.acs"
+#include "blake_intermission.acs"
+#include "blake_debug.acs"
+#include "blake_elevator.acs"
+#include "blake_gameplay.acs"
+
+function void Freeze(int Set)
+{
+	SetPlayerProperty(0, Set, PROP_NOTARGET);
+	SetPlayerProperty (0, Set, PROP_TOTALLYFROZEN);
+
+//	SetActorProperty(1001+PlayerNumber(), APROP_Invulnerable, Set);
+}
+
+Script "Freeze" (int OnOff)
+{
+	int t;
+
+	Freeze(OnOff);
+
+	If (OnOff)
+	{
+		//Set all actors that inherit from the base BlakeEnemy actor to frozen
+		For(t = 0; t < 6000; t++)
+		{
+			If (GetActorProperty(t, APROP_Health) > 0)
+				SetActorState(t, "Freeze", true);
+		}
+	}
+	Else
+	{
+		For(t = 0; t < 6000; t++)
+		{
+			If (GetActorProperty(t, APROP_Health) > 0)
+				SetActorState(t, "UnFreeze", true);
+		}
+	}
+}
+
+function void FreezeAll(int Set)
+{
+	SetPlayerProperty(1, Set, PROP_NOTARGET);
+	SetPlayerProperty (1, Set, PROP_TOTALLYFROZEN);
+//	For (int f = 0; f <= PlayerCount()-1; f++)
+//		SetActorProperty(1001 + f, APROP_Invulnerable, Set);
+	If (Set)
+		GiveActorInventory(1001, "Freeze", 1);
+	Else
+		TakeActorInventory(1001, "Freeze", 1);
+}
+
+function void FadeToBlack (int holdTime, int inTime, int outTime)
+{
+	SetHudSize(320, 200, 1);
+	SetFont("BLACK");
+	HudMessage (s:"a"; 3, 0, -1, 160.0, 100.0, holdTime, inTime, outTime);
+	SetFont("WSMASK");
+	HudMessage (s:"A"; 3, 1, -1, 160.0, 100.0, holdTime, inTime, outTime);
+}
+
+function void FadeToRed (int holdTime, int inTime, int outTime)
+{
+	SetHudSize(320, 200, 1);
+	SetFont("RED");
+	HudMessage (s:"a"; 3, 0, -1, 160.0, 100.0, holdTime, inTime, outTime);
+}
+
+Script "A_Random" (int bitshift) //800
+{
+	int intResults = rnd_table[Random(0,255)];
+	intResults = (intResults >> bitshift);
+	SetResultValue(intResults);
+}
+
+Script "W_StorePosition" (int actorposx, int actorposy, int playernum) //12
+{
+	PositionX[playernum] = actorposx;
+	PositionY[playernum] = actorposy;
+}
+
+Script "A_AlertActors" (int WakeTID) //13
+{
+	Thing_Hate(WakeTID, 1001, 4);
+	GiveActorInventory(WakeTID, "Active", 1);
+
+	If (WakeTID > 500)
+		WakeTID -= 500;
+
+	Thing_Hate(WakeTID, 1001, 4);
+
+	For (int b = 4000; b < 4256; b++)
+	{
+		If (BioTechSectors[b] == WakeTID)
+		{
+			GiveActorInventory(b, "Active", 1);
+			SetUserVariable(b, "user_Interrogated", 3);
+			SetActorState(b, "Chase.Alerted");
+		}
+	}
+}
+
+Function int WolfCoord(int intCoord)
+{
+	int intOriginal = intCoord;
+	int intReturn = 0;
+
+	intCoord = intCoord / 1.0;
+//	intCoord = (intCoord + 2048 - 32) / 64;
+	intCoord = (intCoord + 2048) / 64;
+
+	return intCoord;
+}
+
+Function int RoundCoord(int intCoord)
+{
+	int intModMajor = intCoord % 64.0;
+	If (intModMajor < 0)
+		intModMajor = intModMajor * -1;
+
+	int intMod = intCoord % 32.0;
+	If (intMod < 0)
+		intModMajor = intMod * -1;
+
+	If (intMod <= 16.0)
+		intCoord = intCoord - intMod;
+	Else If (intMod > 16.0)
+		intCoord = intCoord + (32.0 - intMod);
+
+	If (intModMajor < 32.0)
+		intCoord = intCoord + 32.0;
+
+	return intCoord;		
+}
+
+Function void SnapToGrid (int tid)
+{
+	int ActorX = RoundCoord(GetActorX(tid));
+	int ActorY = RoundCoord(GetActorY(tid));
+
+	SetActorPosition (tid, ActorX, ActorY, GetActorZ(tid), 0);
+}
+
+Script "A_MarkPushwall" (void) //16
+{
+	int intSecretMarkerTID = WolfCoord(GetActorX(0)) * 64 + WolfCoord(GetActorY(0));
+	SecretMarkers[intSecretMarkerTID] = 1;
+}
+
+Script "A_MarkMonsterBlock" (void) //16
+{
+	int intMonsterBlockTID = WolfCoord(GetActorX(0)) * 64 + WolfCoord(GetActorY(0));
+
+	Thing_ChangeTID(0, intMonsterBlockTID + 10000);
+	MonsterBlocks[intMonsterBlockTID] = 1;
+}
+
+Script 2 (int po, int dir) {ACS_NamedExecuteAlways("W_DoSecretDoor", 0, po, dir);}
+Script 15 (int WallID) {} //Used by secret wall walkover lines...  Shouldn't do anything...
+Script 601 (void) {} //Only used by secret wall walkover lines, which shouldn't do anything anyway
+
+//Patrol point logic
+Script "A_PatrolTurn" (int angle, int TurnX, int TurnY)
+{
+	SetActivatorToTarget(0);
+
+	If (ActivatorTID() < 500 && !CheckInventory("Active"))
+	{
+		If (GetActorProperty (0, APROP_Health) > 0)
+		{
+			SetActorState(0, "Spawn.Stand");
+			Thing_Stop(0);
+
+			SetActorPosition(0, TurnX * 1.0, TurnY * 1.0, 0, 0);
+			SetActorAngle (0, (angle * 256 / 360 ) << 8);
+			SetActorState(0, "Spawn.Patrol");
+		}
+	}
+}
+
+Script "A_CheckWeapon" (int Firing)
+{
+	If (Firing)
+	{
+		If (!CheckInventory("BSCharge"))
+		{	
+			SetMessage(0, strParam(l:"SB_AmmoEmpty"), 0, 1);
+			SetWeapon("BSACP");
+		}
+	}
+	Else
+	{
+		If (CheckInventory("BSCharge") || StrCmp(GetWeapon(), "BSACP") == 0 || StrCmp(GetWeapon(), "None") == 0)
+		{
+			SetMessage(0, strParam(l:"SB_WeaponReady"), 0, 0);
+		}
+		Else
+		{
+			SetMessage(0, strParam(l:"SB_NoAmmo"), 0, 1);
+			SetWeapon("BSACP");
+		}
+	}
+}
+
+Function int GetRatio(void)
+{
+	int TotalPoints, TotalInformants, TotalEnemyKills;
+
+	SetStat(0, Level);
+	SetStat(KILLED_MONSTERS, GetLevelInfo(LEVELINFO_KILLED_MONSTERS));
+	SetStat(TOTAL_MONSTERS, GetLevelInfo(LEVELINFO_TOTAL_MONSTERS));
+	SetStat(FOUND_ITEMS, GetLevelInfo(LEVELINFO_FOUND_ITEMS));
+	SetStat(TOTAL_ITEMS, GetLevelInfo(LEVELINFO_TOTAL_ITEMS));
+	SetStat(FOUND_SECRETS, GetLevelInfo(LEVELINFO_FOUND_SECRETS));
+	SetStat(TOTAL_SECRETS, GetLevelInfo(LEVELINFO_TOTAL_SECRETS));
+	SetStat(ALIVE_INFORMANTS, ThingCountName("Informant", 0) + ThingCountName("MInformant", 0));
+	SetStat(TOTAL_INFORMANTS, InformantCount);
+	SetStat(EXIT_TIME, Timer() - Stat(ENTER_TIME));
+	SetStat(PAR_TIME, GetLevelInfo(LEVELINFO_PAR_TIME));
+
+	If (StatTotal(TOTAL_MONSTERS) + StatTotal(TOTAL_ITEMS) > 0) 
+		TotalPoints = (StatTotal(KILLED_MONSTERS) + StatTotal(FOUND_ITEMS)) * 100 / (StatTotal(TOTAL_MONSTERS) + StatTotal(TOTAL_ITEMS));
+	Else
+		TotalPoints = 100; 
+
+	If (StatTotal(TOTAL_INFORMANTS) > 0)
+		TotalInformants = StatTotal(ALIVE_INFORMANTS) * 100 / StatTotal(TOTAL_INFORMANTS);
+	Else
+		TotalInformants = 100;
+
+	If (StatTotal(TOTAL_MONSTERS) > 0)
+		TotalEnemyKills = StatTotal(KILLED_MONSTERS) * 100 / StatTotal(TOTAL_MONSTERS);
+	Else
+		TotalEnemyKills = 100;
+
+	Return (TotalPoints + TotalInformants + TotalEnemyKills) / 3;
+}
+
+Function void SetStat(int Index, int Value)
+{
+	int StatOffset = Level * 100;
+
+	stats[StatOffset + Index] = Value;
+}
+
+Function int StatTotal(int Index)
+{
+	int Total = 0;;
+
+	For (int s = Index; s <= 1100; s = s + 100)
+	{
+		If (!(s % 2) && !stats[s])
+			Total = Total + 33; //Hack...  
+		Else
+			Total = Total + stats[s];
+	}
+
+	Return Total;
+}
+
+Function int Stat(int Index)
+{
+	int StatOffset = Level * 100;
+
+	int Value = stats[StatOffset + Index];
+
+	Return Value;
+}

@@ -1,3 +1,2 @@
-IWAD = "BStone_Resources.pk3"
 STARTUPTITLE = "Blake Stone: Aliens of Gold TC"
 STARTUPCOLORS = "DD 78 26", "29 5C 79"
