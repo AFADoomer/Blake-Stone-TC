@@ -1,0 +1,226 @@
+//////        New Sounds for Blake Stone TC         //////
+////                   Adlib Sounds                   ////
+//                     Menu Sounds                      //
+menu/activate                                     ADLIB032
+menu/backup                                       ADLIB039
+menu/change                                       ADLIB005
+menu/choose                                       ADLIB032
+menu/clear                                        ADLIB039
+menu/cursor                                       ADLIB005
+menu/dismiss                                      ADLIB039
+menu/invalid                                      ADLIB028
+menu/prompt                                       ADLIB032
+
+//                    Player Weapons                    //
+ACP/attack                                        ADLIB023
+SFP/pickup                                        ADLIB002
+RAW/pickup                                        ADLIB030
+DND/pickup                                        ADLIB038
+PDU/pickup                                        ADLIB060
+
+//                      Map Sounds                      //
+player/death                                      ADLIB009
+$playersound	player	male	*death	          ADLIB009
+player/noway                                      ADLIB006
+
+door/secret                                       ADLIB046
+
+misc/secret                                       NULL
+
+pickups/goldbars                                  ADLIB037
+pickups/loot                                      ADLIB036
+pickups/moneybag                                  ADLIB035
+pickups/xylanorb                                  ADLIB045
+
+pickups/key                                       ADLIB012
+pickups/ammo                                      ADLIB031
+pickups/token                                     ADLIB096
+pickups/health                                    ADLIB033
+
+life                                              ADLIB041
+
+stats/bar                                         ADLIB098
+stats/done                                        ADLIB099
+
+terminal/type                                     ADLIB001
+terminal/beep                                     ADLIB047
+elev/button                                       ADLIB042
+
+switch/use                                        ADLIB097
+
+concession/use                                    ADLIB010
+
+//                       Enemies                        //
+biotech/interrogate                               ADLIB043
+floatingbomb/sight                                ADLIB007
+turret/sight                                      ADLIB049
+
+////                 Digitized Sounds                 ////
+//                    Player Weapons                    //
+SFP/attack                                        SND00001
+RAW/attack                                        SND00002
+DND/attack                                        SND00000
+
+
+//                      Map Sounds                      //
+doors/heavy_close                                 SND00004
+doors/heavy_open                                  SND00003
+doors/tech_close                                  SND00006
+doors/tech_open                                   SND00005
+
+arc/damage                                        SND00025
+
+teleport/in                                       SND00032
+teleport/out                                      SND00033
+
+misc/blake/explosion1                             SND00011
+misc/blake/explosion2                             SND00035
+
+enginethrust                                      ADLIB058
+
+//                       Enemies                        //
+aciddragon/attack                                 SND00055
+aciddragon/death                                  SND00049
+aciddragon/sight                                  SND00050
+alienprotector/attack                             SND00002
+$random alienprotector/death                      {alienprotector/death1 alienprotector/wound}
+alienprotector/death1                             NULL
+alienprotector/sight                              NULL
+alienprotector/wound                              NULL
+
+antiplasmashot/fire                               SND00000
+$random antiplasmashot/hit                        {misc/blake/explosion1 misc/blake/explosion2}
+
+armoredstalker/attack                             SND00001
+armoredstalker/death                              SND00021
+armoredstalker/sight                              SND00051
+
+biomechguardian/attack                            SND00001
+biomechguardian/death                             SND00021
+biomechguardian/sight                             SND00051
+
+breatherbeast/attack                              SND00001
+breatherbeast/death                               SND00049
+breatherbeast/sight                               SND00012
+
+crawlerbeast/attack                               SND00055
+crawlerbeast/death                                SND00037
+crawlerbeast/sight                                SND00012
+
+cyborgwarrior/attack                              SND00001
+cyborgwarrior/death                               SND00049
+cyborgwarrior/sight                               SND00051
+
+electrosphere/attack                              SND00027
+
+$random floatingbomb/death                        {misc/blake/explosion1 misc/blake/explosion2}
+
+geneticguard/attack                               SND00001
+geneticguard/death                                SND00017
+geneticguard/melee                                SND00057
+geneticguard/sight                                SND00012
+
+giantstalker/attack                               SND00001
+giantstalker/death                                SND00018
+giantstalker/sight                                SND00051
+
+goldfire/attack                                   SND00027
+goldfire/laugh                                    SND00024
+goldfire/sight                                    SND00008
+
+gurneymutant/attack                               SND00001
+gurneymutant/death                                SND00041
+gurneymutant/sight                                SND00031
+
+largecanisteralien/attack                         SND00055
+largecanisteralien/death                          SND00037
+largecanisteralien/melee                          SND00056
+largecanisteralien/release                        SND00044
+largecanisteralien/sight                          SND00036
+
+liquidalien/death                                 SND00030
+
+mechsentinel/attack                               SND00001
+$random mechsentinel/death                        {misc/blake/explosion1 misc/blake/explosion2}
+mechsentinel/sight                                SND00051
+
+mutanthuman/death                                 SND00021
+mutanthuman/melee                                 SND00057
+mutanthuman/sight                                 SND00014
+
+plasma/appear                                     SND00028
+plasma/death                                      SND00029
+
+plasmagrenade/fire                                SND00046
+$random plasmagrenade/hit                         {misc/blake/explosion1 misc/blake/explosion2}
+
+podalien/death                                    SND00049
+podalien/melee                                    SND00056
+podalien/release                                  SND00026
+podalien/sight                                    SND00050
+
+proguard/attack                                   SND00002
+$random proguard/death                            {proguard/death1 proguard/death2 proguard/death3}
+proguard/death1                                   SND00013
+proguard/death2                                   SND00042
+proguard/death3                                   SND00043
+proguard/sight                                    SND00016
+
+rentacop/attack                                   SND00001
+$random rentacop/death                            {rentacop/death1 rentacop/death2 rentacop/death3}
+rentacop/death1                                   SND00010
+rentacop/death2                                   SND00034
+rentacop/death3                                   SND00038
+rentacop/sight                                    SND00009
+
+reptilianwarrior/attack                           SND00001
+reptilianwarrior/death                            SND00023
+reptilianwarrior/sight                            SND00012
+
+scientist/attack                                  SND00001
+$random scientist/death                           {scientist/death1 scientist/death2 scientist/death3}
+scientist/death1                                  SND00020
+scientist/death2                                  SND00053
+scientist/death3                                  SND00054
+$random scientist/inform_death                    {scientist/inform_death1 scientist/inform_death2 scientist/inform_death3}
+scientist/inform_death1                           SND00007
+scientist/inform_death2                           SND00039
+scientist/inform_death3                           SND00040
+scientist/sight                                   SND00019
+
+sectorguard/attack                                SND00001
+$random sectorguard/death                         {sectorguard/death1 sectorguard/death2}
+sectorguard/death1                                SND00015
+sectorguard/death2                                SND00015
+sectorguard/sight                                 SND00015
+
+smallcanisteralien/attack                         SND00055
+smallcanisteralien/death                          SND00023
+smallcanisteralien/melee                          SND00056
+smallcanisteralien/release                        SND00045
+smallcanisteralien/sight                          SND00015
+
+spectordemon/death                                SND00049
+spectordemon/sight                                SND00012
+
+spidermutant/attack                               SND00055
+spidermutant/death                                SND00018
+spidermutant/sight                                SND00015
+
+startrooper/attack                                SND00002
+$random startrooper/death                         {startrooper/death1 startrooper/wound startroooper/death3}
+startrooper/death1                                SND00047
+startrooper/death3                                SND00052
+startrooper/sight                                 SND00022
+startrooper/wound                                 SND00048
+
+techwarrior/attack                                SND00002
+$random techwarrior/death                         {techwarrior/death1 techwarrior/death2}
+techwarrior/death1                                SND00022
+techwarrior/death2                                SND00022
+techwarrior/sight                                 SND00022
+
+turret/attack                                     SND00001
+$random turret/death                              {misc/blake/explosion1 misc/blake/explosion2}
+
+$random volatiletransport/death                   {misc/blake/explosion1 misc/blake/explosion2}

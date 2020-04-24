@@ -1,0 +1,396 @@
+Height 48;
+LowerHealthCap True;
+
+Mugshot "Normal"
+{
+	ST00 2;
+	ST01 2;
+	ST02 2;
+	ST03 2;
+	ST04 2;
+	ST05 2;
+	ST06 2;
+	ST07 2;
+	ST08 2;
+	ST09 2;
+	ST0A 2;
+	ST0B 2;
+	ST0C 2;
+	ST0D 2;
+}
+
+Mugshot "Medium"
+{
+	ST10 2;
+	ST11 2;
+	ST12 2;
+	ST13 2;
+	ST14 2;
+	ST15 2;
+	ST16 2;
+	ST17 2;
+	ST18 2;
+}
+
+Mugshot "Low"
+{
+	ST20 2;
+	ST21 2;
+	ST22 2;
+	ST23 2;
+	ST24 2;
+	ST25 2;
+	ST26 2;
+	ST27 2;
+	ST28 2;
+	ST29 2;
+}
+
+Mugshot "Death"
+{
+	ST30 2;
+	ST31 2;
+	ST32 2;
+	ST33 2;
+	ST34 2;
+	ST35 2;
+	ST36 2;
+	ST37 2;
+	ST38 2;
+	ST39 -1;
+}
+
+Statusbar Normal, ForceScaled
+{
+	DrawImage "TopBar", 160, 8, center;
+	DrawImage "StatBar", 160, 200, centerbottom;
+
+	GameMode deathmatch, teamgame
+	{
+		DrawImage "BARDM", 160, 201, centerbottom;
+		DrawNumber 2, STATFNT, Untranslated, Frags, 125, 176;
+	}
+
+	InInventory "Loading"
+	{
+		DrawString STATFNT, Black, "-- LOADING --", 161, 6, 0, Alignment(center);
+		DrawString STATFNT, Untranslated, "-- LOADING --", 160, 5, 0, Alignment(center);
+	}
+	Else
+	{
+		Gamemode cooperative, singleplayer
+		{
+			DrawString STATFNT, Black, "LIVES:", 292, 6;
+			DrawString STATFNT, Untranslated, "LIVES:", 291, 5;
+			DrawNumber 2, STATFNT, Black, Life, 302, 6;
+			DrawNumber 2, STATFNT, Untranslated, Life, 301, 5;
+		}
+
+		DrawString STATFNT, Black, "FLOOR:", 44, 6;
+		DrawString STATFNT, Untranslated, "FLOOR:", 43, 5;
+
+		InInventory "Cheat"
+		{
+			DrawString STATFNT, Black, "-- DEBUG MODE ENABLED --", 161, 6, 0, Alignment(center);
+			DrawString STATFNT, Untranslated, "-- DEBUG MODE ENABLED --", 160, 5, 0, Alignment(center);
+		}
+		Else
+		{
+			DrawString STATFNT, Black, levelname, 161, 6, 0, Alignment(center);
+			DrawString STATFNT, Untranslated, levelname, 160, 5, 0, Alignment(center);
+		}
+
+		DrawNumber 2, STATFNT, Black, GlobalVar 2, 52, 6;
+		DrawNumber 2, STATFNT, Untranslated, GlobalVar 2, 51, 5;
+
+		DrawNumber 7, SCOREFNT, Untranslated, GlobalArray 17, Interpolate(140), 310, 155;
+
+		DrawNumber 3, STATFNT, BSStatBlue, Health, 162, 186;
+		DrawString STATFNT, BSStatBlue, "%", 166, 186;
+
+		DrawMugshot 3, disablegrin, disablepain, disablerampage, disableouch, 120, 160;
+
+		InInventory Message
+		{
+			DrawImage "MsgBkg", 0, 152;
+			InInventory Attacked || Pickup
+			{
+				DrawImage "SpriteBG", 3, 155;
+				DrawString STATFNT, BSStatGray, GlobalArray 30, 40, 155, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 31, 40, 161, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 32, 40, 167, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 33, 40, 173, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 34, 40, 179, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 35, 40, 185, 0, Alignment(left), DrawShadow(2, 2);
+			}
+			Else
+			{
+				DrawString STATFNT, BSStatGray, GlobalArray 30, 2, 155, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 31, 2, 161, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 32, 2, 167, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 33, 2, 173, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 34, 2, 179, 0, Alignment(left), DrawShadow(2, 2);
+				DrawString STATFNT, BSStatGray, GlobalArray 35, 2, 185, 0, Alignment(left), DrawShadow(2, 2);
+			}
+	
+			DrawImage "Msg1", 0, 192;
+		}
+		Else
+		{
+			DrawString STATFNT, BSStatGray, "NO MESSAGES.", 24, 167, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, "FOOD TOKENS:", 24, 179, 0, Alignment(left), DrawShadow(2, 2);
+			DrawNumber 2, STATFNT, BSStatGray, Credit, Alignment(left), DrawShadow(2, 2), 85, 179;
+		}
+	
+		InInventory BSRedKey {DrawImage "RKEY", 257, 177;}
+		InInventory BSYellowKey {DrawImage "YKEY", 265, 177;}
+		InInventory BSGreenKey {DrawImage "GKEY", 273, 177;}
+		InInventory BSBlueKey {DrawImage "BKEY", 281, 177;}
+		InInventory BSGoldKey {DrawImage "GOKEY", 289, 177;}
+	
+		DrawImage WeaponIcon, 204, 176, center;
+	
+		DrawNumber 3, STATFNT, BSStatLightBlue, Ammo1, 224, 190;
+		DrawString STATFNT, BSStatLightBlue, "%", 228, 190;
+	
+		IsSelected "BSACP"
+		{
+			DrawImage "Weapon1", 204, 176, center;
+			DrawImage "Weapon1W", 232, 152;
+			InInventory PistolCharge
+			{
+			DrawImage "Weapon1R", 232, 152;
+			}
+		}
+		Else IsSelected "BSSFP", "BSRAW"
+		{
+			InInventory Not LowAmmo || MediumAmmo
+			{DrawBar "AmmoHF", "AmmoHB", Ammo1, vertical, 234, 155, 0;}
+	
+			InInventory MediumAmmo
+			{DrawBar "AmmoMF", "AmmoMB", Ammo1, vertical, 234, 155, 0;}
+	
+			InInventory LowAmmo
+			{DrawBar "AmmoLF", "AmmoLB", Ammo1, vertical, 234, 155, 0;}
+		}
+		Else IsSelected "BSDND", "BSPDU"
+		{
+			InInventory Not LowAmmo || MediumAmmo
+			{DrawBar "AmmoHF", "AmmoHB", Ammo1, vertical, 234, 155, 0;}
+	
+			InInventory MediumAmmo
+			{DrawBar "AmmoMF", "AmmoMB", Ammo1, vertical, 234, 155, 0;}
+	
+			InInventory LowAmmo
+			{DrawBar "AmmoLF", "AmmoLB", Ammo1, vertical, 234, 155, 0;}
+		}
+		Else
+		{
+			DrawImage AmmoIcon1, 239, 176, center;
+		}
+	}
+}
+	
+Statusbar Fullscreen, FullScreenOffsets
+{
+	DrawNumber 8, STATFNT, WHITE, GlobalArray 0 , -2, -25;
+
+	GameMode deathmatch, teamgame
+	{
+		DrawImage "FRAG", 0, -64;
+		DrawNumber 2, STATFNT, WHITE, Frags, 60, -10;
+	}
+
+	Gamemode cooperative, singleplayer
+	{
+		DrawImage "LIFEA0", 14, -1;
+		DrawNumber 1, STATFNT, WHITE, Life, 35, -10;
+	}
+
+	DrawKeyBar 10, vertical, 10, -10, 2;
+
+	IsSelected "BSACP"
+	{
+		DrawImage "Weapon1W", -16, -85;
+		InInventory PistolCharge
+		{
+			DrawImage "Weapon1R", -16, -85;
+		}
+	}
+	Else IsSelected "BSSFP", "BSRAW"
+	{
+		DrawImage "Weapon1W", -16, -85;
+		InInventory Not LowAmmo || MediumAmmo
+		{DrawBar "AmmoHF", "AmmoHB", Ammo1, vertical, -14, -82, 0;}
+
+		InInventory MediumAmmo
+		{DrawBar "AmmoMF", "AmmoMB", Ammo1, vertical, -14, -82, 0;}
+
+		InInventory LowAmmo
+		{DrawBar "AmmoLF", "AmmoLB", Ammo1, vertical, -14, -82, 0;}
+	}
+	Else IsSelected "BSDND", "BSPDU"
+	{
+		DrawImage "Weapon1W", -16, -85;
+		InInventory Not LowAmmo || MediumAmmo
+		{DrawBar "AmmoHF", "AmmoHB", Ammo1, vertical, -14, -82, 0;}
+
+		InInventory MediumAmmo
+		{DrawBar "AmmoMF", "AmmoMB", Ammo1, vertical, -14, -82, 0;}
+
+		InInventory LowAmmo
+		{DrawBar "AmmoLF", "AmmoLB", Ammo1, vertical, -14, -82, 0;}
+	}
+	Else
+	{
+		DrawImage AmmoIcon1, -105, -1;
+		DrawNumber 2, STATFNT, WHITE, Ammo1, -80, -10;
+	}
+
+	DrawImage "HLTHE0", -50, -1;
+	DrawNumber 3, STATFNT, WHITE, Health, -2, -10;
+
+	DrawSelectedInventory STATFNT, 5, 175;
+}
+
+Statusbar Automap, ForceScaled
+{
+	InInventory ElevatorPanel
+	{
+		DrawImage "TopBar", 160, 8, center;
+
+		Gamemode cooperative, singleplayer
+		{
+			DrawString STATFNT, Black, "LIVES:", 292, 6;
+			DrawString STATFNT, Untranslated, "LIVES:", 291, 5;
+			DrawNumber 2, STATFNT, Black, Life, 302, 6;
+			DrawNumber 2, STATFNT, Untranslated, Life, 301, 5;
+		}
+
+		DrawString STATFNT, Black, "FLOOR:", 44, 6;
+		DrawString STATFNT, Untranslated, "FLOOR:", 43, 5;
+
+		DrawNumber 2, STATFNT, Black, GlobalVar 2, 52, 6;
+		DrawNumber 2, STATFNT, Untranslated, GlobalVar 2, 51, 5;
+
+		InInventory "Cheat"
+		{
+			DrawString STATFNT, Black, "-- DEBUG MODE ENABLED --", 161, 6, 0, Alignment(center);
+			DrawString STATFNT, Untranslated, "-- DEBUG MODE ENABLED --", 160, 5, 0, Alignment(center);
+		}
+		Else
+		{
+			DrawString STATFNT, Black, levelname, 161, 6, 0, Alignment(center);
+			DrawString STATFNT, Untranslated, levelname, 160, 5, 0, Alignment(center);
+		}
+	}
+
+	DrawImage "StatBar", 160, 200, centerbottom;
+
+	GameMode deathmatch, teamgame
+	{
+		DrawImage "BARDM", 160, 201, centerbottom;
+		DrawNumber 2, STATFNT, Untranslated, Frags, 125, 176;
+	}
+
+	Gamemode cooperative, singleplayer
+	{
+		DrawNumber 2, STATFNT, BSStatBlue, Life, Alignment(Left), 130, 186, 0;
+	}
+
+	DrawNumber 7, SCOREFNT, Untranslated, GlobalArray 17, Interpolate(140), 310, 155;
+
+	DrawNumber 3, STATFNT, BSStatBlue, Health, 162, 186;
+	DrawString STATFNT, BSStatBlue, "%", 166, 186;
+
+	DrawMugshot 3, disablegrin, disablepain, disablerampage, disableouch, 120, 160;
+
+	InInventory Message
+	{
+		DrawImage "MsgBkg", 0, 152;
+		InInventory Attacked || Pickup
+		{
+			DrawImage "SpriteBG", 3, 155;
+			DrawString STATFNT, BSStatGray, GlobalArray 30, 40, 155, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 31, 40, 161, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 32, 40, 167, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 33, 40, 173, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 34, 40, 179, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 35, 40, 185, 0, Alignment(left), DrawShadow(2, 2);
+		}
+		Else
+		{
+			DrawString STATFNT, BSStatGray, GlobalArray 30, 2, 155, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 31, 2, 161, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 32, 2, 167, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 33, 2, 173, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 34, 2, 179, 0, Alignment(left), DrawShadow(2, 2);
+			DrawString STATFNT, BSStatGray, GlobalArray 35, 2, 185, 0, Alignment(left), DrawShadow(2, 2);
+		}
+
+		DrawImage "Msg1", 0, 192;
+	}
+	Else
+	{
+		DrawString STATFNT, BSStatGray, "NO MESSAGES.", 24, 167, 0, Alignment(left), DrawShadow(2, 2);
+		DrawString STATFNT, BSStatGray, "FOOD TOKENS:", 24, 179, 0, Alignment(left), DrawShadow(2, 2);
+		DrawNumber 2, STATFNT, BSStatGray, Credit, Alignment(left), DrawShadow(2, 2), 85, 179;
+	}
+
+	InInventory BSRedKey {DrawImage "RKEY", 257, 177;}
+	InInventory BSYellowKey {DrawImage "YKEY", 265, 177;}
+	InInventory BSGreenKey {DrawImage "GKEY", 273, 177;}
+	InInventory BSBlueKey {DrawImage "BKEY", 281, 177;}
+	InInventory BSGoldKey {DrawImage "GOKEY", 289, 177;}
+
+	DrawImage WeaponIcon, 204, 176, center;
+
+	DrawNumber 3, STATFNT, BSStatLightBlue, Ammo1, 224, 190;
+	DrawString STATFNT, BSStatLightBlue, "%", 228, 190;
+
+	IsSelected "BSACP"
+	{
+		DrawImage "Weapon1", 204, 176, center;
+		DrawImage "Weapon1W", 232, 152;
+		InInventory PistolCharge
+		{
+			DrawImage "Weapon1R", 232, 152;
+		}
+	}
+	Else IsSelected "BSSFP", "BSRAW"
+	{
+		InInventory Not LowAmmo || MediumAmmo
+		{DrawBar "AmmoHF", "AmmoHB", Ammo1, vertical, 234, 155, 0;}
+
+		InInventory MediumAmmo
+		{DrawBar "AmmoMF", "AmmoMB", Ammo1, vertical, 234, 155, 0;}
+
+		InInventory LowAmmo
+		{DrawBar "AmmoLF", "AmmoLB", Ammo1, vertical, 234, 155, 0;}
+	}
+	Else IsSelected "BSDND", "BSPDU"
+	{
+		InInventory Not LowAmmo || MediumAmmo
+		{DrawBar "AmmoHF", "AmmoHB", Ammo1, vertical, 234, 155, 0;}
+
+		InInventory MediumAmmo
+		{DrawBar "AmmoMF", "AmmoMB", Ammo1, vertical, 234, 155, 0;}
+
+		InInventory LowAmmo
+		{DrawBar "AmmoLF", "AmmoLB", Ammo1, vertical, 234, 155, 0;}
+	}
+	Else
+	{
+		DrawImage AmmoIcon1, 239, 176, center;
+	}
+}
+
+Statusbar Inventory
+{
+	drawinventorybar Doom, noartibox, 7, INDEXFONT, 50, 127;
+}
+
+Statusbar InventoryFullscreen
+{
+	drawinventorybar Doom, noartibox, 7, INDEXFONT, 50, 170;
+}

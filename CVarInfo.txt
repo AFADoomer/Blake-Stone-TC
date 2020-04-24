@@ -1,0 +1,22 @@
+//TC Version
+server noarchive string g_version = "0.1";
+
+//Enable Blake-style cheats
+server int powerball;
+
+//Gameplay Modifications
+server int cl_noinstantswitch;
+server int g_nointro;
+server int g_momentum;
+server int g_maxpushwallmove = 2;
+server int g_texturedflats = 1;
+server int g_gridmap = 1;
+
+//Timer
+user int g_timer;
+
+//High Score screen data
+user string blake_highscore_data = "JAM PRODUCTIONS INC.|1|10000|0||1|10000|0|JERRY JONES|1|10000|0|MICHAEL MAYNARD|1|10000|0|JAMES T. ROW|1|10000|0||1|10000|0||1|10000|0|TO REGISTER CALL|1|10000|0|1-800-GAME123|1|10000|0||1|10000|0";
+
+//Life Counter
+user noarchive int g_blakedead;

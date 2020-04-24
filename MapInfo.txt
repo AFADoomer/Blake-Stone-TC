@@ -1,0 +1,224 @@
+//MAPINFO for Blake Stone TC
+
+gameinfo
+{
+	playerclasses = "BSPlayer"
+	weaponslot = 1, "BSACP"
+	weaponslot = 2, "BSSFP"
+	weaponslot = 3, "BSRAW"
+	weaponslot = 4, "BSDND"
+	weaponslot = 5, "BSPDU"
+	quitmessages = "$QUIT"
+	endoom = "EndBS"
+	dimcolor = "08 15 20"
+	dimamount = 1.0
+	cursorpic = "M_CURSOR"
+	borderflat = "BORDER"
+	border = 3, 0, "BRDR_TR", "BRDR_T", "BRDR_TL", "BRDR_R", "BRDR_L", "BRDR_BR", "BRDR_B", "BRDR_BL"
+	menufontcolor_title = "BSMenuLightGreen"
+	menufontcolor_label = "BSMenuMediumGreen"
+	menufontcolor_value = "BSMenuMediumGreen"
+	menufontcolor_action = "BSMenuMediumGreen"
+	menufontcolor_header = "BSMenuGray"
+	menufontcolor_highlight = "BSMenuLightGreen"
+	menufontcolor_selection = "BSMenuLightGreen"
+	menubackbutton = "M_BACK"
+	pausesign = "B_PAUSE"
+	skyflatname = "BORDER"
+}
+
+map TITLEMAP "Blake Stone: Aliens of Gold Total Conversion"
+{
+	levelnum = 99
+	music = "GOLDA"
+}
+
+clearepisodes
+
+episode E1L1
+{
+	name = "$EP_1"
+	Key = "D"
+}
+
+episode E2L1
+{
+	name = "$EP_2"
+}
+
+episode E3L1
+{
+	name = "$EP_3"
+}
+
+episode E4L1
+{
+	name = "$EP_4"
+}
+
+episode E5L1
+{
+	name = "$EP_5"
+}
+
+episode E6L1
+{
+	name = "$EP_6"
+}
+
+gamedefaults
+{
+	nointermission
+	bordertexture = "BORDER"
+	sky1 = "BORDER"
+//	allowrespawn
+	nocrouch
+	nojump
+	no_grinding_polyobj
+	evenlighting
+	titlepatch = "BORDER"
+	exitpic = "BORDER"
+	enterpic = "BORDER"
+	cluster = 1
+}
+
+map TEST lookup E1L1
+{
+	next = E1L2
+	levelnum = -1
+	music = "DRKHALLA"
+}
+
+map E1L1 lookup E1L1
+{
+	next = E1L2
+	levelnum = 1
+	music = "DRKHALLA"
+}
+
+map E1L2 lookup E1L2
+{
+	next = E1L3
+	levelnum = 2
+	music = "JUNGLEA"
+}
+
+map E1L3 lookup E1L3
+{
+	next = E1L4
+	levelnum = 3
+	music = "RACSHUFL"
+}
+
+map E1L4 lookup E1L4
+{
+	next = E1L5
+	levelnum = 4
+}
+
+map E1L5 lookup E1L5
+{
+	next = E1L6
+	levelnum = 5
+}
+
+map E1L6 lookup E1L6
+{
+	next = E1L7
+	levelnum = 6
+}
+
+map E1L7 lookup E1L7
+{
+	next = E1L8
+	levelnum = 7
+}
+
+map E1L8 lookup E1L8
+{
+	next = E1L9
+	levelnum = 8
+}
+
+map E1L9 lookup E1L9
+{
+	next = E1L10
+	levelnum = 9
+}
+
+map E1L10 lookup E1L10
+{
+	levelnum = 10
+}
+
+map E1L0 lookup E1L0
+{
+	levelnum = 11
+}
+
+cluster 1
+{
+	hub
+}
+
+// Skill Definitions
+
+clearskills
+skill baby
+{
+	DamageFactor = 0.5
+	SpawnFilter = "Easy"
+	Name = "$SK_1"
+	TextColor = "BSMenuMediumGreen"
+	Key = "1"
+}
+
+skill easy
+{
+	SpawnFilter = "Easy"
+	Name = "$SK_2"
+	TextColor = "BSMenuMediumGreen"
+	Key = "2"
+}
+
+skill normal
+{
+	SpawnFilter = "Normal"
+	Name = "$SK_3"
+	TextColor = "BSMenuMediumGreen"
+	Key = "3"
+	defaultskill
+}
+
+skill hard
+{
+	SpawnFilter = "Hard"
+	Name = "$SK_4"
+	TextColor = "BSMenuMediumGreen"
+	Key = "4"
+}
+
+Automap
+{
+	Base = "Raven"
+	ShowLocks = True
+
+	Background = "2c 2c 2c"
+	YourColor = "EE EE EE"
+	WallColor = "00 A4 00"
+	TwoSidedWallColor = "00 44 00"
+	FloorDiffWallColor = "00 44 00"
+	CeilingDiffWallColor = "00 44 00"
+	ExtraFloorWallColor = "00 44 00"
+	ThingColor = "88 88 88"			//Decorations
+	ThingColor_Item = "20 9C FC"		//Weapons and Ammo
+	ThingColor_CountItem = "FC F4 20"	//Score Items
+	ThingColor_Monster = "FC 00 00"
+	ThingColor_NoCountMonster = "FC 00 00"
+	ThingColor_Friend = "00 FC 00"
+	SpecialWallColor = "28 cb 28"
+	SecretWallColor = "28 cb 28"
+	GridColor = "00 88 88"
+	NotSeenColor = "BSMenuGray"
+	AlmostBackgroundColor = "29 29 29"
+}

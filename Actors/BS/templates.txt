@@ -1,0 +1,114 @@
+ACTOR BSDecoration
+{
+	+Solid		//Combining 'Solid' with a Height of 0 lets actors
+	Radius 32	// walk over these seamlessly if the actor has the
+	Height 0	// CANPASS flag...  Otherwise they are blocked.
+	Species "BS"
+	+NOBLOOD
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			"####" A 0 A_Jump(256, "Static")
+		Static:
+			UNKN A -1
+			Stop
+	}
+}
+
+ACTOR BSHealth : Health
+{
+	var int user_Amount;
+
+	+BUMPSPECIAL
+	Species "BS"
+	Activation THINGSPEC_MonsterTrigger
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			"####" A 15 ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" A 0 A_SetSpecial (226, 200, 0, tid)
+			"####" A 0 A_Jump(256, "Static")
+		Static:
+			TNT1 A -1
+			Stop
+	}
+}
+
+ACTOR BSKey : Key
+{
+	+BUMPSPECIAL
+	Species "BS"
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			"####" A 15 ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_SetSpecial (226, 3, 0, tid)
+			"####" A 0 A_Jump(256, "Static")
+		Static:
+			TNT1 A -1
+			Stop
+	}
+}
+
+ACTOR BSCustomInventory : CustomInventory
+{
+	Species "BS"
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			"####" # 15 ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_Jump(256, "Static")
+		Static:
+			TNT1 A -1
+			Stop
+		Pickup:
+			TNT1 A 0 ACS_NamedExecuteAlways("A_SetPickup", 0, tid)
+			Stop
+	}
+}
+
+ACTOR BSScoreItem : ScoreItem
+{
+	+BUMPSPECIAL
+	Species "BS"
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			"####" A 15 ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_SetSpecial (226, 3, 0, tid)
+			"####" A 0 A_Jump(256, "Static")
+		Static:
+			TNT1 A -1
+			Stop
+	}
+}
+
+ACTOR BSActorPickup : BSCustomInventory
+{
+	var int user_Amount;
+
+	+BUMPSPECIAL
+	Activation THINGSPEC_MonsterTrigger
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			"####" # 15 ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_Jump(256, "Initialize")
+		Initialize:
+			"####" # 0 A_JumpIf(user_Amount > 0, "Initialize.Ammo")
+			"####" # 1 A_SetSpecial (226, 3, 0, tid)
+			"####" # 0 A_Jump(256, "Static")
+		Initialize.Ammo:
+			"####" # 1 A_SetSpecial (226, 5, 0, tid, user_Amount)
+			"####" # 0 A_Jump(256, "Static")
+		Static:
+			"####" # -1
+			Stop
+	}
+}

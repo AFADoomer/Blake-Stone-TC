@@ -1,0 +1,1498 @@
+//Decorations and Pickups in Blake Stone
+
+ACTOR BlakeVictory 20000
+{
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 1 ACS_NamedExecute("W_VictorySetup", 0, x, y, angle * 256 / 360)
+			Stop
+	}
+}
+
+ACTOR Blake
+{
+	MONSTER
+	-COUNTKILL
+	-SOLID
+	-SHOOTABLE
+	+FRIENDLY
+	+FULLVOLDEATH
+	+INVULNERABLE
+	+NOTARGET
+	+AMBUSH
+	Renderstyle None
+	Height 0
+	Radius 0
+	Speed 6
+	Health 5
+	States
+	{
+	Spawn:
+	Melee:
+	Missile:
+		PLAY A 1 A_Look
+		Loop
+	See: 
+		PLAY ABCD 6 ThrustThing (angle * 256 / 360, 2, 0, 0)
+		PLAY ABCD 6 ThrustThing (angle * 256 / 360, 2, 0, 0)
+		PLAY ABCD 6 ThrustThing (angle * 256 / 360, 2, 0, 0)
+		PLAY ABCD 6 ThrustThing (angle * 256 / 360, 2, 0, 0)
+		PLAY ABCD 6 ThrustThing (angle * 256 / 360, 2, 0, 0)
+		PLAY ABCD 6 ThrustThing (angle * 256 / 360, 2, 0, 0)
+	Death:
+		PLAY D -1 A_Scream
+		Stop
+	}
+}
+
+// From Here on, entries retain original actor order, 
+// just converted Hex numbers to Decimal, added 21000
+
+ACTOR PoolofWater : BSHealth 21023
+{
+	+AUTOACTIVATE
+	Inventory.Amount 1
+	Inventory.MaxAmount 11
+	Inventory.PickupSound "pickups/health"
+	Inventory.PickupMessage "Pool of Water"
+	States
+	{
+	Static:
+		POL1 A 5
+		"####" # 0 A_SetUserVar ("user_Amount", 1)
+		Loop
+	}
+}
+/*
+PoolofWater
+{ 
+	DoomEdNum 21023
+	Sprite POL1 
+	Frames "A" 
+	Radius 32 
+	Height 0 
+} 
+*/
+
+NuclearWasteDrum
+{ 
+	DoomEdNum 21024
+	Solid
+	Sprite BARL 
+	Frames "A" 
+	Radius 32 
+	Height 30 
+} 
+
+TableandChairs
+{ 
+	DoomEdNum 21025
+	Solid
+	Sprite TAB1 
+	Frames "A" 
+	Radius 32 
+	Height 32 
+} 
+
+FloorLamp
+{ 
+	DoomEdNum 21026
+	Solid
+	Sprite LIT1 
+	Frames "A*" 
+	Radius 32 
+	Height 32 
+} 
+
+LabSink
+{ 
+	DoomEdNum 21027
+	Sprite SINK
+	Frames "B"
+	Radius 32
+	Height 32
+	Solid
+} 
+
+SteelColumn
+{ 
+	DoomEdNum 21028
+	Sprite COLS
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 64 
+} 
+
+PoolofBlood
+{
+	DoomEdNum 21029
+	Sprite POL2
+	Frames "A"
+	Radius 32
+	Height 0
+}
+
+YellowPuddle
+{ 
+	DoomEdNum 21030
+	Sprite POL3
+	Frames "A" 
+	Radius 32 
+	Height 0
+} 
+
+Plant
+{ 
+	DoomEdNum 21031
+	Sprite PLT1
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 40
+} 
+
+Body
+{ 
+	DoomEdNum 21032
+	Sprite BONE
+	Frames "A" 
+	Radius 32 
+	Height 15
+} 
+
+Sink
+{ 
+	DoomEdNum 21033
+	Sprite SINK
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 40
+} 
+
+PlantinVase
+{ 
+	DoomEdNum 21034
+	Sprite PLT2
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 50
+} 
+
+Vase
+{ 
+	DoomEdNum 21035
+	Sprite VASE
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 30
+} 
+
+Table
+{ 
+	DoomEdNum 21036
+	Sprite TAB2
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 30
+} 
+
+CeilingLight
+{ 
+	DoomEdNum 21037
+	Sprite LIT5
+	Frames "A*" 
+	Radius 32 
+	Height 0
+	Solid
+} 
+
+OfficeChair
+{ 
+	DoomEdNum 21038
+	Sprite CHAR
+	Frames "B" 
+	Solid
+	Radius 32 
+	Height 20
+} 
+
+TrashCan
+{ 
+	DoomEdNum 21039
+	Sprite TCAN
+	Frames "A" 
+	Solid
+	Radius 32 
+	Height 20
+} 
+
+WasteBasket
+{ 
+	DoomEdNum 21040
+	Sprite TCAN
+	Frames "B" 
+	Solid
+	Radius 32 
+	Height 20
+} 
+
+FernInPot
+{
+	DoomEdNum 21041
+	Sprite PLT3
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 32
+}
+
+LabTable
+{ 
+	DoomEdNum 21042
+	Sprite TAB3
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 32
+} 
+
+CeilingLightFlatYellow
+{ 
+	DoomEdNum 21043
+	Sprite LIT6
+	Frames "A" 
+	Radius 32 
+	Height 32
+} 
+
+ExitSign
+{ 
+	DoomEdNum 21044
+	Sprite EXIT
+	Frames "A" 
+	Radius 32 
+	Height 32
+} 
+
+CeilingFloorLight
+{ 
+	DoomEdNum 21045
+	Sprite LIT7
+	Frames "A" 
+	Radius 32 
+	Height 32
+} 
+
+LargeBloodyBin
+{ 
+	DoomEdNum 21046
+	Sprite BBIN
+	Frames "A" 
+	Solid
+	Radius 32 
+	Height 32
+} 
+
+BSStatue
+{ 
+	DoomEdNum 21048
+	Sprite STAT
+	Solid
+	Frames "A" 
+	Radius 32 
+	Height 32
+} 
+
+ACTOR FirstAidKit : BSHealth 21052
+{
+	+AUTOACTIVATE
+	Inventory.Amount 25
+	Inventory.MaxAmount 100
+	Inventory.PickupSound "pickups/health"
+	Inventory.PickupMessage "First-Aid Kit"
+	States
+	{
+	Static:
+		HLTH E -1
+		Loop
+	}
+}
+
+ACTOR BSRedKey : BSKey 21055
+{
+	Inventory.PickupSound "pickups/key"
+	Inventory.PickupMessage "Red Access Card"
+	Inventory.Icon "RKEY"
+	States
+	{
+	Static:
+		KEYS A -1
+		Stop
+	}
+}
+
+ACTOR BSYellowKey : BSKey 21056
+{
+	Inventory.PickupSound "pickups/key"
+	Inventory.PickupMessage "Yellow Access Card"
+	Inventory.Icon "YKEY"
+	States
+	{
+	Static:
+		KEYS B -1
+		Stop
+	}
+}
+
+ACTOR BSGreenKey : BSKey 21057
+{
+	Inventory.PickupSound "pickups/key"
+	Inventory.PickupMessage "Green Access Card"
+	Inventory.Icon "GKEY"
+	States
+	{
+	Static:
+		KEYS C -1
+		Stop
+	}
+}
+
+ACTOR BSBlueKey : BSKey 21058
+{
+	Inventory.PickupSound "pickups/key"
+	Inventory.PickupMessage "Blue Access Card"
+	Inventory.Icon "BKEY"
+	States
+	{
+	Static:
+		KEYS D -1
+		Stop
+	}
+}
+
+ACTOR BSGoldKey : BSKey 21059
+{
+	Inventory.PickupSound "pickups/key"
+	Inventory.PickupMessage "Gold Access Card"
+	Inventory.Icon "GOKEY"
+	States
+	{
+	Static:
+		KEYS E -1
+		Stop
+	}
+}
+
+OfficerDesk
+{ 
+	DoomEdNum 21060
+	Sprite DESK
+	Frames "A" 
+	Radius 32 
+	Height 20
+	Solid
+} 
+
+OfficerChair
+{ 
+	DoomEdNum 21061
+	Sprite CHAR
+	Frames "A" 
+	Solid
+	Radius 32 
+	Height 20
+} 
+
+SecurityDesk
+{ 
+	DoomEdNum 21062
+	Sprite DESK
+	Frames "B" 
+	Radius 32 
+	Height 20
+	Solid
+} 
+
+ACTOR WaterBowl : BSHealth 21063
+{
+	+AUTOACTIVATE
+	Inventory.Amount 5
+	Inventory.MaxAmount 100
+	Inventory.PickupSound "pickups/health"
+	Inventory.PickupMessage "Bowl of Water"
+	States
+	{
+	Static:
+		HLTH C 5
+		"####" # 0 A_SetUserVar ("user_Amount", 5)
+		Loop
+	}
+}
+
+WaterBowlDebris
+{ 
+	DoomEdNum 21064
+	Sprite BOWL
+	Frames "A" 
+	Radius 32 
+	Height 5
+} 
+
+ACTOR RawMeat1 : BSHealth 21065
+{
+	+AUTOACTIVATE
+	Inventory.Amount 15
+	Inventory.MaxAmount 100
+	Inventory.PickupSound "pickups/health"
+	Inventory.PickupMessage "Raw Meat"
+	States
+	{
+	Static:
+		HLTH D 5
+		"####" # 0 A_SetUserVar ("user_Amount", 15)
+		Loop
+	}
+}
+
+RawMeat1Debris
+{ 
+	DoomEdNum 21066
+	Sprite MEAT
+	Frames "A" 
+	Radius 32 
+	Height 5 
+} 
+
+ACTOR RawMeat2 : BSHealth 21067
+{
+	+AUTOACTIVATE
+	Inventory.Amount 20
+	Inventory.MaxAmount 100
+	Inventory.PickupSound "pickups/health"
+	Inventory.PickupMessage "Raw Steak"
+	States
+	{
+	Static:
+		HLTH F 5
+		"####" # 0 A_SetUserVar ("user_Amount", 20)
+		Loop
+	}
+}
+
+RawMeat2Debris
+{ 
+	DoomEdNum 21068
+	Sprite MEAT
+	Frames "G" 
+	Radius 32 
+	Height 5 
+} 
+
+DomeLight
+{ 
+	DoomEdNum 21070
+	Sprite LIT8
+	Frames "A*" 
+	Radius 32 
+	Height 0
+} 
+
+ACTOR DeadBioTech : BioTech 21078
+{
+	Skip_Super
+	States
+	{
+		Spawn:
+		Goto Super::Dead
+	}
+}
+
+ACTOR FailingLight1 21079
+{
+	+RANDOMIZE
+	Height 0
+	Radius 24
+	States
+	{
+	Spawn:
+		LIT9 A 5 BRIGHT
+		LIT9 A 5 BRIGHT A_Jump(128, "Blink")
+	Blink:
+		LIT9 B 2 BRIGHT
+		LIT9 CBC 1 BRIGHT
+		LIT9 B 1 BRIGHT
+		Goto Spawn
+	}
+}
+
+Actor AirVent 21080
+{
+	Height 1
+	Radius 32
+	+Solid
+	States
+	{
+	Spawn:
+		VENT A -1
+		Stop
+	}
+} 
+
+Actor AirVent2 21081
+{
+	Height 1
+	Radius 32
+	+Solid
+	States
+	{
+	Spawn:
+		VENT BCDE 5
+		Loop
+	}
+} 
+
+Actor AirVent3 21082
+{
+	Height 1
+	Radius 32
+	+Solid
+	States
+	{
+	Spawn:
+		VENT FGHI 5
+		Loop
+	}
+}
+
+Grate
+{ 
+	DoomEdNum 21083
+	Sprite GRAT
+	Frames "A" 
+	Solid
+	Radius 32 
+	Height 1
+}
+
+/*
+84=O,00FFF000F000F000000F00000F00000F0000000000000F000,Ceiling light I     W S unused in any missions
+*/
+
+ACTOR MoneyBag : BSScoreItem 21085
+{
+	+COUNTITEM
+	Inventory.Amount 100
+	Inventory.PickupSound "pickups/moneybag"
+	Inventory.PickupMessage "Money Bag"
+	States
+	{
+	Static:
+		TREA A -1
+		Loop
+	}
+}
+
+ACTOR Loot : BSScoreItem 21086
+{
+	+COUNTITEM
+	Inventory.Amount 500
+	Inventory.PickupSound "pickups/loot"
+	Inventory.PickupMessage "Loot"
+	States
+	{
+	Static:
+		TREA C -1
+		Loop
+	}
+}
+
+ACTOR 5GoldBars : BSScoreItem 21087
+{
+	+COUNTITEM
+	Inventory.Amount 1000
+	Inventory.PickupSound "pickups/goldbars"
+	Inventory.PickupMessage "5 Gold Bars"
+	States
+	{
+	Static:
+		TREA D -1
+		Loop
+	}
+}
+
+ACTOR XylanOrb : BSScoreItem 21088
+{
+	+COUNTITEM
+	+AUTOACTIVATE
+	Inventory.Amount 5000
+	Inventory.PickupSound "pickups/xylanorb"
+	Inventory.PickupMessage "Xylan Orb"
+	States
+	{
+		Static:
+			BXYL A -1
+			Loop
+	}
+}
+
+SmokingGrate
+{ 
+	DoomEdNum 21178
+	Sprite GRAT
+	Frames "BCDE" 
+	Solid
+	Radius 32 
+	Height 1
+}
+
+Actor FailingLight2 21179
+{ 
+	+RANDOMIZE
+	Height 0
+	Radius 24
+	States
+	{
+	Spawn:
+		LITC B 5 BRIGHT
+		LITC B 5 BRIGHT A_Jump(128, "Blink")
+	Blink:
+		LITC C 2 BRIGHT
+		LITC DE 1 BRIGHT
+		LITC F 1
+		LITC ED 1 BRIGHT
+		LITC C 1 BRIGHT
+		Goto Spawn
+	}
+}
+
+ThinGrayPillar
+{
+	DoomEdNum 21381
+	Sprite COLG
+	Frames "A" 
+	Solid
+	Radius 32
+	Height 64
+}
+
+ThickGrayPillar
+{
+	DoomEdNum 21382
+	Sprite COLG
+	Frames "B" 
+	Solid
+	Radius 32
+	Height 64
+}
+
+ThickGoldPillar
+{
+	DoomEdNum 21383
+	Sprite COLG
+	Frames "C" 
+	Solid
+	Radius 32
+	Height 64
+}
+
+CeilingLightwithShade
+{
+	DoomEdNum 21384
+	Sprite LITA
+	Frames "A" 
+	Radius 32 
+	Height 0
+}
+
+CeilingLight2
+{
+	DoomEdNum 21385
+	Sprite LITB
+	Frames "B" 
+	Radius 32 
+	Height 0
+}
+
+DeadBody
+{
+	DoomEdNum 21386
+	Sprite BODY
+	Frames "A"
+	Radius 24
+	Height 0
+}
+
+SurgeryLamp
+{
+	DoomEdNum 21387
+	Sprite LITD
+	Frames "A"
+	Radius 32 
+	Height 0
+}
+
+BSWaterFountain
+{
+	DoomEdNum 21388
+	Sprite FNTN
+	Frames "A"
+	Radius 32 
+	Height 32
+	Solid
+}
+
+
+ACTOR CandyBar : BSHealth 21390
+{
+	+AUTOACTIVATE
+	Inventory.Amount 8
+	Inventory.MaxAmount 100
+	Inventory.PickupSound "pickups/health"
+	Inventory.PickupMessage "Candy Bar"
+	States
+	{
+	Static:
+		HLTH G 5
+		"####" # 0 A_SetUserVar ("user_Amount", 8)
+		Loop
+	}
+}
+
+CandyBarDebris
+{
+	Sprite WRAP
+	Frames "A" 
+}
+
+ACTOR Sandwich : BSHealth 21391
+{
+	+AUTOACTIVATE
+	Inventory.Amount 10
+	Inventory.MaxAmount 100
+	Inventory.PickupSound "pickups/health"
+	Inventory.PickupMessage "Sandwich"
+	States
+	{
+	Static:
+		HLTH H 5
+		"####" # 0 A_SetUserVar ("user_Amount", 10)
+		Stop
+	}
+}
+
+SandwichDebris
+{
+	Sprite CRUM
+	Frames "A" 
+}
+
+ACTOR Box : BSDecoration
+{
+	Health 1
+	Height 20
+	Mass 10000
+	+SHOOTABLE
+	States
+	{
+		Static:
+			UNKN A -1
+			Stop
+		Death:
+			FEXP A Random(3, 6) Bright
+			TNT1 A 0 ACS_NamedExecuteAlways("A_Drop", 0, args[1])
+			FEXP BCD 3 Bright
+			Stop
+	}
+}
+
+ACTOR OrangeBoxPlain : Box 21392
+{
+	States
+	{
+		Static:
+			OBOX A -1
+			Stop
+	}
+}
+
+/*
+OrangeBoxPlain
+{
+	DoomEdNum 21392
+	Sprite OBOX
+	Frames "A" 
+	Radius 32 
+	Height 0
+}
+*/
+
+ACTOR OrangeBoxBolted : Box 21393
+{
+	States
+	{
+		Static:
+			OBOX B -1
+			Stop
+	}
+}
+
+/*
+OrangeBoxBolted
+{
+	DoomEdNum 21393
+	Sprite OBOX
+	Frames "B" 
+	Radius 32 
+	Height 0
+}
+*/
+
+ACTOR CyanBoxBolted : Box 21394
+{
+	States
+	{
+		Static:
+			CBOX A -1
+			Stop
+	}
+}
+
+/*
+CyanBoxBolted
+{
+	DoomEdNum 21394
+	Sprite CBOX
+	Frames "A" 
+	Radius 32 
+	Height 0
+}
+*/
+
+RoundTable
+{
+	DoomEdNum 21395
+	Sprite TAB4
+	Frames "A" 
+	Solid
+	Radius 32 
+	Height 32
+}
+
+SwivelChair
+{
+	DoomEdNum 21396
+	Sprite CHAR
+	Frames "C" 
+	Solid
+	Radius 32 
+	Height 32
+}
+
+SmallStool
+{
+	DoomEdNum 21397
+	Sprite CHAR
+	Frames "D" 
+	Solid
+	Radius 32 
+	Height 32
+}
+
+BloodwithHead
+{
+	DoomEdNum 21398
+	Sprite BLOD
+	Frames "A" 
+	Radius 32 
+	Height 0
+}
+
+ACTOR 3GoldBars : 5GoldBars 21399
+{
+	Inventory.PickupMessage "3 Gold Bars"
+	States
+	{
+	Static:
+		TREA E -1
+		Loop
+	Pickup:
+		TREA E 0 ACS_ExecuteAlways(700, 0, 750)
+		Stop
+	}
+}
+
+ACTOR 2GoldBars : 5GoldBars 21400
+{
+	Inventory.PickupMessage "2 Gold Bars"
+	States
+	{
+	Static:
+		TREA F -1
+		Loop
+	Pickup:
+		TREA F 0 ACS_ExecuteAlways(700, 0, 500)
+		Stop
+	}
+}
+
+ACTOR 1GoldBar : 5GoldBars 21401
+{
+	Inventory.PickupMessage "1 Gold Bar"
+	States
+	{
+	Static:
+		TREA G -1
+		Loop
+	Pickup:
+		TREA G 0 ACS_ExecuteAlways(700, 0, 250)
+		Stop
+	}
+}
+
+OrangePillar
+{
+	DoomEdNum 21402
+	Sprite COLG
+	Frames "D" 
+	Solid
+	Radius 32
+	Height 64
+}
+
+WideGrayPillar
+{
+	DoomEdNum 21403
+	Sprite COLG
+	Frames "E" 
+	Solid
+	Radius 32
+	Height 64
+}
+
+GeneratorTower
+{
+	DoomEdNum 21404
+	Sprite COLG
+	Frames "F" 
+	Solid
+	Radius 32
+	Height 64
+}
+
+TallDecorColumn
+{
+	DoomEdNum 21405
+	Sprite COLG
+	Frames "G" 
+	Solid
+	Radius 32
+	Height 64
+}
+
+ShortDecorColumn
+{
+	DoomEdNum 21406
+	Sprite COLG
+	Frames "H" 
+	Solid
+	Radius 32
+	Height 64
+}
+
+Debris1
+{
+	DoomEdNum 21407
+	Sprite DEBR
+	Frames "A"
+	Radius 32
+	Height 0
+}
+
+Debris2
+{
+	DoomEdNum 21408
+	Sprite DEBR
+	Frames "B" 
+	Radius 32
+	Height 0
+}
+
+Debris3
+{
+	DoomEdNum 21409
+	Sprite DEBR
+	Frames "C" 
+	Radius 32
+	Height 0
+}
+
+Debris4
+{
+	DoomEdNum 21410
+	Sprite DEBR
+	Frames "D" 
+	Radius 32
+	Height 0
+}
+
+/*
+411=O,0000100000010000001000011100010010001001000011100,Dead Sector Patrol  W S
+412=O,0000400000040000004000044400040040004004000044400,Dead Star Sentinel  W S
+413=O,0000A000000A000000A0000AAA000A00A000A00A0000AAA00,Dead Star Trooper   W S
+414=O,0000000000000000000000300030030003003030300030300,Debris from VTrans  W S
+415=O,0000000000000000000000700070070007007070700070700,Debris from Drone   W S
+416=O,0000300000030000003000033300030030003003000033300,Dead Mech Sentinel  W S
+417=O,0000600000060000006000066600060060006006000066600,Dead Human Mutant   W S
+418=O,0000200000020000002000022200020020002002000022200,Dead Green Alien    W S
+419=O,0000600000060000006000066600060060006006000066600,Dead Brown Alien    W S
+420=O,0000900000090000009000099900090090009009000099900,Dead Mutant Guard   W S
+421=O,0088800088888088848888844488888488808888800088800,Destroyed Turret    W S
+422=O,0000200000020000002000022200020020002002000022200,Dead Pod Alien      W S
+*/
+
+ACTOR Credit : Inventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 25
+}
+
+ACTOR 1Credit : BSCustomInventory 21423
+{
+	Inventory.PickupSound "pickups/token"
+	Inventory.PickupMessage "1 Credit"
+	States
+	{
+	Static:
+		COIN A -1
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("Credit", 1)
+		Stop
+	}
+}
+
+ACTOR 5Credit : BSCustomInventory 21424
+{
+	Inventory.PickupSound "pickups/token"
+	Inventory.PickupMessage "5 Credits"
+	
+	States
+	{
+	Static:
+		COIN B -1
+		Loop
+	Pickup:
+		TNT1 A 0 A_GiveInventory("Credit", 5)
+		Stop
+	}
+}
+
+ACTOR Life : Inventory
+{
+	//Placeholder for Life Counter
+	Inventory.Amount 1
+	Inventory.MaxAmount 10
+}
+
+ACTOR BotPlayer : Inventory
+{
+//
+}
+
+
+ACTOR WalkoverKey : Key
+{
+//
+}
+
+ACTOR Points : Inventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 30000
+}
+
+ACTOR Freeze : PowerupGiver
+{
+	+AUTOACTIVATE
+	Powerup.Type "TimeFreezer"
+	Powerup.Duration 7000
+}
+
+ACTOR Talked : Inventory
+{
+	Inventory.Amount 1
+	Inventory.Maxamount 3
+}
+
+ACTOR Attacked : Inventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+}
+
+ACTOR Pickup : Inventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+}
+
+ACTOR Message : Powerup
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+	Powerup.Duration 70
+}
+
+ACTOR PistolCharge : Inventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+}
+
+ACTOR MediumAmmo : Inventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+}
+
+ACTOR LowAmmo : Inventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+}
+
+//Patrol turn points
+ACTOR Turn : SwitchableDecoration 22090
+{
+	Mass 10000
+	Radius 0
+	Height 1
+	+Shootable
+	+BumpSpecial
+	+NOTONAUTOMAP
+	Activation THINGSPEC_Activate | THINGSPEC_TriggerActs | THINGSPEC_MonsterTrigger | THINGSPEC_ThingTargets | THINGSPEC_Switch
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		Wait
+	Inactive:
+	Active:
+		TNT1 A 10
+		TNT1 A 35 ACS_NamedExecuteAlways("A_PatrolTurn", 0, angle, x, y)
+		TNT1 A 70
+		Wait
+	}
+}
+
+ACTOR Turn45 : Turn 22091
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 A_SetAngle (45)
+		Wait
+	}
+}
+
+ACTOR Turn90 : Turn 22092
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 A_SetAngle (90)
+		Wait
+	}
+}
+
+ACTOR Turn135 : Turn 22093
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 A_SetAngle (135)
+		Wait
+	}
+}
+
+ACTOR Turn180 : Turn 22094
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 A_SetAngle (180)
+		Wait
+	}
+}
+
+ACTOR Turn225 : Turn 22095
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 A_SetAngle (225)
+		Wait
+	}
+}
+
+ACTOR Turn270 : Turn 22096
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 A_SetAngle (270)
+		Wait
+	}
+}
+
+ACTOR Turn315 : Turn 22097
+{
+	States
+	{
+	Spawn:
+		TNT1 A 1 A_SetAngle (315)
+		Wait
+	}
+}
+
+ACTOR Active : Inventory
+{
+//Given to active enemies.  Keeps them from being affected by patrol points after they see the player.
+}
+
+ACTOR ElevatorPanel : Inventory
+{
+//Given while in Elevator Panel - Used in SBARINFO checks for top background bar.
+}
+
+ACTOR Cheat : Inventory
+{
+//Given while in Powerball mode - Used in SBARINFO checks for top background bar.
+}
+
+ACTOR Loading : Inventory
+{
+//Given while loading map - Used in SBARINFO checks for top background bar.
+}
+
+ACTOR FoodUnitHealth: BSHealth
+{
+	+AUTOACTIVATE
+	Inventory.Amount 1
+	Inventory.MaxAmount 100
+}
+
+ACTOR TextureMarker 22102
+{
+	+NOTONAUTOMAP
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("A_SetTextures", 0, args[3], args[4])
+			TNT1 A 1
+			Stop
+	}
+}
+
+ACTOR ColorMarker : SwitchableDecoration 22101
+{
+	Height 1
+	Radius 32
+	+SOLID
+	+CANPASS
+	+BUMPSPECIAL
+	+NOBLOCKMONST
+	+NOTONAUTOMAP
+	Activation THINGSPEC_ThingTargets | THINGSPEC_ThingActs | THINGSPEC_Switch
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_JumpIf(y < 2016, "Static")
+			TNT1 A 0 ACS_NamedExecuteAlways("A_SetColors", 0, args[3], args[4])
+			Stop
+		Static:
+			TNT1 A 1
+			Loop
+		Inactive:
+		Active:
+			"####" A 0 ACS_NamedExecuteAlways("A_SetColors", 0, args[3], args[4])
+			Goto Spawn
+	}
+}
+
+ACTOR MessageMarker : SecActHitFloor
+{
+	+NOTONAUTOMAP
+	+AMBUSH
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A -1 A_SetSpecial (226, 55, 0, args[2])
+			Stop
+/*
+			TNT1 A 1 A_LookEx(LOF_NOJUMP, 0, 0, 0, 360, "")
+			TNT1 A 0 A_JumpIfInTargetLOS ("SetMessage")
+			TNT1 A 0 A_ChangeFlag("FRIENDLY", 1)
+			TNT1 A 1 A_LookEx(LOF_NOJUMP, 0, 0, 0, 360, "")
+			TNT1 A 0 A_JumpIfInTargetLOS ("SetMessage")
+			TNT1 A 0 A_ChangeFlag("FRIENDLY", 0)
+			Loop
+		SetMessage:
+			TNT1 A 5 ACS_NamedExecuteAlways("A_SetMessage", 0, args[2])
+			Goto Spawn
+*/
+	}
+}
+
+ACTOR InformantMessageMarker1 : MessageMarker 22201 {}
+ACTOR InformantMessageMarker2 : MessageMarker 22202 {}
+ACTOR InformantMessageMarker3 : MessageMarker 22203 {}
+ACTOR InformantMessageMarker4 : MessageMarker 22204 {}
+ACTOR InformantMessageMarker5 : MessageMarker 22205 {}
+ACTOR InformantMessageMarker6 : MessageMarker 22206 {}
+ACTOR InformantMessageMarker7 : MessageMarker 22207 {}
+ACTOR InformantMessageMarker8 : MessageMarker 22208 {}
+ACTOR InformantMessageMarker9 : MessageMarker 22209 {}
+ACTOR InformantMessageMarker10 : MessageMarker 22210 {}
+ACTOR InformantMessageMarker11 : MessageMarker 22211 {}
+ACTOR InformantMessageMarker12 : MessageMarker 22212 {}
+ACTOR InformantMessageMarker13 : MessageMarker 22213 {}
+ACTOR InformantMessageMarker14 : MessageMarker 22214 {}
+ACTOR InformantMessageMarker15 : MessageMarker 22215 {}
+ACTOR InformantMessageMarker16 : MessageMarker 22216 {}
+ACTOR InformantMessageMarker17 : MessageMarker 22217 {}
+ACTOR InformantMessageMarker18 : MessageMarker 22218 {}
+ACTOR InformantMessageMarker19 : MessageMarker 22219 {}
+ACTOR InformantMessageMarker20 : MessageMarker 22220 {}
+ACTOR InformantMessageMarker21 : MessageMarker 22221 {}
+ACTOR InformantMessageMarker22 : MessageMarker 22222 {}
+ACTOR InformantMessageMarker23 : MessageMarker 22223 {}
+ACTOR InformantMessageMarker24 : MessageMarker 22224 {}
+ACTOR InformantMessageMarker25 : MessageMarker 22225 {}
+ACTOR InformantMessageMarker26 : MessageMarker 22226 {}
+ACTOR InformantMessageMarker27 : MessageMarker 22227 {}
+ACTOR InformantMessageMarker28 : MessageMarker 22228 {}
+ACTOR InformantMessageMarker29 : MessageMarker 22229 {}
+ACTOR InformantMessageMarker30 : MessageMarker 22230 {}
+ACTOR InformantMessageMarker31 : MessageMarker 22231 {}
+ACTOR InformantMessageMarker32 : MessageMarker 22232 {}
+ACTOR LoyalistMessageMarker1 : MessageMarker 22301 {}
+ACTOR LoyalistMessageMarker2 : MessageMarker 22302 {}
+ACTOR LoyalistMessageMarker3 : MessageMarker 22303 {}
+ACTOR LoyalistMessageMarker4 : MessageMarker 22304 {}
+ACTOR LoyalistMessageMarker5 : MessageMarker 22305 {}
+ACTOR LoyalistMessageMarker6 : MessageMarker 22306 {}
+ACTOR LoyalistMessageMarker7 : MessageMarker 22307 {}
+ACTOR LoyalistMessageMarker8 : MessageMarker 22308 {}
+ACTOR LoyalistMessageMarker9 : MessageMarker 22309 {}
+ACTOR LoyalistMessageMarker10 : MessageMarker 22310 {}
+ACTOR LoyalistMessageMarker11 : MessageMarker 22311 {}
+ACTOR LoyalistMessageMarker12 : MessageMarker 22312 {}
+ACTOR LoyalistMessageMarker13 : MessageMarker 22313 {}
+ACTOR LoyalistMessageMarker14 : MessageMarker 22314 {}
+ACTOR LoyalistMessageMarker15 : MessageMarker 22315 {}
+ACTOR LoyalistMessageMarker16 : MessageMarker 22316 {}
+ACTOR LoyalistMessageMarker17 : MessageMarker 22317 {}
+ACTOR AlarmMessageMarker1 : MessageMarker 22401 {}
+ACTOR AlarmMessageMarker2 : MessageMarker 22402 {}
+ACTOR AlarmMessageMarker3 : MessageMarker 22403 {}
+ACTOR AlarmMessageMarker4 : MessageMarker 22404 {}
+ACTOR AlarmMessageMarker5 : MessageMarker 22405 {}
+ACTOR AlarmMessageMarker6 : MessageMarker 22406 {}
+ACTOR AlarmMessageMarker7 : MessageMarker 22407 {}
+ACTOR AlarmMessageMarker8 : MessageMarker 22408 {}
+ACTOR AlarmMessageMarker9 : MessageMarker 22409 {}
+ACTOR AlarmMessageMarker10 : MessageMarker 22410 {}
+ACTOR AlarmMessageMarker11 : MessageMarker 22411 {}
+ACTOR AlarmMessageMarker12 : MessageMarker 22412 {}
+ACTOR AlarmMessageMarker13 : MessageMarker 22413 {}
+ACTOR AlarmMessageMarker14 : MessageMarker 22414 {}
+ACTOR AlarmMessageMarker15 : MessageMarker 22415 {}
+ACTOR AlarmMessageMarker16 : MessageMarker 22416 {}
+
+ACTOR DoorMarker 22300
+{
+	+NOTONAUTOMAP
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("A_SetupAutomaticDoors", 0, args[1], args[2], args[3])
+			TNT1 A 5 ACS_NamedExecuteAlways("A_MarkMap", 0, args[0], 1)
+			Stop
+	}
+} 
+
+ACTOR SwitchMarker 22400
+{
+	+NOTONAUTOMAP
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 5 ACS_NamedExecuteAlways("A_SetupSwitches", 0, args[0], args[3], args[4])
+			Stop
+	}
+}
+
+ACTOR MapState : Inventory
+{
+	Inventory.MaxAmount 2
+}
+
+ACTOR BSMap2x : BSCustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MapState", 1, 1)
+			TNT1 A 0 A_GiveInventory("MapState", 1)
+			TNT1 A 0 A_GiveInventory("MapRevealer", 1)
+			Stop
+	}
+}
+
+ACTOR BSMap4x : BSCustomInventory
+{
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("MapState", 2, 1)
+			TNT1 A 0 A_GiveInventory("MapState", 1)
+			TNT1 A 0 A_GiveInventory("PowerScanner", 1)
+			Stop
+	}
+}
+
+ACTOR WalkoverDoor : SwitchableDecoration 21158
+{
+	Mass 10000
+	Radius 32
+	Height 1
+	+Shootable
+	+BumpSpecial
+	+NOTONAUTOMAP
+	Activation THINGSPEC_Activate | THINGSPEC_TriggerActs | THINGSPEC_MonsterTrigger | THINGSPEC_ThingTargets | THINGSPEC_Switch
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		Wait
+	Inactive:
+	Active:
+		TNT1 A 10
+		TNT1 A 35 ACS_NamedExecuteAlways("A_OpenRemoteDoor", 0, args[3], args[4])
+		TNT1 A 70
+		Wait
+	}
+}

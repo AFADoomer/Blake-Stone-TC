@@ -1,0 +1,429 @@
+Brick
+{
+	#FFB8B8  #FFB8B8
+Console:
+	#470000  #A35C5C    0 127
+	#800000  #FFFEFE  128 256
+Flat:
+	#CC3333
+}
+
+Tan
+{
+	#FFEBDF  #FFEBDF
+Console:
+	#332B13  #998B79    0 127
+	#998B79  #FFFFFF  128 256
+Flat:
+	#D2B48C
+}
+
+Gray Grey
+{
+	#EFEFEF  #EFEFEF
+Console:
+	#272727  #8B8B8B    0 127
+	#505050  #FFFFFF  128 256
+Flat:
+	#CCCCCC
+}
+
+Green
+{
+	#77FF6F  #77FF6F
+Console:
+	#000000  #007F00    0 127
+	#00FF00  #FEFFFE  128 256
+Flat:
+	#00CC00
+}
+
+Brown
+{
+	#BFA78F  #BFA78F
+Console:
+	#000000  #7F4000    0 127
+	#432F1F  #FFE7CF  128 256
+Flat:
+	#996633
+}
+
+Gold
+{
+	#FFFF73  #FFFF73
+Console:
+	#000000  #7FC040    0 127
+	#DFBF00  #DFFFFE  128 256
+Flat:
+	#FFCC00
+}
+
+Red
+{
+	#FF0000  #FF0000
+Console:
+	#000000  #7F0000    0 127
+	#FF0000  #FFFEFE  128 256
+Flat:
+	#DD0000
+}
+
+Blue
+{
+	#0000FF  #0000FF
+Console:
+	#000000  #00007F    0 127
+	#4040FF  #DEDEFF  128 256
+Flat:
+	#9999FF
+}
+
+Orange
+{
+	#FF8000  #FF8000
+Console:
+	#200000  #904000    0 127
+	#FF7F00  #FFFEFE  128 256
+Flat:
+	#FFAA00
+}
+
+// This is designed to match the white Heretic/Hexen font.
+// It is close to the gray BOOM font, but not quite the same.
+White
+{
+	#FFFFFF  #FFFFFF
+Console:
+	#000000  #7F7F7F    0 127
+	#808080  #FFFFFF  128 256
+Flat:
+	#DFDFDF
+}
+
+// This is designed to match the yellow Hexen font, which has a
+// gray outline filled with shades of yellow.
+Yellow
+{
+/*
+	#272727  #515151    0  64
+	#784918  #F3A718   65 207
+	#F3A82A  #FCD043  208 256
+*/
+	#FFFF00 #FFFF00
+Console:
+	#000000  #7F7F00    0 127
+	#FFFF00  #FFFFFF  128 256
+Flat:
+	#EEEE33
+}
+
+Untranslated
+{
+}
+
+Black
+{
+	#000000  #000000
+Console:
+	#000000  #323232    0 127
+	#0A0A0A  #505050  128 256
+Flat:
+	#000000
+}
+
+LightBlue "Light Blue"
+{
+	#B4B4FF  #B4B4FF
+Console:
+	#00003C  #5050FF    0 127
+	#8080FF  #FFFFFF  128 256
+Flat:
+	#33EEFF
+}
+
+Cream
+{
+	#FFD7BB  #FFD7BB
+Console:
+	#2B230F  #BF7B4B    0 127
+	#FFB383  #FFFFFF  128 256
+Flat:
+	#FFCC99
+}
+
+Olive
+{
+	#7B7F50  #7B7F50
+Console:
+	#373F27  #7B7F63    0 127
+	#676B4F  #D1D8A8  128 256
+Flat:
+	#D1D8A8
+}
+
+DarkGreen "Dark Green"
+{
+	#439337  #439337
+Console:
+	#000000  #005800    0 127
+	#008C00  #DCFFDC  128 256
+Flat:
+	#008C00
+}
+
+DarkRed "Dark Red"
+{
+	#AF2B2B  #AF2B2B
+Console:
+	#000000  #730000    0 127
+	#800000  #FFDCDC  128 255
+Flat:
+	#800000
+}
+
+DarkBrown "Dark Brown"
+{
+	#A36B3F  #A36B3F
+Console:
+	#2B230F  #773000    0 127
+	#735743  #F7BD58  128 256
+Flat:
+	#663333
+}
+
+Purple
+{
+	#CF00CF  #CF00CF
+Console:
+	#000000  #9F009B    0 127
+	#FF00FF  #FFFFFF  128 256
+Flat:
+	#9966CC
+}
+
+DarkGray DarkGrey "Dark Gray" "Dark Grey"
+{
+	#8B8B8B  #8B8B8B
+Console:
+	#000000  #646464    0 127
+	#404040  #B4B4B4  128 256
+Flat:
+	#808080
+}
+
+WolfMenuGrey WolfMenuGray "Wolf Menu Gray" "Wolf Menu Grey"
+{
+	#d1d1d1  #d1d1d1
+Console:
+	#272727  #8B8B8B    0 127
+	#505050  #FFFFFF  128 256
+Flat:
+	#d1d1d1
+}
+
+BSStatBlue
+{
+	#4040d0	#4040d0
+Console:
+	#4040d0	#4040d0 0 127
+	#4040d0	#4040d0 128 256
+Flat:
+	#4040d0
+}
+
+BSStatDarkBlue
+{
+	#00003c	#00003c
+Console:
+	#00003c	#00003c 0 256
+Flat:
+	#00003c
+}
+
+BSStatRed
+{
+	#ac0c0c #ac0c0c
+Console:
+	#ac0c0c #ac0c0c 0 127
+	#ac0c0c #ac0c0c 128 256
+Flat:
+	#ac0c0c
+}
+
+BSStatGreen
+{
+	#00c000 #00c000 
+Console:
+	#00c000 #00c000 0 256
+Flat:
+	#00c000
+}
+
+BSStatLightRed
+{
+	#c42424 #c42424
+Console:
+	#c42424 #c42424 0 256
+Flat:
+	#c42424
+}
+
+BSStatGray
+{
+	#a8a8a8 #a8a8a8
+Console:
+	#a8a8a8 #a8a8a8 0 127
+	#a8a8a8 #a8a8a8 128 256
+Flat:
+	#a8a8a8
+}
+
+BSStatLightBlue
+{
+	#78e0e0 #78e0e0
+Console:
+	#78e0e0 #78e0e0 0 127
+	#78e0e0 #78e0e0 128 256
+Flat:
+	#78e0e0 
+}
+
+BSStatSkyBlue
+{
+	#008c8c #008c8c 
+Console:
+	#008c8c #008c8c 0 256
+Flat:
+	#008c8c
+}
+
+BSStatDarkSkyBlue
+{
+	#002c2c #002c2c 
+Console:
+	#002c2c #002c2c 0 256
+Flat:
+	#002c2c 
+}
+
+BSStatYellow
+{
+	#c4c824 #c4c824
+Console:
+	#c4c824 #c4c824 0 256
+Flat:
+	#c4c824
+}
+
+BSStatBlueGreen
+{
+	#48d09c #48d09c 
+Console:
+	#48d09c #48d09c 0 256
+Flat:
+	#48d09c 
+}
+
+BSMenuBrightGreen BSMenuLightGreen
+{
+	#28cb28 #28cb28 
+Console:
+	#28cb28 #28cb28 0 256
+Flat:
+	#28cb28
+}
+
+BSMenuMediumGreen
+{
+	#00A400 #00A400 
+Console:
+	#00A400 #00A400 0 256
+Flat:
+	#00A400 
+}
+
+BSMenuDarkGreen
+{
+	#004400 #004400 
+Console:
+	#004400 #004400 0 256
+Flat:
+	#004400
+}
+
+BSMenuGrey BSMenuGray
+{
+	#5c5c5c #5c5c5c 
+Console:
+	#5c5c5c #5c5c5c 0 256
+Flat:
+	#5c5c5c 
+}
+
+BSMenuYellow
+{
+	#b0d040 #b0d040 
+Console:
+	#b0d040 #b0d040 0 256
+Flat:
+	#b0d040 
+}
+
+BSMenuLightYellow
+{
+	#d8f868 #d8f868 
+Console:
+	#d8f868 #d8f868 0 256
+Flat:
+	#d8f868 
+}
+
+BSBriefYellow
+{
+	#cfcf38 #cfcf38
+}
+
+BSBriefDarkYellow BSElevatorDarkYellow
+{
+	#969a0c #969a0c
+}
+
+BSBriefBlue
+{
+	#6d92be #6d92be
+}
+
+BSElevatorBlue
+{
+	#0c0cac #0c0cac
+}
+
+BSElevatorLightBlue
+{
+	#3884cc #3884cc
+}
+
+BSElevatorYellow
+{
+	#b4b81c #b4b81c
+}
+
+BSElevatorRed
+{
+	#cc3838 #cc3838
+}
+
+BSElevatorBrightBlue
+{
+	#40d0d0 #40d0d0
+}
+
+BSMapGreen
+{
+	#008c00 #008c00
+}
+
+BSMapGray BSMapGrey
+{
+	#2c2c2c #2c2c2c
+}

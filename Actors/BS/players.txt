@@ -1,0 +1,52 @@
+actor BSPlayer : DoomPlayer
+{
+	Health 100
+	Mass 10000
+	Height 56
+	DeathHeight 32
+	Player.MaxHealth 100
+	Player.DisplayName "Billy Blaze"
+	Player.ViewHeight 32
+	Player.WeaponSlot 1, "BSACP"
+	Player.WeaponSlot 2, "BSSFP"
+	Player.WeaponSlot 3, "BSRAW"
+	Player.WeaponSlot 4, "BSDND"
+	Player.WeaponSlot 5, "BSPDU"
+	Player.StartItem "BSACP"
+	Player.StartItem "Life", 3
+	Player.Face "WLF"
+	Player.ColorRange 32, 47
+	Player.ColorSet 0, "Orange",		0x20, 0x2F,  0x28
+	Player.ColorSet 1, "Green",		0x50, 0x5F,  0x58
+	Player.ColorSet 2, "Pink",		0xC0, 0xCF,  0xC8
+	Player.ColorSet 3, "Grey",		0x00, 0x0F,  0x08
+	Player.ColorSet 4, "Red",		0x10, 0x1F,  0x18
+	Player.ColorSet 5, "Blue",		0xE0, 0xEF,  0xE8
+	Player.ColorSet 6, "White",		0xA0, 0xAF,  0xA8
+	Player.ColorSet 7, "Yellow",		0x30, 0x3F,  0x38
+	Species "BS"
+	States
+	{
+		XDeath:
+		Death:
+			PLAY H 1 A_GiveToTarget("Points", 2500)
+			PLAY H 9 A_PlayerSkinCheck("AltSkinDeath")
+			PLAY I 10 A_PlayerScream
+			PLAY J 10 A_NoBlocking
+			PLAY KLM 10
+			PLAY N -1
+			Stop
+		Dead:
+			TNT1 A -1 A_NoBlocking
+			Stop
+		AltSkinDeath:
+			PLAY H 1 A_GiveToTarget("Points", 2500)
+			PLAY H 5
+			PLAY I 6 A_PlayerScream
+			PLAY JK 6
+			PLAY L 6 A_NoBlocking
+			PLAY MNO 6
+			PLAY P -1
+			Stop
+	}
+}

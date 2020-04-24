@@ -1,0 +1,210 @@
+/*
+switch WLF002DA
+	on sound "switch/use"
+	pic WLF0039A tics 0
+	off sound "switch/use"
+	pic WLF002DA tics 0
+
+switch WLF002DB
+	on sound "switch/use"
+	pic WLF0039B tics 0
+	off sound "switch/use"
+	pic WLF002DB tics 0
+*/
+
+Texture Optional I_Sectol
+Pic I_Sectol Tics 8
+Pic I2Sectol Tics 8
+Pic I3Sectol Tics 8
+Pic I4Sectol Tics 8
+
+Texture Optional I_StarSl
+Pic I_StarSl Tics 8
+Pic I2StarSl Tics 8
+Pic I3StarSl Tics 8
+Pic I4StarSl Tics 8
+
+Texture Optional I_Securd
+Pic I_Securd Tics 8
+Pic I2Securd Tics 8
+Pic I3Securd Tics 8
+Pic I4Securd Tics 8
+
+Texture Optional I_BioTeh
+Pic I_BioTeh Tics 8
+Pic I2BioTeh Tics 8
+Pic I3BioTeh Tics 8
+Pic I4BioTeh Tics 8
+
+Texture Optional I_StarTr
+Pic I_StarTr Tics 8
+Pic I2StarTr Tics 8
+Pic I3StarTr Tics 8
+Pic I4StarTr Tics 8
+
+Texture Optional I_Turreg
+Pic I_Turreg Tics 8
+Pic I2Turreg Tics 8
+Pic I3Turreg Tics 8
+Pic I4Turreg Tics 8
+Pic I5Turreg Tics 8
+Pic I6Turreg Tics 8
+Pic I7Turreg Tics 8
+Pic I8Turreg Tics 8
+
+Texture Optional I_Brownn
+Pic I_Brownn Tics 8
+Pic I2Brownn Tics 8
+Pic I3Brownn Tics 8
+Pic I4Brownn Tics 8
+
+Texture Optional I_Greenn
+Pic I_Greenn Tics 8
+Pic I2Greenn Tics 8
+Pic I3Greenn Tics 8
+Pic I4Greenn Tics 8
+
+Texture Optional I_Electe
+Pic I_Electe Tics 8
+Pic I2Electe Tics 8
+Pic I3Electe Tics 8
+
+Texture Optional I_Fluidn
+Pic I_Fluidn Tics 8
+Pic I2Fluidn Tics 8
+Pic I3Fluidn Tics 8
+
+Texture Optional I_Humant
+Pic I_Humant Tics 8
+Pic I2Humant Tics 8
+Pic I3Humant Tics 8
+Pic I4Humant Tics 8
+
+Texture Optional I_MechSl
+Pic I_MechSl Tics 8
+Pic I2MechSl Tics 8
+Pic I3MechSl Tics 8
+Pic I4MechSl Tics 8
+
+Texture Optional I_Persce
+Pic I_Persce Tics 8
+Pic I2Persce Tics 8
+Pic I3Persce Tics 8
+Pic I4Persce Tics 8
+
+Texture Optional I_Persct
+Pic I_Persct Tics 8
+Pic I2Persct Tics 8
+Pic I3Persct Tics 8
+Pic I4Persct Tics 8
+
+Texture Optional I_Plasmn
+Pic I_Plasmn Tics 8
+Pic I2Plasmn Tics 8
+Pic I3Plasmn Tics 8
+Pic I4Plasmn Tics 8
+
+Texture Optional I_PodAln
+Pic I_PodAln Tics 8
+Pic I2PodAln Tics 8
+Pic I3PodAln Tics 8
+Pic I4PodAln Tics 8
+
+Texture Optional I_GoldFe
+Pic I_GoldFe Tics 8
+Pic I2GoldFe Tics 8
+Pic I3GoldFe Tics 8
+Pic I4GoldFe Tics 8
+
+Texture Optional I_Spidet
+Pic I_Spidet Tics 8
+Pic I2Spidet Tics 8
+Pic I3Spidet Tics 8
+Pic I4Spidet Tics 8
+
+Texture Optional I_Columc
+Pic I_Columc Tics 5
+Pic I2Columc Tics 5
+Pic I3Columc Tics 5
+
+Texture Optional I_Columa
+Pic I_Columa Tics 5
+Pic I2Columa Tics 5
+Pic I3Columa Tics 5
+
+Texture Optional DOT_WHT2
+Pic DOT_WHT1 Tics 5
+Pic DOT_LGRY Tics 5
+
+Texture Optional DOT_BLUE
+Pic DOT_WHT1 Tics 5
+Pic DOT_LGRY Tics 5
+Pic DOT_BLUE Tics 5
+
+Texture Optional DOT_WHT1
+Pic DOT_WHT2 Tics 10
+Pic DOT_LGRY Tics 10
+
+Texture Optional BRIEF
+Pic BRIEF Tics 15
+Pic BRIEF2 Tics 15
+
+Texture Optional MSN1
+Pic MSN1 Tics 10
+Pic MSN1_Alt Tics 10
+
+Texture Optional MSN2
+Pic MSN2 Tics 10
+Pic MSN2_Alt Tics 10
+
+Texture Optional MSN3
+Pic MSN3 Tics 10
+Pic MSN3_Alt Tics 10
+
+Texture Optional MSN4
+Pic MSN4 Tics 10
+Pic MSN4_Alt Tics 10
+
+Texture Optional MSN5
+Pic MSN5 Tics 10
+Pic MSN5_Alt Tics 10
+
+Texture Optional MSN6
+Pic MSN6 Tics 7
+Pic MSN6_Alt Tics 7
+Pic MSN6_Al2 Tics 7
+Pic MSN6_Alt Tics 7
+
+Texture Optional MSN1S
+Pic MSN1S Tics 10
+Pic MSN1SAlt Tics 10
+
+Texture Optional MSN2S
+Pic MSN2S Tics 10
+Pic MSN2SAlt Tics 10
+
+Texture Optional MSN3S
+Pic MSN3S Tics 10
+Pic MSN3SAlt Tics 10
+
+Texture Optional MSN4S
+Pic MSN4S Tics 10
+Pic MSN4SAlt Tics 10
+
+Texture Optional MSN5S
+Pic MSN5S Tics 10
+Pic MSN5SAlt Tics 10
+
+Texture Optional MSN6S
+Pic MSN6S Tics 7
+Pic MSN6SAlt Tics 7
+Pic MSN6SAl2 Tics 7
+Pic MSN6SAlt Tics 7
+
+Texture Optional HILITE1
+Pic HILITE1 Tics 18
+Pic HILITE1A Tics 18
+
+Texture Optional HILITE2
+Pic HILITE2 Tics 18
+Pic HILITE2A Tics 18

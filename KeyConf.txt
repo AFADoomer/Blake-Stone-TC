@@ -1,0 +1,19 @@
+clearplayerclasses
+addplayerclass BSPlayer
+
+addkeysection "Blake Stone" BlakeStone
+
+addmenukey "JAM Cheat" BlakeJAM
+addmenukey "Backpace-I Cheat" BlakeBackpaceI
+addmenukey "Backpace-G Cheat" BlakeBackpaceG
+addmenukey "Blake Stone-styled Map" BlakeMap
+
+alias BlakeJAM "pukename W_JAM always"
+alias BlakeBackpaceI "pukename W_DebugItems always"
+alias BlakeBackpaceG "pukename W_DebugGod always"
+alias BlakeMap "pukename W_TabMap always"
+
+defaultbind \ BlakeJAM
+defaultbind i BlakeBackpaceI
+defaultbind g BlakeBackpaceG
+defaultbind q BlakeMap

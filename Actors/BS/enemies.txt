@@ -1,0 +1,1292 @@
+ACTOR BlakeEnemy
+{
+	var int user_Ammo;
+	var int user_Health;
+	var int user_Interrogated;
+	var int user_Attacker;
+	var int user_Points;
+	var int user_State;
+
+	Health 1
+	Speed 3
+	Radius 26
+	Height 54
+	DeathHeight 0
+	Mass 10000
+	Painchance 255
+	MaxStepHeight 0
+	MONSTER 
+	+FLOORCLIP
+	+FULLVOLACTIVE
+	+FULLVOLDEATH
+	+DONTGIB
+	+NOTARGET
+//	+PICKUP
+	BloodColor "FF 00 00"
+	DamageFactor "BS", 0.0
+	Species "BS"
+	Obituary "%o was killed by an ill-defined replacement actor."
+	States
+	{
+		Spawn:
+			UNKN A 1
+			Goto Initialize
+		Initialize:
+			"####" A 0 A_SetUserVar("user_Ammo", 8)
+			"####" A 0 A_TakeInventory("BSCharge", 99)
+			"####" A 0 A_GiveInventory("BSCharge", user_Ammo)
+			"####" # 0 A_SetUserVar("user_Health", CallACS("A_GetHitPoints"))
+			"####" # 0 A_SetUserVar("user_Points", CallACS("A_GetPoints"))
+			"####" # 15 //A little delay to keep sight sounds from playing on level load before the freeze takes effect
+			"####" # 0 A_Jump(256, "Stand")
+		Stand:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 2)
+			"####" Z 1 A_LookEx (0, 0, 0, 2048, 0, "Chase")
+			Loop
+		Stand.Alt:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 2)
+			"####" A 1 A_LookEx (0, 0, 0, 2048, 360, "Chase")  //Enemies without directional sprites get 360 degree view
+			Loop
+		Chase:
+			"####" A 0 A_SetUserVar("user_State", 1)
+			"####" # 0 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 36)
+			"####" AAAAA 1 A_Chase
+			"####" AA 1
+			"####" BBBB 1 A_Chase
+			"####" CCCCC 1 A_Chase
+			"####" CC 1
+			"####" DDDD 1 A_Chase
+			Loop
+		Patrol.NoClip:
+			"####" A 0 A_JumpIf(angle % 90 == 0, "Patrol.TurnAround")
+			"####" A 6 A_Warp(AAPTR_DEFAULT, 45, 0, 0, 0, WARPF_STOP | WARPF_INTERPOLATE, "Patrol")
+			"####" A 6 A_Warp(AAPTR_DEFAULT, 90, 0, 0, 0, WARPF_STOP | WARPF_INTERPOLATE, "Patrol")
+		Patrol.TurnAround:
+			"####" Z 10
+			"####" ZZZ 1 ThrustThing (angle * 256 / 360, 1, 0, 0)
+			"####" A 0 A_JumpIf((velx != 0) || (vely != 0), "Patrol")
+			"####" Z 10
+			"####" ZZZ 1 ThrustThing (angle * 256 / 360, 1, 0, 0)
+			"####" A 0 A_JumpIf((velx != 0) || (vely != 0), "Patrol")
+			"####" A 0 A_SetAngle(angle + 180)
+			"####" # 0 A_Jump(256, "Patrol")
+		Patrol:
+			"####" A 0 A_SetUserVar("user_State", 3)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 29)
+			"####" AAA 1 ThrustThing (angle * 256 / 360, 1, 0, 0)
+			"####" AAA 1 A_LookEx (0, 0, 0, 2048, 0, "Chase")
+			"####" BBBBBBBB 1 A_LookEx (0, 0, 0, 2048, 0, "Chase")
+			"####" CCC 1 ThrustThing (angle * 256 / 360, 1, 0, 0)
+			"####" CCC 1 A_LookEx (0, 0, 0, 2048, 0, "Chase")
+			"####" DDDDDDDD 1 A_LookEx (0, 0, 0, 2048, 0, "Chase")
+		Patrol.CheckWall:
+//			"####" A 0 A_JumpIf((velx == 0) && (vely == 0), "Patrol.NoClip")
+//Just turn around until I can fix the code so actors don't go off-map...
+			"####" A 0 A_JumpIf((velx == 0) && (vely == 0), "Patrol.TurnAround")
+			"####" # 0 A_Jump(256, "Patrol")
+		Pain:
+			"####" M 8
+			"####" # 0 A_Jump(256, "Chase")
+		Melee:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 26)
+			"####" EF 10
+			"####" G 15 A_CustomMeleeAttack(Random(1, 31), "", "none")
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" # 0 A_Jump(256, "Chase")
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 11)
+			"####" NO 5
+			"####" P 5 Bright A_CustomMissile("BSCHARGE", 3, 0, random(-2, 2), CMF_ABSOLUTEPITCH, 0)
+			"####" # 0 A_CheckLOF("SetAttacker")
+			"####" # 0 A_Jump(256, "Chase")
+		SetAttacker:
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" # 0 A_Jump(256, "Chase")
+		Death:
+			"####" M 9 A_Scream
+			"####" I 10
+			"####" J 11
+			"####" K 10
+			"####" L 9 A_GiveToTarget("Points", user_Points)
+			"####" # 0 A_Jump(256, "Dead")
+		Dead:
+			"####" H -1
+			Stop
+		Frightened:
+//			"####" A 0 A_JumpIf(health <= 0, "Dead")
+			"####" A 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" A 0 A_JumpIf (user_Ammo >= 8, 3)
+			"####" A 0 A_JumpIfTargetInLOS ("Chase", 360)
+			"####" A 0 A_GiveInventory("BSCharge", 8)
+			"####" A 0 A_SetUserVar("user_Ammo", 8)
+//			"####" A 0 A_JumpIf(user_State == 2, "Chase.Alerted")
+			"####" A 0 A_JumpIf(user_State == 3, "Patrol")
+			"####" A 0 A_Jump(256, "Chase")
+		Freeze:
+			"####" A 0 A_JumpIf(health <= 0, "Dead")
+			"####" A -1
+			Stop
+		UnFreeze:
+			"####" A 0 A_JumpIf(health <= 0, "Dead")
+			"####" A 0 A_JumpIf(user_State == 1, "Chase")
+			"####" A 0 A_JumpIf(user_State == 2, "Stand")
+			"####" A 0 A_JumpIf(user_State == 3, "Patrol")
+			"####" # 0 A_Jump(256, "Spawn")
+		Invisible:
+			"####" A 0 A_CheckFlag("BOSS","Dead")
+			TNT1 A -1
+			Stop
+	}
+}
+
+Actor MonsterBlock 25000
+{
+	Height 2
+	Radius 32
+	+SOLID
+	+NOTONAUTOMAP
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("A_MarkMonsterBlock", 0)
+		TNT1 A -1
+		Stop
+	}
+}
+
+ACTOR SectorPatrol : BlakeEnemy 20002 //Sector Patrol
+{
+	SeeSound "rentacop/sight"
+	DeathSound "rentacop/death"
+	Obituary "%o was killed by a Sector Patrol guard."
+
+	States
+	{
+		Spawn:
+			BGRD Z 1
+			Goto Initialize
+		Chase:
+			"####" A 0 A_SetUserVar("user_State", 1)
+			"####" A 0 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+			"####" A 0 ACS_NamedExecuteAlways("A_CheckFrightened")
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 23)
+			"####" AAAAA 1 A_Chase
+			"####" AA 1
+			"####" BBBB 1 A_Chase
+			"####" CCCCC 1 A_Chase
+			"####" CC 1
+			"####" DDDD 1 A_Chase
+			"####" A 0 A_CheckFlag("FRIGHTENED", "Frightened", AAPTR_DEFAULT)
+			Goto Chase
+		Melee:
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 21)
+			"####" KL 10 A_FaceTarget
+			"####" M 10 BRIGHT A_WolfAttack(0, "rentacop/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 A_TakeInventory("BSCharge", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			Goto Chase
+		Pain:
+			"####" I 8 A_Pain
+			Goto Chase
+		Death:
+			"####" E 0 ACS_NamedExecuteAlways("A_Drop", 0, 3, user_Ammo)
+			"####" E 9 A_Scream
+			"####" F 11
+			"####" G 8
+			"####" H 7 A_GiveToTarget("Points", 1025)
+		Dead:
+			"####" J -1
+			Stop
+	}
+}
+
+ACTOR MSectorPatrol : SectorPatrol 20202
+{
+	+JUSTHIT
+	States
+	{
+		Spawn:
+			BGRD A 1
+			Goto Initialize
+		Stand:
+			Goto Patrol
+	}
+}
+
+ACTOR StarSentinel : BlakeEnemy 20003 //Star Sentinel
+{
+	Speed 4
+	SeeSound "proguard/sight"
+	AttackSound "proguard/attack"
+	DeathSound "proguard/death"
+	Obituary "%o was killed by a STAR Sentinel."
+
+	States
+	{
+		Spawn:
+			PGRD Z 1
+			"####" A 0 A_SetUserVar("user_Ammo", 25)
+			Goto Initialize + 1
+		Chase:
+			"####" A 0 A_SetUserVar("user_State", 1)
+			"####" A 0 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+			"####" A 0 ACS_NamedExecuteAlways("A_CheckFrightened")
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 23)
+			"####" AAAAA 1 A_Chase
+			"####" AA 1
+			"####" BBBB 1 A_Chase
+			"####" CCCCC 1 A_Chase
+			"####" CC 1
+			"####" DDDD 1 A_Chase
+			"####" A 0 A_CheckFlag("FRIGHTENED", "Frightened", AAPTR_DEFAULT)
+			Goto Chase
+		Melee:
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 36)
+			"####" LM 10 A_FaceTarget
+			"####" N 5 BRIGHT A_WolfAttack(0, "proguard/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 A_TakeInventory("BSCharge", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" M 5 A_FaceTarget
+			"####" N 5 BRIGHT A_WolfAttack(0, "proguard/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 A_TakeInventory("BSCharge", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" M 5 A_FaceTarget
+			"####" N 5 BRIGHT A_WolfAttack(0, "proguard/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 A_TakeInventory("BSCharge", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			Goto Chase
+		Pain:
+			"####" A 0 A_JumpIf(health & 1, "Pain.Alt")
+			"####" E 8 A_Pain
+			Goto Chase
+		Pain.Alt:
+			"####" I 8 A_Pain
+			Goto Chase
+		Death:
+			"####" F 0 ACS_NamedExecuteAlways("A_Drop", 0, 5, user_Ammo)
+			"####" F 10 A_Scream
+			"####" GH 10
+			"####" J 10 A_GiveToTarget("Points", 5000)
+		Dead:
+			"####" K -1
+			Stop
+	}
+}
+
+ACTOR MStarSentinel : StarSentinel 20203
+{
+	States
+	{
+		Spawn:
+			PGRD A 1
+			"####" A 0 A_SetUserVar("user_Ammo", 25)
+			Goto Initialize + 1
+		Stand:
+			Goto Patrol
+	}
+}
+
+ACTOR StarTrooper : BlakeEnemy 20005	//Star Trooper
+{
+	var int user_OldHealth;
+	var int user_WoundAmount;
+	var int user_WoundTimer;
+
+	Speed 3
+	PainChance 0
+	SeeSound "startrooper/sight"
+	DeathSound "startrooper/death"
+	Obituary "%o was killed by a STAR Trooper."
+
+	States
+	{
+		Spawn:
+			GGRD Z 1
+			"####" # 0 A_SetUserVar("user_Ammo", 30)
+			"####" # 0 A_SetUserVar("user_WoundAmount", Random(0, Health)) //Not completely accurate...  
+			"####" # 0 A_SetUserVar("user_WoundTimer", (5 * 35) + ((Random(0, 255) % 20) * 35))
+			Goto Initialize + 1
+		Chase:
+			"####" A 0 A_SetUserVar("user_State", 1)
+			"####" A 0 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 23)
+			"####" AAAAA 1 A_Chase
+			"####" AA 1
+			"####" BBBB 1 A_Chase
+			"####" CCCCC 1 A_Chase
+			"####" CC 1
+			"####" DDDD 1 A_Chase
+			Goto Chase
+		Melee:
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 41)
+			"####" L 5
+			"####" M 10 A_FaceTarget
+			"####" N 5 BRIGHT A_WolfAttack(0, "startrooper/attack", 0.667, 64, 64, 2, 4, 160.0)
+			"####" # 0 A_TakeInventory("BSCharge", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" M 5 A_FaceTarget
+			"####" N 5 BRIGHT A_WolfAttack(0, "startrooper/attack", 0.667, 64, 64, 2, 4, 160.0)
+			"####" # 0 A_TakeInventory("BSCharge", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" M 5 A_FaceTarget
+			"####" N 5 BRIGHT A_WolfAttack(0, "startrooper/attack", 0.667, 64, 64, 2, 4, 160.0)
+			"####" # 0 A_TakeInventory("BSCharge", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" # 0 A_JumpIf(Health <= user_OldHealth - user_WoundAmount, "Fall")
+			"####" # 0 A_SetUserVar("user_OldHealth", Health)
+			Goto Chase
+		Pain:
+			"####" # 0 A_JumpIf(health & 1, "Pain.Alt")
+			"####" E 8 A_Pain
+			Goto Chase
+		Pain.Alt:
+			"####" I 8 A_Pain
+			Goto Chase
+		Fall:
+			"####" # 0 A_SetUserVar("user_WoundAmount", Health)
+			"####" # 0 A_UnSetSolid
+			"####" # 0 A_UnSetShootable
+			"####" O 5 A_Scream
+			"####" PQ 5
+			"####" R 175 A_SetTics (user_WoundTimer)
+			"####" QPO 5
+			"####" # 0 A_SetSolid
+			"####" # 0 A_SetShootable
+			Goto Chase
+		Death:
+			"####" E 2 ACS_NamedExecuteAlways("A_Drop", 0, 5, user_Ammo)
+			"####" F 2 A_Scream
+			"####" GH 4
+			"####" J 4 A_GiveToTarget("Points", 7025)
+		Dead:
+			"####" K -1
+			Stop
+	}
+}
+
+ACTOR MStarTrooper : StarTrooper 20205
+{
+	States
+	{
+		Spawn:
+			GGRD Z 1
+			"####" # 0 A_SetUserVar("user_Ammo", 30)
+			"####" # 0 A_SetUserVar("user_WoundAmount", Random(0, Health)) //Not completely accurate...  
+			"####" # 0 A_SetUserVar("user_WoundTimer", (5 * 35) + ((Random(0, 255) % 20) * 35))
+			Goto Initialize + 1
+		Stand:
+			Goto Patrol
+	}
+}
+
+ACTOR BioTechSpawner 20004
+{
+	-SOLID
+	+NOSECTOR
+	RenderStyle None
+	States
+	{
+	Spawn:
+		TNT1 A 5
+		TNT1 A 0 A_CheckFlag("FRIENDLY", "Informant")
+		TNT1 A 0 A_Jump((CallACS("A_GetSkill") * 16) + 128, "BioTech")
+	Informant:
+		TNT1 A 1 A_SpawnItemEx("Informant", 0, 0, 3, 0, 0, 0, 0, 0, 0, tid)
+		Stop
+	BioTech:
+		TNT1 A 1 A_SpawnItemEx("BioTech", 0, 0, 3, 0, 0, 0, 0, 0, 0, tid)
+		Stop
+	}
+}
+
+ACTOR MBioTechSpawner : BioTechSpawner 20204
+{
+	States
+	{
+	Spawn:
+		TNT1 A 5
+		TNT1 A 0 A_CheckFlag("FRIENDLY", "Informant")
+		TNT1 A 0 A_Jump((CallACS("A_GetSkill") * 16) + 128, "BioTech")
+	Informant:
+		TNT1 A 1 A_SpawnItemEx("MInformant", 0, 0, 3, 0, 0, 0, 0, 0, 0, tid)
+		Stop
+	BioTech:
+		TNT1 A 1 A_SpawnItemEx("MBioTech", 0, 0, 3, 0, 0, 0, 0, 0, 0, tid)
+		Stop
+	}
+}
+
+ACTOR BioTech : BlakeEnemy
+{
+	var int user_Message;
+	var int user_Tokens;
+
+	Speed 3
+	+USESPECIAL
+	MeleeRange 0
+	SeeSound "scientist/sight"
+	AttackSound "scientist/attack"
+	DeathSound "scientist/death"
+	Obituary "%o was killed by a Bio-Tech."
+
+	Activation THINGSPEC_NoDeathSpecial
+
+	States
+	{
+		Spawn:
+			BSCI Z 1
+			"####" # 0 ACS_NamedExecuteAlways ("A_InitializeBioTech", 0, 0, tid)
+			Goto Initialize
+		Stand:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			"####" Z 1 A_LookEx (LOF_NOSIGHTCHECK, 0, 0, 2048, 0, "Chase")
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 2)
+			Loop
+		Chase:
+			"####" A 0 A_SetUserVar("user_State", 1)
+			"####" A 0 A_SetUserVar("user_Interrogated", 3)
+			"####" A 0 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+			"####" A 0 ACS_NamedExecuteAlways("A_CheckFrightened")
+			"####" A 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 45)
+			"####" AAAAA 1 A_Chase("", "Missile")
+			"####" AA 1
+			"####" BBBB 1 A_Chase("", "Missile")
+			"####" CCCCC 1 A_Chase("", "Missile")
+			"####" CC 1
+			"####" DDDD 1 A_Chase("", "Missile")
+			"####" A 0 A_CheckFlag("FRIGHTENED", "Frightened", AAPTR_DEFAULT)
+			"####" A 0 A_Jump(256, "Chase")
+		Patrol:
+			"####" A 0 A_SetUserVar("user_State", 3)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 29)
+			"####" AAA 1 ThrustThing (angle * 256 / 360, 1, 0, 0)
+			"####" AAA 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSIGHTCHECK, 0, 0, 2048, 0, "Chase")
+			"####" BBBBBBBB 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSIGHTCHECK, 0, 0, 2048, 0, "Chase")
+			"####" CCC 1 ThrustThing (angle * 256 / 360, 1, 0, 0)
+			"####" CCC 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSIGHTCHECK, 0, 0, 2048, 0, "Chase")
+			"####" DDDDDDDD 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSIGHTCHECK, 0, 0, 2048, 0, "Chase")
+			"####" # 0 A_Jump(256, "Patrol.CheckWall")
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 19)
+			"####" L 3
+			"####" M 10 A_FaceTarget
+			"####" N 5 BRIGHT A_WolfAttack(0, "scientist/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 A_TakeInventory("BSCharge", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" A 0 A_Jump(256, "Chase")
+		Pain:
+			"####" A 0 A_JumpIf(health & 1, "Pain.Alt")
+			"####" I 8 A_Pain
+			"####" A 0 A_Jump(256, "Chase")
+		Pain.Alt:
+			"####" E 8 A_Pain
+			"####" A 0 A_Jump(256, "Chase")
+		Death:
+			"####" G 7 A_Scream
+			"####" H 8 ACS_NamedExecuteAlways("A_Drop", 0, 3, user_Ammo)
+			"####" J 8 A_GiveToTarget("Points", user_Points)
+			"####" # 0 A_Jump(256, "Dead")
+		Dead:
+			"####" K -1
+			Stop
+		Frightened:
+			"####" A 0 A_SetUserVar("user_Ammo", CallACS("CheckAmmo", 0))
+			"####" A 0 A_JumpIf (user_Ammo >= 8, 3)
+			"####" A 0 A_JumpIfTargetInLOS ("Resume", 360)
+			"####" A 0 A_GiveInventory("BSCharge", 8)
+			"####" A 0 A_SetUserVar("user_Ammo", 8)
+			"####" A 0 A_Jump(256, "Resume")
+		Talking:
+			"####" # 0 A_JumpIf(health <= 0, "Dead")
+			"####" # 0 A_JumpIf(user_Interrogated > 1, "Chase")
+			"####" # 0 A_PlaySound ("biotech/interrogate")
+			"####" # 0 A_SetUserVar("user_Interrogated", user_Interrogated + 1)
+			"####" # 0 A_Jump(256, "Resume")
+		Resume:
+			"####" # 0 A_JumpIf(health <= 0, "Dead")
+			"####" A 0 A_JumpIf(user_State == 1, "Chase")
+			"####" A 0 A_JumpIf(user_State == 2, "Stand")
+			"####" A 0 A_JumpIf(user_State == 3, "Patrol")
+			"####" # 0 A_Jump(256, "Spawn")
+		UnFreeze:
+			"####" A 0 A_JumpIf(health <= 0, "Dead")
+			"####" # 0 A_Jump(256, "Resume")
+	}
+}
+
+ACTOR Informant : BioTech
+{
+	-ISMONSTER
+	-COUNTKILL
+	+FRIENDLY
+	DeathSound "scientist/inform_death"
+	States
+	{
+		Spawn:
+			BSCI Z 1
+			"####" Z 0 ACS_NamedExecuteAlways ("A_InitializeBioTech", 0, 1, tid)
+			"####" Z 0 A_SetUserVar("user_Tokens", 1)
+			"####" Z 0 A_SetUserVar("user_Ammo", Random(1, 9))
+			Goto Initialize + 1
+		Stand:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			"####" Z 1 A_LookEx (LOF_NOJUMP | LOF_NOSIGHTCHECK | LOF_NOSOUNDCHECK, 0, 0, 2048, 0, "") 
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 2)
+			Loop
+		Chase:
+			"####" A 0 A_SetUserVar("user_State", 1)
+			"####" A 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 45)
+			"####" A 0 ACS_NamedExecuteAlways("A_CheckFrightened")
+			"####" AAAAA 2 A_Chase("","")
+			"####" AA 2
+			"####" BBBB 2 A_Chase("","")
+			"####" CCCCC 2 A_Chase("","")
+			"####" CC 2
+			"####" DDDD 2 A_Chase("","")
+			"####" A 0 A_CheckFlag("FRIGHTENED", "Frightened", AAPTR_DEFAULT)
+			Goto Chase
+		Pain:
+			"####" A 0 A_JumpIf(health & 1, "Pain.Alt")
+			"####" I 8 A_Pain
+			"####" # 0 A_Jump(256, "Resume")
+		Pain.Alt:
+			"####" E 8 A_Pain
+			"####" # 0 A_Jump(256, "Resume")
+		Talking:
+			"####" # 0 A_JumpIf(health <= 0, "Dead")
+			"####" # 0 A_PlaySound ("biotech/interrogate")
+			"####" # 0 A_SetUserVar("user_Interrogated", user_Interrogated + 1)
+			"####" # 0 A_Jump(256, "Resume")
+		Death:
+			"####" G 7 A_Scream
+			"####" H 8
+			"####" J 8 ACS_NamedExecuteAlways ("A_DeadInformant", 0)
+		Dead:
+			"####" K -1 //Don't kill informants!
+			Stop
+	}
+}
+
+ACTOR MBioTech: BioTech
+{
+	States
+	{
+		Spawn:
+			BSCI A 1
+			"####" # 0 ACS_NamedExecuteAlways ("A_InitializeBioTech", 0, 0, tid)
+			Goto Initialize
+		Stand:
+			Goto Patrol
+//			Goto Chase
+	}
+}
+
+ACTOR MInformant : Informant
+{
+	States
+	{
+		Spawn:
+			BSCI A 1
+			"####" # 0 ACS_NamedExecuteAlways ("A_InitializeBioTech", 0, 1, tid)
+			"####" # 0 A_SetUserVar("user_Tokens", 1)
+			"####" # 0 A_SetUserVar("user_Ammo", Random(1, 9))
+			Goto Initialize + 1
+		Stand:
+			Goto Patrol
+//			Goto Chase
+	}
+}
+
+ACTOR SecurityGuard : BlakeEnemy 20010 //Security Guard
+{
+	SeeSound "geneticguard/sight"
+	DeathSound "geneticguard/death"
+	Obituary "%o was killed by a Mutant Guard."
+
+	States
+	{
+		Spawn:
+			BMUT A 1
+			Goto Initialize
+		Stand:
+			Goto Stand.Alt
+		Melee:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 26)
+			"####" EF 10
+			"####" G 15 A_CustomMeleeAttack(Random(1, 31), "geneticguard/melee", "none")
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			Goto Chase
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 11)
+			"####" NO 5 A_FaceTarget
+			"####" P 5 BRIGHT A_WolfAttack(0, "geneticguard/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			Goto Chase
+		Death:
+			"####" M 9 A_Scream
+			"####" # 0 ACS_NamedExecuteAlways("A_Drop", 0, 3, user_Ammo)
+			"####" I 10
+			"####" J 11
+			"####" K 10
+			"####" L 9 A_GiveToTarget("Points", user_Points)
+			"####" # 0 A_Jump(256, "Dead")
+	}
+}
+
+ACTOR TurretRevolving : BlakeEnemy 20022
+{
+	Height 0
+	Speed 0
+	+NOBLOOD
+	DamageFactor "NoTurret", 0.0
+	DeathSound "turret/death"
+	SeeSound "turret/sight"
+	PainChance 0
+
+	States
+	{
+		Spawn:
+			PTUR A 0
+			Goto Initialize
+		Stand:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 36)
+			"####" A 35 A_SetAngle(angle - 10)
+			"####" A 0 A_LookEx (LOF_NOJUMP, 0, 0, 2048, 0, "") 
+			"####" A 0 A_Jump(256, "Chase")
+		Chase:
+			"####" A 0 A_SetUserVar("user_State", 1)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 2)
+			"####" A 1 A_JumpIfTargetInLOS("Missile", 10) //, JLOSF_DEADNOJUMP | JLOSF_COMBATANTONLY)
+			"####" A 0 A_Jump(256, "Stand")
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 11)
+			"####" A 0 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+			"####" BC 5 BRIGHT A_WolfAttack(0, "turret/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" A 0 A_Jump(256, "Chase")
+		Death:
+			"####" D 9 A_Scream
+			"####" E 10
+			"####" F 11
+			"####" G 10 A_GiveToTarget("Points", user_Points)
+		Dead:
+			"####" H -1
+			Stop
+	}
+}
+
+ACTOR Turret : TurretRevolving 20021
+{
+	States
+	{
+		Stand:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			"####" A 0 A_LookEx (LOF_NOJUMP, 0, 0, 2048, 0, "") 
+			"####" A 0 A_Jump(256, "Chase")
+	}
+}
+
+ACTOR BrownAlien : BlakeEnemy 20023
+{
+	Speed 5
+	SeeSound "smallcanisteralien/sight"
+	DeathSound "smallcanisteralien/death"
+
+	States
+	{
+		Spawn:
+			BBRN A 1
+			Goto Initialize
+		Stand:
+			Goto Stand.Alt
+		Melee:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 26)
+			"####" EF 10
+			"####" G 15 A_CustomMeleeAttack(Random(1, 31), "smallcanisteralien/melee", "none")
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			Goto Chase
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 11)
+			"####" NO 5
+			"####" P 5 Bright A_CustomMissile("SmallCanisterShot", 3, 0, random(-2, 2), CMF_ABSOLUTEPITCH, 0)
+			"####" # 0 A_CheckLOF("SetAttacker")
+			Goto Chase
+	}
+}
+
+ACTOR GreenAlien 20025
+{}
+
+ACTOR ElectroSphere : SwitchableDecoration 20227
+{
+	var int user_moveangle;
+	var int user_Health;
+	var int user_Points;
+	var int user_Frozen;
+
+	Height 1
+	Radius 26
+	Speed 8
+	+SOLID
+	+CANPASS
+	+BUMPSPECIAL
+	+ISMONSTER
+	+SHOOTABLE
+	+COUNTKILL
+	+THRUSPECIES
+	+NOBLOOD
+	Species "BS"
+	Activation THINGSPEC_ThingTargets | THINGSPEC_ThingActs | THINGSPEC_Switch
+	States
+	{
+		Spawn:
+			BORB A 0
+			"####" A 0 A_SetUserVar("user_moveangle", angle)
+			"####" # 0 A_SetUserVar("user_Health", CallACS("A_GetHitPoints"))
+			"####" # 0 A_SetUserVar("user_Points", CallACS("A_GetPoints"))
+			"####" # 0 ACS_NamedExecuteAlways("W_MovePlatform", 0, tid, user_moveangle)
+			"####" A 0 A_JumpIf(256, "Move")
+		Move:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 19)
+			"####" AAABBBCCC 2
+			Loop
+		Inactive:
+		Active:
+			"####" # 0 A_CustomMeleeAttack(Random(5,15), "electrosphere/attack", "", "BS")
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" A 0 A_JumpIf(256, "Move")
+		Freeze:
+			"####" A 0 A_JumpIf(health <= 0, "Dead")
+			"####" A 0 A_SetUserVar("user_Frozen", 1)
+			"####" A -1
+			Stop
+		UnFreeze:
+			"####" A 0 A_JumpIf(health <= 0, "Dead")
+			"####" A 0 A_SetUserVar("user_Frozen", 0)
+			"####" A 0 A_Jump(256, "Move")
+		Death:
+			"####" DEF 5
+			"####" G 5 A_GiveToTarget("Points", user_Points)
+		Dead:
+			"####" H 5
+			Stop
+	}
+}
+
+ACTOR FluidAlien : BlakeEnemy 20028
+{
+	Speed 1
+	MeleeRange 64
+	-SOLID
+	-Shootable
+	+NOBLOOD
+	DeathSound "liquidalien/death"
+
+	States
+	{
+		Spawn:
+			BPDL Z 0
+			Goto Initialize
+		Stand:
+			Goto Stand.Alt
+		Chase:
+			"####" A 0 A_SetUserVar("user_State", 1)
+			BPDL A 0 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 22)
+			"####" AAAAAAA 1 A_Chase("Melee")
+			"####" BBBBBBB 1 A_Chase("Melee")
+			"####" CCCCCCC 1 A_Chase("Melee")
+			Loop
+		Pain:
+			"####" H 3
+			BPUD # 0 A_Jump(256, "Melee.Resume")
+		Melee:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 7)
+			BPUD ABC 6 A_SetSolid
+			BPUD # 0 A_SetShootable
+		Melee.Resume:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 35)
+			"####" D 20
+			"####" EF 7
+			"####" G 7 Bright A_CustomMissile("Proj_Water", 3, 0, random(-2, 2), CMF_ABSOLUTEPITCH, 0)
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" # 0 A_MonsterRefire(0, "Fall")
+			Goto Melee.Resume
+		Fall:
+			"####" CBA 7 A_UnSetSolid
+			"####" # 0 A_UnSetShootable
+			Goto Chase
+		Death:
+			"####" HIJK 7 A_Scream
+			"####" L 7 A_GiveToTarget("Points", user_Points)
+			"####" # 0 A_Jump(256, "Dead")
+		Dead:
+			"####" M -1
+			Stop
+
+	}
+}
+
+ACTOR HumanMutant 20029
+{}
+
+ACTOR MechSentinel : BlakeEnemy 20030
+{
+	Speed 2
+	SeeSound "mechsentinel/sight"
+	DeathSound "mechsentinel/death"
+	+NOBLOOD
+	States
+	{
+		Spawn:
+			BBOT A 1
+			Goto Initialize
+		Stand:
+			Goto Stand.Alt
+		Melee:
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 11)
+			"####" EF 5
+			"####" G 5 BRIGHT A_WolfAttack(0, "mechsentinel/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			Goto Chase
+	}
+}
+
+ACTOR MutantGuard 20031
+{}
+
+ACTOR PerscanDrone 20233
+{}
+
+ACTOR PerscanDroneSilent 20237
+{}
+
+ACTOR PlasmaAlien : BlakeEnemy 20034
+{
+	Speed 5
+	+NOBLOOD
+	DeathSound "plasma/death"
+
+	States
+	{
+		Spawn:
+			SPLA A 0
+			Goto Initialize
+		Stand:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			SPLA ABC 7 A_PlaySound("plasma/appear")
+			BPLA A 1
+			Goto Stand.Alt
+		Chase:
+			BPLA A 0 A_SetUserVar("user_State", 1)
+			"####" A 0 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 29)
+			"####" AAAAAAA 1 A_Chase
+			"####" BBBBBBB 1 A_Chase
+			"####" CCCCCCC 1 A_Chase
+			"####" DDDDDDD 1 A_Chase
+			Loop
+		Pain:
+			"####" E 7
+			"####" # 0 A_Jump(256, "Chase")
+		Melee:
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 22)
+			"####" E 7
+			"####" F 7 Bright A_CustomMissile("Proj_Plasma", 3, 0, random(-2, 2), CMF_ABSOLUTEPITCH, 0)
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" G 7
+			Goto Chase
+		Death:
+			"####" IJ 7 A_Scream
+			"####" K 7 A_GiveToTarget("Points", user_Points)
+			"####" # 0 A_Jump(256, "Dead")
+		Dead:
+			TNT1 A -1
+			Stop
+
+	}
+}
+
+ACTOR PodAlien 20035
+{}
+
+Actor Alarm 21160
+{
+	Speed 0
+	Radius 5
+	-Countkill
+	-Solid
+	States
+	{
+	Spawn:
+		ALAR A 1 A_LookEx(1, 0, 0, 0, 360, "AlarmSound")
+		"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 6, 3)
+		Loop
+	AlarmSound:
+		"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 6, 9)
+		ALAR A 4 ACS_NamedExecuteAlways("A_AlertActors", 0, tid)
+		ALAR B 4 Bright
+		Loop
+	}
+}
+
+ACTOR VolatileTransport : BlakeEnemy 20240
+{
+	Speed 0
+	PainChance 0
+	+NOBLOOD
+
+	DeathSound "volatiletransport/death"
+
+	States
+	{
+		Spawn:
+			VOLT A 0
+			Goto Initialize
+		Stand:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			"####" A 5 A_JumpIf(health < user_health * 3 / 4, "Stand.Alt1")
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 5)
+			Loop
+		Stand.Alt1:
+			"####" B 5 A_JumpIf(health < user_health * 2 / 4, "Stand.Alt2")
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 5)
+			Loop
+		Stand.Alt1:
+			"####" C 5 A_JumpIf(health < user_health * 1 / 4, "Stand.Alt3")
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 5)
+			Loop
+		Stand.Alt1:
+			"####" D 5
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 5)
+			Loop
+		Death:
+			"####" E 9 A_Scream
+			"####" F 5 A_Explode
+			"####" GHIJK 5
+			"####" L 5 A_GiveToTarget("Points", user_Points)
+		Dead:
+			"####" M 5
+			Stop
+
+	}
+}
+
+ACTOR GoldfireSpawner : SpecialSpot 21124
+{
+	+NOSECTOR
+	+NOBLOCKMAP
+	+NOTONAUTOMAP
+	States
+	{
+		Spawn:
+			TNT1 A 10 ACS_NamedExecuteAlways("InitGoldfireSpawn", 0)
+		Static:
+			TNT1 A 10 A_SetTics(Random(1,3) * 10)
+			TNT1 A 10 A_JumpIf(CallACS("CheckGoldfireSpawned") == 0, "DoSpawn")
+			Loop
+		DoSpawn:
+			TNT1 A 0 A_SpawnItemEx("Goldfire")
+			Stop
+	}
+}
+
+ACTOR Goldfire : BlakeEnemy
+{
+	Speed 5
+	Painchance 32
+	SeeSound "goldfire/sight"
+	Deathsound "goldfire/laugh"
+
+	States
+	{
+		Spawn:
+			TNT1 A 1 ACS_NamedExecuteAlways("RemoveGoldfireSpawn", 0) //A_WarpIn
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 1)
+			"####" A 0 A_SetUserVar("user_Ammo", 25)
+			Goto Initialize + 1
+		Stand:
+			"####" A 0 A_SetUserVar("user_State", 2)
+			"####" # 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSOUNDCHECK, 0, 0, 2048, 1, "Stand")
+			"####" # 0 A_SetAngle(angle - 90)
+			"####" # 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSOUNDCHECK, 0, 0, 2048, 1, "Stand")
+			"####" # 0 A_SetAngle(angle - 90)
+			"####" # 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSOUNDCHECK, 0, 0, 2048, 1, "Stand")
+			"####" # 0 A_SetAngle(angle - 90)
+			"####" # 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSOUNDCHECK, 0, 0, 2048, 1, "Stand")
+			"####" # 0 A_SetAngle(angle - 90)
+			"####" # 1 A_LookEx (LOF_NOSEESOUND | LOF_NOSOUNDCHECK, 0, 0, 2048, 360, "TeleportIn")
+			Loop
+		TeleportIn:
+			GFIR O 7 A_PlaySound ("teleport/in")
+			"####" NMLK 7
+		Sight:
+			"####" Z 1 A_LookEx (0, 0, 0, 2048, 360, "Chase")
+			Loop
+		Melee:		
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 45)
+			"####" H 10
+			"####" I 10 A_FaceTarget
+			"####" J 5 BRIGHT A_WolfAttack(0, "goldfire/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" I 5 
+			"####" J 5 BRIGHT A_WolfAttack(0, "goldfire/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			"####" I 5 
+			"####" J 5 BRIGHT A_WolfAttack(0, "goldfire/attack", 1.0, 64, 64, 2, 4, 160.0)
+			"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+			Goto Chase
+		MorphWait:
+			"####" F 5
+			Loop
+		Pain:
+			"####" E 7
+			Goto Chase
+		Death:
+			"####" Z 22 A_Scream //A_Laugh
+			"####" F 12 A_PlaySound ("elev/button")//A_Beep
+			"####" G 12
+			"####" F 7 A_PlaySound ("elev/button")//A_Beep
+			"####" G 12
+			"####" Z 7
+			"####" # 0 A_JumpIf(CallACS("CheckGoldfireDrop") == 0, "Death.NoDrop")
+			"####" # 0 ACS_NamedExecuteAlways("A_Drop", 0, 18)
+		Death.NoDrop:
+			"####" KLMNO 15 A_PlaySound ("teleport/out")//A_WarpOut
+		Dead:
+			TNT1 A -1
+			Stop
+	}
+}
+
+ACTOR SpiderMutant : BlakeEnemy 21232
+{
+	SeeSound "spidermutant/sight"
+	DeathSound "spidermutant/death"
+	States
+	{
+		Spawn:
+			BSPI A 1
+			Goto Initialize
+		Stand:
+			Goto Stand.Alt
+		Melee:
+		Missile:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 11)
+			"####" EF 5
+			"####" G 5 Bright
+			"####" # 0 A_CustomMissile("Proj_X", 3, 0, -2, CMF_ABSOLUTEPITCH, 0)
+			"####" # 0 A_CustomMissile("Proj_X", 3, 0, 2, CMF_ABSOLUTEPITCH, 0)
+			"####" # 0 A_CheckLOF("SetAttacker")
+			"####" # 0 A_Jump(256, "Chase")
+		Dead:
+			"####" H -1 ACS_NamedExecuteAlways("A_Drop", 0, 18)
+			Stop
+
+	}
+}
+
+//Friendly Agent (weapon-aware, vaguely bot-like)
+ACTOR Agent : BlakeEnemy
+{
+	Health 100
+	PainChance 256
+	Speed 16
+	Radius 16
+	Height 64
+	MeleeThreshold 128
+	MaxStepHeight 8
+	+TELESTOMP
+	+FRIENDLY
+	+PICKUP
+	+DROPOFF
+	+NOBLOCKMONST
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	-COUNTKILL
+	DamageFactor "BS", 1.0
+	DeathSound "blake/death"
+	States
+	{
+		Spawn:
+			PLAY A 1
+			PLAY A 1 A_GiveInventory("Active", 1)
+		Wander:
+			PLAY AAAAAA 1 A_Wander
+			TNT1 A 0 A_Look
+			PLAY BBBBBB 1 A_Wander
+			TNT1 B 0 A_Look
+			PLAY CCCCCC 1 A_Wander
+			TNT1 C 0 A_Look
+			PLAY DDDDDD 1 A_Wander
+			TNT1 D 0 A_Look
+			Loop
+		Pain:
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED", 1)
+		See:
+			"####" # 0 ACS_NamedExecuteAlways("A_MarkMapMover", 0, 9, 45)
+			PLAY AAAAAA Random(1, 2) A_Chase ("Melee", "Missile")
+			PLAY BBBBBB Random(1, 2) A_Chase ("Melee", "Missile")
+			PLAY CCCCCC Random(1, 2) A_Chase ("Melee", "Missile")
+			PLAY DDDDDD Random(1, 2) A_Chase ("Melee", "Missile")
+			TNT1 A 0 A_CheckSightOrRange(1024.0, "Relocate")
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED", 1)
+			TNT1 A 0 A_JumpIfCloser(256.0, "See")
+			TNT1 A 0 A_JumpIf(health < 35, "See")
+			TNT1 A 0 A_JumpIfInventory("BSCharge", 16, 1)
+			Goto See
+			TNT1 A 0 A_Jump(128, "See")
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED", 0)
+			Loop
+		Melee:
+			PLAY E 1 A_JumpIfInventory("BSCharge", 1, "CloseMissile")
+		ACP:
+			PLAY F 1 BRIGHT A_WolfAttack(0, "ACP/attack", 0.666, 32, 64, 2, 4, 160.0, "BlakePuffNoTurret")
+			TNT1 A 0 A_Jump(225, "See")
+			PLAY AAAAABBBBBCCCCCDDDDD 1 A_Chase ("", "")
+			PLAY AAAAABBBBBCCCCCDDDDD 1 A_Chase ("", "")
+			TNT1 A 0 A_JumpIfTargetInLOS ("ACP", 80.0)
+			Goto See
+		CloseMissile:
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED", 1)
+			TNT1 A 0 A_Recoil(20)
+		Missile:
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED", 0)
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_AlertMonsters
+			TNT1 A 0 A_CheckLOF("Missile.Resume", CLOFF_SKIPOBSTACLES | CLOFF_JUMPENEMY)
+			Goto Missile.Bullets
+		Missile.Resume:
+			TNT1 A 0 A_JumpIfCloser(512.0, "Missile.Bullets")
+			TNT1 A 0 A_JumpIfInventory("BSCharge", 1, "CheckPDU")
+		Missile.Bullets:
+			TNT1 A 0 A_JumpIfInventory("BSCharge", 20, "CheckDND")
+			TNT1 A 0 A_JumpIfInventory("BSCharge", 1, "CheckRAW")
+			Goto See
+		CheckPDU:
+			TNT1 A 0 A_JumpIfInventory("BSPDU", 1, "PDU")
+			Goto Missile.Bullets
+		CheckDND:
+			TNT1 A 0 A_JumpIfInventory("BSDND", 1, "DND")
+		CheckRAW:
+			TNT1 A 0 A_JumpIfInventory("BSRAW", 1, "RAW")
+		SFP:
+			PLAY E Random(2, 7)
+			TNT1 A 0 A_FaceTarget
+			PLAY F 1 BRIGHT A_WolfAttack(0, "SFP/attack", 0.666, 64, 64, 2, 4, 160.0, "BlakePuffNoTurret")
+			PLAY FFFFFFFF 1 BRIGHT A_Chase ("", "", CHF_FASTCHASE)
+			TNT1 A 0 A_TakeInventory("BSCharge", 1)
+			Goto See
+		RAW:
+			PLAY E 4
+		RAWRefire:
+			TNT1 A 0 A_FaceTarget
+			PLAY F 1 BRIGHT A_WolfAttack(0, "RAW/Attack", 0.666, 64, 64, 2, 4, 160.0, "BlakePuff")
+			PLAY F 5 BRIGHT A_Chase ("", "", CHF_FASTCHASE)
+			TNT1 A 0 A_TakeInventory("BSCharge", 1)
+			TNT1 A 0 A_JumpIfInventory("BSCharge", 1, 1)
+			Goto See
+			TNT1 A 0 A_JumpIfTargetInLOS ("RAWRefire", 80.0, JLOSF_DEADNOJUMP | JLOSF_CLOSENOFOV)
+			Goto See
+		DND:
+			PLAY E 4
+		DNDRefire:
+			TNT1 A 0 A_FaceTarget
+			PLAY F 1 BRIGHT A_WolfAttack(0, "DND/attack", 0.666, 64, 64, 2, 4, 160.0, "BlakePuff")
+			PLAY F 2 BRIGHT A_Chase ("", "", CHF_FASTCHASE)
+			TNT1 A 0 A_TakeInventory("BSCharge", 1)
+			TNT1 A 0 A_JumpIfInventory("BSCharge", 1, 1)
+			Goto See
+			PLAY F 1 A_JumpIfTargetInLOS ("DNDRefire", 80.0, JLOSF_DEADNOJUMP | JLOSF_CLOSENOFOV)
+			Goto See
+		PDU:
+			PLAY E 4
+		PDURefire:
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_Recoil(10)
+			PLAY F 3 BRIGHT A_CustomMissile ("BSFlameAlt", 32, 0, 0, CMF_ABSOLUTEPITCH, 10.0)
+			PLAY FF 1 BRIGHT A_Chase ("", "", CHF_FASTCHASE)
+			TNT1 A 0 A_TakeInventory("BSCharge", 4)
+			TNT1 A 0 A_JumpIfInventory("BSCharge", 1, 4)
+			Goto See
+			PLAY E 2
+			PLAY AAAAABBBBBCCCCCDDDDD 1 A_Chase ("", "")
+			PLAY AAAAABBBBBCCCCCDDDDD 1 A_Chase ("", "")
+			TNT1 A 0 A_JumpIfTargetInLOS ("PDURefire", 80.0, JLOSF_DEADNOJUMP)
+			Goto See
+		XDeath:
+		Death:
+			PLAY H 6 A_GiveToTarget("Points", 2500)
+			PLAY I 6 A_Scream
+			PLAY JK 6
+			PLAY L 6 
+			PLAY M 6
+			PLAY N -1
+			Stop
+		Death.Respawn:
+			PLAY H 6 A_GiveToTarget("Points", 2500)
+			PLAY I 6 A_Scream
+			PLAY JK 6
+			PLAY L 6 
+			PLAY M 6
+			PLAY N Random(105, 210) A_Respawn(False)
+			Stop
+		Relocate:
+			PLAY A 1 A_Warp(AAPTR_PLAYER1, -64, 0, 0, 0, WARPF_INTERPOLATE)
+			TNT1 A 0 A_ClearTarget
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED", 0)
+			Goto See
+	}
+}
+
+ACTOR ArmedAgent : Agent
+{
+	var int user_mapmarker;
+	Speed 8
+	States
+	{
+		Spawn:
+			PLAY A 1
+			PLAY A 1 A_GiveInventory("BSCharge", 50)
+			PLAY A 1 A_GiveInventory("Active", 1)
+			Goto Wander
+		Relocate:
+			TNT1 A 0 A_ClearTarget
+			TNT1 A 0 A_ChangeFlag("FRIGHTENED", 0)
+			Goto See
+	}
+}
+
+ACTOR ArmedAgentLoaded : ArmedAgent
+{
+	Speed 16
+	States
+	{
+		Spawn:
+			PLAY A 1
+			PLAY A 4 A_GiveInventory("BSCharge", 999)
+			PLAY A 4 A_GiveInventory("BSSFP", 1)
+			PLAY A 4 A_GiveInventory("BSRAW", 1)
+			PLAY A 4 A_GiveInventory("BSDND", 1)
+			PLAY A 4 A_GiveInventory("BSPDU", 1)
+			PLAY A 1 A_GiveInventory("Active", 1)
+			Goto Wander
+		Death:
+			Goto Death.Respawn
+	}
+}

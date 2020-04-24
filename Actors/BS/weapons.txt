@@ -1,0 +1,365 @@
+//Weapons used in Blake Stone
+
+ACTOR BSCharge : Ammo 21049 //Full Charge Pack
+{
+	Inventory.PickupSound "pickups/ammo"
+	Inventory.PickupMessage "Ammo Charge"
+	Inventory.Amount 8
+	Inventory.MaxAmount 100
+	Inventory.Icon "BCHGA0"
+	Ammo.BackpackAmount 25
+	Ammo.BackpackMaxAmount 100
+	Mass 10000
+	+BUMPSPECIAL
+	States
+	{
+		Spawn:
+			BCHG B 0
+			"####" # Random(0,15) ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_SetSpecial (226, 3, 0, tid)
+		Static:
+			BCHG B -1
+			Loop
+	}
+}
+
+ACTOR BSChargeDrop : BSActorPickup 21054
+{
+	Inventory.PickupSound "pickups/ammo"
+	Inventory.PickupMessage "Ammo Charge"
+
+	States
+	{
+		Static:
+			BCHG A 1 A_JumpIf(user_Amount > 0, "Initialize.Ammo")
+			"####" # 0 A_SetUserVar ("user_Amount", Random(1,8))
+			"####" # 0 A_SetSpecial (226, 5, 0, tid, user_Amount)
+			"####" # 0 A_Jump(256, "Initialize.Ammo")
+		Pickup:
+			TNT1 A 0 A_GiveInventory("BSCharge", 0)
+			Stop
+	}
+}
+
+/*
+ACTOR BSChargeDrop : BSCustomInventory 21054 //Variable amount charge pack dropped by enemies
+{
+	var int user_Amount;
+
+	Inventory.PickupSound "pickups/ammo"
+	Inventory.PickupMessage "Ammo Charge"
+	States
+	{
+		Static:
+			BCHG A 1 A_JumpIf(user_Amount > 0, "Static.SetSpecial")
+			"####" # 1 A_SetUserVar ("user_Amount", Random(1,8)) //Default amount
+		Static.SetSpecial:
+			"####" # 1 A_SetSpecial (226, 5, 0, tid, user_Amount)
+			Goto Static
+		Pickup:
+			TNT1 A 0 A_GiveInventory("BSCharge", 0)
+			Stop
+	}
+}
+*/
+
+ACTOR BSACP : Weapon //Auto Charge Pistol
+{
+	Weapon.SelectionOrder 4
+	Inventory.PickupSound "pickups/ammo"
+	Inventory.PickupMessage "$Weapon1"
+	Weapon.AmmoUse 0
+	Weapon.YAdjust 10
+	+Weapon.Wimpy_Weapon
+	+Weapon.MeleeWeapon
+	+Weapon.NoAlert
+	Inventory.Icon "Weapon1"
+	AttackSound "ACP/attack"
+	Obituary ""
+	+BUMPSPECIAL
+	States
+	{
+		Spawn:
+			WACP P 0
+			"####" # Random(0,15) ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_SetSpecial (226, 3, 0, tid)
+		Static:
+			WACP P -1
+			Loop
+		Ready:
+			WACP A 1 OFFSET (0, 17) 
+				WACP A 0 A_WeaponReady(WRF_NOBOB)
+			Loop
+		Deselect:
+			WACP A 1 A_Lower
+			Loop
+		Select:
+			"####" # 0 A_ZoomFactor(1.2)
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 0)
+			WACP A 1 A_Raise
+			Loop
+		Fire:
+			WACP A 1 A_JumpIfInventory ("PistolCharge", 1, "ActualFire")
+			Goto Ready
+		ActualFire:
+			WACP A 0 A_TakeInventory ("PistolCharge", 1)
+			WACP B 3 OFFSET (0, 17)
+			WACP C 0
+			"####" # 0 A_JumpIfCloser (128, "Fire.Close")
+			"####" # 0 A_JumpIfCloser (256, "Fire.Medium")
+			"####" # 0 A_JumpIfCloser (ACS_NamedExecuteWithResult("A_Random", 0) / 12, "Fire.Missed")
+		Fire.Medium:
+			"####" # 3 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, ACS_NamedExecuteWithResult("A_Random", 0) / 4, "BlakePuffNoTurret", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Close:
+			"####" # 3 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, ACS_NamedExecuteWithResult("A_Random", 0) / 2, "BlakePuffNoTurret", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Missed:
+			"####" # 3 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, 0, "BlakePuffNoTurret", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Resume:
+			WACP DE 3 OFFSET (0, 17)
+			WACP A 0 A_Refire
+			Goto Ready
+		Hold:
+			WACP A 1 OFFSET (0, 17)
+			WACP A 0 A_JumpIfInventory ("BotPlayer", 1, "ActualFire")
+			WACP A 0 A_Refire
+			Goto Ready
+	}
+} 
+
+
+ACTOR BSSFP : Weapon 21047 //Slow Fire Protector
+{
+	Weapon.SelectionOrder 3
+	Inventory.PickupSound "SFP/pickup"
+	Inventory.PickupMessage "$Weapon2"
+	Weapon.AmmoType "BSCharge"
+	Weapon.AmmoGive 8
+	Weapon.AmmoUse 1
+	Weapon.YAdjust 10
+	+Weapon.Wimpy_Weapon
+	Inventory.Icon "Weapon2"
+	AttackSound "SFP/attack"
+	Obituary ""
+	+BUMPSPECIAL
+	States
+	{
+		Spawn:
+			WSFP P 0
+			"####" # Random(0,15) ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_SetSpecial (226, 3, 0, tid)
+		Static:
+			WSFP P -1
+			Loop
+		Ready:
+			WSFP A 1 OFFSET (0, 17)
+				WSFP A 0 A_WeaponReady(WRF_NOBOB)
+			Loop
+		Deselect:
+			WSFP A 1 A_Lower
+			Loop
+		Select:
+			"####" # 0 A_ZoomFactor(1.2)
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 0)
+			WSFP A 1 A_Raise
+			Loop
+		Fire:
+			WSFP B 3 OFFSET (0, 17)
+			WSFP C 0
+			"####" # 0 A_JumpIfCloser (128, "Fire.Close")
+			"####" # 0 A_JumpIfCloser (256, "Fire.Medium")
+			"####" # 0 A_JumpIfCloser (ACS_NamedExecuteWithResult("A_Random", 0) / 12, "Fire.Missed")
+		Fire.Medium:
+			"####" # 3 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, ACS_NamedExecuteWithResult("A_Random", 0) / 4, "BlakePuffNoTurret", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Close:
+			"####" # 3 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, ACS_NamedExecuteWithResult("A_Random", 0) / 2, "BlakePuffNoTurret", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Missed:
+			"####" # 3 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, 0, "BlakePuffNoTurret", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Resume:
+			WSFP DE 3 OFFSET (0, 17) 
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 1)
+				WSFP C 0 A_Refire
+			Goto Ready
+		Hold:
+			WSFP A 1 OFFSET (0, 17)
+				WSFP A 0 A_JumpIfInventory ("BotPlayer", 1, "DMHold")
+		SPHold:
+			WSFP A 0 A_Refire
+			Goto Ready
+		DMHold:
+			WSFP B 2 OFFSET (0, 17)
+			WSFP C 3 BRIGHT OFFSET (0, 17) A_FireBullets (2.0, 2.0, 1, CallACS("A_Random", 0, 3))
+			WSFP DE 3 OFFSET (0, 17) 
+			Goto SPHold
+	}
+}
+ 
+ACTOR BSRAW : Weapon 21050 //Rapid Assault Weapon
+{
+	Weapon.SelectionOrder 2
+	Inventory.PickupSound "RAW/pickup"
+	Inventory.PickupMessage "$Weapon3"
+	Weapon.AmmoType "BSCharge"
+	Weapon.AmmoGive 6
+	Weapon.AmmoUse 1
+	Weapon.YAdjust 10
+	Inventory.Icon "Weapon3"
+	AttackSound "RAW/attack"
+	Obituary ""
+	+BUMPSPECIAL
+	States
+	{
+		Spawn:
+			WRAW P 0
+			"####" # Random(0,15) ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_SetSpecial (226, 3, 0, tid)
+		Static:
+			WRAW P -1
+			Loop
+		Ready:
+			WRAW A 1 OFFSET (0, 17)
+				WRAW A 0 A_WeaponReady(WRF_NOBOB)
+			Loop
+		Deselect:
+			WRAW A 1 A_Lower
+			Loop
+		Select:
+			"####" # 0 A_ZoomFactor(1.2)
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 0)
+			WRAW A 1 A_Raise
+			Loop
+		Fire:
+			WRAW B 3 OFFSET (0, 17)
+		Hold:
+			WRAW C 0
+			"####" # 0 A_JumpIfCloser (128, "Fire.Close")
+			"####" # 0 A_JumpIfCloser (256, "Fire.Medium")
+			"####" # 0 A_JumpIfCloser (ACS_NamedExecuteWithResult("A_Random", 0) / 12, "Fire.Missed")
+		Fire.Medium:
+			"####" # 2 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, ACS_NamedExecuteWithResult("A_Random", 0) / 4, "BlakePuff", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Close:
+			"####" # 2 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, ACS_NamedExecuteWithResult("A_Random", 0) / 2, "BlakePuff", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Missed:
+			"####" # 2 BRIGHT OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, 0, "BlakePuff", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Resume:
+			WRAW DE 2 OFFSET (0, 17)
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 1)
+			WRAW E 0 A_ReFire
+			Goto Ready
+	}
+} 
+
+ACTOR BSDND : Weapon 21051 //Dual Neutron Disruptor
+{
+	Weapon.SelectionOrder 1
+	Inventory.PickupSound "DND/pickup"
+	Inventory.PickupMessage "$Weapon4"
+	Weapon.AmmoType "BSCharge"
+	Weapon.AmmoGive 6
+	Weapon.AmmoUse 1
+	Weapon.YAdjust 10
+	+Weapon.BFG
+	Inventory.Icon "Weapon4"
+	AttackSound "DND/attack"
+	Obituary ""
+	+BUMPSPECIAL
+	States
+	{
+		Spawn:
+			WDND P 0
+			"####" # Random(0,15) ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_SetSpecial (226, 3, 0, tid)
+		Static:
+			WDND P -1
+			Loop
+		Ready:
+			WDND A 1 OFFSET (0, 17)
+				WDND A 0 A_WeaponReady(WRF_NOBOB)
+			Loop
+		Deselect:
+			WDND A 1 A_Lower
+			Loop
+		Select:
+			"####" # 0 A_ZoomFactor(1.2)
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 0)
+			WDND A 1 A_Raise
+			Loop
+		Fire:
+			WDND B 3 OFFSET (0, 17)
+		Hold:
+//			WDND C 3 OFFSET (0, 17)
+//			WDND C 2 BRIGHT OFFSET (0, 17) A_FireBullets (4.0, 4.0, 1, CallACS("A_Random", 0, 3))
+			WDND C 0
+			"####" # 0 A_JumpIfCloser (128, "Fire.Close")
+			"####" # 0 A_JumpIfCloser (256, "Fire.Medium")
+			"####" # 0 A_JumpIfCloser (ACS_NamedExecuteWithResult("A_Random", 0) / 12, "Fire.Missed")
+		Fire.Medium:
+			"####" # 1 OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, ACS_NamedExecuteWithResult("A_Random", 0) / 4, "BlakePuff", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Close:
+			"####" # 1 OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, ACS_NamedExecuteWithResult("A_Random", 0) / 2, "BlakePuff", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Missed:
+			"####" # 1 OFFSET (0, 17) BRIGHT A_FireBullets (2.0, 2.0, 1, 0, "BlakePuff", FBF_NORANDOM + FBF_USEAMMO)
+			"####" # 0 A_Jump(256, "Fire.Resume")
+		Fire.Resume:
+			WDND DE 2 OFFSET (0, 17)
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 1)
+			WDND E 0 A_ReFire
+			Goto Ready
+	}
+}
+
+ACTOR BSPDU : Weapon 21069 //Plasma Discharge Unit
+{
+	Weapon.SelectionOrder 1
+	Inventory.PickupSound "PDU/pickup"
+	Inventory.PickupMessage "$Weapon5"
+	Weapon.AmmoType "BSCharge"
+	Weapon.AmmoGive 6
+	Weapon.AmmoUse 4
+	Weapon.YAdjust 10
+	+Weapon.NoAutoAim
+	Inventory.Icon "Weapon5"
+	AttackSound ""
+	Obituary ""
+	+BUMPSPECIAL
+	States
+	{
+		Spawn:
+			WPDU P 0
+			"####" # Random(0,15) ACS_NamedExecuteAlways ("SetupPickup", 0)
+			"####" # 0 A_SetSpecial (226, 3, 0, tid)
+		Static:
+			WPDU P -1
+			Loop
+		Ready:
+			WPDU A 1 A_WeaponReady(WRF_NOBOB)
+			Loop
+		Deselect:
+			WPDU A 1 A_Lower
+			Loop
+		Select:
+			"####" # 0 A_ZoomFactor(1.2)
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 0)
+			WPDU A 1 A_Raise
+			Loop
+		Fire:
+			WPDU B 3
+		Hold:
+//			WPDU C 3 BRIGHT A_FireCustomMissile ("BSFlame", Random(-1, 1) * 2, 1)
+			WPDU C 3 BRIGHT A_FireCustomMissile ("BSFlameAlt", Random(-1, 1) * 2, 1, 0, 0, 0, 10.0)
+			WPDU D 3
+			"####" # 0 ACS_NamedExecuteAlways("A_CheckWeapon", 0, 1)
+			WPDU E 3 A_ReFire
+			Goto Ready
+	}
+}

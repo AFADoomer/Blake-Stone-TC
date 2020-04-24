@@ -1,0 +1,263 @@
+//Blake Stone Pushwalls
+
+ACTOR PushwallMarker : CustomInventory 22100
+{
+	+COUNTSECRET
+	+AUTOACTIVATE
+	+INVENTORY.NOSCREENFLASH
+	+NOTONAUTOMAP
+	Inventory.Amount 1
+	Inventory.MaxAmount 0
+	Height 64
+	Radius 12
+	Mass 10000
+	States
+	{
+		Spawn:
+			TNT1 A 1 
+			TNT1 A 1 ACS_NamedExecuteAlways("A_MarkPushwall", 0, 1)
+			"####" A 0 ACS_NamedExecuteAlways("A_MarkMap", 0, 7)
+		Static:
+			"####" # -1
+			Stop
+		Pickup:
+			"####" # 1 ACS_NamedExecuteAlways("A_MarkPushwall", 0, 1)
+			"####" A 0 ACS_NamedExecuteAlways("A_MarkMap", 0, 0, 1)
+			Stop
+	}
+}
+
+ACTOR Secret_Block
+{
+	Radius 32
+	Height 1
+	States
+	{
+	Spawn:
+		TNT1 A -1
+	}
+}
+
+ACTOR Secret_Check
+{
+	Radius 0
+	Height 64
+	States
+	{
+	Spawn:
+		TNT1 A -1
+	}
+}
+
+ACTOR GenericPushwall 22000
+{
+/*
+	Height 64
+	Radius 32
+	Mass 10000
+	+SOLID
+	+USESPECIAL
+	+CANPASS
+	+NODROPOFF
+	+SHOOTABLE
+	+INVULNERABLE
+	States
+	{
+	Spawn:
+		UNKN A 0
+		UNKN A 0 ACS_ExecuteAlways(14, 0, tid)
+	Idle:
+		UNKN A 1
+		Loop
+	}
+*/
+}
+
+ACTOR NZ01 : GenericPushwall 22001
+{}
+
+ACTOR NZ02 : GenericPushwall 22002
+{}
+
+ACTOR NZ03 : GenericPushwall 22003
+{}
+
+ACTOR NZ04 : GenericPushwall 22004
+{}
+
+ACTOR NZ05 : GenericPushwall 22005
+{}
+
+ACTOR NZ06 : GenericPushwall 22006
+{}
+
+ACTOR NZ07 : GenericPushwall 22007
+{}
+
+ACTOR NZ08 : GenericPushwall 22008
+{}
+
+ACTOR NZ09 : GenericPushwall 22009
+{}
+
+ACTOR NZ0A : GenericPushwall 22010
+{}
+
+ACTOR NZ0B : GenericPushwall 22011
+{}
+
+ACTOR NZ0C : GenericPushwall 22012
+{}
+
+ACTOR NZ0D : GenericPushwall 22013
+{}
+
+ACTOR NZ0E : GenericPushwall 22014
+{}
+
+ACTOR NZ0F : GenericPushwall 22015
+{}
+
+ACTOR NZ10 : GenericPushwall 22016
+{}
+
+ACTOR NZ11 : GenericPushwall 22017
+{}
+
+ACTOR NZ12 : GenericPushwall 22018
+{}
+
+ACTOR NZ13 : GenericPushwall 22019
+{}
+
+ACTOR NZ14 : GenericPushwall 22020
+{}
+
+ACTOR NZ15 : GenericPushwall 22021
+{}
+
+ACTOR NZ16 : GenericPushwall 22022
+{}
+
+ACTOR NZ17 : GenericPushwall 22023
+{}
+
+ACTOR NZ18 : GenericPushwall 22024
+{}
+
+ACTOR NZ19 : GenericPushwall 22025
+{}
+
+ACTOR NZ1A : GenericPushwall 22026
+{}
+
+ACTOR NZ1B : GenericPushwall 22027
+{}
+
+ACTOR NZ1C : GenericPushwall 22028
+{}
+
+ACTOR NZ1D : GenericPushwall 22029
+{}
+
+ACTOR NZ1E : GenericPushwall 22030
+{}
+
+ACTOR NZ1F : GenericPushwall 22031
+{}
+
+ACTOR NZ20 : GenericPushwall 22032
+{}
+
+ACTOR NZ21 : GenericPushwall 22033
+{}
+
+ACTOR NZ22 : GenericPushwall 22034
+{}
+
+ACTOR NZ23 : GenericPushwall 22035
+{}
+
+ACTOR NZ24 : GenericPushwall 22036
+{}
+
+ACTOR NZ25 : GenericPushwall 22037
+{}
+
+ACTOR NZ26 : GenericPushwall 22038
+{}
+
+ACTOR NZ27 : GenericPushwall 22039
+{}
+
+ACTOR NZ28 : GenericPushwall 22040
+{}
+
+ACTOR NZ29 : GenericPushwall 22041
+{}
+
+ACTOR NZ2A : GenericPushwall 22042
+{}
+
+ACTOR NZ2B : GenericPushwall 22043
+{}
+
+ACTOR NZ2C : GenericPushwall 22044
+{}
+
+ACTOR NZ2D : GenericPushwall 22045
+{}
+
+ACTOR NZ2E : GenericPushwall 22046
+{}
+
+ACTOR NZ2F : GenericPushwall 22047
+{}
+
+ACTOR NZ30 : GenericPushwall 22048
+{}
+
+ACTOR NZ31 : GenericPushwall 22049
+{}
+
+ACTOR NZ32 : GenericPushwall 22050
+{}
+
+ACTOR NZ33 : GenericPushwall 22051
+{}
+
+ACTOR NZ34 : GenericPushwall 22052
+{}
+
+ACTOR NZ35 : GenericPushwall 22053
+{}
+
+ACTOR NZ36 : GenericPushwall 22054
+{}
+
+ACTOR NZ37 : GenericPushwall 22055
+{}
+
+ACTOR NZ38 : GenericPushwall 22056
+{}
+
+ACTOR NZ39 : GenericPushwall 22057
+{}
+
+ACTOR NZ3A : GenericPushwall 22058
+{}
+
+ACTOR NZ3B : GenericPushwall 22059
+{}
+
+ACTOR NZ3C : GenericPushwall 22060
+{}
+
+ACTOR NZ3D : GenericPushwall 22061
+{}
+
+ACTOR NZ3E : GenericPushwall 22062
+{}
+
+ACTOR NZ3F : GenericPushwall 22063
+{}

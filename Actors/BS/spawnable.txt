@@ -1,0 +1,116 @@
+ACTOR BrownAlienContainer : BSDecoration 21074
+{
+	Height 40
+	Health 1
+	DeathSound "smallcanisteralien/release"
+	+SHOOTABLE
+	States
+	{
+		Spawn:
+			SBRN A -1
+//			SBRN A 15 A_LookEx (0, 0, 0, 0, 360, "Open")
+			Loop
+		Open:
+		Death:
+			SBRN B 0 A_SetTics (args[0])
+			SBRN B 4 A_Scream
+			SBRN C 4 A_FaceTarget
+			SBRN A 0 A_UnSetSolid
+			SBRN D 4 A_SpawnItemEx ("BrownAlien", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION + SXF_TRANSFERPOINTERS, 0, tid)
+//		Death:
+			SBRN E 35 A_SetSolid
+		Dead:
+			SBRN E -1
+			Stop		
+	}	
+}
+
+ACTOR BrownAlienContainerEmpty : BrownAlienContainer 21077
+{
+	Skip_Super
+	States
+	{
+		Spawn:
+		Goto Super::Dead
+	}
+}
+
+ACTOR GreenAlienContainer : BSDecoration 21073
+{
+	Height 40
+	States
+	{
+		Spawn:
+			SGRN A 15 A_LookEx (0, 0, 0, 0, 360, "Open")
+			Loop
+		Open:
+		Death:
+			SGRN B 5 A_SetTics (args[0])
+			SGRN C 4 A_FaceTarget
+			SGRN C 1 A_UnSetSolid
+			SGRN D 5 A_SpawnItemEx ("GreenAlien", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0, tid)
+		Dead:
+			SGRN E -1
+			Stop		
+	}	
+}
+
+ACTOR GreenAlienContainerBroken : GreenAlienContainer 21076
+{
+	Skip_Super
+	States
+	{
+		Spawn:
+		Goto Super::Dead
+	}
+}
+
+ACTOR PodAlienPod : BSDecoration 20036
+{
+	Height 40
+	States
+	{
+		Spawn:
+			SPOD W 15 A_LookEx (0, 0, 0, 0, 360, "Open")
+			Loop
+		Open:
+			SPOD W 5 A_SetTics (args[0])
+			SPOD X 5 A_FaceTarget
+			SPOD Y 5 A_UnSetSolid
+			SPOD Z 5 A_SpawnItemEx ("PodAlien", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0, tid)
+		Death:
+			TNT1 A 1
+			Stop		
+	}	
+}
+
+ACTOR MutantGuardTable 21072
+{
+	Height 40
+	States
+	{
+		Spawn:
+			SGRD A 15 A_LookEx (0, 0, 0, 0, 360, "Open")
+			Loop
+		Open:
+			SGRD A 5 A_SetTics (args[0])
+			SGRD B 5 A_FaceTarget
+			SGRD CD 5 A_UnSetSolid
+			SGRD E 5 A_SpawnItemEx ("MutantGuard", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0, tid)
+		Death:
+			SGRD E 35 A_SetSolid
+		Dead:
+			SGRD E -1
+			Stop
+	}	
+}
+
+ACTOR MutantGuardTableEmpty : MutantGuardTable 21075
+{
+	Skip_Super
+	States
+	{
+		Spawn:
+		Goto Super::Dead
+	}
+}

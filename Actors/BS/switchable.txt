@@ -1,0 +1,64 @@
+ACTOR Column_Plasma : SwitchableDecoration 21175
+{
+	var int user_Active;
+
+	Radius 32
+	Height 64
+	+Solid
+	Species "Barrier"
+	DamageType "BS"
+
+	States
+	{
+	Spawn:
+		COLP A 0
+		Goto Active
+	Active:
+		"####" A 0 ACS_NamedExecuteAlways("A_MarkMap", 0, 6)
+		"####" # 0 A_SetUserVar("user_Active", 1)
+		"####" # 0 ACS_ExecuteAlways(43, 0, tid, 1)
+		"####" # 0 A_SetSolid
+		"####" # 0 A_SetTics(Random(0, 2) * 5)
+		"####" # 0 A_Jump(256, "ActiveLoop")
+	ActiveLoop:
+		"####" ABC 5 //A_ActiveSound
+		Loop
+	Inactive:
+		"####" A 0 ACS_NamedExecuteAlways("A_MarkMap", 0, 0)
+		"####" # 0 A_SetUserVar("user_Active", 0)
+		"####" # 0 A_UnSetSolid
+		"####" # 0 ACS_ExecuteAlways(43, 0, tid, 0)
+		"####" Z -1
+		Wait
+	}
+}
+
+ACTOR Column_Electric : Column_Plasma 21174
+{
+	MeleeRange 64
+
+	States
+	{
+	Spawn:
+		COLE A 0
+		"####" A 0 ACS_NamedExecuteAlways("A_MarkMap", 0, 6)
+		Goto Active
+	ActiveLoop:
+		"####" A 5 A_LookEx(LOF_NOJUMP, 0, 64, 0, 0, "Spawn")
+		"####" # 0 A_JumpIfTargetOutsideMeleeRange(3)
+		"####" # 0 A_Explode(Random(1,10), 64)
+		"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+		"####" # 0 //A_PlaySound("arc/damage")
+		"####" B 5 A_LookEx(LOF_NOJUMP, 0, 64, 0, 0, "Spawn")
+		"####" # 0 A_JumpIfTargetOutsideMeleeRange(3)
+		"####" # 0 A_Explode(Random(1,10), 64)
+		"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+		"####" # 0 //A_PlaySound("arc/damage")
+		"####" C 5 A_LookEx(LOF_NOJUMP, 0, 64, 0, 0, "Spawn")
+		"####" # 0 A_JumpIfTargetOutsideMeleeRange(3)
+		"####" # 0 A_Explode(Random(1,10), 64)
+		"####" # 0 ACS_NamedExecuteAlways("A_SetAttacker", 0)
+		"####" # 0 //A_PlaySound("arc/damage")
+		Loop
+	}
+}

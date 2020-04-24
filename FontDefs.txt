@@ -1,0 +1,36 @@
+STATFNT
+{
+	SpaceWidth 5
+	Template BST%02d
+}
+
+SCOREFNT
+{
+	Template BSSC%02d
+}
+
+TINYFONT
+{
+	SpaceWidth 5
+	Template BST%02d
+}
+
+SMALLFONT
+{
+	Base 1
+	SpaceWidth 8
+	Template FONT5_%02d
+}
+
+MEDFONT
+{
+	Base 1
+	SpaceWidth 8
+	Template FONT2_%02d
+}
+
+BIGFONT
+{
+	Base 1
+	Template FONT4_%02d
+}

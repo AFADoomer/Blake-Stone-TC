@@ -1,0 +1,2073 @@
+//Items
+Sprite JAMHELLO, 64, 64 {Offset 32, 64 Graphic WSPR0000, 0, 0}
+Sprite POL1A0, 64, 64 {Offset 32, 64 Graphic WSPR0001, 0, 0}
+Sprite BARLA0, 64, 64 {Offset 32, 64 Graphic WSPR0002, 0, 0}
+Sprite TAB1A0, 64, 64 {Offset 32, 64 Graphic WSPR0003, 0, 0}
+Sprite LIT1A0, 64, 64 {Offset 32, 64 Graphic WSPR0004, 0, 0}
+Sprite SINKB0, 64, 64 {Offset 32, 64 Graphic WSPR0005, 0, 0}
+Sprite COLSA0, 64, 64 {Offset 32, 64 Graphic WSPR0006, 0, 0}
+Sprite POL2A0, 64, 64 {Offset 32, 64 Graphic WSPR0007, 0, 0}
+Sprite POL3A0, 64, 64 {Offset 32, 64 Graphic WSPR0008, 0, 0}
+Sprite PLT1A0, 64, 64 {Offset 32, 64 Graphic WSPR0009, 0, 0}
+Sprite BONEA0, 64, 64 {Offset 32, 64 Graphic WSPR0010, 0, 0}
+Sprite SINKA0, 64, 64 {Offset 32, 64 Graphic WSPR0011, 0, 0}
+Sprite PLT2A0, 64, 64 {Offset 32, 64 Graphic WSPR0012, 0, 0}
+Sprite VASEA0, 64, 64 {Offset 32, 64 Graphic WSPR0013, 0, 0}
+Sprite TAB2A0, 64, 64 {Offset 32, 64 Graphic WSPR0014, 0, 0}
+Sprite LIT5A0, 64, 64 {Offset 32, 64 Graphic WSPR0015, 0, 0}
+Sprite CHARB0, 64, 64 {Offset 32, 64 Graphic WSPR0016, 0, 0}
+Sprite TCANA0, 64, 64 {Offset 32, 64 Graphic WSPR0017, 0, 0}
+Sprite TCANB0, 64, 64 {Offset 32, 64 Graphic WSPR0018, 0, 0}
+Sprite PLT3A0, 64, 64 {Offset 32, 64 Graphic WSPR0019, 0, 0}
+Sprite TAB3A0, 64, 64 {Offset 32, 64 Graphic WSPR0020, 0, 0}
+Sprite LIT6A0, 64, 64 {Offset 32, 64 Graphic WSPR0021, 0, 0}
+Sprite EXITA0, 64, 64 {Offset 32, 64 Graphic WSPR0022, 0, 0}
+Sprite LIT7A0, 64, 64 {Offset 32, 64 Graphic WSPR0023, 0, 0}
+Sprite BBINA0, 64, 64 {Offset 32, 64 Graphic WSPR0024, 0, 0}
+Sprite WSFPP0, 64, 64 {Offset 32, 64 Graphic WSPR0025, 0, 0}
+Sprite STATA0, 64, 64 {Offset 32, 64 Graphic WSPR0026, 0, 0}
+Sprite BCHGB0, 64, 64 {Offset 32, 64 Graphic WSPR0027, 0, 0}
+Sprite WRAWP0, 64, 64 {Offset 32, 64 Graphic WSPR0028, 0, 0}
+Sprite WDNDP0, 64, 64 {Offset 32, 64 Graphic WSPR0029, 0, 0}
+Sprite HLTHE0, 64, 64 {Offset 32, 64 Graphic WSPR0030, 0, 0}
+Sprite FULLA0, 64, 64 {Offset 32, 64 Graphic WSPR0031, 0, 0}
+Sprite BCHGA0, 64, 64 {Offset 32, 64 Graphic WSPR0032, 0, 0}
+Sprite KEYSA0, 64, 64 {Offset 32, 64 Graphic WSPR0033, 0, 0}
+Sprite KEYSB0, 64, 64 {Offset 32, 64 Graphic WSPR0034, 0, 0}
+Sprite KEYSC0, 64, 64 {Offset 32, 64 Graphic WSPR0035, 0, 0}
+Sprite KEYSD0, 64, 64 {Offset 32, 64 Graphic WSPR0036, 0, 0}
+Sprite KEYSE0, 64, 64 {Offset 32, 64 Graphic WSPR0037, 0, 0}
+Sprite DESKA0, 64, 64 {Offset 32, 64 Graphic WSPR0038, 0, 0}
+Sprite CHARA0, 64, 64 {Offset 32, 64 Graphic WSPR0039, 0, 0}
+Sprite DESKB0, 64, 64 {Offset 32, 64 Graphic WSPR0040, 0, 0}
+Sprite HLTHC0, 64, 64 {Offset 32, 64 Graphic WSPR0041, 0, 0}
+Sprite BOWLA0, 64, 64 {Offset 32, 64 Graphic WSPR0042, 0, 0}
+Sprite HLTHD0, 64, 64 {Offset 32, 64 Graphic WSPR0043, 0, 0}
+Sprite MEATA0, 64, 64 {Offset 32, 64 Graphic WSPR0044, 0, 0}
+Sprite HLTHF0, 64, 64 {Offset 32, 64 Graphic WSPR0045, 0, 0}
+Sprite MEATG0, 64, 64 {Offset 32, 64 Graphic WSPR0046, 0, 0}
+Sprite WPDUP0, 64, 64 {Offset 32, 64 Graphic WSPR0047, 0, 0}
+Sprite LIT8A0, 64, 64 {Offset 32, 64 Graphic WSPR0048, 0, 0}
+Sprite TREAA0, 64, 64 {Offset 32, 64 Graphic WSPR0049, 0, 0}
+Sprite TREAC0, 64, 64 {Offset 32, 64 Graphic WSPR0050, 0, 0}
+Sprite TREAD0, 64, 64 {Offset 32, 64 Graphic WSPR0051, 0, 0}
+Sprite BXYLA0, 64, 64 {Offset 32, 64 Graphic WSPR0052, 0, 0}
+Sprite LIFEA0, 64, 64 {Offset 32, 64 Graphic LIFEA0, 0, 0}
+Sprite COLGA0, 64, 64 {Offset 32, 64 Graphic WSPR0053, 0, 0}
+Sprite COLGB0, 64, 64 {Offset 32, 64 Graphic WSPR0054, 0, 0}
+Sprite COLGC0, 64, 64 {Offset 32, 64 Graphic WSPR0055, 0, 0}
+Sprite LITAA0, 64, 64 {Offset 32, 64 Graphic WSPR0056, 0, 0}
+Sprite LITBB0, 64, 64 {Offset 32, 64 Graphic WSPR0057, 0, 0}
+Sprite OBOXA0, 64, 64 {Offset 32, 64 Graphic WSPR0058, 0, 0}
+Sprite OBOXB0, 64, 64 {Offset 32, 64 Graphic WSPR0059, 0, 0}
+Sprite CBOXA0, 64, 64 {Offset 32, 64 Graphic WSPR0060, 0, 0}
+Sprite BODYA0, 64, 64 {Offset 32, 64 Graphic WSPR0061, 0, 0}
+Sprite LITDA0, 64, 64 {Offset 32, 64 Graphic WSPR0062, 0, 0}
+Sprite FNTNA0, 64, 64 {Offset 32, 64 Graphic WSPR0063, 0, 0}
+Sprite TAB4A0, 64, 64 {Offset 32, 64 Graphic WSPR0065, 0, 0}
+Sprite CHARC0, 64, 64 {Offset 32, 64 Graphic WSPR0066, 0, 0}
+Sprite CHARD0, 64, 64 {Offset 32, 64 Graphic WSPR0067, 0, 0}
+Sprite BLODA0, 64, 64 {Offset 32, 64 Graphic WSPR0068, 0, 0}
+Sprite TREAE0, 64, 64 {Offset 32, 64 Graphic WSPR0069, 0, 0}
+Sprite TREAF0, 64, 64 {Offset 32, 64 Graphic WSPR0070, 0, 0}
+Sprite TREAG0, 64, 64 {Offset 32, 64 Graphic WSPR0071, 0, 0}
+Sprite COLGD0, 64, 64 {Offset 32, 64 Graphic WSPR0072, 0, 0}
+Sprite COLGE0, 64, 64 {Offset 32, 64 Graphic WSPR0073, 0, 0}
+Sprite COLGF0, 64, 64 {Offset 32, 64 Graphic WSPR0074, 0, 0}
+Sprite COLGG0, 64, 64 {Offset 32, 64 Graphic WSPR0075, 0, 0}
+Sprite COLGH0, 64, 64 {Offset 32, 64 Graphic WSPR0076, 0, 0}
+Sprite DEBRA0, 64, 64 {Offset 32, 64 Graphic WSPR0077, 0, 0}
+Sprite DEBRB0, 64, 64 {Offset 32, 64 Graphic WSPR0078, 0, 0}
+Sprite DEBRC0, 64, 64 {Offset 32, 64 Graphic WSPR0079, 0, 0}
+Sprite DEBRD0, 64, 64 {Offset 32, 64 Graphic WSPR0080, 0, 0}
+Sprite COINA0, 64, 64 {Offset 32, 64 Graphic WSPR0081, 0, 0}
+Sprite COINB0, 64, 64 {Offset 32, 64 Graphic WSPR0082, 0, 0}
+Sprite WACPP0, 64, 64 {Offset 32, 64 Graphic WSPR0083, 0, 0}
+Sprite VENTA0, 64, 64 {Offset 32, 64 Graphic WSPR0084, 0, 0}
+Sprite VENTB0, 64, 64 {Offset 32, 64 Graphic WSPR0085, 0, 0}
+Sprite VENTC0, 64, 64 {Offset 32, 64 Graphic WSPR0086, 0, 0}
+Sprite VENTD0, 64, 64 {Offset 32, 64 Graphic WSPR0087, 0, 0}
+Sprite VENTE0, 64, 64 {Offset 32, 64 Graphic WSPR0088, 0, 0}
+Sprite VENTF0, 64, 64 {Offset 32, 64 Graphic WSPR0089, 0, 0}
+Sprite VENTG0, 64, 64 {Offset 32, 64 Graphic WSPR0090, 0, 0}
+Sprite VENTH0, 64, 64 {Offset 32, 64 Graphic WSPR0091, 0, 0}
+Sprite VENTI0, 64, 64 {Offset 32, 64 Graphic WSPR0092, 0, 0}
+Sprite LIT9A0, 64, 64 {Offset 32, 64 Graphic WSPR0093, 0, 0}
+Sprite LIT9B0, 64, 64 {Offset 32, 64 Graphic WSPR0094, 0, 0}
+Sprite LIT9C0, 64, 64 {Offset 32, 64 Graphic WSPR0095, 0, 0}
+Sprite GRATA0, 64, 64 {Offset 32, 64 Graphic WSPR0096, 0, 0}
+Sprite GRATB0, 64, 64 {Offset 32, 64 Graphic WSPR0097, 0, 0}
+Sprite GRATC0, 64, 64 {Offset 32, 64 Graphic WSPR0098, 0, 0}
+Sprite GRATD0, 64, 64 {Offset 32, 64 Graphic WSPR0099, 0, 0}
+Sprite GRATE0, 64, 64 {Offset 32, 64 Graphic WSPR0100, 0, 0}
+Sprite LITBC0, 64, 64 {Offset 32, 64 Graphic WSPR0102, 0, 0}
+Sprite LITBD0, 64, 64 {Offset 32, 64 Graphic WSPR0103, 0, 0}
+Sprite LITBE0, 64, 64 {Offset 32, 64 Graphic WSPR0104, 0, 0}
+Sprite LITBF0, 64, 64 {Offset 32, 64 Graphic WSPR0105, 0, 0}
+Sprite BGRDZ1, 64, 64 {Offset 32, 64 Graphic WSPR0106, 0, 0}
+Sprite BGRDZ2, 64, 64 {Offset 32, 64 Graphic WSPR0107, 0, 0}
+Sprite BGRDZ3, 64, 64 {Offset 32, 64 Graphic WSPR0108, 0, 0}
+Sprite BGRDZ4, 64, 64 {Offset 32, 64 Graphic WSPR0109, 0, 0}
+Sprite BGRDZ5, 64, 64 {Offset 32, 64 Graphic WSPR0110, 0, 0}
+Sprite BGRDZ6, 64, 64 {Offset 32, 64 Graphic WSPR0111, 0, 0}
+Sprite BGRDZ7, 64, 64 {Offset 32, 64 Graphic WSPR0112, 0, 0}
+Sprite BGRDZ8, 64, 64 {Offset 32, 64 Graphic WSPR0113, 0, 0}
+Sprite BGRDA1, 64, 64 {Offset 32, 64 Graphic WSPR0114, 0, 0}
+Sprite BGRDA2, 64, 64 {Offset 32, 64 Graphic WSPR0115, 0, 0}
+Sprite BGRDA3, 64, 64 {Offset 32, 64 Graphic WSPR0116, 0, 0}
+Sprite BGRDA4, 64, 64 {Offset 32, 64 Graphic WSPR0117, 0, 0}
+Sprite BGRDA5, 64, 64 {Offset 32, 64 Graphic WSPR0118, 0, 0}
+Sprite BGRDA6, 64, 64 {Offset 32, 64 Graphic WSPR0119, 0, 0}
+Sprite BGRDA7, 64, 64 {Offset 32, 64 Graphic WSPR0120, 0, 0}
+Sprite BGRDA8, 64, 64 {Offset 32, 64 Graphic WSPR0121, 0, 0}
+Sprite BGRDB1, 64, 64 {Offset 32, 64 Graphic WSPR0122, 0, 0}
+Sprite BGRDB2, 64, 64 {Offset 32, 64 Graphic WSPR0123, 0, 0}
+Sprite BGRDB3, 64, 64 {Offset 32, 64 Graphic WSPR0124, 0, 0}
+Sprite BGRDB4, 64, 64 {Offset 32, 64 Graphic WSPR0125, 0, 0}
+Sprite BGRDB5, 64, 64 {Offset 32, 64 Graphic WSPR0126, 0, 0}
+Sprite BGRDB6, 64, 64 {Offset 32, 64 Graphic WSPR0127, 0, 0}
+Sprite BGRDB7, 64, 64 {Offset 32, 64 Graphic WSPR0128, 0, 0}
+Sprite BGRDB8, 64, 64 {Offset 32, 64 Graphic WSPR0129, 0, 0}
+Sprite BGRDC1, 64, 64 {Offset 32, 64 Graphic WSPR0130, 0, 0}
+Sprite BGRDC2, 64, 64 {Offset 32, 64 Graphic WSPR0131, 0, 0}
+Sprite BGRDC3, 64, 64 {Offset 32, 64 Graphic WSPR0132, 0, 0}
+Sprite BGRDC4, 64, 64 {Offset 32, 64 Graphic WSPR0133, 0, 0}
+Sprite BGRDC5, 64, 64 {Offset 32, 64 Graphic WSPR0134, 0, 0}
+Sprite BGRDC6, 64, 64 {Offset 32, 64 Graphic WSPR0135, 0, 0}
+Sprite BGRDC7, 64, 64 {Offset 32, 64 Graphic WSPR0136, 0, 0}
+Sprite BGRDC8, 64, 64 {Offset 32, 64 Graphic WSPR0137, 0, 0}
+Sprite BGRDD1, 64, 64 {Offset 32, 64 Graphic WSPR0138, 0, 0}
+Sprite BGRDD2, 64, 64 {Offset 32, 64 Graphic WSPR0139, 0, 0}
+Sprite BGRDD3, 64, 64 {Offset 32, 64 Graphic WSPR0140, 0, 0}
+Sprite BGRDD4, 64, 64 {Offset 32, 64 Graphic WSPR0141, 0, 0}
+Sprite BGRDD5, 64, 64 {Offset 32, 64 Graphic WSPR0142, 0, 0}
+Sprite BGRDD6, 64, 64 {Offset 32, 64 Graphic WSPR0143, 0, 0}
+Sprite BGRDD7, 64, 64 {Offset 32, 64 Graphic WSPR0144, 0, 0}
+Sprite BGRDD8, 64, 64 {Offset 32, 64 Graphic WSPR0145, 0, 0}
+Sprite BGRDE0, 64, 64 {Offset 32, 64 Graphic WSPR0146, 0, 0}
+Sprite BGRDF0, 64, 64 {Offset 32, 64 Graphic WSPR0147, 0, 0}
+Sprite BGRDG0, 64, 64 {Offset 32, 64 Graphic WSPR0148, 0, 0}
+Sprite BGRDH0, 64, 64 {Offset 32, 64 Graphic WSPR0149, 0, 0}
+Sprite BGRDI0, 64, 64 {Offset 32, 64 Graphic WSPR0150, 0, 0}
+Sprite BGRDJ0, 64, 64 {Offset 32, 64 Graphic WSPR0151, 0, 0}
+Sprite BGRDK0, 64, 64 {Offset 32, 64 Graphic WSPR0152, 0, 0}
+Sprite BGRDL0, 64, 64 {Offset 32, 64 Graphic WSPR0153, 0, 0}
+Sprite BGRDM0, 64, 64 {Offset 32, 64 Graphic WSPR0154, 0, 0}
+Sprite PGRDZ1, 64, 64 {Offset 32, 64 Graphic WSPR0155, 0, 0}
+Sprite PGRDZ2, 64, 64 {Offset 32, 64 Graphic WSPR0156, 0, 0}
+Sprite PGRDZ3, 64, 64 {Offset 32, 64 Graphic WSPR0157, 0, 0}
+Sprite PGRDZ4, 64, 64 {Offset 32, 64 Graphic WSPR0158, 0, 0}
+Sprite PGRDZ5, 64, 64 {Offset 32, 64 Graphic WSPR0159, 0, 0}
+Sprite PGRDZ6, 64, 64 {Offset 32, 64 Graphic WSPR0160, 0, 0}
+Sprite PGRDZ7, 64, 64 {Offset 32, 64 Graphic WSPR0161, 0, 0}
+Sprite PGRDZ8, 64, 64 {Offset 32, 64 Graphic WSPR0162, 0, 0}
+Sprite PGRDA1, 64, 64 {Offset 32, 64 Graphic WSPR0163, 0, 0}
+Sprite PGRDA2, 64, 64 {Offset 32, 64 Graphic WSPR0164, 0, 0}
+Sprite PGRDA3, 64, 64 {Offset 32, 64 Graphic WSPR0165, 0, 0}
+Sprite PGRDA4, 64, 64 {Offset 32, 64 Graphic WSPR0166, 0, 0}
+Sprite PGRDA5, 64, 64 {Offset 32, 64 Graphic WSPR0167, 0, 0}
+Sprite PGRDA6, 64, 64 {Offset 32, 64 Graphic WSPR0168, 0, 0}
+Sprite PGRDA7, 64, 64 {Offset 32, 64 Graphic WSPR0169, 0, 0}
+Sprite PGRDA8, 64, 64 {Offset 32, 64 Graphic WSPR0170, 0, 0}
+Sprite PGRDB1, 64, 64 {Offset 32, 64 Graphic WSPR0171, 0, 0}
+Sprite PGRDB2, 64, 64 {Offset 32, 64 Graphic WSPR0172, 0, 0}
+Sprite PGRDB3, 64, 64 {Offset 32, 64 Graphic WSPR0173, 0, 0}
+Sprite PGRDB4, 64, 64 {Offset 32, 64 Graphic WSPR0174, 0, 0}
+Sprite PGRDB5, 64, 64 {Offset 32, 64 Graphic WSPR0175, 0, 0}
+Sprite PGRDB6, 64, 64 {Offset 32, 64 Graphic WSPR0176, 0, 0}
+Sprite PGRDB7, 64, 64 {Offset 32, 64 Graphic WSPR0177, 0, 0}
+Sprite PGRDB8, 64, 64 {Offset 32, 64 Graphic WSPR0178, 0, 0}
+Sprite PGRDC1, 64, 64 {Offset 32, 64 Graphic WSPR0179, 0, 0}
+Sprite PGRDC2, 64, 64 {Offset 32, 64 Graphic WSPR0180, 0, 0}
+Sprite PGRDC3, 64, 64 {Offset 32, 64 Graphic WSPR0181, 0, 0}
+Sprite PGRDC4, 64, 64 {Offset 32, 64 Graphic WSPR0182, 0, 0}
+Sprite PGRDC5, 64, 64 {Offset 32, 64 Graphic WSPR0183, 0, 0}
+Sprite PGRDC6, 64, 64 {Offset 32, 64 Graphic WSPR0184, 0, 0}
+Sprite PGRDC7, 64, 64 {Offset 32, 64 Graphic WSPR0185, 0, 0}
+Sprite PGRDC8, 64, 64 {Offset 32, 64 Graphic WSPR0186, 0, 0}
+Sprite PGRDD1, 64, 64 {Offset 32, 64 Graphic WSPR0187, 0, 0}
+Sprite PGRDD2, 64, 64 {Offset 32, 64 Graphic WSPR0188, 0, 0}
+Sprite PGRDD3, 64, 64 {Offset 32, 64 Graphic WSPR0189, 0, 0}
+Sprite PGRDD4, 64, 64 {Offset 32, 64 Graphic WSPR0190, 0, 0}
+Sprite PGRDD5, 64, 64 {Offset 32, 64 Graphic WSPR0191, 0, 0}
+Sprite PGRDD6, 64, 64 {Offset 32, 64 Graphic WSPR0192, 0, 0}
+Sprite PGRDD7, 64, 64 {Offset 32, 64 Graphic WSPR0193, 0, 0}
+Sprite PGRDD8, 64, 64 {Offset 32, 64 Graphic WSPR0194, 0, 0}
+Sprite PGRDE0, 64, 64 {Offset 32, 64 Graphic WSPR0195, 0, 0}
+Sprite PGRDF0, 64, 64 {Offset 32, 64 Graphic WSPR0196, 0, 0}
+Sprite PGRDG0, 64, 64 {Offset 32, 64 Graphic WSPR0197, 0, 0}
+Sprite PGRDH0, 64, 64 {Offset 32, 64 Graphic WSPR0198, 0, 0}
+Sprite PGRDI0, 64, 64 {Offset 32, 64 Graphic WSPR0199, 0, 0}
+Sprite PGRDJ0, 64, 64 {Offset 32, 64 Graphic WSPR0200, 0, 0}
+Sprite PGRDK0, 64, 64 {Offset 32, 64 Graphic WSPR0201, 0, 0}
+Sprite PGRDL0, 64, 64 {Offset 32, 64 Graphic WSPR0202, 0, 0}
+Sprite PGRDM0, 64, 64 {Offset 32, 64 Graphic WSPR0203, 0, 0}
+Sprite PGRDN0, 64, 64 {Offset 32, 64 Graphic WSPR0204, 0, 0}
+Sprite GGRDZ1, 64, 64 {Offset 32, 64 Graphic WSPR0205, 0, 0}
+Sprite GGRDZ2, 64, 64 {Offset 32, 64 Graphic WSPR0206, 0, 0}
+Sprite GGRDZ3, 64, 64 {Offset 32, 64 Graphic WSPR0207, 0, 0}
+Sprite GGRDZ4, 64, 64 {Offset 32, 64 Graphic WSPR0208, 0, 0}
+Sprite GGRDZ5, 64, 64 {Offset 32, 64 Graphic WSPR0209, 0, 0}
+Sprite GGRDZ6, 64, 64 {Offset 32, 64 Graphic WSPR0210, 0, 0}
+Sprite GGRDZ7, 64, 64 {Offset 32, 64 Graphic WSPR0211, 0, 0}
+Sprite GGRDZ8, 64, 64 {Offset 32, 64 Graphic WSPR0212, 0, 0}
+Sprite GGRDA1, 64, 64 {Offset 32, 64 Graphic WSPR0213, 0, 0}
+Sprite GGRDA2, 64, 64 {Offset 32, 64 Graphic WSPR0214, 0, 0}
+Sprite GGRDA3, 64, 64 {Offset 32, 64 Graphic WSPR0215, 0, 0}
+Sprite GGRDA4, 64, 64 {Offset 32, 64 Graphic WSPR0216, 0, 0}
+Sprite GGRDA5, 64, 64 {Offset 32, 64 Graphic WSPR0217, 0, 0}
+Sprite GGRDA6, 64, 64 {Offset 32, 64 Graphic WSPR0218, 0, 0}
+Sprite GGRDA7, 64, 64 {Offset 32, 64 Graphic WSPR0219, 0, 0}
+Sprite GGRDA8, 64, 64 {Offset 32, 64 Graphic WSPR0220, 0, 0}
+Sprite GGRDB1, 64, 64 {Offset 32, 64 Graphic WSPR0221, 0, 0}
+Sprite GGRDB2, 64, 64 {Offset 32, 64 Graphic WSPR0222, 0, 0}
+Sprite GGRDB3, 64, 64 {Offset 32, 64 Graphic WSPR0223, 0, 0}
+Sprite GGRDB4, 64, 64 {Offset 32, 64 Graphic WSPR0224, 0, 0}
+Sprite GGRDB5, 64, 64 {Offset 32, 64 Graphic WSPR0225, 0, 0}
+Sprite GGRDB6, 64, 64 {Offset 32, 64 Graphic WSPR0226, 0, 0}
+Sprite GGRDB7, 64, 64 {Offset 32, 64 Graphic WSPR0227, 0, 0}
+Sprite GGRDB8, 64, 64 {Offset 32, 64 Graphic WSPR0228, 0, 0}
+Sprite GGRDC1, 64, 64 {Offset 32, 64 Graphic WSPR0229, 0, 0}
+Sprite GGRDC2, 64, 64 {Offset 32, 64 Graphic WSPR0230, 0, 0}
+Sprite GGRDC3, 64, 64 {Offset 32, 64 Graphic WSPR0231, 0, 0}
+Sprite GGRDC4, 64, 64 {Offset 32, 64 Graphic WSPR0232, 0, 0}
+Sprite GGRDC5, 64, 64 {Offset 32, 64 Graphic WSPR0233, 0, 0}
+Sprite GGRDC6, 64, 64 {Offset 32, 64 Graphic WSPR0234, 0, 0}
+Sprite GGRDC7, 64, 64 {Offset 32, 64 Graphic WSPR0235, 0, 0}
+Sprite GGRDC8, 64, 64 {Offset 32, 64 Graphic WSPR0236, 0, 0}
+Sprite GGRDD1, 64, 64 {Offset 32, 64 Graphic WSPR0237, 0, 0}
+Sprite GGRDD2, 64, 64 {Offset 32, 64 Graphic WSPR0238, 0, 0}
+Sprite GGRDD3, 64, 64 {Offset 32, 64 Graphic WSPR0239, 0, 0}
+Sprite GGRDD4, 64, 64 {Offset 32, 64 Graphic WSPR0240, 0, 0}
+Sprite GGRDD5, 64, 64 {Offset 32, 64 Graphic WSPR0241, 0, 0}
+Sprite GGRDD6, 64, 64 {Offset 32, 64 Graphic WSPR0242, 0, 0}
+Sprite GGRDD7, 64, 64 {Offset 32, 64 Graphic WSPR0243, 0, 0}
+Sprite GGRDD8, 64, 64 {Offset 32, 64 Graphic WSPR0244, 0, 0}
+Sprite GGRDE0, 64, 64 {Offset 32, 64 Graphic WSPR0245, 0, 0}
+Sprite GGRDF0, 64, 64 {Offset 32, 64 Graphic WSPR0246, 0, 0}
+Sprite GGRDG0, 64, 64 {Offset 32, 64 Graphic WSPR0247, 0, 0}
+Sprite GGRDH0, 64, 64 {Offset 32, 64 Graphic WSPR0248, 0, 0}
+Sprite GGRDI0, 64, 64 {Offset 32, 64 Graphic WSPR0249, 0, 0}
+Sprite GGRDJ0, 64, 64 {Offset 32, 64 Graphic WSPR0250, 0, 0}
+Sprite GGRDK0, 64, 64 {Offset 32, 64 Graphic WSPR0251, 0, 0}
+Sprite GGRDL0, 64, 64 {Offset 32, 64 Graphic WSPR0252, 0, 0}
+Sprite GGRDM0, 64, 64 {Offset 32, 64 Graphic WSPR0253, 0, 0}
+Sprite GGRDN0, 64, 64 {Offset 32, 64 Graphic WSPR0254, 0, 0}
+Sprite GGRDO0, 64, 64 {Offset 32, 64 Graphic WSPR0255, 0, 0}
+Sprite GGRDP0, 64, 64 {Offset 32, 64 Graphic WSPR0256, 0, 0}
+Sprite GGRDQ0, 64, 64 {Offset 32, 64 Graphic WSPR0257, 0, 0}
+Sprite GGRDR0, 64, 64 {Offset 32, 64 Graphic WSPR0258, 0, 0}
+Sprite BSCIZ1, 64, 64 {Offset 32, 64 Graphic WSPR0259, 0, 0}
+Sprite BSCIZ2, 64, 64 {Offset 32, 64 Graphic WSPR0260, 0, 0}
+Sprite BSCIZ3, 64, 64 {Offset 32, 64 Graphic WSPR0261, 0, 0}
+Sprite BSCIZ4, 64, 64 {Offset 32, 64 Graphic WSPR0262, 0, 0}
+Sprite BSCIZ5, 64, 64 {Offset 32, 64 Graphic WSPR0263, 0, 0}
+Sprite BSCIZ6, 64, 64 {Offset 32, 64 Graphic WSPR0264, 0, 0}
+Sprite BSCIZ7, 64, 64 {Offset 32, 64 Graphic WSPR0265, 0, 0}
+Sprite BSCIZ8, 64, 64 {Offset 32, 64 Graphic WSPR0266, 0, 0}
+Sprite BSCIA1, 64, 64 {Offset 32, 64 Graphic WSPR0267, 0, 0}
+Sprite BSCIA2, 64, 64 {Offset 32, 64 Graphic WSPR0268, 0, 0}
+Sprite BSCIA3, 64, 64 {Offset 32, 64 Graphic WSPR0269, 0, 0}
+Sprite BSCIA4, 64, 64 {Offset 32, 64 Graphic WSPR0270, 0, 0}
+Sprite BSCIA5, 64, 64 {Offset 32, 64 Graphic WSPR0271, 0, 0}
+Sprite BSCIA6, 64, 64 {Offset 32, 64 Graphic WSPR0272, 0, 0}
+Sprite BSCIA7, 64, 64 {Offset 32, 64 Graphic WSPR0273, 0, 0}
+Sprite BSCIA8, 64, 64 {Offset 32, 64 Graphic WSPR0274, 0, 0}
+Sprite BSCIB1, 64, 64 {Offset 32, 64 Graphic WSPR0275, 0, 0}
+Sprite BSCIB2, 64, 64 {Offset 32, 64 Graphic WSPR0276, 0, 0}
+Sprite BSCIB3, 64, 64 {Offset 32, 64 Graphic WSPR0277, 0, 0}
+Sprite BSCIB4, 64, 64 {Offset 32, 64 Graphic WSPR0278, 0, 0}
+Sprite BSCIB5, 64, 64 {Offset 32, 64 Graphic WSPR0279, 0, 0}
+Sprite BSCIB6, 64, 64 {Offset 32, 64 Graphic WSPR0280, 0, 0}
+Sprite BSCIB7, 64, 64 {Offset 32, 64 Graphic WSPR0281, 0, 0}
+Sprite BSCIB8, 64, 64 {Offset 32, 64 Graphic WSPR0282, 0, 0}
+Sprite BSCIC1, 64, 64 {Offset 32, 64 Graphic WSPR0283, 0, 0}
+Sprite BSCIC2, 64, 64 {Offset 32, 64 Graphic WSPR0284, 0, 0}
+Sprite BSCIC3, 64, 64 {Offset 32, 64 Graphic WSPR0285, 0, 0}
+Sprite BSCIC4, 64, 64 {Offset 32, 64 Graphic WSPR0286, 0, 0}
+Sprite BSCIC5, 64, 64 {Offset 32, 64 Graphic WSPR0287, 0, 0}
+Sprite BSCIC6, 64, 64 {Offset 32, 64 Graphic WSPR0288, 0, 0}
+Sprite BSCIC7, 64, 64 {Offset 32, 64 Graphic WSPR0289, 0, 0}
+Sprite BSCIC8, 64, 64 {Offset 32, 64 Graphic WSPR0290, 0, 0}
+Sprite BSCID1, 64, 64 {Offset 32, 64 Graphic WSPR0291, 0, 0}
+Sprite BSCID2, 64, 64 {Offset 32, 64 Graphic WSPR0292, 0, 0}
+Sprite BSCID3, 64, 64 {Offset 32, 64 Graphic WSPR0293, 0, 0}
+Sprite BSCID4, 64, 64 {Offset 32, 64 Graphic WSPR0294, 0, 0}
+Sprite BSCID5, 64, 64 {Offset 32, 64 Graphic WSPR0295, 0, 0}
+Sprite BSCID6, 64, 64 {Offset 32, 64 Graphic WSPR0296, 0, 0}
+Sprite BSCID7, 64, 64 {Offset 32, 64 Graphic WSPR0297, 0, 0}
+Sprite BSCID8, 64, 64 {Offset 32, 64 Graphic WSPR0298, 0, 0}
+Sprite BSCIE0, 64, 64 {Offset 32, 64 Graphic WSPR0299, 0, 0}
+Sprite BSCIF0, 64, 64 {Offset 32, 64 Graphic WSPR0300, 0, 0}
+Sprite BSCIG0, 64, 64 {Offset 32, 64 Graphic WSPR0301, 0, 0}
+Sprite BSCIH0, 64, 64 {Offset 32, 64 Graphic WSPR0302, 0, 0}
+Sprite BSCII0, 64, 64 {Offset 32, 64 Graphic WSPR0303, 0, 0}
+Sprite BSCIJ0, 64, 64 {Offset 32, 64 Graphic WSPR0304, 0, 0}
+Sprite BSCIK0, 64, 64 {Offset 32, 64 Graphic WSPR0305, 0, 0}
+Sprite BSCIL0, 64, 64 {Offset 32, 64 Graphic WSPR0306, 0, 0}
+Sprite BSCIM0, 64, 64 {Offset 32, 64 Graphic WSPR0307, 0, 0}
+Sprite BSCIN0, 64, 64 {Offset 32, 64 Graphic WSPR0308, 0, 0}
+Sprite GFIRZ1, 64, 64 {Offset 32, 64 Graphic WSPR0309, 0, 0}
+Sprite GFIRZ2, 64, 64 {Offset 32, 64 Graphic WSPR0310, 0, 0}
+Sprite GFIRZ3, 64, 64 {Offset 32, 64 Graphic WSPR0311, 0, 0}
+Sprite GFIRZ4, 64, 64 {Offset 32, 64 Graphic WSPR0312, 0, 0}
+Sprite GFIRZ5, 64, 64 {Offset 32, 64 Graphic WSPR0313, 0, 0}
+Sprite GFIRZ6, 64, 64 {Offset 32, 64 Graphic WSPR0314, 0, 0}
+Sprite GFIRZ7, 64, 64 {Offset 32, 64 Graphic WSPR0315, 0, 0}
+Sprite GFIRZ8, 64, 64 {Offset 32, 64 Graphic WSPR0316, 0, 0}
+Sprite GFIRA1, 64, 64 {Offset 32, 64 Graphic WSPR0317, 0, 0}
+Sprite GFIRA2, 64, 64 {Offset 32, 64 Graphic WSPR0318, 0, 0}
+Sprite GFIRA3, 64, 64 {Offset 32, 64 Graphic WSPR0319, 0, 0}
+Sprite GFIRA4, 64, 64 {Offset 32, 64 Graphic WSPR0320, 0, 0}
+Sprite GFIRA5, 64, 64 {Offset 32, 64 Graphic WSPR0321, 0, 0}
+Sprite GFIRA6, 64, 64 {Offset 32, 64 Graphic WSPR0322, 0, 0}
+Sprite GFIRA7, 64, 64 {Offset 32, 64 Graphic WSPR0323, 0, 0}
+Sprite GFIRA8, 64, 64 {Offset 32, 64 Graphic WSPR0324, 0, 0}
+Sprite GFIRB1, 64, 64 {Offset 32, 64 Graphic WSPR0325, 0, 0}
+Sprite GFIRB2, 64, 64 {Offset 32, 64 Graphic WSPR0326, 0, 0}
+Sprite GFIRB3, 64, 64 {Offset 32, 64 Graphic WSPR0327, 0, 0}
+Sprite GFIRB4, 64, 64 {Offset 32, 64 Graphic WSPR0328, 0, 0}
+Sprite GFIRB5, 64, 64 {Offset 32, 64 Graphic WSPR0329, 0, 0}
+Sprite GFIRB6, 64, 64 {Offset 32, 64 Graphic WSPR0330, 0, 0}
+Sprite GFIRB7, 64, 64 {Offset 32, 64 Graphic WSPR0331, 0, 0}
+Sprite GFIRB8, 64, 64 {Offset 32, 64 Graphic WSPR0332, 0, 0}
+Sprite GFIRC1, 64, 64 {Offset 32, 64 Graphic WSPR0333, 0, 0}
+Sprite GFIRC2, 64, 64 {Offset 32, 64 Graphic WSPR0334, 0, 0}
+Sprite GFIRC3, 64, 64 {Offset 32, 64 Graphic WSPR0335, 0, 0}
+Sprite GFIRC4, 64, 64 {Offset 32, 64 Graphic WSPR0336, 0, 0}
+Sprite GFIRC5, 64, 64 {Offset 32, 64 Graphic WSPR0337, 0, 0}
+Sprite GFIRC6, 64, 64 {Offset 32, 64 Graphic WSPR0338, 0, 0}
+Sprite GFIRC7, 64, 64 {Offset 32, 64 Graphic WSPR0339, 0, 0}
+Sprite GFIRC8, 64, 64 {Offset 32, 64 Graphic WSPR0340, 0, 0}
+Sprite GFIRD1, 64, 64 {Offset 32, 64 Graphic WSPR0341, 0, 0}
+Sprite GFIRD2, 64, 64 {Offset 32, 64 Graphic WSPR0342, 0, 0}
+Sprite GFIRD3, 64, 64 {Offset 32, 64 Graphic WSPR0343, 0, 0}
+Sprite GFIRD4, 64, 64 {Offset 32, 64 Graphic WSPR0344, 0, 0}
+Sprite GFIRD5, 64, 64 {Offset 32, 64 Graphic WSPR0345, 0, 0}
+Sprite GFIRD6, 64, 64 {Offset 32, 64 Graphic WSPR0346, 0, 0}
+Sprite GFIRD7, 64, 64 {Offset 32, 64 Graphic WSPR0347, 0, 0}
+Sprite GFIRD8, 64, 64 {Offset 32, 64 Graphic WSPR0348, 0, 0}
+Sprite GFIRE0, 64, 64 {Offset 32, 64 Graphic WSPR0349, 0, 0}
+Sprite GFIRF0, 64, 64 {Offset 32, 64 Graphic WSPR0350, 0, 0}
+Sprite GFIRG0, 64, 64 {Offset 32, 64 Graphic WSPR0351, 0, 0}
+Sprite GFIRH0, 64, 64 {Offset 32, 64 Graphic WSPR0352, 0, 0}
+Sprite GFIRI0, 64, 64 {Offset 32, 64 Graphic WSPR0353, 0, 0}
+Sprite GFIRJ0, 64, 64 {Offset 32, 64 Graphic WSPR0354, 0, 0}
+Sprite GFIRK0, 64, 64 {Offset 32, 64 Graphic WSPR0355, 0, 0}
+Sprite GFIRL0, 64, 64 {Offset 32, 64 Graphic WSPR0356, 0, 0}
+Sprite GFIRM0, 64, 64 {Offset 32, 64 Graphic WSPR0357, 0, 0}
+Sprite GFIRN0, 64, 64 {Offset 32, 64 Graphic WSPR0358, 0, 0}
+Sprite GFIRO0, 64, 64 {Offset 32, 64 Graphic WSPR0359, 0, 0}
+Sprite VOLTA1, 64, 64 {Offset 32, 64 Graphic WSPR0360, 0, 0}
+Sprite VOLTA2, 64, 64 {Offset 32, 64 Graphic WSPR0361, 0, 0}
+Sprite VOLTA3, 64, 64 {Offset 32, 64 Graphic WSPR0362, 0, 0}
+Sprite VOLTA4, 64, 64 {Offset 32, 64 Graphic WSPR0363, 0, 0}
+Sprite VOLTA5, 64, 64 {Offset 32, 64 Graphic WSPR0364, 0, 0}
+Sprite VOLTA6, 64, 64 {Offset 32, 64 Graphic WSPR0365, 0, 0}
+Sprite VOLTA7, 64, 64 {Offset 32, 64 Graphic WSPR0366, 0, 0}
+Sprite VOLTA8, 64, 64 {Offset 32, 64 Graphic WSPR0367, 0, 0}
+Sprite VOLTB1, 64, 64 {Offset 32, 64 Graphic WSPR0368, 0, 0}
+Sprite VOLTB2, 64, 64 {Offset 32, 64 Graphic WSPR0369, 0, 0}
+Sprite VOLTB3, 64, 64 {Offset 32, 64 Graphic WSPR0370, 0, 0}
+Sprite VOLTB4, 64, 64 {Offset 32, 64 Graphic WSPR0371, 0, 0}
+Sprite VOLTB5, 64, 64 {Offset 32, 64 Graphic WSPR0372, 0, 0}
+Sprite VOLTB6, 64, 64 {Offset 32, 64 Graphic WSPR0373, 0, 0}
+Sprite VOLTB7, 64, 64 {Offset 32, 64 Graphic WSPR0374, 0, 0}
+Sprite VOLTB8, 64, 64 {Offset 32, 64 Graphic WSPR0375, 0, 0}
+Sprite VOLTC1, 64, 64 {Offset 32, 64 Graphic WSPR0376, 0, 0}
+Sprite VOLTC2, 64, 64 {Offset 32, 64 Graphic WSPR0377, 0, 0}
+Sprite VOLTC3, 64, 64 {Offset 32, 64 Graphic WSPR0378, 0, 0}
+Sprite VOLTC4, 64, 64 {Offset 32, 64 Graphic WSPR0379, 0, 0}
+Sprite VOLTC5, 64, 64 {Offset 32, 64 Graphic WSPR0380, 0, 0}
+Sprite VOLTC6, 64, 64 {Offset 32, 64 Graphic WSPR0381, 0, 0}
+Sprite VOLTC7, 64, 64 {Offset 32, 64 Graphic WSPR0382, 0, 0}
+Sprite VOLTC8, 64, 64 {Offset 32, 64 Graphic WSPR0383, 0, 0}
+Sprite VOLTD1, 64, 64 {Offset 32, 64 Graphic WSPR0384, 0, 0}
+Sprite VOLTD2, 64, 64 {Offset 32, 64 Graphic WSPR0385, 0, 0}
+Sprite VOLTD3, 64, 64 {Offset 32, 64 Graphic WSPR0386, 0, 0}
+Sprite VOLTD4, 64, 64 {Offset 32, 64 Graphic WSPR0387, 0, 0}
+Sprite VOLTD5, 64, 64 {Offset 32, 64 Graphic WSPR0388, 0, 0}
+Sprite VOLTD6, 64, 64 {Offset 32, 64 Graphic WSPR0389, 0, 0}
+Sprite VOLTD7, 64, 64 {Offset 32, 64 Graphic WSPR0390, 0, 0}
+Sprite VOLTD8, 64, 64 {Offset 32, 64 Graphic WSPR0391, 0, 0}
+Sprite VOLTE0, 64, 64 {Offset 32, 64 Graphic WSPR0392, 0, 0}
+Sprite VOLTF0, 64, 64 {Offset 32, 64 Graphic WSPR0393, 0, 0}
+Sprite VOLTG0, 64, 64 {Offset 32, 64 Graphic WSPR0394, 0, 0}
+Sprite VOLTH0, 64, 64 {Offset 32, 64 Graphic WSPR0395, 0, 0}
+Sprite VOLTI0, 64, 64 {Offset 32, 64 Graphic WSPR0396, 0, 0}
+Sprite VOLTJ0, 64, 64 {Offset 32, 64 Graphic WSPR0397, 0, 0}
+Sprite VOLTK0, 64, 64 {Offset 32, 64 Graphic WSPR0398, 0, 0}
+Sprite VOLTL0, 64, 64 {Offset 32, 64 Graphic WSPR0399, 0, 0}
+Sprite VOLTM0, 64, 64 {Offset 32, 64 Graphic WSPR0400, 0, 0}
+Sprite PDRNA1, 64, 64 {Offset 32, 64 Graphic WSPR0401, 0, 0}
+Sprite PDRNA2, 64, 64 {Offset 32, 64 Graphic WSPR0402, 0, 0}
+Sprite PDRNA3, 64, 64 {Offset 32, 64 Graphic WSPR0403, 0, 0}
+Sprite PDRNA4, 64, 64 {Offset 32, 64 Graphic WSPR0404, 0, 0}
+Sprite PDRNA5, 64, 64 {Offset 32, 64 Graphic WSPR0405, 0, 0}
+Sprite PDRNA6, 64, 64 {Offset 32, 64 Graphic WSPR0406, 0, 0}
+Sprite PDRNA7, 64, 64 {Offset 32, 64 Graphic WSPR0407, 0, 0}
+Sprite PDRNA8, 64, 64 {Offset 32, 64 Graphic WSPR0408, 0, 0}
+Sprite PDRNB1, 64, 64 {Offset 32, 64 Graphic WSPR0409, 0, 0}
+Sprite PDRNB2, 64, 64 {Offset 32, 64 Graphic WSPR0410, 0, 0}
+Sprite PDRNB3, 64, 64 {Offset 32, 64 Graphic WSPR0411, 0, 0}
+Sprite PDRNB4, 64, 64 {Offset 32, 64 Graphic WSPR0412, 0, 0}
+Sprite PDRNB5, 64, 64 {Offset 32, 64 Graphic WSPR0413, 0, 0}
+Sprite PDRNB6, 64, 64 {Offset 32, 64 Graphic WSPR0414, 0, 0}
+Sprite PDRNB7, 64, 64 {Offset 32, 64 Graphic WSPR0415, 0, 0}
+Sprite PDRNB8, 64, 64 {Offset 32, 64 Graphic WSPR0416, 0, 0}
+Sprite PDRNC1, 64, 64 {Offset 32, 64 Graphic WSPR0417, 0, 0}
+Sprite PDRNC2, 64, 64 {Offset 32, 64 Graphic WSPR0418, 0, 0}
+Sprite PDRNC3, 64, 64 {Offset 32, 64 Graphic WSPR0419, 0, 0}
+Sprite PDRNC4, 64, 64 {Offset 32, 64 Graphic WSPR0420, 0, 0}
+Sprite PDRNC5, 64, 64 {Offset 32, 64 Graphic WSPR0421, 0, 0}
+Sprite PDRNC6, 64, 64 {Offset 32, 64 Graphic WSPR0422, 0, 0}
+Sprite PDRNC7, 64, 64 {Offset 32, 64 Graphic WSPR0423, 0, 0}
+Sprite PDRNC8, 64, 64 {Offset 32, 64 Graphic WSPR0424, 0, 0}
+Sprite PDRND1, 64, 64 {Offset 32, 64 Graphic WSPR0425, 0, 0}
+Sprite PDRND2, 64, 64 {Offset 32, 64 Graphic WSPR0426, 0, 0}
+Sprite PDRND3, 64, 64 {Offset 32, 64 Graphic WSPR0427, 0, 0}
+Sprite PDRND4, 64, 64 {Offset 32, 64 Graphic WSPR0428, 0, 0}
+Sprite PDRND5, 64, 64 {Offset 32, 64 Graphic WSPR0429, 0, 0}
+Sprite PDRND6, 64, 64 {Offset 32, 64 Graphic WSPR0430, 0, 0}
+Sprite PDRND7, 64, 64 {Offset 32, 64 Graphic WSPR0431, 0, 0}
+Sprite PDRND8, 64, 64 {Offset 32, 64 Graphic WSPR0432, 0, 0}
+Sprite PDRNE0, 64, 64 {Offset 32, 64 Graphic WSPR0433, 0, 0}
+Sprite PDRNF0, 64, 64 {Offset 32, 64 Graphic WSPR0434, 0, 0}
+Sprite PDRNG0, 64, 64 {Offset 32, 64 Graphic WSPR0435, 0, 0}
+Sprite PDRNH0, 64, 64 {Offset 32, 64 Graphic WSPR0436, 0, 0}
+Sprite PDRNI0, 64, 64 {Offset 32, 64 Graphic WSPR0437, 0, 0}
+Sprite PDRNJ0, 64, 64 {Offset 32, 64 Graphic WSPR0438, 0, 0}
+Sprite PDRNK0, 64, 64 {Offset 32, 64 Graphic WSPR0439, 0, 0}
+Sprite PDRNL0, 64, 64 {Offset 32, 64 Graphic WSPR0440, 0, 0}
+Sprite PGENA0, 64, 64 {Offset 32, 64 Graphic WSPR0446, 0, 0}
+Sprite PGENB0, 64, 64 {Offset 32, 64 Graphic WSPR0447, 0, 0}
+Sprite PGENC0, 64, 64 {Offset 32, 64 Graphic WSPR0448, 0, 0}
+Sprite PGEND0, 64, 64 {Offset 32, 64 Graphic WSPR0449, 0, 0}
+Sprite PGENE0, 64, 64 {Offset 32, 64 Graphic WSPR0450, 0, 0}
+Sprite PGENF0, 64, 64 {Offset 32, 64 Graphic WSPR0451, 0, 0}
+Sprite PGENG0, 64, 64 {Offset 32, 64 Graphic WSPR0452, 0, 0}
+Sprite PGENH0, 64, 64 {Offset 32, 64 Graphic WSPR0453, 0, 0}
+Sprite PGENI0, 64, 64 {Offset 32, 64 Graphic WSPR0454, 0, 0}
+Sprite PGENJ0, 64, 64 {Offset 32, 64 Graphic WSPR0455, 0, 0}
+Sprite PGENK0, 64, 64 {Offset 32, 64 Graphic WSPR0456, 0, 0}
+Sprite PGENL0, 64, 64 {Offset 32, 64 Graphic WSPR0457, 0, 0}
+Sprite PGENM0, 64, 64 {Offset 32, 64 Graphic WSPR0458, 0, 0}
+Sprite ALARA0, 64, 64 {Offset 32, 64 Graphic WSPR0459, 0, 0}
+Sprite ALARB0, 64, 64 {Offset 32, 64 Graphic WSPR0460, 0, 0}
+Sprite SPODA0, 64, 64 {Offset 32, 64 Graphic WSPR0461, 0, 0}
+Sprite SPODB0, 64, 64 {Offset 32, 64 Graphic WSPR0462, 0, 0}
+Sprite SPODC0, 64, 64 {Offset 32, 64 Graphic WSPR0463, 0, 0}
+Sprite SPODD0, 64, 64 {Offset 32, 64 Graphic WSPR0464, 0, 0}
+Sprite BPODA0, 64, 64 {Offset 32, 64 Graphic WSPR0465, 0, 0}
+Sprite BPODB0, 64, 64 {Offset 32, 64 Graphic WSPR0466, 0, 0}
+Sprite BPODC0, 64, 64 {Offset 32, 64 Graphic WSPR0467, 0, 0}
+Sprite BPODD0, 64, 64 {Offset 32, 64 Graphic WSPR0468, 0, 0}
+Sprite BPODE0, 64, 64 {Offset 32, 64 Graphic WSPR0469, 0, 0}
+Sprite BPODF0, 64, 64 {Offset 32, 64 Graphic WSPR0470, 0, 0}
+Sprite BPODG0, 64, 64 {Offset 32, 64 Graphic WSPR0471, 0, 0}
+Sprite BPODH0, 64, 64 {Offset 32, 64 Graphic WSPR0472, 0, 0}
+Sprite BPODI0, 64, 64 {Offset 32, 64 Graphic WSPR0473, 0, 0}
+Sprite BPODJ0, 64, 64 {Offset 32, 64 Graphic WSPR0474, 0, 0}
+Sprite BPODK0, 64, 64 {Offset 32, 64 Graphic WSPR0475, 0, 0}
+Sprite BPODL0, 64, 64 {Offset 32, 64 Graphic WSPR0476, 0, 0}
+Sprite BPODM0, 64, 64 {Offset 32, 64 Graphic WSPR0477, 0, 0}
+Sprite BPODN0, 64, 64 {Offset 32, 64 Graphic WSPR0478, 0, 0}
+Sprite SPLAA0, 64, 64 {Offset 32, 64 Graphic WSPR0479, 0, 0}
+Sprite SPLAB0, 64, 64 {Offset 32, 64 Graphic WSPR0480, 0, 0}
+Sprite SPLAC0, 64, 64 {Offset 32, 64 Graphic WSPR0481, 0, 0}
+Sprite BPLAA0, 64, 64 {Offset 32, 64 Graphic WSPR0482, 0, 0}
+Sprite BPLAB0, 64, 64 {Offset 32, 64 Graphic WSPR0483, 0, 0}
+Sprite BPLAC0, 64, 64 {Offset 32, 64 Graphic WSPR0484, 0, 0}
+Sprite BPLAD0, 64, 64 {Offset 32, 64 Graphic WSPR0485, 0, 0}
+Sprite BPLAE0, 64, 64 {Offset 32, 64 Graphic WSPR0486, 0, 0}
+Sprite BPLAF0, 64, 64 {Offset 32, 64 Graphic WSPR0487, 0, 0}
+Sprite BPLAG0, 64, 64 {Offset 32, 64 Graphic WSPR0488, 0, 0}
+Sprite BPLAH0, 64, 64 {Offset 32, 64 Graphic WSPR0489, 0, 0}
+Sprite BPLAI0, 64, 64 {Offset 32, 64 Graphic WSPR0490, 0, 0}
+Sprite BPLAJ0, 64, 64 {Offset 32, 64 Graphic WSPR0491, 0, 0}
+Sprite BPLAK0, 64, 64 {Offset 32, 64 Graphic WSPR0492, 0, 0}
+Sprite PPLAA0, 64, 64 {Offset 32, 64 Graphic WSPR0493, 0, 0}
+Sprite PPLAB0, 64, 64 {Offset 32, 64 Graphic WSPR0494, 0, 0}
+Sprite PPLAC0, 64, 64 {Offset 32, 64 Graphic WSPR0495, 0, 0}
+Sprite PPLAD0, 64, 64 {Offset 32, 64 Graphic WSPR0496, 0, 0}
+Sprite BORBA0, 64, 64 {Offset 32, 64 Graphic WSPR0497, 0, 0}
+Sprite BORBB0, 64, 64 {Offset 32, 64 Graphic WSPR0498, 0, 0}
+Sprite BORBC0, 64, 64 {Offset 32, 64 Graphic WSPR0499, 0, 0}
+Sprite BORBD0, 64, 64 {Offset 32, 64 Graphic WSPR0500, 0, 0}
+Sprite BORBE0, 64, 64 {Offset 32, 64 Graphic WSPR0501, 0, 0}
+Sprite BORBF0, 64, 64 {Offset 32, 64 Graphic WSPR0502, 0, 0}
+Sprite BORBG0, 64, 64 {Offset 32, 64 Graphic WSPR0503, 0, 0}
+Sprite BORBH0, 64, 64 {Offset 32, 64 Graphic WSPR0504, 0, 0}
+Sprite BMUTA0, 64, 64 {Offset 32, 64 Graphic WSPR0505, 0, 0}
+Sprite BMUTB0, 64, 64 {Offset 32, 64 Graphic WSPR0506, 0, 0}
+Sprite BMUTC0, 64, 64 {Offset 32, 64 Graphic WSPR0507, 0, 0}
+Sprite BMUTD0, 64, 64 {Offset 32, 64 Graphic WSPR0508, 0, 0}
+Sprite BMUTE0, 64, 64 {Offset 32, 64 Graphic WSPR0509, 0, 0}
+Sprite BMUTF0, 64, 64 {Offset 32, 64 Graphic WSPR0510, 0, 0}
+Sprite BMUTG0, 64, 64 {Offset 32, 64 Graphic WSPR0511, 0, 0}
+Sprite BMUTH0, 64, 64 {Offset 32, 64 Graphic WSPR0512, 0, 0}
+Sprite BMUTI0, 64, 64 {Offset 32, 64 Graphic WSPR0513, 0, 0}
+Sprite BMUTJ0, 64, 64 {Offset 32, 64 Graphic WSPR0514, 0, 0}
+Sprite BMUTK0, 64, 64 {Offset 32, 64 Graphic WSPR0515, 0, 0}
+Sprite BMUTL0, 64, 64 {Offset 32, 64 Graphic WSPR0516, 0, 0}
+Sprite BMUTM0, 64, 64 {Offset 32, 64 Graphic WSPR0517, 0, 0}
+Sprite BMUTN0, 64, 64 {Offset 32, 64 Graphic WSPR0518, 0, 0}
+Sprite BMUTO0, 64, 64 {Offset 32, 64 Graphic WSPR0519, 0, 0}
+Sprite BMUTP0, 64, 64 {Offset 32, 64 Graphic WSPR0520, 0, 0}
+Sprite BBOTA0, 64, 64 {Offset 32, 64 Graphic WSPR0521, 0, 0}
+Sprite BBOTB0, 64, 64 {Offset 32, 64 Graphic WSPR0522, 0, 0}
+Sprite BBOTC0, 64, 64 {Offset 32, 64 Graphic WSPR0523, 0, 0}
+Sprite BBOTD0, 64, 64 {Offset 32, 64 Graphic WSPR0524, 0, 0}
+Sprite BBOTE0, 64, 64 {Offset 32, 64 Graphic WSPR0525, 0, 0}
+Sprite BBOTF0, 64, 64 {Offset 32, 64 Graphic WSPR0526, 0, 0}
+Sprite BBOTG0, 64, 64 {Offset 32, 64 Graphic WSPR0527, 0, 0}
+Sprite BBOTH0, 64, 64 {Offset 32, 64 Graphic WSPR0528, 0, 0}
+Sprite BBOTI0, 64, 64 {Offset 32, 64 Graphic WSPR0529, 0, 0}
+Sprite BBOTJ0, 64, 64 {Offset 32, 64 Graphic WSPR0530, 0, 0}
+Sprite BBOTK0, 64, 64 {Offset 32, 64 Graphic WSPR0531, 0, 0}
+Sprite BBOTL0, 64, 64 {Offset 32, 64 Graphic WSPR0532, 0, 0}
+Sprite BBOTM0, 64, 64 {Offset 32, 64 Graphic WSPR0533, 0, 0}
+Sprite TERMA0, 64, 64 {Offset 32, 64 Graphic WSPR0534, 0, 0}
+Sprite TERMB0, 64, 64 {Offset 32, 64 Graphic WSPR0535, 0, 0}
+Sprite TERMC0, 64, 64 {Offset 32, 64 Graphic WSPR0536, 0, 0}
+Sprite BWLFA0, 64, 64 {Offset 32, 64 Graphic WSPR0537, 0, 0}
+Sprite BWLFB0, 64, 64 {Offset 32, 64 Graphic WSPR0538, 0, 0}
+Sprite BWLFC0, 64, 64 {Offset 32, 64 Graphic WSPR0539, 0, 0}
+Sprite BWLFD0, 64, 64 {Offset 32, 64 Graphic WSPR0540, 0, 0}
+Sprite BWLFE0, 64, 64 {Offset 32, 64 Graphic WSPR0541, 0, 0}
+Sprite BWLFF0, 64, 64 {Offset 32, 64 Graphic WSPR0542, 0, 0}
+Sprite BWLFG0, 64, 64 {Offset 32, 64 Graphic WSPR0543, 0, 0}
+Sprite BWLFH0, 64, 64 {Offset 32, 64 Graphic WSPR0544, 0, 0}
+Sprite BWLFI0, 64, 64 {Offset 32, 64 Graphic WSPR0545, 0, 0}
+Sprite BWLFJ0, 64, 64 {Offset 32, 64 Graphic WSPR0546, 0, 0}
+Sprite BWLFK0, 64, 64 {Offset 32, 64 Graphic WSPR0547, 0, 0}
+Sprite BWLFL0, 64, 64 {Offset 32, 64 Graphic WSPR0548, 0, 0}
+Sprite BWLFM0, 64, 64 {Offset 32, 64 Graphic WSPR0549, 0, 0}
+Sprite BWLFN0, 64, 64 {Offset 32, 64 Graphic WSPR0550, 0, 0}
+Sprite BWLFO0, 64, 64 {Offset 32, 64 Graphic WSPR0551, 0, 0}
+Sprite BWLFP0, 64, 64 {Offset 32, 64 Graphic WSPR0552, 0, 0}
+Sprite SGRNA0, 64, 64 {Offset 32, 64 Graphic WSPR0553, 0, 0}
+Sprite SGRNB0, 64, 64 {Offset 32, 64 Graphic WSPR0554, 0, 0}
+Sprite SGRNC0, 64, 64 {Offset 32, 64 Graphic WSPR0555, 0, 0}
+Sprite SGRND0, 64, 64 {Offset 32, 64 Graphic WSPR0556, 0, 0}
+Sprite SGRNE0, 64, 64 {Offset 32, 64 Graphic WSPR0557, 0, 0}
+Sprite BGRNA0, 64, 64 {Offset 32, 64 Graphic WSPR0558, 0, 0}
+Sprite BGRNB0, 64, 64 {Offset 32, 64 Graphic WSPR0559, 0, 0}
+Sprite BGRNC0, 64, 64 {Offset 32, 64 Graphic WSPR0560, 0, 0}
+Sprite BGRND0, 64, 64 {Offset 32, 64 Graphic WSPR0561, 0, 0}
+Sprite BGRNE0, 64, 64 {Offset 32, 64 Graphic WSPR0562, 0, 0}
+Sprite BGRNF0, 64, 64 {Offset 32, 64 Graphic WSPR0563, 0, 0}
+Sprite BGRNG0, 64, 64 {Offset 32, 64 Graphic WSPR0564, 0, 0}
+Sprite BGRNH0, 64, 64 {Offset 32, 64 Graphic WSPR0565, 0, 0}
+Sprite BGRNI0, 64, 64 {Offset 32, 64 Graphic WSPR0566, 0, 0}
+Sprite BGRNJ0, 64, 64 {Offset 32, 64 Graphic WSPR0567, 0, 0}
+Sprite BGRNK0, 64, 64 {Offset 32, 64 Graphic WSPR0568, 0, 0}
+Sprite BGRNL0, 64, 64 {Offset 32, 64 Graphic WSPR0569, 0, 0}
+Sprite BGRNM0, 64, 64 {Offset 32, 64 Graphic WSPR0570, 0, 0}
+Sprite BGRNN0, 64, 64 {Offset 32, 64 Graphic WSPR0571, 0, 0}
+Sprite BGRNO0, 64, 64 {Offset 32, 64 Graphic WSPR0572, 0, 0}
+Sprite BGRNP0, 64, 64 {Offset 32, 64 Graphic WSPR0573, 0, 0}
+Sprite SBRNA0, 64, 64 {Offset 32, 64 Graphic WSPR0574, 0, 0}
+Sprite SBRNB0, 64, 64 {Offset 32, 64 Graphic WSPR0575, 0, 0}
+Sprite SBRNC0, 64, 64 {Offset 32, 64 Graphic WSPR0576, 0, 0}
+Sprite SBRND0, 64, 64 {Offset 32, 64 Graphic WSPR0577, 0, 0}
+Sprite SBRNE0, 64, 64 {Offset 32, 64 Graphic WSPR0578, 0, 0}
+Sprite BBRNA0, 64, 64 {Offset 32, 64 Graphic WSPR0579, 0, 0}
+Sprite BBRNB0, 64, 64 {Offset 32, 64 Graphic WSPR0580, 0, 0}
+Sprite BBRNC0, 64, 64 {Offset 32, 64 Graphic WSPR0581, 0, 0}
+Sprite BBRND0, 64, 64 {Offset 32, 64 Graphic WSPR0582, 0, 0}
+Sprite BBRNE0, 64, 64 {Offset 32, 64 Graphic WSPR0583, 0, 0}
+Sprite BBRNF0, 64, 64 {Offset 32, 64 Graphic WSPR0584, 0, 0}
+Sprite BBRNG0, 64, 64 {Offset 32, 64 Graphic WSPR0585, 0, 0}
+Sprite BBRNH0, 64, 64 {Offset 32, 64 Graphic WSPR0586, 0, 0}
+Sprite BBRNI0, 64, 64 {Offset 32, 64 Graphic WSPR0587, 0, 0}
+Sprite BBRNJ0, 64, 64 {Offset 32, 64 Graphic WSPR0588, 0, 0}
+Sprite BBRNK0, 64, 64 {Offset 32, 64 Graphic WSPR0589, 0, 0}
+Sprite BBRNL0, 64, 64 {Offset 32, 64 Graphic WSPR0590, 0, 0}
+Sprite BBRNM0, 64, 64 {Offset 32, 64 Graphic WSPR0591, 0, 0}
+Sprite BBRNN0, 64, 64 {Offset 32, 64 Graphic WSPR0592, 0, 0}
+Sprite BBRNO0, 64, 64 {Offset 32, 64 Graphic WSPR0593, 0, 0}
+Sprite BBRNP0, 64, 64 {Offset 32, 64 Graphic WSPR0594, 0, 0}
+Sprite SDMTA0, 64, 64 {Offset 32, 64 Graphic WSPR0595, 0, 0}
+Sprite SDMTB0, 64, 64 {Offset 32, 64 Graphic WSPR0596, 0, 0}
+Sprite SDMTC0, 64, 64 {Offset 32, 64 Graphic WSPR0597, 0, 0}
+Sprite SDMTD0, 64, 64 {Offset 32, 64 Graphic WSPR0598, 0, 0}
+Sprite SDMTE0, 64, 64 {Offset 32, 64 Graphic WSPR0599, 0, 0}
+Sprite BDMTA0, 64, 64 {Offset 32, 64 Graphic WSPR0600, 0, 0}
+Sprite BDMTB0, 64, 64 {Offset 32, 64 Graphic WSPR0601, 0, 0}
+Sprite BDMTC0, 64, 64 {Offset 32, 64 Graphic WSPR0602, 0, 0}
+Sprite BDMTD0, 64, 64 {Offset 32, 64 Graphic WSPR0603, 0, 0}
+Sprite BDMTE0, 64, 64 {Offset 32, 64 Graphic WSPR0604, 0, 0}
+Sprite BDMTF0, 64, 64 {Offset 32, 64 Graphic WSPR0605, 0, 0}
+Sprite BDMTG0, 64, 64 {Offset 32, 64 Graphic WSPR0606, 0, 0}
+Sprite BDMTH0, 64, 64 {Offset 32, 64 Graphic WSPR0607, 0, 0}
+Sprite BDMTI0, 64, 64 {Offset 32, 64 Graphic WSPR0608, 0, 0}
+Sprite BDMTJ0, 64, 64 {Offset 32, 64 Graphic WSPR0609, 0, 0}
+Sprite BDMTK0, 64, 64 {Offset 32, 64 Graphic WSPR0610, 0, 0}
+Sprite BDMTL0, 64, 64 {Offset 32, 64 Graphic WSPR0611, 0, 0}
+Sprite BDMTM0, 64, 64 {Offset 32, 64 Graphic WSPR0612, 0, 0}
+Sprite BPDLA0, 64, 64 {Offset 32, 64 Graphic WSPR0613, 0, 0}
+Sprite BPDLB0, 64, 64 {Offset 32, 64 Graphic WSPR0614, 0, 0}
+Sprite BPDLC0, 64, 64 {Offset 32, 64 Graphic WSPR0615, 0, 0}
+Sprite BPUDA0, 64, 64 {Offset 32, 64 Graphic WSPR0616, 0, 0}
+Sprite BPUDB0, 64, 64 {Offset 32, 64 Graphic WSPR0617, 0, 0}
+Sprite BPUDC0, 64, 64 {Offset 32, 64 Graphic WSPR0618, 0, 0}
+Sprite BPUDD0, 64, 64 {Offset 32, 64 Graphic WSPR0619, 0, 0}
+Sprite BPUDE0, 64, 64 {Offset 32, 64 Graphic WSPR0620, 0, 0}
+Sprite BPUDF0, 64, 64 {Offset 32, 64 Graphic WSPR0621, 0, 0}
+Sprite BPUDG0, 64, 64 {Offset 32, 64 Graphic WSPR0622, 0, 0}
+Sprite BPUDH0, 64, 64 {Offset 32, 64 Graphic WSPR0623, 0, 0}
+Sprite BPUDI0, 64, 64 {Offset 32, 64 Graphic WSPR0624, 0, 0}
+Sprite BPUDJ0, 64, 64 {Offset 32, 64 Graphic WSPR0625, 0, 0}
+Sprite BPUDK0, 64, 64 {Offset 32, 64 Graphic WSPR0626, 0, 0}
+Sprite BPUDL0, 64, 64 {Offset 32, 64 Graphic WSPR0627, 0, 0}
+Sprite BPUDM0, 64, 64 {Offset 32, 64 Graphic WSPR0628, 0, 0}
+Sprite PPUDA0, 64, 64 {Offset 32, 64 Graphic WSPR0629, 0, 0}
+Sprite PPUDB0, 64, 64 {Offset 32, 64 Graphic WSPR0630, 0, 0}
+Sprite PPUDC0, 64, 64 {Offset 32, 64 Graphic WSPR0631, 0, 0}
+Sprite PPUDD0, 64, 64 {Offset 32, 64 Graphic WSPR0632, 0, 0}
+Sprite PPUDE0, 64, 64 {Offset 32, 64 Graphic WSPR0633, 0, 0}
+Sprite PPUDF0, 64, 64 {Offset 32, 64 Graphic WSPR0634, 0, 0}
+Sprite PBRNA0, 64, 64 {Offset 32, 64 Graphic WSPR0635, 0, 0}
+Sprite PBRNB0, 64, 64 {Offset 32, 64 Graphic WSPR0636, 0, 0}
+Sprite PBRNC0, 64, 64 {Offset 32, 64 Graphic WSPR0637, 0, 0}
+Sprite PBRND0, 64, 64 {Offset 32, 64 Graphic WSPR0638, 0, 0}
+Sprite PBRNE0, 64, 64 {Offset 32, 64 Graphic WSPR0639, 0, 0}
+Sprite PBRNF0, 64, 64 {Offset 32, 64 Graphic WSPR0640, 0, 0}
+Sprite PBLUA0, 64, 64 {Offset 32, 64 Graphic WSPR0641, 0, 0}
+Sprite PBLUB0, 64, 64 {Offset 32, 64 Graphic WSPR0642, 0, 0}
+Sprite PBLUC0, 64, 64 {Offset 32, 64 Graphic WSPR0643, 0, 0}
+Sprite PBLUD0, 64, 64 {Offset 32, 64 Graphic WSPR0644, 0, 0}
+Sprite PBLUE0, 64, 64 {Offset 32, 64 Graphic WSPR0645, 0, 0}
+Sprite PBLUF0, 64, 64 {Offset 32, 64 Graphic WSPR0646, 0, 0}
+Sprite PORGA0, 64, 64 {Offset 32, 64 Graphic WSPR0647, 0, 0}
+Sprite PORGB0, 64, 64 {Offset 32, 64 Graphic WSPR0648, 0, 0}
+Sprite PORGC0, 64, 64 {Offset 32, 64 Graphic WSPR0649, 0, 0}
+Sprite PORGD0, 64, 64 {Offset 32, 64 Graphic WSPR0650, 0, 0}
+Sprite PORGE0, 64, 64 {Offset 32, 64 Graphic WSPR0651, 0, 0}
+Sprite PORGF0, 64, 64 {Offset 32, 64 Graphic WSPR0652, 0, 0}
+Sprite PTURA1, 64, 64 {Offset 32, 64 Graphic WSPR0653, 0, 0}
+Sprite PTURA2, 64, 64 {Offset 32, 64 Graphic WSPR0654, 0, 0}
+Sprite PTURA3, 64, 64 {Offset 32, 64 Graphic WSPR0655, 0, 0}
+Sprite PTURA4, 64, 64 {Offset 32, 64 Graphic WSPR0656, 0, 0}
+Sprite PTURA5, 64, 64 {Offset 32, 64 Graphic WSPR0657, 0, 0}
+Sprite PTURA6, 64, 64 {Offset 32, 64 Graphic WSPR0658, 0, 0}
+Sprite PTURA7, 64, 64 {Offset 32, 64 Graphic WSPR0659, 0, 0}
+Sprite PTURA8, 64, 64 {Offset 32, 64 Graphic WSPR0660, 0, 0}
+Sprite PTURB0, 64, 64 {Offset 32, 64 Graphic WSPR0661, 0, 0}
+Sprite PTURC0, 64, 64 {Offset 32, 64 Graphic WSPR0662, 0, 0}
+Sprite PTURD0, 64, 64 {Offset 32, 64 Graphic WSPR0663, 0, 0}
+Sprite PTURE0, 64, 64 {Offset 32, 64 Graphic WSPR0664, 0, 0}
+Sprite PTURF0, 64, 64 {Offset 32, 64 Graphic WSPR0665, 0, 0}
+Sprite PTURG0, 64, 64 {Offset 32, 64 Graphic WSPR0666, 0, 0}
+Sprite PTURH0, 64, 64 {Offset 32, 64 Graphic WSPR0667, 0, 0}
+Sprite COLEA0, 64, 64 {Offset 32, 64 Graphic WSPR0702, 0, 0}
+Sprite COLEB0, 64, 64 {Offset 32, 64 Graphic WSPR0703, 0, 0}
+Sprite COLEC0, 64, 64 {Offset 32, 64 Graphic WSPR0704, 0, 0}
+Sprite COLEZ0, 64, 64 {Offset 32, 64 Graphic WSPR0705, 0, 0}
+Sprite COLPA0, 64, 64 {Offset 32, 64 Graphic WSPR0706, 0, 0}
+Sprite COLPB0, 64, 64 {Offset 32, 64 Graphic WSPR0707, 0, 0}
+Sprite COLPC0, 64, 64 {Offset 32, 64 Graphic WSPR0708, 0, 0}
+Sprite COLPZ0, 64, 64 {Offset 32, 64 Graphic WSPR0709, 0, 0}
+Sprite BTOXA0, 64, 64 {Offset 32, 64 Graphic WSPR0710, 0, 0}
+Sprite BTOXB0, 64, 64 {Offset 32, 64 Graphic WSPR0711, 0, 0}
+Sprite BTOXC0, 64, 64 {Offset 32, 64 Graphic WSPR0712, 0, 0}
+Sprite BOOZA0, 64, 64 {Offset 32, 64 Graphic WSPR0713, 0, 0}
+Sprite BOOZB0, 64, 64 {Offset 32, 64 Graphic WSPR0714, 0, 0}
+Sprite BOOZC0, 64, 64 {Offset 32, 64 Graphic WSPR0715, 0, 0}
+Sprite HLTHG0, 64, 64 {Offset 32, 64 Graphic WSPR0716, 0, 0}
+Sprite WRAPA0, 64, 64 {Offset 32, 64 Graphic WSPR0717, 0, 0}
+Sprite HLTHH0, 64, 64 {Offset 32, 64 Graphic WSPR0718, 0, 0}
+Sprite CRUMA0, 64, 64 {Offset 32, 64 Graphic WSPR0719, 0, 0}
+Sprite PLAYA0, 64, 64 {Offset 32, 64 Graphic WSPR0720, 0, 0}
+Sprite PLAYB0, 64, 64 {Offset 32, 64 Graphic WSPR0721, 0, 0}
+Sprite PLAYC0, 64, 64 {Offset 32, 64 Graphic WSPR0722, 0, 0}
+Sprite PLAYD0, 64, 64 {Offset 32, 64 Graphic WSPR0723, 0, 0}
+Sprite BSPIA0, 64, 64 {Offset 32, 64 Graphic WSPR0724, 0, 0}
+Sprite BSPIB0, 64, 64 {Offset 32, 64 Graphic WSPR0725, 0, 0}
+Sprite BSPIC0, 64, 64 {Offset 32, 64 Graphic WSPR0726, 0, 0}
+Sprite BSPID0, 64, 64 {Offset 32, 64 Graphic WSPR0727, 0, 0}
+Sprite BSPIE0, 64, 64 {Offset 32, 64 Graphic WSPR0728, 0, 0}
+Sprite BSPIF0, 64, 64 {Offset 32, 64 Graphic WSPR0729, 0, 0}
+Sprite BSPIG0, 64, 64 {Offset 32, 64 Graphic WSPR0730, 0, 0}
+Sprite BSPIH0, 64, 64 {Offset 32, 64 Graphic WSPR0731, 0, 0}
+Sprite BSPII0, 64, 64 {Offset 32, 64 Graphic WSPR0732, 0, 0}
+Sprite BSPIJ0, 64, 64 {Offset 32, 64 Graphic WSPR0733, 0, 0}
+Sprite BSPIK0, 64, 64 {Offset 32, 64 Graphic WSPR0734, 0, 0}
+Sprite BSPIL0, 64, 64 {Offset 32, 64 Graphic WSPR0735, 0, 0}
+Sprite BSPIM0, 64, 64 {Offset 32, 64 Graphic WSPR0736, 0, 0}
+Sprite PSPIA0, 64, 64 {Offset 32, 64 Graphic WSPR0737, 0, 0}
+Sprite PSPIB0, 64, 64 {Offset 32, 64 Graphic WSPR0738, 0, 0}
+Sprite PSPIC0, 64, 64 {Offset 32, 64 Graphic WSPR0739, 0, 0}
+Sprite PSPID0, 64, 64 {Offset 32, 64 Graphic WSPR0740, 0, 0}
+Sprite PSPIE0, 64, 64 {Offset 32, 64 Graphic WSPR0741, 0, 0}
+Sprite PSPIF0, 64, 64 {Offset 32, 64 Graphic WSPR0742, 0, 0}
+Sprite BBRBA0, 64, 64 {Offset 32, 64 Graphic WSPR0743, 0, 0}
+Sprite BBRBB0, 64, 64 {Offset 32, 64 Graphic WSPR0744, 0, 0}
+Sprite BBRBC0, 64, 64 {Offset 32, 64 Graphic WSPR0745, 0, 0}
+Sprite BBRBD0, 64, 64 {Offset 32, 64 Graphic WSPR0746, 0, 0}
+Sprite BBRBE0, 64, 64 {Offset 32, 64 Graphic WSPR0747, 0, 0}
+Sprite BBRBF0, 64, 64 {Offset 32, 64 Graphic WSPR0748, 0, 0}
+Sprite BBRBG0, 64, 64 {Offset 32, 64 Graphic WSPR0749, 0, 0}
+Sprite BBRBH0, 64, 64 {Offset 32, 64 Graphic WSPR0750, 0, 0}
+Sprite BBRBI0, 64, 64 {Offset 32, 64 Graphic WSPR0751, 0, 0}
+Sprite BBRBJ0, 64, 64 {Offset 32, 64 Graphic WSPR0752, 0, 0}
+Sprite BBRBK0, 64, 64 {Offset 32, 64 Graphic WSPR0753, 0, 0}
+Sprite BBRBL0, 64, 64 {Offset 32, 64 Graphic WSPR0754, 0, 0}
+Sprite BBRBM0, 64, 64 {Offset 32, 64 Graphic WSPR0755, 0, 0}
+Sprite BCYBA0, 64, 64 {Offset 32, 64 Graphic WSPR0756, 0, 0}
+Sprite BCYBB0, 64, 64 {Offset 32, 64 Graphic WSPR0757, 0, 0}
+Sprite BCYBC0, 64, 64 {Offset 32, 64 Graphic WSPR0758, 0, 0}
+Sprite BCYBD0, 64, 64 {Offset 32, 64 Graphic WSPR0759, 0, 0}
+Sprite BCYBE0, 64, 64 {Offset 32, 64 Graphic WSPR0760, 0, 0}
+Sprite BCYBF0, 64, 64 {Offset 32, 64 Graphic WSPR0761, 0, 0}
+Sprite BCYBG0, 64, 64 {Offset 32, 64 Graphic WSPR0762, 0, 0}
+Sprite BCYBH0, 64, 64 {Offset 32, 64 Graphic WSPR0763, 0, 0}
+Sprite BCYBI0, 64, 64 {Offset 32, 64 Graphic WSPR0764, 0, 0}
+Sprite BCYBJ0, 64, 64 {Offset 32, 64 Graphic WSPR0765, 0, 0}
+Sprite BCYBK0, 64, 64 {Offset 32, 64 Graphic WSPR0766, 0, 0}
+Sprite BCYBL0, 64, 64 {Offset 32, 64 Graphic WSPR0767, 0, 0}
+Sprite BCYBM0, 64, 64 {Offset 32, 64 Graphic WSPR0768, 0, 0}
+Sprite BREPA0, 64, 64 {Offset 32, 64 Graphic WSPR0769, 0, 0}
+Sprite BREPB0, 64, 64 {Offset 32, 64 Graphic WSPR0770, 0, 0}
+Sprite BREPC0, 64, 64 {Offset 32, 64 Graphic WSPR0771, 0, 0}
+Sprite BREPD0, 64, 64 {Offset 32, 64 Graphic WSPR0772, 0, 0}
+Sprite BREPE0, 64, 64 {Offset 32, 64 Graphic WSPR0773, 0, 0}
+Sprite BREPF0, 64, 64 {Offset 32, 64 Graphic WSPR0774, 0, 0}
+Sprite BREPG0, 64, 64 {Offset 32, 64 Graphic WSPR0775, 0, 0}
+Sprite BREPH0, 64, 64 {Offset 32, 64 Graphic WSPR0776, 0, 0}
+Sprite BREPI0, 64, 64 {Offset 32, 64 Graphic WSPR0777, 0, 0}
+Sprite BREPJ0, 64, 64 {Offset 32, 64 Graphic WSPR0778, 0, 0}
+Sprite BREPK0, 64, 64 {Offset 32, 64 Graphic WSPR0779, 0, 0}
+Sprite BREPL0, 64, 64 {Offset 32, 64 Graphic WSPR0780, 0, 0}
+Sprite BREPM0, 64, 64 {Offset 32, 64 Graphic WSPR0781, 0, 0}
+Sprite BACDA0, 64, 64 {Offset 32, 64 Graphic WSPR0782, 0, 0}
+Sprite BACDB0, 64, 64 {Offset 32, 64 Graphic WSPR0783, 0, 0}
+Sprite BACDC0, 64, 64 {Offset 32, 64 Graphic WSPR0784, 0, 0}
+Sprite BACDD0, 64, 64 {Offset 32, 64 Graphic WSPR0785, 0, 0}
+Sprite BACDE0, 64, 64 {Offset 32, 64 Graphic WSPR0786, 0, 0}
+Sprite BACDF0, 64, 64 {Offset 32, 64 Graphic WSPR0787, 0, 0}
+Sprite BACDG0, 64, 64 {Offset 32, 64 Graphic WSPR0788, 0, 0}
+Sprite BACDH0, 64, 64 {Offset 32, 64 Graphic WSPR0789, 0, 0}
+Sprite BACDI0, 64, 64 {Offset 32, 64 Graphic WSPR0790, 0, 0}
+Sprite BACDJ0, 64, 64 {Offset 32, 64 Graphic WSPR0791, 0, 0}
+Sprite BACDK0, 64, 64 {Offset 32, 64 Graphic WSPR0792, 0, 0}
+Sprite BACDL0, 64, 64 {Offset 32, 64 Graphic WSPR0793, 0, 0}
+Sprite BACDM0, 64, 64 {Offset 32, 64 Graphic WSPR0794, 0, 0}
+Sprite PACDA0, 64, 64 {Offset 32, 64 Graphic WSPR0795, 0, 0}
+Sprite PACDB0, 64, 64 {Offset 32, 64 Graphic WSPR0796, 0, 0}
+Sprite PACDC0, 64, 64 {Offset 32, 64 Graphic WSPR0797, 0, 0}
+Sprite PACDD0, 64, 64 {Offset 32, 64 Graphic WSPR0798, 0, 0}
+Sprite PACDE0, 64, 64 {Offset 32, 64 Graphic WSPR0799, 0, 0}
+Sprite PACDF0, 64, 64 {Offset 32, 64 Graphic WSPR0800, 0, 0}
+Sprite PBMGA0, 64, 64 {Offset 32, 64 Graphic WSPR0801, 0, 0}
+Sprite PBMGB0, 64, 64 {Offset 32, 64 Graphic WSPR0802, 0, 0}
+Sprite PBMGC0, 64, 64 {Offset 32, 64 Graphic WSPR0803, 0, 0}
+Sprite PBMGD0, 64, 64 {Offset 32, 64 Graphic WSPR0804, 0, 0}
+Sprite PBMGE0, 64, 64 {Offset 32, 64 Graphic WSPR0805, 0, 0}
+Sprite PBMGF0, 64, 64 {Offset 32, 64 Graphic WSPR0806, 0, 0}
+Sprite PBMGG0, 64, 64 {Offset 32, 64 Graphic WSPR0807, 0, 0}
+Sprite PBMGH0, 64, 64 {Offset 32, 64 Graphic WSPR0808, 0, 0}
+Sprite PBMGI0, 64, 64 {Offset 32, 64 Graphic WSPR0809, 0, 0}
+Sprite PBMGJ0, 64, 64 {Offset 32, 64 Graphic WSPR0810, 0, 0}
+Sprite PBMGK0, 64, 64 {Offset 32, 64 Graphic WSPR0811, 0, 0}
+Sprite PBMGL0, 64, 64 {Offset 32, 64 Graphic WSPR0812, 0, 0}
+Sprite PBMGM0, 64, 64 {Offset 32, 64 Graphic WSPR0813, 0, 0}
+
+//Weapons
+
+Sprite WACPA0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0668, 0, 0}
+Sprite WACPB0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0669, 0, 0}
+Sprite WACPC0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0670, 0, 0}
+Sprite WACPD0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0671, 0, 0}
+Sprite WACPE0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0672, 0, 0}
+Sprite WSFPA0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0673, 0, 0}
+Sprite WSFPB0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0674, 0, 0}
+Sprite WSFPC0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0675, 0, 0}
+Sprite WSFPD0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0676, 0, 0}
+Sprite WSFPE0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0677, 0, 0}
+Sprite WRAWA0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0678, 0, 0}
+Sprite WRAWB0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0679, 0, 0}
+Sprite WRAWC0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0680, 0, 0}
+Sprite WRAWD0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0681, 0, 0}
+Sprite WRAWE0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0682, 0, 0}
+Sprite WDNDA0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0683, 0, 0}
+Sprite WDNDB0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0684, 0, 0}
+Sprite WDNDC0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0685, 0, 0}
+Sprite WDNDD0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0686, 0, 0}
+Sprite WDNDE0, 192, 192 {Offset -32, 0 XScale 0.4 YScale 0.4 Graphic WSPR0687, 0, 0}
+Sprite WPDUA0, 192, 192 {Offset -32, 6 XScale 0.4 YScale 0.4 Graphic WSPR0688, 0, 0}
+Sprite WPDUB0, 192, 192 {Offset -32, 6 XScale 0.4 YScale 0.4 Graphic WSPR0689, 0, 0}
+Sprite WPDUC0, 192, 192 {Offset -32, 6 XScale 0.4 YScale 0.4 Graphic WSPR0690, 0, 0}
+Sprite WPDUD0, 192, 192 {Offset -32, 6 XScale 0.4 YScale 0.4 Graphic WSPR0691, 0, 0}
+Sprite WPDUE0, 192, 192 {Offset -32, 6 XScale 0.4 YScale 0.4 Graphic WSPR0692, 0, 0}
+
+//Player Projectiles
+Sprite PPDUA0, 64, 64 {Offset 32, 32 Graphic WSPR0693, 0, 0}
+Sprite PPDUB0, 64, 64 {Offset 32, 32 Graphic WSPR0694, 0, 0}
+Sprite PPDUC0, 64, 64 {Offset 32, 32 Graphic WSPR0695, 0, 0}
+Sprite PPDUD0, 64, 64 {Offset 32, 32 Graphic WSPR0696, 0, 0}
+Sprite PPDUE0, 64, 64 {Offset 32, 32 Graphic WSPR0697, 0, 0}
+Sprite PPDUF0, 64, 64 {Offset 32, 32 Graphic WSPR0698, 0, 0}
+Sprite PPDUG0, 64, 64 {Offset 32, 32 Graphic WSPR0699, 0, 0}
+Sprite PPDUH0, 64, 64 {Offset 32, 32 Graphic WSPR0700, 0, 0}
+Sprite PPDUI0, 64, 64 {Offset 32, 32 Graphic WSPR0701, 0, 0}
+Sprite PPDUJ0, 64, 64 {Offset 32, 32 Graphic WSPR0441, 0, 0}
+Sprite PPDUK0, 64, 64 {Offset 32, 32 Graphic WSPR0442, 0, 0}
+Sprite PPDUL0, 64, 64 {Offset 32, 32 Graphic WSPR0443, 0, 0}
+Sprite PPDUM0, 64, 64 {Offset 32, 32 Graphic WSPR0444, 0, 0}
+Sprite PPDUN0, 64, 64 {Offset 32, 32 Graphic WSPR0445, 0, 0}
+
+//Explosion
+Sprite FEXPA0, 64, 64 {Offset 32, 64 Graphic WSPR0697, 0, 0}
+Sprite FEXPB0, 64, 64 {Offset 32, 64 Graphic WSPR0698, 0, 0}
+Sprite FEXPC0, 64, 64 {Offset 32, 64 Graphic WSPR0699, 0, 0}
+Sprite FEXPD0, 64, 64 {Offset 32, 64 Graphic WSPR0700, 0, 0}
+
+//Walls
+Texture Optional DOORTRAK, 8, 64 {Graphic BLACK, 0, 0}
+Texture Optional WLF0001A, 64, 64 {Graphic WAL00000, 0, 0}
+Texture Optional WLF0001B, 64, 64 {Graphic WAL00001, 0, 0}
+Texture Optional WLF0002A, 64, 64 {Graphic WAL00002, 0, 0}
+Texture Optional WLF0002B, 64, 64 {Graphic WAL00003, 0, 0}
+Texture Optional WLF0003A, 64, 64 {Graphic WAL00004, 0, 0}
+Texture Optional WLF0003B, 64, 64 {Graphic WAL00005, 0, 0}
+Texture Optional WLF0004A, 64, 64 {Graphic WAL00006, 0, 0}
+Texture Optional WLF0004B, 64, 64 {Graphic WAL00007, 0, 0}
+Texture Optional WLF0005A, 64, 64 {Graphic WAL00008, 0, 0}
+Texture Optional WLF0005B, 64, 64 {Graphic WAL00009, 0, 0}
+Texture Optional WLF0006A, 64, 64 {Graphic WAL00010, 0, 0}
+Texture Optional WLF0006B, 64, 64 {Graphic WAL00011, 0, 0}
+Texture Optional WLF0007A, 64, 64 {Graphic WAL00012, 0, 0}
+Texture Optional WLF0007B, 64, 64 {Graphic WAL00013, 0, 0}
+Texture Optional WLF0008A, 64, 64 {Graphic WAL00014, 0, 0}
+Texture Optional WLF0008B, 64, 64 {Graphic WAL00015, 0, 0}
+Texture Optional WLF0009A, 64, 64 {Graphic WAL00016, 0, 0}
+Texture Optional WLF0009B, 64, 64 {Graphic WAL00017, 0, 0}
+Texture Optional WLF000AA, 64, 64 {Graphic WAL00018, 0, 0}
+Texture Optional WLF000AB, 64, 64 {Graphic WAL00019, 0, 0}
+Texture Optional WLF000BA, 64, 64 {Graphic WAL00020, 0, 0}
+Texture Optional WLF000BB, 64, 64 {Graphic WAL00021, 0, 0}
+Texture Optional WLF000CA, 64, 64 {Graphic WAL00022, 0, 0}
+Texture Optional WLF000CB, 64, 64 {Graphic WAL00023, 0, 0}
+Texture Optional WLF000DA, 64, 64 {Graphic WAL00024, 0, 0}
+Texture Optional WLF000DB, 64, 64 {Graphic WAL00025, 0, 0}
+Texture Optional WLF000EA, 64, 64 {Graphic WAL00026, 0, 0}
+Texture Optional WLF000EB, 64, 64 {Graphic WAL00027, 0, 0}
+Texture Optional WLF000FA, 64, 64 {Graphic WAL00028, 0, 0}
+Texture Optional WLF000FB, 64, 64 {Graphic WAL00029, 0, 0}
+Texture Optional WLF0010A, 64, 64 {Graphic WAL00030, 0, 0}
+Texture Optional WLF0010B, 64, 64 {Graphic WAL00031, 0, 0}
+Texture Optional WLF0011A, 64, 64 {Graphic WAL00032, 0, 0}
+Texture Optional WLF0011B, 64, 64 {Graphic WAL00033, 0, 0}
+Texture Optional WLF0012A, 64, 64 {Graphic WAL00034, 0, 0}
+Texture Optional WLF0012B, 64, 64 {Graphic WAL00035, 0, 0}
+Texture Optional WLF0013A, 64, 64 {Graphic WAL00036, 0, 0}
+Texture Optional WLF0013B, 64, 64 {Graphic WAL00037, 0, 0}
+Texture Optional WLF0014A, 64, 64 {Graphic WAL00038, 0, 0}
+Texture Optional WLF0014B, 64, 64 {Graphic WAL00039, 0, 0}
+Texture Optional WLF0015A, 64, 64 {Graphic WAL00040, 0, 0}
+Texture Optional WLF0015B, 64, 64 {Graphic WAL00041, 0, 0}
+Texture Optional WLF0016A, 64, 64 {Graphic WAL00042, 0, 0}
+Texture Optional WLF0016B, 64, 64 {Graphic WAL00043, 0, 0}
+Texture Optional WLF0017A, 64, 64 {Graphic WAL00044, 0, 0}
+Texture Optional WLF0017B, 64, 64 {Graphic WAL00045, 0, 0}
+Texture Optional WLF0018A, 64, 64 {Graphic WAL00046, 0, 0}
+Texture Optional WLF0018B, 64, 64 {Graphic WAL00047, 0, 0}
+Texture Optional WLF0019A, 64, 64 {Graphic WAL00048, 0, 0}
+Texture Optional WLF0019B, 64, 64 {Graphic WAL00049, 0, 0}
+Texture Optional WLF001AA, 64, 64 {Graphic WAL00050, 0, 0}
+Texture Optional WLF001AB, 64, 64 {Graphic WAL00051, 0, 0}
+Texture Optional WLF001BA, 64, 64 {Graphic WAL00052, 0, 0}
+Texture Optional WLF001BB, 64, 64 {Graphic WAL00053, 0, 0}
+Texture Optional WLF001CA, 64, 64 {Graphic WAL00054, 0, 0}
+Texture Optional WLF001CB, 64, 64 {Graphic WAL00055, 0, 0}
+Texture Optional WLF001DA, 64, 64 {Graphic WAL00056, 0, 0}
+Texture Optional WLF001DB, 64, 64 {Graphic WAL00057, 0, 0}
+Texture Optional WLF001EA, 64, 64 {Graphic WAL00058, 0, 0}
+Texture Optional WLF001EB, 64, 64 {Graphic WAL00059, 0, 0}
+Texture Optional WLF001FA, 64, 64 {Graphic WAL00060, 0, 0}
+Texture Optional WLF001FB, 64, 64 {Graphic WAL00061, 0, 0}
+Texture Optional WLF0020A, 64, 64 {Graphic WAL00062, 0, 0}
+Texture Optional WLF0020B, 64, 64 {Graphic WAL00063, 0, 0}
+Texture Optional WLF0021A, 64, 64 {Graphic WAL00064, 0, 0}
+Texture Optional WLF0021B, 64, 64 {Graphic WAL00065, 0, 0}
+Texture Optional WLF0022A, 64, 64 {Graphic WAL00066, 0, 0}
+Texture Optional WLF0022B, 64, 64 {Graphic WAL00067, 0, 0}
+Texture Optional WLF0023A, 64, 64 {Graphic WAL00068, 0, 0}
+Texture Optional WLF0023B, 64, 64 {Graphic WAL00069, 0, 0}
+Texture Optional WLF0024A, 64, 64 {Graphic WAL00070, 0, 0}
+Texture Optional WLF0024B, 64, 64 {Graphic WAL00071, 0, 0}
+Texture Optional WLF0025A, 64, 64 {Graphic WAL00072, 0, 0}
+Texture Optional WLF0025B, 64, 64 {Graphic WAL00073, 0, 0}
+Texture Optional WLF0026A, 64, 64 {Graphic WAL00074, 0, 0}
+Texture Optional WLF0026B, 64, 64 {Graphic WAL00075, 0, 0}
+Texture Optional WLF0027A, 64, 64 {Graphic WAL00076, 0, 0}
+Texture Optional WLF0027B, 64, 64 {Graphic WAL00077, 0, 0}
+Texture Optional WLF0028A, 64, 64 {Graphic WAL00078, 0, 0}
+Texture Optional WLF0028B, 64, 64 {Graphic WAL00079, 0, 0}
+Texture Optional WLF0029A, 64, 64 {Graphic WAL00080, 0, 0}
+Texture Optional WLF0029B, 64, 64 {Graphic WAL00081, 0, 0}
+Texture Optional WLF002AA, 64, 64 {Graphic WAL00082, 0, 0}
+Texture Optional WLF002AB, 64, 64 {Graphic WAL00083, 0, 0}
+Texture Optional WLF002BA, 64, 64 {Graphic WAL00084, 0, 0}
+Texture Optional WLF002BB, 64, 64 {Graphic WAL00085, 0, 0}
+Texture Optional WLF002CA, 64, 64 {Graphic WAL00086, 0, 0}
+Texture Optional WLF002CB, 64, 64 {Graphic WAL00087, 0, 0}
+Texture Optional WLF002EA, 64, 64 {Graphic WAL00090, 0, 0}
+Texture Optional WLF002EB, 64, 64 {Graphic WAL00091, 0, 0}
+Texture Optional WLF002FA, 64, 64 {Graphic WAL00092, 0, 0}
+Texture Optional WLF002FB, 64, 64 {Graphic WAL00093, 0, 0}
+Texture Optional WLF0030A, 64, 64 {Graphic WAL00094, 0, 0}
+Texture Optional WLF0030B, 64, 64 {Graphic WAL00095, 0, 0}
+Texture Optional WLF0031A, 64, 64 {Graphic WAL00096, 0, 0}
+Texture Optional WLF0031B, 64, 64 {Graphic WAL00097, 0, 0}
+Texture Optional WLF0032A, 64, 64 {Graphic WAL00098, 0, 0}
+Texture Optional WLF0032B, 64, 64 {Graphic WAL00099, 0, 0}
+Texture Optional WLF0033A, 64, 64 {Graphic WAL00100, 0, 0}
+Texture Optional WLF0033B, 64, 64 {Graphic WAL00101, 0, 0}
+Texture Optional WLF0034A, 64, 64 {Graphic WAL00102, 0, 0}
+Texture Optional WLF0034B, 64, 64 {Graphic WAL00103, 0, 0}
+Texture Optional WLF0035A, 64, 64 {Graphic WAL00104, 0, 0}
+Texture Optional WLF0035B, 64, 64 {Graphic WAL00105, 0, 0}
+Texture Optional WLF0036A, 64, 64 {Graphic WAL00106, 0, 0}
+Texture Optional WLF0036B, 64, 64 {Graphic WAL00107, 0, 0}
+Texture Optional WLF0037A, 64, 64 {Graphic WAL00108, 0, 0}
+Texture Optional WLF0037B, 64, 64 {Graphic WAL00109, 0, 0}
+Texture Optional WLF0038A, 64, 64 {Graphic WAL00110, 0, 0}
+Texture Optional WLF0038B, 64, 64 {Graphic WAL00111, 0, 0}
+Texture Optional WLF003AA, 64, 64 {Graphic WAL00114, 0, 0}
+Texture Optional WLF003AB, 64, 64 {Graphic WAL00115, 0, 0}
+Texture Optional WLF003BA, 64, 64 {Graphic WAL00116, 0, 0}
+Texture Optional WLF003BB, 64, 64 {Graphic WAL00117, 0, 0}
+Texture Optional WLF003CA, 64, 64 {Graphic WAL00118, 0, 0}
+Texture Optional WLF003CB, 64, 64 {Graphic WAL00119, 0, 0}
+Texture Optional WLF003DA, 64, 64 {Graphic WAL00120, 0, 0}
+Texture Optional WLF003DB, 64, 64 {Graphic WAL00121, 0, 0}
+Texture Optional WLF003EA, 64, 64 {Graphic WAL00122, 0, 0}
+Texture Optional WLF003EB, 64, 64 {Graphic WAL00123, 0, 0}
+Texture Optional WLF003FA, 64, 64 {Graphic WAL00124, 0, 0}
+Texture Optional WLF003FB, 64, 64 {Graphic WAL00125, 0, 0}
+
+//Ceilings/Floors
+Texture Optional WLF0040A, 64, 64 {Graphic WAL00126, 0, 0}
+Texture Optional WLF0040B, 64, 64 {Graphic WAL00127, 0, 0}
+Texture Optional WLF0041A, 64, 64 {Graphic WAL00128, 0, 0}
+Texture Optional WLF0041B, 64, 64 {Graphic WAL00129, 0, 0}
+Texture Optional WLF0042A, 64, 64 {Graphic WAL00130, 0, 0}
+Texture Optional WLF0042B, 64, 64 {Graphic WAL00131, 0, 0}
+Texture Optional WLF0043A, 64, 64 {Graphic WAL00132, 0, 0}
+Texture Optional WLF0043B, 64, 64 {Graphic WAL00133, 0, 0}
+Texture Optional WLF0044A, 64, 64 {Graphic WAL00134, 0, 0}
+Texture Optional WLF0044B, 64, 64 {Graphic WAL00135, 0, 0}
+Texture Optional WLF0045A, 64, 64 {Graphic WAL00136, 0, 0}
+Texture Optional WLF0045B, 64, 64 {Graphic WAL00137, 0, 0}
+Texture Optional WLF0046A, 64, 64 {Graphic WAL00138, 0, 0}
+Texture Optional WLF0046B, 64, 64 {Graphic WAL00139, 0, 0}
+Texture Optional WLF0047A, 64, 64 {Graphic WAL00140, 0, 0}
+Texture Optional WLF0047B, 64, 64 {Graphic WAL00141, 0, 0}
+Texture Optional WLF0048A, 64, 64 {Graphic WAL00142, 0, 0}
+Texture Optional WLF0048B, 64, 64 {Graphic WAL00143, 0, 0}
+Texture Optional WLF0049A, 64, 64 {Graphic WAL00144, 0, 0}
+Texture Optional WLF0049B, 64, 64 {Graphic WAL00145, 0, 0}
+Texture Optional WLF004AA, 64, 64 {Graphic WAL00146, 0, 0}
+Texture Optional WLF004AB, 64, 64 {Graphic WAL00147, 0, 0}
+Texture Optional WLF004BA, 64, 64 {Graphic WAL00148, 0, 0}
+Texture Optional WLF004BB, 64, 64 {Graphic WAL00149, 0, 0}
+Texture Optional WLF004CA, 64, 64 {Graphic WAL00150, 0, 0}
+Texture Optional WLF004CB, 64, 64 {Graphic WAL00151, 0, 0}
+Texture Optional WLF004DA, 64, 64 {Graphic WAL00152, 0, 0}
+Texture Optional WLF004DB, 64, 64 {Graphic WAL00153, 0, 0}
+Texture Optional WLF004EA, 64, 64 {Graphic WAL00154, 0, 0}
+Texture Optional WLF004EB, 64, 64 {Graphic WAL00155, 0, 0}
+Texture Optional WLF004FA, 64, 64 {Graphic WAL00156, 0, 0}
+Texture Optional WLF004FB, 64, 64 {Graphic WAL00157, 0, 0}
+
+//Switches
+Texture Optional WLF002DA, 64, 128 {Graphic WAL00088, 0, 0 Graphic WAL00112, 0, 64}
+Texture Optional WLF002DB, 64, 128 {Graphic WAL00089, 0, 0 Graphic WAL00113, 0, 64}
+Texture Optional WLF0039A, 64, 128 {Graphic WAL00112, 0, 0 Graphic WAL00088, 0, 64}
+Texture Optional WLF0039B, 64, 128 {Graphic WAL00113, 0, 0 Graphic WAL00089, 0, 64}
+
+//Doors
+
+//Locked Doors
+Texture Optional NZD01L, 64, 128 {Graphic WAL00158, 0, 0 Graphic WAL00174, 0, 64}
+Texture Optional NZD01L1, 64, 128 {Graphic WAL00159, 0, 0 Graphic WAL00175, 0, 64}
+Texture Optional NZD02L, 64, 128 {Graphic WAL00160, 0, 0 Graphic WAL00176, 0, 64}
+Texture Optional NZD02L1, 64, 128 {Graphic WAL00161, 0, 0 Graphic WAL00177, 0, 64}
+Texture Optional NZD03L, 64, 128 {Graphic WAL00162, 0, 0 Graphic WAL00178, 0, 64}
+Texture Optional NZD03L1, 64, 128 {Graphic WAL00163, 0, 0 Graphic WAL00179, 0, 64}
+Texture Optional NZD04L, 64, 128 {Graphic WAL00164, 0, 0 Graphic WAL00180, 0, 64}
+Texture Optional NZD04L1, 64, 128 {Graphic WAL00165, 0, 0 Graphic WAL00181, 0, 64}
+Texture Optional NZD05L, 64, 128 {Graphic WAL00166, 0, 0 Graphic WAL00182, 0, 64}
+Texture Optional NZD05L1, 64, 128 {Graphic WAL00167, 0, 0 Graphic WAL00183, 0, 64}
+Texture Optional NZD06L, 64, 128 {Graphic WAL00168, 0, 0 Graphic WAL00184, 0, 64}
+Texture Optional NZD06L1, 64, 128 {Graphic WAL00169, 0, 0 Graphic WAL00185, 0, 64}
+Texture Optional NZD07L, 64, 128 {Graphic WAL00170, 0, 0 Graphic WAL00186, 0, 64}
+Texture Optional NZD07L1, 64, 128 {Graphic WAL00171, 0, 0 Graphic WAL00187, 0, 64}
+Texture Optional NZD08L, 64, 128 {Graphic WAL00172, 0, 0 Graphic WAL00188, 0, 64}
+Texture Optional NZD08L1, 64, 128 {Graphic WAL00173, 0, 0 Graphic WAL00189, 0, 64}
+
+Texture Optional SPRITEBG, 37, 37 {Graphic BLACK, 0, 0 {Translation "0:255=[4, 4, 4]:[4, 4, 4]"}}
+
+Texture Optional I_NONE, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0000, 0, 0 {Translation "0:0=[255, 255, 255]:[255, 255, 255]"}}
+Texture Optional I_1Credt, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0081, 0, 0}
+Texture Optional I_5Creds, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0082, 0, 0}
+Texture Optional I_BSRedy, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0033, 0, 0}
+Texture Optional I_BSYely, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0034, 0, 0}
+Texture Optional I_BSGrey, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0035, 0, 0}
+Texture Optional I_BSBluy, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0036, 0, 0}
+Texture Optional I_BSGoly, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0037, 0, 0}
+Texture Optional I_Waterl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0041, 0, 0}
+Texture Optional I_RawMe1, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0043, 0, 0}
+Texture Optional I_RawMe2, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0045, 0, 0}
+Texture Optional I_Candyr, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0716, 0, 0}
+Texture Optional I_Sandwh, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0718, 0, 0}
+Texture Optional I_Firstt, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0030, 0, 0}
+Texture Optional I_Xylanb, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0497, 0, 0}
+Texture Optional I_Moneyg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0049, 0, 0}
+Texture Optional I_Loot, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0050, 0, 0}
+Texture Optional I_5Golds, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0051, 0, 0}
+Texture Optional I_3Golds, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0069, 0, 0}
+Texture Optional I_2Golds, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0070, 0, 0}
+Texture Optional I_1Goldr, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0071, 0, 0}
+Texture Optional I_BSChae, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0032, 0, 0}
+Texture Optional I_BSChal, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0032, 0, 0}
+Texture Optional I_BSChap, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0027, 0, 0}
+Texture Optional I_BSACP, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0083, 0, 0}
+Texture Optional I_BSSFP, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0025, 0, 0}
+Texture Optional I_BSRAW, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0028, 0, 0}
+Texture Optional I_BSDND, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0029, 0, 0}
+Texture Optional I_BSPDU, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0047, 0, 0}
+
+Texture Optional I_Sectol, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0121, 0, 0}
+Texture Optional I2Sectol, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0129, 0, 0}
+Texture Optional I3Sectol, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0137, 0, 0}
+Texture Optional I4Sectol, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0145, 0, 0}
+
+Texture Optional I_StarSl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0170, 0, 0}
+Texture Optional I2StarSl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0178, 0, 0}
+Texture Optional I3StarSl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0186, 0, 0}
+Texture Optional I4StarSl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0194, 0, 0}
+
+Texture Optional I_Securd, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0505, 0, 0}
+Texture Optional I2Securd, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0506, 0, 0}
+Texture Optional I3Securd, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0507, 0, 0}
+Texture Optional I4Securd, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0508, 0, 0}
+
+Texture Optional I_BioTeh, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0274, 0, 0}
+Texture Optional I2BioTeh, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0282, 0, 0}
+Texture Optional I3BioTeh, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0290, 0, 0}
+Texture Optional I4BioTeh, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0298, 0, 0}
+
+Texture Optional I_StarTr, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0220, 0, 0}
+Texture Optional I2StarTr, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0228, 0, 0}
+Texture Optional I3StarTr, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0236, 0, 0}
+Texture Optional I4StarTr, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0244, 0, 0}
+
+Texture Optional I_Turret, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0653, 0, 0}
+
+Texture Optional I_Turreg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0653, 0, 0}
+Texture Optional I2Turreg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0654, 0, 0}
+Texture Optional I3Turreg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0655, 0, 0}
+Texture Optional I4Turreg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0656, 0, 0}
+Texture Optional I5Turreg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0657, 0, 0}
+Texture Optional I6Turreg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0658, 0, 0}
+Texture Optional I7Turreg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0659, 0, 0}
+Texture Optional I8Turreg, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0660, 0, 0}
+
+Texture Optional I_Brownn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0579, 0, 0}
+Texture Optional I2Brownn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0580, 0, 0}
+Texture Optional I3Brownn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0581, 0, 0}
+Texture Optional I4Brownn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0582, 0, 0}
+
+Texture Optional I_Greenn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0558, 0, 0}
+Texture Optional I2Greenn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0559, 0, 0}
+Texture Optional I3Greenn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0560, 0, 0}
+Texture Optional I4Greenn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0561, 0, 0}
+
+Texture Optional I_Electe, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0497, 0, 0}
+Texture Optional I2Electe, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0498, 0, 0}
+Texture Optional I3Electe, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0499, 0, 0}
+
+Texture Optional I_Fluidn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0613, 0, 0}
+Texture Optional I2Fluidn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0614, 0, 0}
+Texture Optional I3Fluidn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0615, 0, 0}
+
+Texture Optional I_Humant, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0600, 0, 0}
+Texture Optional I2Humant, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0601, 0, 0}
+Texture Optional I3Humant, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0602, 0, 0}
+Texture Optional I4Humant, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0603, 0, 0}
+
+Texture Optional I_MechSl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0521, 0, 0}
+Texture Optional I2MechSl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0522, 0, 0}
+Texture Optional I3MechSl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0523, 0, 0}
+Texture Optional I4MechSl, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0524, 0, 0}
+
+//? Texture Optional I_Mutand, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0047, 0, 0}
+
+Texture Optional I_Persce, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0401, 0, 0}
+Texture Optional I2Persce, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0402, 0, 0}
+Texture Optional I3Persce, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0403, 0, 0}
+Texture Optional I4Persce, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0404, 0, 0}
+
+Texture Optional I_Persct, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0401, 0, 0}
+Texture Optional I2Persct, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0402, 0, 0}
+Texture Optional I3Persct, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0403, 0, 0}
+Texture Optional I4Persct, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0404, 0, 0}
+
+Texture Optional I_Plasmn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0482, 0, 0}
+Texture Optional I2Plasmn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0483, 0, 0}
+Texture Optional I3Plasmn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0484, 0, 0}
+Texture Optional I4Plasmn, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0485, 0, 0}
+
+Texture Optional I_PodAln, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0466, 0, 0}
+Texture Optional I2PodAln, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0466, 0, 0}
+Texture Optional I3PodAln, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0467, 0, 0}
+Texture Optional I4PodAln, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0468, 0, 0}
+
+Texture Optional I_GoldFe, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0324, 0, 0}
+Texture Optional I2GoldFe, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0332, 0, 0}
+Texture Optional I3GoldFe, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0340, 0, 0}
+Texture Optional I4GoldFe, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0348, 0, 0}
+
+Texture Optional I_Spidet, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0724, 0, 0}
+Texture Optional I2Spidet, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0725, 0, 0}
+Texture Optional I3Spidet, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0726, 0, 0}
+Texture Optional I4Spidet, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0727, 0, 0}
+
+Texture Optional I_Columa, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0706, 0, 0}
+Texture Optional I2Columa, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0707, 0, 0}
+Texture Optional I3Columa, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0708, 0, 0}
+
+Texture Optional I_Columc, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0702, 0, 0}
+Texture Optional I2Columc, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0703, 0, 0}
+Texture Optional I3Columc, 64, 64 {XScale 1.73 YScale 1.73 Graphic WSPR0704, 0, 0}
+
+Texture Optional BORDER, 64, 64 {Graphic BLACK, 0, 0 {Translation "0:255=[0,48,100]:[0,48,100]"}}
+
+Texture ELEV_MSK, 6, 42 {Graphic BLACK, 0, 0}
+
+Texture Optional ELEV_CON, 304, 128
+{
+	Graphic WVGA0006, 0, 0
+	Graphic ELEV_MSK, 219, 68
+}
+
+Texture Optional ELEV_1_0, 16, 16 {Graphic WVGA0007, 0, 0}
+Texture Optional ELEV_2_0, 16, 16 {Graphic WVGA0008, 0, 0}
+Texture Optional ELEV_3_0, 16, 16 {Graphic WVGA0009, 0, 0}
+Texture Optional ELEV_4_0, 16, 16 {Graphic WVGA0010, 0, 0}
+Texture Optional ELEV_5_0, 16, 16 {Graphic WVGA0011, 0, 0}
+Texture Optional ELEV_6_0, 16, 16 {Graphic WVGA0012, 0, 0}
+Texture Optional ELEV_7_0, 16, 16 {Graphic WVGA0013, 0, 0}
+Texture Optional ELEV_8_0, 16, 16 {Graphic WVGA0014, 0, 0}
+Texture Optional ELEV_9_0, 16, 16 {Graphic WVGA0015, 0, 0}
+Texture Optional ELEV_0_0, 16, 16 {Graphic WVGA0016, 0, 0}
+Texture Optional ELEV_1_1, 16, 16 {Graphic WVGA0017, 0, 0}
+Texture Optional ELEV_2_1, 16, 16 {Graphic WVGA0018, 0, 0}
+Texture Optional ELEV_3_1, 16, 16 {Graphic WVGA0019, 0, 0}
+Texture Optional ELEV_4_1, 16, 16 {Graphic WVGA0020, 0, 0}
+Texture Optional ELEV_5_1, 16, 16 {Graphic WVGA0021, 0, 0}
+Texture Optional ELEV_6_1, 16, 16 {Graphic WVGA0022, 0, 0}
+Texture Optional ELEV_7_1, 16, 16 {Graphic WVGA0023, 0, 0}
+Texture Optional ELEV_8_1, 16, 16 {Graphic WVGA0024, 0, 0}
+Texture Optional ELEV_9_1, 16, 16 {Graphic WVGA0025, 0, 0}
+Texture Optional ELEV_0_1, 16, 16 {Graphic WVGA0026, 0, 0}
+Texture Optional ELEV_MSG, 208, 32 {Graphic WVGA0027, 0, 0}
+Texture Optional MENUBACK, 320, 200 {Graphic WVGA0028, 0, 0}
+Texture Optional APOGEE, 320, 200 {Graphic WVGA0029, 0, 0}
+Texture Optional NOTSHARE, 320, 200 {Graphic WVGA0030, 0, 0}
+Texture Optional "PC-13", 320, 72 {Graphic WVGA0031, 0, 0}
+Texture Optional SCORES, 320, 200 {Graphic WVGA0032, 0, 0}
+Texture Optional M_OFF, 16, 8 {Graphic WVGA0079, 0, 0}
+Texture Optional M_ON, 16, 8 {Graphic WVGA0080, 0, 0}
+Texture Optional M_OFF_S, 16, 8 {Graphic WVGA0081, 0, 0}
+Texture Optional M_ON_S, 16, 8 {Graphic WVGA0082, 0, 0}
+Texture Optional SKILL1, 64, 48 {Graphic WVGA0083, 0, 0}
+Texture Optional SKILL2, 64, 48 {Graphic WVGA0084, 0, 0}
+Texture Optional SKILL3, 64, 48 {Graphic WVGA0085, 0, 0}
+Texture Optional SKILL4, 64, 48 {Graphic WVGA0086, 0, 0}
+
+Texture Optional M_SKILL1, 64, 48 {XScale 2.0 YScale 2.0 Graphic WVGA0083, 0, 0}
+Texture Optional M_SKILL2, 64, 48 {XScale 2.0 YScale 2.0 Graphic WVGA0084, 0, 0}
+Texture Optional M_SKILL3, 64, 48 {XScale 2.0 YScale 2.0 Graphic WVGA0085, 0, 0}
+Texture Optional M_SKILL4, 64, 48 {XScale 2.0 YScale 2.0 Graphic WVGA0086, 0, 0}
+
+Texture Optional EPI_1, 72, 56 {Graphic WVGA0087, 0, 0}
+Texture Optional EPI_2, 72, 56 {Graphic WVGA0088, 0, 0}
+Texture Optional EPI_3, 72, 56 {Graphic WVGA0089, 0, 0}
+Texture Optional EPI_4, 72, 56 {Graphic WVGA0090, 0, 0}
+Texture Optional EPI_5, 72, 56 {Graphic WVGA0091, 0, 0}
+Texture Optional EPI_6, 72, 56 {Graphic WVGA0092, 0, 0}
+Texture Optional TITLE, 320, 200 {Graphic WVGA0105, 0, 0}
+Texture Optional WEAPON1, 56, 48 {Graphic WVGA0106, 0, 0}
+Texture Optional WEAPON2, 56, 48 {Graphic WVGA0107, 0, 0}
+Texture Optional WEAPON3, 56, 48 {Graphic WVGA0108, 0, 0}
+Texture Optional WEAPON4, 56, 48 {Graphic WVGA0109, 0, 0}
+Texture Optional WEAPON5, 56, 48 {Graphic WVGA0110, 0, 0}
+Texture Optional WEAPON1W, 16, 48 {Graphic WVGA0111, 0, 0}
+Texture Optional WEAPON1R, 16, 48 {Graphic WVGA0112, 0, 0}
+Texture Optional MSG0, 8, 8 {Graphic WVGA0128, 0, 0}
+Texture Optional MSG1, 8, 8 {Graphic WVGA0129, 0, 0}
+Texture Optional HEARTG, 8, 8 {Graphic WVGA0130, 0, 0}
+Texture Optional HEARTR, 8, 8 {Graphic WVGA0131, 0, 0}
+Texture Optional HEARTB, 8, 8 {Graphic WVGA0132, 0, 0}
+Texture Optional BEATA2, 8, 24 {Graphic WVGA0134, 0, 0}
+Texture Optional BEATA3, 8, 24 {Graphic WVGA0135, 0, 0}
+Texture Optional BEATA4, 8, 24 {Graphic WVGA0136, 0, 0}
+Texture Optional BEATA5, 8, 24 {Graphic WVGA0137, 0, 0}
+Texture Optional BEATA6, 8, 24 {Graphic WVGA0138, 0, 0}
+Texture Optional BEATA7, 8, 24 {Graphic WVGA0139, 0, 0}
+Texture Optional BEATA8, 8, 24 {Graphic WVGA0140, 0, 0}
+Texture Optional BEATA9, 8, 24 {Graphic WVGA0141, 0, 0}
+Texture Optional BEATA0, 8, 24 {Graphic WVGA0142, 0, 0}
+Texture Optional BEATB1, 8, 24 {Graphic WVGA0143, 0, 0}
+Texture Optional BEATB2, 8, 24 {Graphic WVGA0144, 0, 0}
+Texture Optional BEATB3, 8, 24 {Graphic WVGA0145, 0, 0}
+Texture Optional BEATB4, 8, 24 {Graphic WVGA0146, 0, 0}
+Texture Optional BEATB5, 8, 24 {Graphic WVGA0147, 0, 0}
+Texture Optional BEATB6, 8, 24 {Graphic WVGA0148, 0, 0}
+Texture Optional BEATB7, 8, 24 {Graphic WVGA0149, 0, 0}
+Texture Optional BEATB8, 8, 24 {Graphic WVGA0150, 0, 0}
+Texture Optional BEATB9, 8, 24 {Graphic WVGA0151, 0, 0}
+Texture Optional BEATC1, 8, 24 {Graphic WVGA0152, 0, 0}
+Texture Optional BEATC2, 8, 24 {Graphic WVGA0153, 0, 0}
+Texture Optional BEATC3, 8, 24 {Graphic WVGA0154, 0, 0}
+Texture Optional BEATC4, 8, 24 {Graphic WVGA0155, 0, 0}
+Texture Optional BEATC5, 8, 24 {Graphic WVGA0156, 0, 0}
+Texture Optional BEATC6, 8, 24 {Graphic WVGA0157, 0, 0}
+Texture Optional BEATC7, 8, 24 {Graphic WVGA0158, 0, 0}
+Texture Optional BEATC8, 8, 24 {Graphic WVGA0159, 0, 0}
+Texture Optional BEATC9, 8, 24 {Graphic WVGA0160, 0, 0}
+Texture Optional BEATC0, 8, 24 {Graphic WVGA0161, 0, 0}
+Texture Optional MSGBKG, 112, 40 {Graphic WVGA0162, 0, 0}
+Texture Optional TOPBAR, 320, 16 {Graphic WVGA0163, 0, 0}
+Texture Optional STATBAR, 320, 48 {Graphic WVGA0164, 0, 0}
+
+Texture WLFST00, 49, 33
+{
+	Patch BEATA2, 0, 0
+	Patch BEATA2, 8, 0
+	Patch BEATA4, 16, 0
+	Patch BEATA8, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA2, 40, 0
+	Patch HeartG, 0, 24
+}	
+
+Texture WLFST01, 49, 33
+{
+	Patch BEATA2, 0, 0
+	Patch BEATA2, 8, 0
+	Patch BEATA5, 16, 0
+	Patch BEATA9, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA3, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST02, 49, 33
+{
+	Patch BEATA2, 0, 0
+	Patch BEATA2, 8, 0
+	Patch BEATA6, 16, 0
+	Patch BEATA0, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA4, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST03, 49, 33
+{
+	Patch BEATA2, 0, 0
+	Patch BEATA3, 8, 0
+	Patch BEATA7, 16, 0
+	Patch BEATA2, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA5, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST04, 49, 33
+{
+	Patch BEATA2, 0, 0
+	Patch BEATA4, 8, 0
+	Patch BEATA8, 16, 0
+	Patch BEATA2, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA6, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST05, 49, 33
+{
+	Patch BEATA2, 0, 0
+	Patch BEATA5, 8, 0
+	Patch BEATA9, 16, 0
+	Patch BEATA2, 24, 0
+	Patch BEATA3, 32, 0
+	Patch BEATA7, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST06, 49, 33
+{
+	Patch BEATA2, 0, 0
+	Patch BEATA6, 8, 0
+	Patch BEATA0, 16, 0
+	Patch BEATA2, 24, 0
+	Patch BEATA4, 32, 0
+	Patch BEATA8, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST07, 49, 33
+{
+	Patch BEATA3, 0, 0
+	Patch BEATA7, 8, 0
+	Patch BEATA2, 16, 0
+	Patch BEATA2, 24, 0
+	Patch BEATA5, 32, 0
+	Patch BEATA9, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST08, 49, 33
+{
+	Patch BEATA4, 0, 0
+	Patch BEATA8, 8, 0
+	Patch BEATA2, 16, 0
+	Patch BEATA2, 24, 0
+	Patch BEATA6, 32, 0
+	Patch BEATA0, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST09, 49, 33
+{
+	Patch BEATA5, 0, 0
+	Patch BEATA9, 8, 0
+	Patch BEATA2, 16, 0
+	Patch BEATA3, 24, 0
+	Patch BEATA7, 32, 0
+	Patch BEATA2, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST0A, 49, 33
+{
+	Patch BEATA6, 0, 0
+	Patch BEATA2, 8, 0
+	Patch BEATA2, 16, 0
+	Patch BEATA4, 24, 0
+	Patch BEATA8, 32, 0
+	Patch BEATA2, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST0B, 49, 33
+{
+	Patch BEATA7, 0, 0
+	Patch BEATA2, 8, 0
+	Patch BEATA2, 16, 0
+	Patch BEATA5, 24, 0
+	Patch BEATA9, 32, 0
+	Patch BEATA2, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST0C, 49, 33
+{
+	Patch BEATA8, 0, 0
+	Patch BEATA2, 8, 0
+	Patch BEATA2, 16, 0
+	Patch BEATA6, 24, 0
+	Patch BEATA0, 32, 0
+	Patch BEATA2, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST0D, 49, 33
+{
+	Patch BEATA9, 0, 0
+	Patch BEATA2, 8, 0
+	Patch BEATA3, 16, 0
+	Patch BEATA7, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA2, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST10, 49, 33
+{
+	Patch BEATB1, 0, 0
+	Patch BEATB5, 8, 0
+	Patch BEATB9, 16, 0
+	Patch BEATB4, 24, 0
+	Patch BEATB8, 32, 0
+	Patch BEATB3, 40, 0
+	Patch HeartG, 0, 24
+}	
+
+Texture WLFST11, 49, 33
+{
+	Patch BEATB2, 0, 0
+	Patch BEATB6, 8, 0
+	Patch BEATB1, 16, 0
+	Patch BEATB5, 24, 0
+	Patch BEATB9, 32, 0
+	Patch BEATB4, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST12, 49, 33
+{
+	Patch BEATB3, 0, 0
+	Patch BEATB7, 8, 0
+	Patch BEATB2, 16, 0
+	Patch BEATB6, 24, 0
+	Patch BEATB1, 32, 0
+	Patch BEATB5, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST13, 49, 33
+{
+	Patch BEATB4, 0, 0
+	Patch BEATB8, 8, 0
+	Patch BEATB3, 16, 0
+	Patch BEATB7, 24, 0
+	Patch BEATB2, 32, 0
+	Patch BEATB6, 40, 0
+	Patch HeartG, 0, 24
+}
+
+Texture WLFST14, 49, 33
+{
+	Patch BEATB5, 0, 0
+	Patch BEATB9, 8, 0
+	Patch BEATB4, 16, 0
+	Patch BEATB8, 24, 0
+	Patch BEATB3, 32, 0
+	Patch BEATB7, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST15, 49, 33
+{
+	Patch BEATB6, 0, 0
+	Patch BEATB1, 8, 0
+	Patch BEATB5, 16, 0
+	Patch BEATB9, 24, 0
+	Patch BEATB4, 32, 0
+	Patch BEATB8, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST16, 49, 33
+{
+	Patch BEATB7, 0, 0
+	Patch BEATB2, 8, 0
+	Patch BEATB6, 16, 0
+	Patch BEATB1, 24, 0
+	Patch BEATB5, 32, 0
+	Patch BEATB9, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST17, 49, 33
+{
+	Patch BEATB8, 0, 0
+	Patch BEATB3, 8, 0
+	Patch BEATB7, 16, 0
+	Patch BEATB2, 24, 0
+	Patch BEATB6, 32, 0
+	Patch BEATB1, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST18, 49, 33
+{
+	Patch BEATB9, 0, 0
+	Patch BEATB4, 8, 0
+	Patch BEATB8, 16, 0
+	Patch BEATB3, 24, 0
+	Patch BEATB7, 32, 0
+	Patch BEATB2, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST20, 49, 33
+{
+	Patch BEATC1, 0, 0
+	Patch BEATC5, 8, 0
+	Patch BEATC9, 16, 0
+	Patch BEATC3, 24, 0
+	Patch BEATC7, 32, 0
+	Patch BEATC1, 40, 0
+	Patch HeartR, 0, 24
+}	
+
+Texture WLFST21, 49, 33
+{
+	Patch BEATC2, 0, 0
+	Patch BEATC6, 8, 0
+	Patch BEATC0, 16, 0
+	Patch BEATC4, 24, 0
+	Patch BEATC8, 32, 0
+	Patch BEATC2, 40, 0
+	Patch HeartR, 0, 24
+}
+
+Texture WLFST22, 49, 33
+{
+	Patch BEATC3, 0, 0
+	Patch BEATC7, 8, 0
+	Patch BEATC1, 16, 0
+	Patch BEATC5, 24, 0
+	Patch BEATC9, 32, 0
+	Patch BEATC3, 40, 0
+	Patch HeartR, 0, 24
+}
+
+Texture WLFST23, 49, 33
+{
+	Patch BEATC4, 0, 0
+	Patch BEATC8, 8, 0
+	Patch BEATC2, 16, 0
+	Patch BEATC6, 24, 0
+	Patch BEATC0, 32, 0
+	Patch BEATC4, 40, 0
+	Patch HeartR, 0, 24
+}
+
+Texture WLFST24, 49, 33
+{
+	Patch BEATC5, 0, 0
+	Patch BEATC9, 8, 0
+	Patch BEATC3, 16, 0
+	Patch BEATC7, 24, 0
+	Patch BEATC1, 32, 0
+	Patch BEATC5, 40, 0
+	Patch HeartR, 0, 24
+}
+
+Texture WLFST25, 49, 33
+{
+	Patch BEATC6, 0, 0
+	Patch BEATC0, 8, 0
+	Patch BEATC4, 16, 0
+	Patch BEATC8, 24, 0
+	Patch BEATC2, 32, 0
+	Patch BEATC6, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST26, 49, 33
+{
+	Patch BEATC7, 0, 0
+	Patch BEATC1, 8, 0
+	Patch BEATC5, 16, 0
+	Patch BEATC9, 24, 0
+	Patch BEATC3, 32, 0
+	Patch BEATC7, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST27, 49, 33
+{
+	Patch BEATC8, 0, 0
+	Patch BEATC2, 8, 0
+	Patch BEATC6, 16, 0
+	Patch BEATC0, 24, 0
+	Patch BEATC4, 32, 0
+	Patch BEATC8, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST28, 49, 33
+{
+	Patch BEATC9, 0, 0
+	Patch BEATC3, 8, 0
+	Patch BEATC7, 16, 0
+	Patch BEATC1, 24, 0
+	Patch BEATC5, 32, 0
+	Patch BEATC9, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST29, 49, 33
+{
+	Patch BEATC0, 0, 0
+	Patch BEATC4, 8, 0
+	Patch BEATC8, 16, 0
+	Patch BEATC2, 24, 0
+	Patch BEATC6, 32, 0
+	Patch BEATC0, 40, 0
+	Patch HeartB, 0, 24
+}
+
+Texture WLFST30, 49, 33
+{
+	Patch BEATC1, 0, 0
+	Patch BEATC5, 8, 0
+	Patch BEATC9, 16, 0
+	Patch BEATC3, 24, 0
+	Patch BEATC7, 32, 0
+	Patch BEATA2, 40, 0
+}	
+
+Texture WLFST31, 49, 33
+{
+	Patch BEATC2, 0, 0
+	Patch BEATC6, 8, 0
+	Patch BEATC0, 16, 0
+	Patch BEATC4, 24, 0
+	Patch BEATC8, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture WLFST32, 49, 33
+{
+	Patch BEATC3, 0, 0
+	Patch BEATC7, 8, 0
+	Patch BEATC1, 16, 0
+	Patch BEATC5, 24, 0
+	Patch BEATC9, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture WLFST33, 49, 33
+{
+	Patch BEATC4, 0, 0
+	Patch BEATC8, 8, 0
+	Patch BEATC2, 16, 0
+	Patch BEATC6, 24, 0
+	Patch BEATC0, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture WLFST34, 49, 33
+{
+	Patch BEATC5, 0, 0
+	Patch BEATC9, 8, 0
+	Patch BEATC3, 16, 0
+	Patch BEATC7, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture WLFST35, 49, 33
+{
+	Patch BEATC6, 0, 0
+	Patch BEATC0, 8, 0
+	Patch BEATC4, 16, 0
+	Patch BEATC8, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture WLFST36, 49, 33
+{
+	Patch BEATC7, 0, 0
+	Patch BEATC1, 8, 0
+	Patch BEATC5, 16, 0
+	Patch BEATC9, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture WLFST37, 49, 33
+{
+	Patch BEATC8, 0, 0
+	Patch BEATC2, 8, 0
+	Patch BEATC6, 16, 0
+	Patch BEATC0, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture WLFST38, 49, 33
+{
+	Patch BEATC9, 0, 0
+	Patch BEATC3, 8, 0
+	Patch BEATC7, 16, 0
+	Patch BEATA2, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture WLFST39, 49, 33
+{
+	Patch BEATC0, 0, 0
+	Patch BEATC4, 8, 0
+	Patch BEATC8, 16, 0
+	Patch BEATA2, 24, 0
+	Patch BEATA2, 32, 0
+	Patch BEATA2, 40, 0
+}
+
+Texture B_PAUSE, 320, 200
+{
+	Patch SBAR_MSG, 0, 149
+	Patch PAUSE, 0, 149
+}
+
+Texture B_LOAD, 320, 200
+{
+	Patch SBAR_MSG, 0, 152
+}
+
+//Briefing Message Frame
+Texture BRIEF, 320, 200
+{
+	Graphic BLACK, 0, 0 {Translation "0:255=[24,52,81]:[24,52,81]"}
+	Graphic WVGA0075, 0, 0
+	Graphic WVGA0076, 0, 8
+	Graphic WVGA0077, 312, 8
+	Graphic WVGA0078, 8, 176 {Translation "0:0=[24,52,81]:[24,52,81]"}
+}
+
+Texture BRIEF2, 320, 200
+{
+	Graphic BLACK, 0, 0 {Translation "0:255=[24,52,81]:[24,52,81]"}
+	Graphic WVGA0075, 0, 0
+	Graphic WVGA0076, 0, 8
+	Graphic WVGA0077, 312, 8
+	Graphic WVGA0078, 8, 176 {Translation "0:0=[24,52,81]:[24,52,81]", "243:243=242:242", "242:242=243:242"}
+}
+
+Texture MSN_SHAD, 72, 56 {Graphic BLACK, 0, 0}
+
+Texture MSN1, 72, 56 {Graphic WVGA0087, 0, 0}
+Texture MSN1_ALT, 72, 56 {Graphic WVGA0087, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN2, 72, 56 {Graphic WVGA0088, 0, 0}
+Texture MSN2_ALT, 72, 56 {Graphic WVGA0088, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN3, 72, 56 {Graphic WVGA0089, 0, 0}
+Texture MSN3_ALT, 72, 56 {Graphic WVGA0089, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN4, 72, 56 {Graphic WVGA0090, 0, 0}
+Texture MSN4_ALT, 72, 56 {Graphic WVGA0090, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN5, 72, 56 {Graphic WVGA0091, 0, 0}
+Texture MSN5_ALT, 72, 56 {Graphic WVGA0091, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN6, 72, 56 {Graphic WVGA0092, 0, 0}
+Texture MSN6_Alt, 72, 56 {Graphic WVGA0092, 0, 0 {Translation "250:252=251:253"}}
+Texture MSN6_Al2, 72, 56 {Graphic WVGA0092, 0, 0 {Translation "250:252=252:254"}}
+
+Texture MSNSB_T, 36, 1 {Graphic WVGA0087, 0, 0}
+Texture MSNSB_L, 1, 28 {Graphic WVGA0087, 0, 0}
+Texture MSNSB_B, 36, 1 {Graphic WVGA0087, 0, -55}
+Texture MSNSB_R, 1, 28 {Graphic WVGA0087, -71, 0}
+
+Texture MSNSBORD, 36, 28
+{
+	Graphic MSNSB_T, 0, 0
+	Graphic MSNSB_L, 0, 0
+	Graphic MSNSB_B, 0, 27
+	Graphic MSNSB_R, 35, 0
+}
+
+Texture MSN1S, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0087, 0, 0}
+Texture MSN1SALT, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0087, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN2S, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0088, 0, 0}
+Texture MSN2SALT, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0088, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN3S, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0089, 0, 0}
+Texture MSN3SALT, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0089, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN4S, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0090, 0, 0}
+Texture MSN4SALT, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0090, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN5S, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0091, 0, 0}
+Texture MSN5SALT, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0091, 0, 0 {Translation "243:243=242:242", "242:242=243:243"}}
+Texture MSN6S, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0092, 0, 0}
+Texture MSN6SAlt, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0092, 0, 0 {Translation "250:252=251:253"}}
+Texture MSN6SAl2, 72, 56 {XScale 2.0 YScale 2.0 Graphic WVGA0092, 0, 0 {Translation "250:252=252:254"}}
+	
+TEXTURE FLAT1000, 10, 10 {Graphic BS_PAL, -3, -3}
+TEXTURE FLAT1001, 10, 10 {Graphic BS_PAL, -19, -3}
+TEXTURE FLAT1002, 10, 10 {Graphic BS_PAL, -35, -3}
+TEXTURE FLAT1003, 10, 10 {Graphic BS_PAL, -51, -3}
+TEXTURE FLAT1004, 10, 10 {Graphic BS_PAL, -67, -3}
+TEXTURE FLAT1005, 10, 10 {Graphic BS_PAL, -83, -3}
+TEXTURE FLAT1006, 10, 10 {Graphic BS_PAL, -99, -3}
+TEXTURE FLAT1007, 10, 10 {Graphic BS_PAL, -115, -3}
+TEXTURE FLAT1008, 10, 10 {Graphic BS_PAL, -131, -3}
+TEXTURE FLAT1009, 10, 10 {Graphic BS_PAL, -147, -3}
+TEXTURE FLAT1010, 10, 10 {Graphic BS_PAL, -163, -3}
+TEXTURE FLAT1011, 10, 10 {Graphic BS_PAL, -179, -3}
+TEXTURE FLAT1012, 10, 10 {Graphic BS_PAL, -195, -3}
+TEXTURE FLAT1013, 10, 10 {Graphic BS_PAL, -211, -3}
+TEXTURE FLAT1014, 10, 10 {Graphic BS_PAL, -227, -3}
+TEXTURE FLAT1015, 10, 10 {Graphic BS_PAL, -243, -3}
+TEXTURE FLAT1016, 10, 10 {Graphic BS_PAL, -3, -19}
+TEXTURE FLAT1017, 10, 10 {Graphic BS_PAL, -19, -19}
+TEXTURE FLAT1018, 10, 10 {Graphic BS_PAL, -35, -19}
+TEXTURE FLAT1019, 10, 10 {Graphic BS_PAL, -51, -19}
+TEXTURE FLAT1020, 10, 10 {Graphic BS_PAL, -67, -19}
+TEXTURE FLAT1021, 10, 10 {Graphic BS_PAL, -83, -19}
+TEXTURE FLAT1022, 10, 10 {Graphic BS_PAL, -99, -19}
+TEXTURE FLAT1023, 10, 10 {Graphic BS_PAL, -115, -19}
+TEXTURE FLAT1024, 10, 10 {Graphic BS_PAL, -131, -19}
+TEXTURE FLAT1025, 10, 10 {Graphic BS_PAL, -147, -19}
+TEXTURE FLAT1026, 10, 10 {Graphic BS_PAL, -163, -19}
+TEXTURE FLAT1027, 10, 10 {Graphic BS_PAL, -179, -19}
+TEXTURE FLAT1028, 10, 10 {Graphic BS_PAL, -195, -19}
+TEXTURE FLAT1029, 10, 10 {Graphic BS_PAL, -211, -19}
+TEXTURE FLAT1030, 10, 10 {Graphic BS_PAL, -227, -19}
+TEXTURE FLAT1031, 10, 10 {Graphic BS_PAL, -243, -19}
+TEXTURE FLAT1032, 10, 10 {Graphic BS_PAL, -3, -35}
+TEXTURE FLAT1033, 10, 10 {Graphic BS_PAL, -19, -35}
+TEXTURE FLAT1034, 10, 10 {Graphic BS_PAL, -35, -35}
+TEXTURE FLAT1035, 10, 10 {Graphic BS_PAL, -51, -35}
+TEXTURE FLAT1036, 10, 10 {Graphic BS_PAL, -67, -35}
+TEXTURE FLAT1037, 10, 10 {Graphic BS_PAL, -83, -35}
+TEXTURE FLAT1038, 10, 10 {Graphic BS_PAL, -99, -35}
+TEXTURE FLAT1039, 10, 10 {Graphic BS_PAL, -115, -35}
+TEXTURE FLAT1040, 10, 10 {Graphic BS_PAL, -131, -35}
+TEXTURE FLAT1041, 10, 10 {Graphic BS_PAL, -147, -35}
+TEXTURE FLAT1042, 10, 10 {Graphic BS_PAL, -163, -35}
+TEXTURE FLAT1043, 10, 10 {Graphic BS_PAL, -179, -35}
+TEXTURE FLAT1044, 10, 10 {Graphic BS_PAL, -195, -35}
+TEXTURE FLAT1045, 10, 10 {Graphic BS_PAL, -211, -35}
+TEXTURE FLAT1046, 10, 10 {Graphic BS_PAL, -227, -35}
+TEXTURE FLAT1047, 10, 10 {Graphic BS_PAL, -243, -35}
+TEXTURE FLAT1048, 10, 10 {Graphic BS_PAL, -3, -51}
+TEXTURE FLAT1049, 10, 10 {Graphic BS_PAL, -19, -51}
+TEXTURE FLAT1050, 10, 10 {Graphic BS_PAL, -35, -51}
+TEXTURE FLAT1051, 10, 10 {Graphic BS_PAL, -51, -51}
+TEXTURE FLAT1052, 10, 10 {Graphic BS_PAL, -67, -51}
+TEXTURE FLAT1053, 10, 10 {Graphic BS_PAL, -83, -51}
+TEXTURE FLAT1054, 10, 10 {Graphic BS_PAL, -99, -51}
+TEXTURE FLAT1055, 10, 10 {Graphic BS_PAL, -115, -51}
+TEXTURE FLAT1056, 10, 10 {Graphic BS_PAL, -131, -51}
+TEXTURE FLAT1057, 10, 10 {Graphic BS_PAL, -147, -51}
+TEXTURE FLAT1058, 10, 10 {Graphic BS_PAL, -163, -51}
+TEXTURE FLAT1059, 10, 10 {Graphic BS_PAL, -179, -51}
+TEXTURE FLAT1060, 10, 10 {Graphic BS_PAL, -195, -51}
+TEXTURE FLAT1061, 10, 10 {Graphic BS_PAL, -211, -51}
+TEXTURE FLAT1062, 10, 10 {Graphic BS_PAL, -227, -51}
+TEXTURE FLAT1063, 10, 10 {Graphic BS_PAL, -243, -51}
+TEXTURE FLAT1064, 10, 10 {Graphic BS_PAL, -3, -67}
+TEXTURE FLAT1065, 10, 10 {Graphic BS_PAL, -19, -67}
+TEXTURE FLAT1066, 10, 10 {Graphic BS_PAL, -35, -67}
+TEXTURE FLAT1067, 10, 10 {Graphic BS_PAL, -51, -67}
+TEXTURE FLAT1068, 10, 10 {Graphic BS_PAL, -67, -67}
+TEXTURE FLAT1069, 10, 10 {Graphic BS_PAL, -83, -67}
+TEXTURE FLAT1070, 10, 10 {Graphic BS_PAL, -99, -67}
+TEXTURE FLAT1071, 10, 10 {Graphic BS_PAL, -115, -67}
+TEXTURE FLAT1072, 10, 10 {Graphic BS_PAL, -131, -67}
+TEXTURE FLAT1073, 10, 10 {Graphic BS_PAL, -147, -67}
+TEXTURE FLAT1074, 10, 10 {Graphic BS_PAL, -163, -67}
+TEXTURE FLAT1075, 10, 10 {Graphic BS_PAL, -179, -67}
+TEXTURE FLAT1076, 10, 10 {Graphic BS_PAL, -195, -67}
+TEXTURE FLAT1077, 10, 10 {Graphic BS_PAL, -211, -67}
+TEXTURE FLAT1078, 10, 10 {Graphic BS_PAL, -227, -67}
+TEXTURE FLAT1079, 10, 10 {Graphic BS_PAL, -243, -67}
+TEXTURE FLAT1080, 10, 10 {Graphic BS_PAL, -3, -83}
+TEXTURE FLAT1081, 10, 10 {Graphic BS_PAL, -19, -83}
+TEXTURE FLAT1082, 10, 10 {Graphic BS_PAL, -35, -83}
+TEXTURE FLAT1083, 10, 10 {Graphic BS_PAL, -51, -83}
+TEXTURE FLAT1084, 10, 10 {Graphic BS_PAL, -67, -83}
+TEXTURE FLAT1085, 10, 10 {Graphic BS_PAL, -83, -83}
+TEXTURE FLAT1086, 10, 10 {Graphic BS_PAL, -99, -83}
+TEXTURE FLAT1087, 10, 10 {Graphic BS_PAL, -115, -83}
+TEXTURE FLAT1088, 10, 10 {Graphic BS_PAL, -131, -83}
+TEXTURE FLAT1089, 10, 10 {Graphic BS_PAL, -147, -83}
+TEXTURE FLAT1090, 10, 10 {Graphic BS_PAL, -163, -83}
+TEXTURE FLAT1091, 10, 10 {Graphic BS_PAL, -179, -83}
+TEXTURE FLAT1092, 10, 10 {Graphic BS_PAL, -195, -83}
+TEXTURE FLAT1093, 10, 10 {Graphic BS_PAL, -211, -83}
+TEXTURE FLAT1094, 10, 10 {Graphic BS_PAL, -227, -83}
+TEXTURE FLAT1095, 10, 10 {Graphic BS_PAL, -243, -83}
+TEXTURE FLAT1096, 10, 10 {Graphic BS_PAL, -3, -99}
+TEXTURE FLAT1097, 10, 10 {Graphic BS_PAL, -19, -99}
+TEXTURE FLAT1098, 10, 10 {Graphic BS_PAL, -35, -99}
+TEXTURE FLAT1099, 10, 10 {Graphic BS_PAL, -51, -99}
+TEXTURE FLAT1100, 10, 10 {Graphic BS_PAL, -67, -99}
+TEXTURE FLAT1101, 10, 10 {Graphic BS_PAL, -83, -99}
+TEXTURE FLAT1102, 10, 10 {Graphic BS_PAL, -99, -99}
+TEXTURE FLAT1103, 10, 10 {Graphic BS_PAL, -115, -99}
+TEXTURE FLAT1104, 10, 10 {Graphic BS_PAL, -131, -99}
+TEXTURE FLAT1105, 10, 10 {Graphic BS_PAL, -147, -99}
+TEXTURE FLAT1106, 10, 10 {Graphic BS_PAL, -163, -99}
+TEXTURE FLAT1107, 10, 10 {Graphic BS_PAL, -179, -99}
+TEXTURE FLAT1108, 10, 10 {Graphic BS_PAL, -195, -99}
+TEXTURE FLAT1109, 10, 10 {Graphic BS_PAL, -211, -99}
+TEXTURE FLAT1110, 10, 10 {Graphic BS_PAL, -227, -99}
+TEXTURE FLAT1111, 10, 10 {Graphic BS_PAL, -243, -99}
+TEXTURE FLAT1112, 10, 10 {Graphic BS_PAL, -3, -115}
+TEXTURE FLAT1113, 10, 10 {Graphic BS_PAL, -19, -115}
+TEXTURE FLAT1114, 10, 10 {Graphic BS_PAL, -35, -115}
+TEXTURE FLAT1115, 10, 10 {Graphic BS_PAL, -51, -115}
+TEXTURE FLAT1116, 10, 10 {Graphic BS_PAL, -67, -115}
+TEXTURE FLAT1117, 10, 10 {Graphic BS_PAL, -83, -115}
+TEXTURE FLAT1118, 10, 10 {Graphic BS_PAL, -99, -115}
+TEXTURE FLAT1119, 10, 10 {Graphic BS_PAL, -115, -115}
+TEXTURE FLAT1120, 10, 10 {Graphic BS_PAL, -131, -115}
+TEXTURE FLAT1121, 10, 10 {Graphic BS_PAL, -147, -115}
+TEXTURE FLAT1122, 10, 10 {Graphic BS_PAL, -163, -115}
+TEXTURE FLAT1123, 10, 10 {Graphic BS_PAL, -179, -115}
+TEXTURE FLAT1124, 10, 10 {Graphic BS_PAL, -195, -115}
+TEXTURE FLAT1125, 10, 10 {Graphic BS_PAL, -211, -115}
+TEXTURE FLAT1126, 10, 10 {Graphic BS_PAL, -227, -115}
+TEXTURE FLAT1127, 10, 10 {Graphic BS_PAL, -243, -115}
+TEXTURE FLAT1128, 10, 10 {Graphic BS_PAL, -3, -131}
+TEXTURE FLAT1129, 10, 10 {Graphic BS_PAL, -19, -131}
+TEXTURE FLAT1130, 10, 10 {Graphic BS_PAL, -35, -131}
+TEXTURE FLAT1131, 10, 10 {Graphic BS_PAL, -51, -131}
+TEXTURE FLAT1132, 10, 10 {Graphic BS_PAL, -67, -131}
+TEXTURE FLAT1133, 10, 10 {Graphic BS_PAL, -83, -131}
+TEXTURE FLAT1134, 10, 10 {Graphic BS_PAL, -99, -131}
+TEXTURE FLAT1135, 10, 10 {Graphic BS_PAL, -115, -131}
+TEXTURE FLAT1136, 10, 10 {Graphic BS_PAL, -131, -131}
+TEXTURE FLAT1137, 10, 10 {Graphic BS_PAL, -147, -131}
+TEXTURE FLAT1138, 10, 10 {Graphic BS_PAL, -163, -131}
+TEXTURE FLAT1139, 10, 10 {Graphic BS_PAL, -179, -131}
+TEXTURE FLAT1140, 10, 10 {Graphic BS_PAL, -195, -131}
+TEXTURE FLAT1141, 10, 10 {Graphic BS_PAL, -211, -131}
+TEXTURE FLAT1142, 10, 10 {Graphic BS_PAL, -227, -131}
+TEXTURE FLAT1143, 10, 10 {Graphic BS_PAL, -243, -131}
+TEXTURE FLAT1144, 10, 10 {Graphic BS_PAL, -3, -147}
+TEXTURE FLAT1145, 10, 10 {Graphic BS_PAL, -19, -147}
+TEXTURE FLAT1146, 10, 10 {Graphic BS_PAL, -35, -147}
+TEXTURE FLAT1147, 10, 10 {Graphic BS_PAL, -51, -147}
+TEXTURE FLAT1148, 10, 10 {Graphic BS_PAL, -67, -147}
+TEXTURE FLAT1149, 10, 10 {Graphic BS_PAL, -83, -147}
+TEXTURE FLAT1150, 10, 10 {Graphic BS_PAL, -99, -147}
+TEXTURE FLAT1151, 10, 10 {Graphic BS_PAL, -115, -147}
+TEXTURE FLAT1152, 10, 10 {Graphic BS_PAL, -131, -147}
+TEXTURE FLAT1153, 10, 10 {Graphic BS_PAL, -147, -147}
+TEXTURE FLAT1154, 10, 10 {Graphic BS_PAL, -163, -147}
+TEXTURE FLAT1155, 10, 10 {Graphic BS_PAL, -179, -147}
+TEXTURE FLAT1156, 10, 10 {Graphic BS_PAL, -195, -147}
+TEXTURE FLAT1157, 10, 10 {Graphic BS_PAL, -211, -147}
+TEXTURE FLAT1158, 10, 10 {Graphic BS_PAL, -227, -147}
+TEXTURE FLAT1159, 10, 10 {Graphic BS_PAL, -243, -147}
+TEXTURE FLAT1160, 10, 10 {Graphic BS_PAL, -3, -163}
+TEXTURE FLAT1161, 10, 10 {Graphic BS_PAL, -19, -163}
+TEXTURE FLAT1162, 10, 10 {Graphic BS_PAL, -35, -163}
+TEXTURE FLAT1163, 10, 10 {Graphic BS_PAL, -51, -163}
+TEXTURE FLAT1164, 10, 10 {Graphic BS_PAL, -67, -163}
+TEXTURE FLAT1165, 10, 10 {Graphic BS_PAL, -83, -163}
+TEXTURE FLAT1166, 10, 10 {Graphic BS_PAL, -99, -163}
+TEXTURE FLAT1167, 10, 10 {Graphic BS_PAL, -115, -163}
+TEXTURE FLAT1168, 10, 10 {Graphic BS_PAL, -131, -163}
+TEXTURE FLAT1169, 10, 10 {Graphic BS_PAL, -147, -163}
+TEXTURE FLAT1170, 10, 10 {Graphic BS_PAL, -163, -163}
+TEXTURE FLAT1171, 10, 10 {Graphic BS_PAL, -179, -163}
+TEXTURE FLAT1172, 10, 10 {Graphic BS_PAL, -195, -163}
+TEXTURE FLAT1173, 10, 10 {Graphic BS_PAL, -211, -163}
+TEXTURE FLAT1174, 10, 10 {Graphic BS_PAL, -227, -163}
+TEXTURE FLAT1175, 10, 10 {Graphic BS_PAL, -243, -163}
+TEXTURE FLAT1176, 10, 10 {Graphic BS_PAL, -3, -179}
+TEXTURE FLAT1177, 10, 10 {Graphic BS_PAL, -19, -179}
+TEXTURE FLAT1178, 10, 10 {Graphic BS_PAL, -35, -179}
+TEXTURE FLAT1179, 10, 10 {Graphic BS_PAL, -51, -179}
+TEXTURE FLAT1180, 10, 10 {Graphic BS_PAL, -67, -179}
+TEXTURE FLAT1181, 10, 10 {Graphic BS_PAL, -83, -179}
+TEXTURE FLAT1182, 10, 10 {Graphic BS_PAL, -99, -179}
+TEXTURE FLAT1183, 10, 10 {Graphic BS_PAL, -115, -179}
+TEXTURE FLAT1184, 10, 10 {Graphic BS_PAL, -131, -179}
+TEXTURE FLAT1185, 10, 10 {Graphic BS_PAL, -147, -179}
+TEXTURE FLAT1186, 10, 10 {Graphic BS_PAL, -163, -179}
+TEXTURE FLAT1187, 10, 10 {Graphic BS_PAL, -179, -179}
+TEXTURE FLAT1188, 10, 10 {Graphic BS_PAL, -195, -179}
+TEXTURE FLAT1189, 10, 10 {Graphic BS_PAL, -211, -179}
+TEXTURE FLAT1190, 10, 10 {Graphic BS_PAL, -227, -179}
+TEXTURE FLAT1191, 10, 10 {Graphic BS_PAL, -243, -179}
+TEXTURE FLAT1192, 10, 10 {Graphic BS_PAL, -3, -195}
+TEXTURE FLAT1193, 10, 10 {Graphic BS_PAL, -19, -195}
+TEXTURE FLAT1194, 10, 10 {Graphic BS_PAL, -35, -195}
+TEXTURE FLAT1195, 10, 10 {Graphic BS_PAL, -51, -195}
+TEXTURE FLAT1196, 10, 10 {Graphic BS_PAL, -67, -195}
+TEXTURE FLAT1197, 10, 10 {Graphic BS_PAL, -83, -195}
+TEXTURE FLAT1198, 10, 10 {Graphic BS_PAL, -99, -195}
+TEXTURE FLAT1199, 10, 10 {Graphic BS_PAL, -115, -195}
+TEXTURE FLAT1200, 10, 10 {Graphic BS_PAL, -131, -195}
+TEXTURE FLAT1201, 10, 10 {Graphic BS_PAL, -147, -195}
+TEXTURE FLAT1202, 10, 10 {Graphic BS_PAL, -163, -195}
+TEXTURE FLAT1203, 10, 10 {Graphic BS_PAL, -179, -195}
+TEXTURE FLAT1204, 10, 10 {Graphic BS_PAL, -195, -195}
+TEXTURE FLAT1205, 10, 10 {Graphic BS_PAL, -211, -195}
+TEXTURE FLAT1206, 10, 10 {Graphic BS_PAL, -227, -195}
+TEXTURE FLAT1207, 10, 10 {Graphic BS_PAL, -243, -195}
+TEXTURE FLAT1208, 10, 10 {Graphic BS_PAL, -3, -211}
+TEXTURE FLAT1209, 10, 10 {Graphic BS_PAL, -19, -211}
+TEXTURE FLAT1210, 10, 10 {Graphic BS_PAL, -35, -211}
+TEXTURE FLAT1211, 10, 10 {Graphic BS_PAL, -51, -211}
+TEXTURE FLAT1212, 10, 10 {Graphic BS_PAL, -67, -211}
+TEXTURE FLAT1213, 10, 10 {Graphic BS_PAL, -83, -211}
+TEXTURE FLAT1214, 10, 10 {Graphic BS_PAL, -99, -211}
+TEXTURE FLAT1215, 10, 10 {Graphic BS_PAL, -115, -211}
+TEXTURE FLAT1216, 10, 10 {Graphic BS_PAL, -131, -211}
+TEXTURE FLAT1217, 10, 10 {Graphic BS_PAL, -147, -211}
+TEXTURE FLAT1218, 10, 10 {Graphic BS_PAL, -163, -211}
+TEXTURE FLAT1219, 10, 10 {Graphic BS_PAL, -179, -211}
+TEXTURE FLAT1220, 10, 10 {Graphic BS_PAL, -195, -211}
+TEXTURE FLAT1221, 10, 10 {Graphic BS_PAL, -211, -211}
+TEXTURE FLAT1222, 10, 10 {Graphic BS_PAL, -227, -211}
+TEXTURE FLAT1223, 10, 10 {Graphic BS_PAL, -243, -211}
+TEXTURE FLAT1224, 10, 10 {Graphic BS_PAL, -3, -227}
+TEXTURE FLAT1225, 10, 10 {Graphic BS_PAL, -19, -227}
+TEXTURE FLAT1226, 10, 10 {Graphic BS_PAL, -35, -227}
+TEXTURE FLAT1227, 10, 10 {Graphic BS_PAL, -51, -227}
+TEXTURE FLAT1228, 10, 10 {Graphic BS_PAL, -67, -227}
+TEXTURE FLAT1229, 10, 10 {Graphic BS_PAL, -83, -227}
+TEXTURE FLAT1230, 10, 10 {Graphic BS_PAL, -99, -227}
+TEXTURE FLAT1231, 10, 10 {Graphic BS_PAL, -115, -227}
+TEXTURE FLAT1232, 10, 10 {Graphic BS_PAL, -131, -227}
+TEXTURE FLAT1233, 10, 10 {Graphic BS_PAL, -147, -227}
+TEXTURE FLAT1234, 10, 10 {Graphic BS_PAL, -163, -227}
+TEXTURE FLAT1235, 10, 10 {Graphic BS_PAL, -179, -227}
+TEXTURE FLAT1236, 10, 10 {Graphic BS_PAL, -195, -227}
+TEXTURE FLAT1237, 10, 10 {Graphic BS_PAL, -211, -227}
+TEXTURE FLAT1238, 10, 10 {Graphic BS_PAL, -227, -227}
+TEXTURE FLAT1239, 10, 10 {Graphic BS_PAL, -243, -227}
+TEXTURE FLAT1240, 10, 10 {Graphic BS_PAL, -3, -243}
+TEXTURE FLAT1241, 10, 10 {Graphic BS_PAL, -19, -243}
+TEXTURE FLAT1242, 10, 10 {Graphic BS_PAL, -35, -243}
+TEXTURE FLAT1243, 10, 10 {Graphic BS_PAL, -51, -243}
+TEXTURE FLAT1244, 10, 10 {Graphic BS_PAL, -67, -243}
+TEXTURE FLAT1245, 10, 10 {Graphic BS_PAL, -83, -243}
+TEXTURE FLAT1246, 10, 10 {Graphic BS_PAL, -99, -243}
+TEXTURE FLAT1247, 10, 10 {Graphic BS_PAL, -115, -243}
+TEXTURE FLAT1248, 10, 10 {Graphic BS_PAL, -131, -243}
+TEXTURE FLAT1249, 10, 10 {Graphic BS_PAL, -147, -243}
+TEXTURE FLAT1250, 10, 10 {Graphic BS_PAL, -163, -243}
+TEXTURE FLAT1251, 10, 10 {Graphic BS_PAL, -179, -243}
+TEXTURE FLAT1252, 10, 10 {Graphic BS_PAL, -195, -243}
+TEXTURE FLAT1253, 10, 10 {Graphic BS_PAL, -211, -243}
+TEXTURE FLAT1254, 10, 10 {Graphic BS_PAL, -227, -243}
+TEXTURE FLAT1255, 10, 10 {Graphic BS_PAL, -243, -243}
+
+TEXTURE Ceiling, 64, 64 {Graphic BLACK, 0, 0}
+TEXTURE Floor, 64, 64 {Graphic BLACK, 0, 0}
+
+TEXTURE RED, 320, 200 {Graphic BLACK, 0, 0 {Translation "0:255=[152,8,8]:[152,8,8]"}}
+TEXTURE DARK_RED, 320, 200 {Graphic BLACK, 0, 0 {Translation "0:255=[113,4,4]:[113,4,4]"}}
+
+TEXTURE MAP_BKG, 64, 64 {Graphic BLACK, 0, 0 {Translation "0:255=[52,52,52]:[52,52,52]"}}
+
+TEXTURE DOT_LGRY, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[88,88,88]:[88,88,88]"}}
+TEXTURE DOT_GREY, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[52,52,52]:[52,52,52]"}}
+TEXTURE DOT_DGRY, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[44,44,44]:[44,44,44]"}}
+TEXTURE DOT_LGRN, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[0,200,0]:[0,200,0]"}}
+TEXTURE DOT_GRN, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[0,140,0]:[0,140,0]"}}
+TEXTURE DOT_DGRN, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[0,80,0]:[0,80,0]"}}
+TEXTURE DOT_RED, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[255,0,0]:[255,0,0]"}}
+TEXTURE DOT_BLUE, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[0,0,255]:[0,0,255]"}}
+TEXTURE DOT_YELL, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[255,255,0]:[255,255,0]"}}
+TEXTURE DOT_WHT1, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[255,255,255]:[255,255,255]"}}
+TEXTURE DOT_WHT2, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[255,255,255]:[255,255,255]"}}
+TEXTURE DOT_BLAK, 1, 1 {Graphic BLACK, 0, 0}
+
+TEXTURE B_BARFIL, 1, 1 {Graphic BLACK, 0, 0 {Translation "0:255=[255,255,255]:[255,255,255]"}}
+TEXTURE S_BARFIL, 1, 5 {Graphic BLACK, 0, 0 {Translation "0:255=[192,16,100]:[192,16,100]"}}
+
+//TEXTURE HILITE1, 155, 9 {Graphic BLACK, 0, 0 {Translation "0:255=244:244"}}
+TEXTURE HILITE1, 2, 9 {Graphic BLACK, 0, 0 {Translation "0:255=244:244"}}
+//TEXTURE HILITE1, 155, 9 {Graphic HILITE, 0, 0}
+TEXTURE HILITE1A, 155, 9 {}
+//TEXTURE HILITE2, 120, 16 {Graphic BLACK, 0, 0 {Translation "0:255=244:244"}}
+TEXTURE HILITE2, 1, 16 {Graphic BLACK, 0, 0 {Translation "0:255=244:244"}}
+//TEXTURE HILITE2, 120, 16 {Graphic HILITE, 0, 0}
+TEXTURE HILITE2A, 120, 16 {}

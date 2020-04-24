@@ -1,0 +1,389 @@
+[enu default]
+
+//Ammo
+Charge = "Full Charge Pack";
+ChargeDrop = "Partial Charge Pack";
+
+//Weapons
+Weapon1 = "Auto Charge Pistol";
+Weapon2 = "Slow Fire Protector";
+Weapon3 = "Rapid Assault Weapon";
+Weapon4 = "Dual Neutron Disruptor";
+Weapon5 = "Plasma Dicharge Unit";
+
+//Health
+ExtraLife = "Xylan Orb";
+Health30 = "First Aid Kit";
+Health30 = "Steak";
+Health15 = "Raw Meat";
+Health10 = "Sandwich";
+Health8 = "Candy Bar";
+Health5 = "Water Bowl";
+
+//Bonus
+Bonus100 = "Money Bag";
+Bonus500 = "Loot";
+
+//Gold Bar Bonuses
+Bonus250 = "A Bar of Gold";
+Bonus500 = "2 Bars of Gold";
+Bonus750 = "3 Bars of Gold";
+Bonus1000 = "5 Bars of Gold";
+
+//Keys
+RedCard = "Red Access Card";
+YellowCard = "Yellow Access Card";
+GreenCard = "Green Access Card";
+BlueCard = "Blue Access Card";
+GoldCard = "Gold Access Card";
+
+//Tokens
+Tokens1 = "1 Credit Token";
+Tokens5 = "5 Credit Token";
+
+//Skills
+SK_1 = "LEVEL 1:\nNOVICE AGENT";
+SK_2 = "LEVEL 2:\nSKILLED AGENT";
+SK_3 = "LEVEL 3:\nEXPERT AGENT";
+SK_4 = "LEVEL 4:\nVETERAN AGENT";
+
+//Episodes
+EP_1 = "MISSION 1:\nSTAR INSTITUTE";
+EP_2 = "MISSION 2:\nFLOATING FORTRESS";
+EP_3 = "MISSION 3:\nUNDERGROUND NETWORK";
+EP_4 = "MISSION 4:\nSTAR PORT";
+EP_5 = "MISSION 5:\nHABITAT II";
+EP_6 = "MISSION 6:\nSATELLITE DEFENSE";
+
+QUIT = "Quit to DOS?\nAre you sure (Y or N)?";
+
+//Enemy Attack Titles
+CC_SectorPatrol = "SECTOR PATROL";
+CC_Turret = "HEAVY ARMORED\n ROBOT TURRET";
+CC_TurretRevolving = "  AUTOMATED\nHEAVY ARMORED\n ROBOT TURRET";
+CC_BioTech = "   BIO-TECH";
+CC_PodAlien = " POD ALIEN";
+CC_PlasmaAlien = " HIGH ENERGY\nPLASMA ALIEN";
+CC_ElectroSphere = "PLASMA SPHERE";
+CC_StarSentinel = " STAR SENTINEL";
+CC_SecurityGuard = " HIGH-SECURITY\nGENETIC GUARD";
+CC_MechSentinel = " EXPERIMENTAL\nMECH-SENTINEL";
+CC_HumanMutant = " EXPERIMENTAL\nMUTANT HUMAN";
+CC_BrownAlien = " EXPERIMENTAL\nGENETIC ALIEN";
+CC_GreenAlien = " EXPERIMENTAL\nGENETIC ALIEN";
+CC_MutantGuard = " MUTATED\nGUARD";
+CC_StarTrooper = " STAR TROOPER";
+CC_Goldfire = " DR GOLDFIRE";
+CC_MorphedGoldfire = " MORPHED\n DR GOLDFIRE";
+CC_Transport = "TRANSPORT\nEXPLOSION";
+CC_PerscanDrone = "PERSCAN DRONE\n EXPLOSION";
+CC_FluidAlien = " FLUID ALIEN";
+CC_ToxicWaste = " BIO TOXIC\n WASTE.";
+CC_ToxicSludge = " STANDING IN\n TOXIC SLUDGE.";
+CC_Column_Electric = " ELECTRIC ARC\nBARRIER.";
+CC_Column_Plasma = " POST\n BARRIER.";
+CC_Column_Spike = " SPIKE\n BARRIER.";
+CC_SpiderMutant = " SPIDER\n MUTANT";
+CC_BreatherBeast = " BREATHER\nBEAST";
+CC_CyborgWarrior = " CYBORG\n WARRIOR";
+CC_ReptilianWarrior = " REPTILIAN\nWARRIOR";
+CC_AcidDragon = " ACID DRAGON";
+CC_BioMechGuardian = " BIO-MECH\nGUARDIAN";
+CC_GiantStalker = " THE GIANT\n STALKER";
+CC_SpectorDemon = " THE SPECTOR\n DEMON";
+CC_ArmoredStalker = " THE ARMORED\n STALKER";
+CC_CrawlerBeast = " THE CRAWLER\n BEAST";
+
+//Status Bar Messages
+SB_WeaponReady = "\n\n   SELECTED WEAPON\n ACTIVATED AND READY.";
+SB_WeaponNotReady = "\n\n  SELECTED WEAPON NOT\n  CURRENTLY AVAILABLE.";
+SB_NoAmmo = "\n  \c[BSStatRed]NOT ENOUGH ENERGY\n \c[BSStatRed]FOR SELECTED WEAPON\n    SWITCHING TO\n  AUTOCHARGE PISTOL.";
+SB_Malfunction = "\n       \c[BSStatLightRed]WARNING:\n\n\c[BSStatRed]WEAPON MALFUNCTION!\n";
+SB_AmmoEmpty = "\n       \c[BSStatLightRed]WARNING:\n\c[BSStatRed]ENERGY PACK DEPLETED\n     SWITCHING TO\n  AUTOCHARGE PISTOL.";
+SB_SwitchNotActive = "\n\n   WALL SWITCH NOT\n    OPERATIONAL!!";
+
+Food_NoTokens = "\n\n  YOU DON'T HAVE ANY\n     FOOD TOKENS!";
+Food_NoEat = "\n\n    CAN'T EAT NOW,\n     NOT HUNGRY.";
+Food_Dispense1 = "\n FOOD UNIT DISPENSES\n  SOMETHING EDIBLE.\n\n     TOKENS: ^t";
+Food_Dispense2 = "\n FOOD UNIT DISPENSES\n  A COLD BEVERAGE.\n\n     TOKENS: ^t";
+Food_Broken = "\n\n   FOOD UNIT MACHINE\n    IS OUT OF ORDER.";
+
+//Item Pickup Messages
+I_BSRedKey = "\n\n \c[BSStatGreen]ACCESS CARD:\n  RED LEVEL";
+I_BSYellowKey = "\n\n \c[BSStatGreen]ACCESS CARD:\n YELLOW LEVEL";
+I_BSGreenKey = "\n\n \c[BSStatGreen]ACCESS CARD:\n GREEN LEVEL";
+I_BSBlueKey = "\n\n \c[BSStatGreen]ACCESS CARD:\n  BLUE LEVEL";
+I_BSGoldKey = "\n\n \c[BSStatGreen]ACCESS CARD:\n  GOLD LEVEL";
+I_BSCharge = "\n   \c[BSStatGreen]WEAPON:\n ENERGY PACK\n   (8 UNITS)";
+I_BSChargeFull = "\n   \c[BSStatGreen]WEAPON:\n ENERGY PACK\n   (8 UNITS)";
+I_BSChargeDrop = "\n   \c[BSStatGreen]WEAPON:\n ENERGY PACK\n   (^a UNITS)";
+I_BSSFP = "\n\n   \c[BSStatGreen]WEAPON:\n  SLOW FIRE\n  PROTECTOR\n";
+I_BSRAW = "\n\n   \c[BSStatGreen]WEAPON:\n RAPID ASSAULT\n   WEAPON";
+I_BSDND = "\n\n   \c[BSStatGreen]WEAPON:\n DUAL NEUTRON\n   DISRUPTER";
+I_MoneyBag = "\n\n    \c[BSStatGreen]BONUS:\n  MONEY BAG";
+I_Loot = "\n\n    \c[BSStatGreen]BONUS:\n    LOOT";
+I_5GoldBars = "\n\n    \c[BSStatGreen]BONUS:\n  GOLD BARS";
+I_3GoldBars = "\n\n    \c[BSStatGreen]BONUS:\n  GOLD BARS";
+I_2GoldBars = "\n\n    \c[BSStatGreen]BONUS:\n  GOLD BARS";
+I_1GoldBar = "\n\n    \c[BSStatGreen]BONUS:\n  GOLD BAR";
+I_XylanOrb = "\n\n    \c[BSStatGreen]BONUS:\n  XYLAN ORB";
+I_BSPDU = "\n   \c[BSStatGreen]WEAPON:\n   PLASMA\n DISCHARGE\n    UNIT";
+//I_BSAPC = "\n\n   \c[BSStatGreen]WEAPON:\n ANTI-PLASMA\n   CANNON";
+I_1Credit = "\n  \c[BSStatGreen]FOOD TOKEN:\n   1 CREDIT\n\n  TOKENS: ^t";
+I_5Credit = "\n  \c[BSStatGreen]FOOD TOKEN:\n   5 CREDITS\n\n  TOKENS: ^t";
+I_FirstAidKit = "\n\n   \c[BSStatGreen]HEALTH:\n  FIRST AID\n     KIT";
+I_RawMeat1 = "\n\n    \c[BSStatGreen]FOOD:\n  RAW MEAT";
+I_RawMeat2 = "\n\n    \c[BSStatGreen]FOOD:\n  RAW MEAT";
+I_Sandwich = "\n\n    \c[BSStatGreen]FOOD:\n  SANDWICH";
+I_CandyBar = "\n\n    \c[BSStatGreen]FOOD:\n  CANDY BAR";
+I_WaterBowl = "\n\n    \c[BSStatGreen]FOOD:\n FRESH WATER";
+I_HealthPlasma = "\n\n   \c[BSStatGreen]HEALTH:\n PLASMA BAG";
+I_WaterPool = "\n\n    \c[BSStatGreen]FOOD:\n WATER PUDDLE";
+
+//Door Messages
+LOCKTHISSIDE = "\n\n   DOOR LOCKED FROM\n      THIS SIDE.";
+LOCKED = "\n\n   DOOR PERMANENTLY\n        LOCKED.";
+LOCKRED = "\n\n      RED LEVEL\n    ACCESS DENIED!";
+LOCKYELLOW = "\n\n     YELLOW LEVEL\n    ACCESS DENIED!";
+LOCKGREEN = "\n\n     GREEN LEVEL\n    ACCESS DENIED!";
+LOCKBLUE = "\n\n      BLUE LEVEL\n    ACCESS DENIED!";
+LOCKGOLD = "\n\n      GOLD LEVEL\n    ACCESS DENIED!";
+GRANTED = "\n\n    ACCESS GRANTED\n    DOOR UNLOCKED.";
+OPERATING = "\n\n    OPERATING DOOR.";
+
+//Interrogation Strings
+Interrogate = "Interrogate: ";
+
+//Informant Messages
+Informant01 = "\n Electro spheres\n can be a nuisance.";
+Informant02 = "\n Doors with red lights\n are locked.";
+Informant03 = "\n Doors with green\n lights are unlocked.";
+Informant04 = "\n Don't let Goldfire\n catch you in here.";
+Informant05 = " Your Auto-Charge\n pistol is silent.\n Use it wisely.";
+Informant06 = " Hidden arenas can\n be accessed from\n this room.";
+Informant07 = " Be careful, Stone.\n Goldfire watches\n everyone.";
+Informant08 = " Informants are\n working to unlock\n all floors.";
+Informant09 = " To destroy\n Goldfire,\n shoot him when he\n initiates warp-out.";
+Informant10 = "\n Some Food Units\n are out of order.";
+Informant11 = " A Dual Neutron\n Disruptor is stored\n on this floor.";
+Informant12 = " Be careful, Blake!\n Dr. Goldfire is\n executing all\n Informants.";
+Informant13 = "\n Some food is stored\n in crates.";
+Informant14 = "\n Search all walls\n for hidden passages.";
+Informant15 = " Some weapons are\n stored in crates --\n blast all crates!";
+Informant16 = " All weapons are\n stored on this\n floor. Get 'em!";
+Informant17 = "\n Food Units\n require tokens.";
+Informant18 = "\n Some ammo is stored\n in crates.";
+Informant19 = "\n The Auto Charge\n pistol is silent.";
+Informant20 = "\n Beware of the\n genetic guards!";
+Informant21 = " Ask other Informants\n for their Food\n Unit tokens.";
+Informant22 = " Spilled toxic waste\n will hurt you if\n you stand in it.";
+Informant23 = " The access key is\n well-guarded! Be\n prepared to fight!";
+Informant24 = " A Plasma Discharge\n Unit and ammo is\n here in a hidden\n area.";
+Informant25 = " Ask other Informants\n for their energy\n packs.";
+Informant26 = " You're protected\n from the Pods in the\n observation areas.";
+Informant27 = " Follow the stacks of\n gold and you'll find\n the room of gold!";
+Informant28 = " Be careful when\n deactivating barrier\n switches.";
+Informant29 = "\n Beware of the\n Perscan Drones.";
+Informant30 = " Some secret passages\n are hidden behind\n blastable objects.";
+Informant31 = " Be careful, Stone.\n Some experiments\n have broken free!";
+Informant32 = " The turrets can not\n be damaged with the\n Plasma Discharge\n Unit.";
+Informant33 = " The turrets can not\n be damaged with the\n pistols.";
+Informant34 = " Blake, some barrier\n switches deactivate\n barriers on\n different floors.";
+
+InformantCharge = " Hey Blake,\n Take my charge pack!";
+InformantTokens = " Hey Blake,\n Take my food tokens!";
+
+DeadInformant = "\c[BSStatYellow]  YOU JUST SHOT AN\n     \c[BSStatYellow]INFORMANT!\n\c[BSStatLightBlue] ONLY SHOOT BIO-TECHS\n  \c[BSStatLightBlue]THAT SHOOT AT YOU!\n\c[BSStatRed]     DO NOT SHOOT\n     \c[BSStatRed]INFORMANTS!!";
+
+//Loyalist Messages
+Loyalist01 = " Hey, buddy,\n leave me alone.";
+Loyalist02 = " I don't have\n time for\n your gibberish.";
+Loyalist03 = " Have you seen\n a mutant running\n around here?";
+Loyalist04 = " It's after hours.\n You'd better\n be leaving.";
+Loyalist05 = " You must be\n new here.";
+Loyalist06 = " Uh-huh, Uh-huh,\n anyway...";
+Loyalist07 = " Don't I know you?";
+Loyalist08 = " Do you know what\n time it is?";
+Loyalist09 = " You must be\n with the tourist\n group.";
+Loyalist10 = " If you're not\n supposed to be\n here -- leave!";
+Loyalist11 = " This is a\n restricted area.\n Leave!";
+Loyalist12 = " Bother me again\n and I'll kill\n you!";
+Loyalist13 = " Get away from\n me, buddy!";
+Loyalist14 = " I outta' hit\n you with my\n notepad!";
+Loyalist15 = " Is that thing\n loaded?";
+Loyalist16 = " Ever been told\n you look like a\n guy named Blake!?";
+Loyalist17 = " Are you any\n relation to Jake?";
+
+//Loyalist Alarm Messages
+Alarm01 = " Hey,\n where's your\n access badge?";
+Alarm02 = " Goldfire's gonna'\n hear about this!";
+Alarm03 = " Talk to the\n guards about that.";
+Alarm04 = " Have you ever\n been mutated?";
+Alarm05 = " Hey!\n You're no scientist!";
+Alarm06 = " Oh no!\n It's Stone!";
+Alarm07 = " Only guards should\n have weapons!\n You're a bad man!";
+Alarm08 = " Alright, Stone!\n Hand over your\n weapons!";
+Alarm09 = " Ha! I've never\n mutated a Stone\n before!";
+Alarm10 = " Stone...\n You're not that\n tough!";
+Alarm11 = " Better start\n shootin'!";
+Alarm12 = " I don't think\n I like you!";
+Alarm13 = " Boss says to\n kill informants\n ...and Stone!";
+Alarm14 = " I bet I can get\n blood from a\n Stone!";
+Alarm15 = " You wouldn't\n know a guy named\n . . ..Stone!";
+Alarm16 = " Better duck!";
+
+//Level Names
+E1L0 = "SECURITY TRAINING ARENAS";
+E1L1 = "STAR INSTITUTE GENERAL OPERATIONS";
+E1L2 = "TECHNICAL PLANNING OFFICES";
+E1L3 = "MUTANT HOLDING CHAMBERS";
+E1L4 = "ALIEN CANISTER STORAGE";
+E1L5 = "CONTROLLED POD HATCHERY";
+E1L6 = "POD STABILIZATION AREA";
+E1L7 = "AMMUNITION AND WEAPONRY STORAGE";
+E1L8 = "SECURITY OFFICES";
+E1L9 = "SPACE TRAK TRANSPORT";
+E1L10 = "SECRET ALIEN CHAMBERS";
+E1L11 = "MISSION 1 - LEVEL 11 - DUMMY TEXT - BUG!";
+E1L12 = "MISSION 1 - LEVEL 12 - DUMMY TEXT - BUG!";
+E1L13 = "MISSION 1 - LEVEL 13 - DUMMY TEXT - BUG!";
+E1L14 = "MISSION 1 - LEVEL 14 - DUMMY TEXT - BUG!";
+E2L0 = "POD ALIEN STORAGE AND TRANSPORT";
+E2L1 = "TRANSPORT ARRIVAL AND PROCESSING";
+E2L2 = "GENERAL STORAGE AND OPERATIONS";
+E2L3 = "PERSONNEL BRIEFING AND TRAINING";
+E2L4 = "CARGO STORAGE AND PROCESSING";
+E2L5 = "PERSONNEL CORRECTION AND DETENTION";
+E2L6 = "WEAPONS DEVELOPMENT AND TESTING";
+E2L7 = "GENETIC DEVELOPMENT AND STORAGE";
+E2L8 = "TECHNICAL ENGINEERING";
+E2L9 = "TRANSPORT PROCESSING AND DEPARTURE";
+E2L10 = "SECRET STORAGE CHAMBERS";
+E2L11 = "MISSION 2 - LEVEL 11 - DUMMY TEXT - BUG!";
+E2L12 = "MISSION 2 - LEVEL 12 - DUMMY TEXT - BUG!";
+E2L13 = "MISSION 2 - LEVEL 13 - DUMMY TEXT - BUG!";
+E2L14 = "MISSION 2 - LEVEL 14 - DUMMY TEXT - BUG!";
+E3L0 = "SECRET ALIEN TEST ENVIRONMENT";
+E3L1 = "NETWORK SECURITY MONITORING";
+E3L2 = "NETWORK OPERATIONS AND CONTROL";
+E3L3 = "LUNAR EXPLORATIONS";
+E3L4 = "GENETICIST TRAINING LABS";
+E3L5 = "NETWORK ATMOSPHERIC CONTROL";
+E3L6 = "ALIEN BEHAVIORAL OBSERVATORY";
+E3L7 = "LUNAR BIOSPHERE MONITORING";
+E3L8 = "HUMAN MORPHING LABS";
+E3L9 = "NETWORK TRANSIT DECK";
+E3L10 = "SECRET NETWORK COMMUNICATIONS NODE";
+E3L11 = "MISSION 3 - LEVEL 11 - DUMMY TEXT - BUG!";
+E3L12 = "MISSION 3 - LEVEL 12 - DUMMY TEXT - BUG!";
+E3L13 = "MISSION 3 - LEVEL 13 - DUMMY TEXT - BUG!";
+E3L14 = "MISSION 3 - LEVEL 14 - DUMMY TEXT - BUG!";
+E4L0 = "HIDDEN HABITAT STORAGE";
+E4L1 = "ALIEN CONTROLLED QUARTERS";
+E4L2 = "MUTANT PERFECTION LABS";
+E4L3 = "CIRCULAR ALIEN CHAMBERS";
+E4L4 = "LUNAR OPERATIONS GOLD OPENING";
+E4L5 = "NEURO-NET CELLS";
+E4L6 = "ALIEN PROCESSING STATION";
+E4L7 = "STAR RECREATION AREA";
+E4L8 = "BIO-MORPHING LABS";
+E4L9 = "CRYO-STORAGE LEVEL";
+E4L10 = "MUTANT TRANSPORT DECK";
+E4L11 = "MISSION 4 - LEVEL 11 - DUMMY TEXT - BUG!";
+E4L12 = "MISSION 4 - LEVEL 12 - DUMMY TEXT - BUG!";
+E4L13 = "MISSION 4 - LEVEL 13 - DUMMY TEXT - BUG!";
+E4L14 = "MISSION 4 - LEVEL 14 - DUMMY TEXT - BUG!";
+E5L0 = "SUB-LUNAR TESTING LABS";
+E5L1 = "HABITAT CREW QUARTERS";
+E5L2 = "SOLAR RADIATION MONITORING";
+E5L3 = "ARTIFICIAL ATMOSPHERIC RESEARCH";
+E5L4 = "HABITAT SUPPLY STORAGE DECK";
+E5L5 = "GENETIC RESEARCH HOLDING AREAS";
+E5L6 = "HABITAT CENTRAL CORE PASSAGEWAY";
+E5L7 = "BIO-MEDICAL STORAGE DECK";
+E5L8 = "MUTANT EXAMINATION CHAMBERS";
+E5L9 = "HIGH SECURITY EXPERIMENTAL LAB";
+E5L10 = "MUTANT ISOLATION DECK";
+E5L11 = "MISSION 5 - LEVEL 11 - DUMMY TEXT - BUG!";
+E5L12 = "MISSION 5 - LEVEL 12 - DUMMY TEXT - BUG!";
+E5L13 = "MISSION 5 - LEVEL 13 - DUMMY TEXT - BUG!";
+E5L14 = "MISSION 5 - LEVEL 14 - DUMMY TEXT - BUG!";
+E6L0 = "GOLDFIRE'S MONEY VAULT";
+E6L1 = "SATELLITE DEFENSE OPERATIONS";
+E6L2 = "SECRET INTELLIGENCE HEADQUARTERS";
+E6L3 = "SECRET INTELLIGENCE TRAINING ARENA";
+E6L4 = "STAR DEFENSE RESEARCH LABORATORY";
+E6L5 = "CANISTER ALIEN GENESIS LABORATORY";
+E6L6 = "STAR COMMUNICATIONS";
+E6L7 = "GENETIC RESEARCH HEADQUARTERS";
+E6L8 = "STRATEGIC DEFENSE HEADQUARTERS";
+E6L9 = "STAR CENTRAL COMPUTER NETWORK";
+E6L10 = "STAR TECHNICAL AND INTELLIGENCE ARCHIVES";
+E6L11 = "MISSION 6 - LEVEL 11 - DUMMY TEXT - BUG!";
+E6L12 = "MISSION 6 - LEVEL 12 - DUMMY TEXT - BUG!";
+E6L13 = "MISSION 6 - LEVEL 13 - DUMMY TEXT - BUG!";
+E6L14 = "MISSION 6 - LEVEL 14 - DUMMY TEXT - BUG!";
+
+//Elevator1 = "Press a number to select a floor.";
+//Elevator2 = "(0 selects floor 10)";
+Elevator1 = "Use arrow keys to select a floor.";
+//Elevator2 = "('Use' button selects)";
+Elevator2 = "('^k+use' button selects)";
+
+ElevatorSelect1 = "Current floor:";
+ElevatorSelect2 = "Select a floor.";
+ElevatorLocked1 = "Floor      is LOCKED.";
+ElevatorLocked2 = "Try another floor.";
+ElevatorUnlocked1 = "RED access card used";
+ElevatorUnlocked2 = "to unlock floor!";
+ElevatorKeyRequired1 = "You must first get";
+ElevatorKeyRequired2 = "the RED access card!";
+
+Powerball = "-- DEBUG MODE ENABLED --";
+Cheat_JAM = "NOW you're jammin'!!";
+Cheat_JAM_Status = "\n\n     YOU CHEATER!";
+Cheat_God_On = "God mode ON";
+Cheat_God_Off = "God mode OFF";
+Cheat_Items = "Free items!";
+
+Loading = "-- LOADING --";
+
+StartupMessage = "You must find the RED access\ncard before proceeding to the\nnext floor\n\n\n";
+StartupMessage2 = "You must find the RED access\ncard before proceeding to the\nnext floor\n\n         Press a key.";
+StartupMessage_Status = "R.E.B.A.\nAGENT: BLAKE STONE\nALL SYSTEMS READY.";
+
+GetReady = "Get Ready, Blake!";
+GreatWork = "Great work, Blake!\nYou've completed this mission!";
+
+MissionBriefTitle = "MISSION ^e BRIEFING";
+MissionBriefSubtitle = "(R.E.B.A. VOICE INTERFACE)";
+MissionBriefAccessing = "Accessing......current location:";
+//MissionBriefKeys1 = " UP / DN - PAGES       ENTER - CONTINUES         ESC - EXITS";
+//MissionBriefKeys1A = " UP / DN - PAGES                                  ESC - EXITS";
+MissionBriefKeys1A = " ^k+forward / ^k+back - PAGES                                  ESC - EXITS";
+MissionBriefKeys1B = "^k+use - CONTINUES";
+MissionBriefKeys2 = "           ^k+forward / ^k+back - PAGES            ESC - EXITS";
+
+Mission1LocationA = "STAR INSTITUTE";
+Mission1LocationB = "General Operations";
+Mission1Content1 = "Agent Stone... Reports confirm that Goldfire is aware of your arrival. My sensors indicate movement toward the 9th floor shuttle bay. Sir...I can only extrapolate from past behavior to determine Goldfire's current intent.";
+Mission1Content2A = "Assessment: ";
+Mission1Content2B = "Dr. Goldfire plans to flee the Institute. He realizes you are a threat to his plan, and perceives an increased measure of personal safety on the Floating Fortress. Control of greater destructive capabilities is a certainty as well.";
+Mission1Content3A = "Objective: ";
+Mission1Content3B = "Proceed to Floor 9. Kill the Spider Mutant guardian alien of the STAR Institute and take the shuttle to the next link in Goldfire's operation, the Floating Fortress. You will receive additional instructions when you arrive at the fortress complex.";
+Mission1Content4A = "";
+Mission1Content4B = "Informant Bio-Techs have been located throughout the STAR Institute. Information, ammo, and tokens may be obtained from these individuals.\n\nIf I may offer an opinion: Think before you shoo...Yes Sir...Good luck, Sir!\n\nIdle...R.E.B.A.///end.";
+
+Bonus_GAlienDead2 = "\c[BSStatLightBlue]    GUARDIAN ALIEN\n      DESTROYED!\n\n FIND AND DESTROY ALL\nPROJECTION GENERATORS!";
+Bonus_GAlienDead = "\c[BSStatLightBlue]    GUARDIAN ALIEN\n      DESTROYED!\n\n   FIND THE EXIT TO\nCOMPLETE THIS MISSION";
+Bonus_ScoreRolled = "\n\c[BSStatLightBlue]ROLLED SCORE DISPLAY!\n   FULL AMMO BONUS!\n  FULL HEALTH BONUS!\n1,000,000 POINT BONUS!";
+Bonus_OneMillion = "\n\c[BSStatLightBlue]     GREAT SCORE!\n   FULL AMMO BONUS!\n  FULL HEALTH BONUS!\n1,000,000 POINT BONUS!";
+Bonus_ExtraMan = "\n\n\c[BSStatLightBlue]     GREAT SCORE!\n  EXTRA LIFE BONUS!\n";
+Bonus_EnemyDestroyed = "\n\n\c[BSStatLightBlue] ALL ENEMY DESTROYED!\n  50,000 POINT BONUS!\n";
+Bonus_TotalPoints = "\n\n\c[BSStatLightBlue] ALL POINTS COLLECTED!\n  50,000 POINT BONUS!\n";
+Bonus_InformantsAlive = "\n\n\c[BSStatLightBlue] ALL INFORMANTS ALIVE!\n  50,000 POINT BONUS!\n";
+
+SwitchOn = "\n\n  ACTIVATING BARRIER\n      ON FLOOR ^f";
+SwitchOff = "\n\n DEACTIVATING BARRIER\n      ON FLOOR ^f";
+TeleportOut = "\n\n  TELPORTING OUT";
+TeleportIn = "\n\n  TRANSPORTING...";

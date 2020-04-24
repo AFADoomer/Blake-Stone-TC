@@ -1,0 +1,217 @@
+DEFAULTLISTMENU
+{
+	Font "TinyFont", "BSMenuMediumGreen", "BSMenuLightGreen"
+	Selector "-", -12, 1
+//	Selector "HILITE1", -30, 1
+//	Selector "HILITE1", -4, 1
+	Linespacing 9
+}
+
+OptionMenuSettings
+{
+	Linespacing 9
+}
+
+DefaultOptionMenu
+{
+	Position -15
+}
+
+LISTMENU "MainMenu"
+{
+	StaticPatch 0, 0, "MENUBACK"
+
+	Font "BigFont", "BSMenuMediumGreen"
+	StaticTextCentered 160, 33, "MAIN OPTIONS"
+
+	Font "TinyFont", "BSMenuDarkGreen"
+	StaticTextCentered 160, 164, "UP/DN SELECTS - ENTER CHOOSES - ESC EXITS"
+
+	Font "SmallFont", "BSMenuMediumGreen", "BSMenuLightGreen"
+
+	Position 111, 52
+	TextItem "NEW MISSION", "n", "PlayerclassMenu"
+	Font "SmallFont", "BSMenuYellow", "BSMenuLightYellow"
+	TextItem "ORDERING INFO", "o", ""
+	Font "SmallFont", "BSMenuMediumGreen", "BSMenuLightGreen"
+	TextItem "INSTRUCTIONS", "i", ""
+	Linespacing 18
+	TextItem "STORY", "s", ""
+	Linespacing 9
+	TextItem "GAME OPTIONS", "g", "BSOptionsMenu"
+	TextItem "HIGH SCORES", "h", ""
+	TextItem "LOAD MISSION", "l", "LoadGameMenu"
+	Linespacing 18
+	TextItem "SAVE MISSION", "s", "SaveGameMenu"
+	Linespacing 9
+//	TextItem "BACK TO DEMO", "b", ""
+	Font "SmallFont", "BSMenuYellow", "BSMenuLightYellow"
+	TextItem "BACK TO MISSION", "b", "CloseMenu"
+	Font "SmallFont", "BSMenuMediumGreen", "BSMenuLightGreen"
+	TextItem "LOGOFF", "l", "QuitMenu"
+}
+
+ListMenu "EpisodeMenu"
+{
+	NetgameMessage "$NETGAME"
+
+	StaticPatch 0, 0, "MENUBACK"
+
+	Font "BigFont", "BSMenuMediumGreen"
+	StaticTextCentered 160, 33, "CHOOSE A MISSION"
+
+	Font "TinyFont", "BSMenuDarkGreen"
+	StaticTextCentered 160, 164, "UP/DN SELECTS - ENTER CHOOSES - ESC EXITS"
+
+	StaticPatch 192, 57, "MSN1S"
+	StaticPatch 232, 57, "MSN2S"
+	StaticPatch 192, 87, "MSN3S"
+	StaticPatch 232, 87, "MSN4S"
+	StaticPatch 192, 117, "MSN5S"
+	StaticPatch 232, 117, "MSN6S"
+
+	Font "TinyFont", "BSMenuMediumGreen", "BSMenuLightGreen"
+
+	StaticPatch 0, 0, "M_EPIS"
+
+	Selector "-", -12, -2
+//	Selector "HILITE2", -12, -2
+//	Selector "HILITE2", -3, -2
+
+	Position 58, 54
+	Linespacing 16
+	// items will be filled in by MAPINFO
+}
+
+ListMenu "SkillMenu"
+{
+	StaticPatch 0, 0, "MENUBACK"
+
+	Font "BigFont", "BSMenuMediumGreen"
+	StaticTextCentered 160, 33, "DIFFICULTY LEVEL"
+
+	StaticPatch 192, 67, "M_SKILL1"
+	StaticPatch 232, 67, "M_SKILL2"
+	StaticPatch 192, 97, "M_SKILL3"
+	StaticPatch 232, 97, "M_SKILL4"
+
+	//Common to both...
+	Font "TinyFont", "BSMenuDarkGreen"
+	StaticTextCentered 160, 164, "UP/DN SELECTS - ENTER CHOOSES - ESC EXITS"
+
+	Font "TinyFont", "BSMenuMediumGreen", "BSMenuLightGreen"
+	StaticTextCentered 160, 140, "HIGHER DIFFICULTY LEVELS CONTAIN"
+	StaticTextCentered 160, 146, "MORE, STRONGER ENEMIES"
+
+	Selector "-", -12, -2
+//	Selector "HILITE2", -12, -2
+//	Selector "HILITE2", -3, -2
+
+	Position 71, 66
+	Linespacing 16
+}
+
+ListMenu "BSOptionsMenu"
+{
+	StaticPatch 0, 0, "MENUBACK"
+
+	Font "BigFont", "BSMenuMediumGreen"
+	StaticTextCentered 160, 33, "GAME OPTIONS"
+
+	Font "TinyFont", "BSMenuDarkGreen", "BSMenuLightGreen"
+	StaticTextCentered 160, 164, "UP/DN SELECTS - ENTER CHOOSES - ESC EXITS"
+
+	Font "SmallFont", "BSMenuMediumGreen", "BSMenuLightGreen"
+	Position 111, 82
+	Linespacing 9
+
+	TextItem "SOUND", "s", "SoundOptions"
+	TextItem "CONTROLS", "c", "CustomizeControls"
+	TextItem "CHANGE VIEW", "v", "VideoOptions"
+	Linespacing 18
+	TextItem "SWITCHES", "s", "GamePlayOptions"
+	Linespacing 9
+	TextItem "OTHER OPTIONS", "o", "OptionsMenu"
+}
+
+ListMenu "LoadGameMenu"
+{
+	NetgameMessage "$LOADNET"
+	Font "BigFont", "BSMenuMediumGreen"
+	StaticTextCentered 160, -10, "LOAD MISSION"
+	Position 80,54
+	Class "LoadMenu" // uses its own implementation
+}
+
+ListMenu "SaveGameMenu"
+{
+	Font "BigFont", "BSMenuMediumGreen"
+	StaticTextCentered 160, -10, "SAVE MISSION"
+	Position 80,54
+	Class "SaveMenu" // uses its own implementation
+}
+
+ListMenu "PlayerMenu"
+{
+	Font "BigFont", "BSMenuMediumGreen"
+	StaticTextCentered 160, 6, "$MNU_PLAYERSETUP"
+	Font "SmallFont"
+	Linespacing 14
+	Position 48, 36
+
+	PlayerNameBox "Name", 0, "Playerbox"
+	Selector "-", -16, -1
+	MouseWindow 0, 220
+	PlayerDisplay 220, 80, "20 00 20", "80 00 80", 1, "PlayerDisplay"
+
+	ValueText "Team", "Team"
+	ValueText "Color", "Color"
+	Linespacing 10
+	Slider "Red", "Red", 0, 255, 16
+	Slider "Green", "Green", 0, 255, 16
+	Linespacing 14
+	Slider "Blue", "Blue", 0, 255, 16
+	ValueText "Class", "Class"
+	ValueText "Skin", "Skin"
+	ValueText "Gender", "Gender", "Gender"
+	ValueText "Autoaim", "Autoaim", "Autoaim"
+	ValueText "Switch on pickup", "Switch", "OffOn"
+	ValueText "Always Run", "AlwaysRun", "OnOff"
+	Class "PlayerMenu"
+}
+
+OptionMenu "OptionsMenu"
+{
+	Title "OPTIONS"
+	Submenu "Blake Stone TC Options", "TCOptions"	
+	StaticText " "
+	Submenu "Customize Controls", "CustomizeControls"
+	Submenu "Mouse options", "MouseOptions"
+	Submenu "Joystick options", "JoystickOptions"
+	StaticText " "
+	Submenu "Player Setup", "PlayerMenu"
+	Submenu "Gameplay Options", "GameplayOptions"
+	Submenu "Compatibility Options", "CompatibilityOptions"
+	Submenu "Automap Options", "AutomapOptions"
+	Submenu "HUD Options", "HUDOptions"
+	Submenu "Miscellaneous Options", "MiscOptions"
+	Submenu "Sound Options", "SoundOptions"
+	Submenu "Display Options", "VideoOptions"
+	Submenu "Set video mode", "VideoModeMenu"
+	StaticText " "
+	SafeCommand "Reset to defaults", "reset2defaults"
+	SafeCommand "Reset to last saved", "reset2saved"
+	Command "Go to console", "menuconsole"
+}
+
+OptionMenu "TCOptions"
+{
+	Title "BLAKE STONE TC OPTIONS"
+	Option "Disable Blake Stone-style movement",	"g_momentum", "YesNo"
+	Option "Enable Blake Stone-style cheats",	"powerball", "YesNo"
+	StaticText ""
+	Option "Skip level loading screen",		"g_nointro", "YesNo"
+	Option "Textured ceilings and floors",		"g_texturedflats", "YesNo"
+	StaticText ""
+	Slider "Max pushwall move distance",		"g_maxpushwallmove", 2, 5, 1
+}

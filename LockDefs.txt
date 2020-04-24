@@ -1,0 +1,61 @@
+Lock 1
+{
+BSRedKey
+Mapcolor 255 0 0
+}
+
+Lock 2
+{
+BSYellowKey
+Mapcolor 255 255 0
+}
+
+Lock 3
+{
+BSGreenKey
+Mapcolor 0 255 0
+}
+
+Lock 4
+{
+BSBlueKey
+Mapcolor 0 0 255
+}
+
+Lock 5
+{
+BSGoldKey
+Mapcolor 128 128 0
+}
+
+Lock 98
+{
+}
+
+Lock 99
+{
+}
+
+Lock 129 Doom
+{
+	Any { RedCard RedSkull KeyGreen BSRedKey}
+	Mapcolor 255 0 0
+}
+
+Lock 130 Doom
+{
+	Any { BlueCard BlueSkull KeyBlue BSBlueKey}
+	Mapcolor 0 0 255
+}
+
+
+Lock 131 Doom
+{
+	Any { YellowCard YellowSkull KeyYellow BSYellowKey}
+	Mapcolor 255 255 0
+}
+
+Lock 105
+{
+	WalkoverKey
+}
